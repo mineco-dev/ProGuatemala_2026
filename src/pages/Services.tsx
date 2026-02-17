@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Target, Plane, TrendingUp, HeartHandshake, 
   CheckCircle, Clock, ArrowRight, Phone,
@@ -143,7 +144,7 @@ const Services: React.FC = () => {
                   onClick={() => setActiveTab(index)}
                   className={`flex items-center space-x-3 px-6 py-4 font-semibold transition-all duration-300 rounded-xl transform hover:scale-105 ${
                     activeTab === index
-                      ? `bg-gradient-to-r ${services[index].color} text-white shadow-lg scale-105`
+                      ? `bg-support-500 text-white shadow-lg scale-105`
                       : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md'
                   }`}
                 >
@@ -176,7 +177,7 @@ const Services: React.FC = () => {
               <div className="card-premium p-10">
                 <div className="flex items-center space-x-6 mb-8">
                   {React.createElement(services[activeTab].icon, {
-                    className: `w-16 h-16 text-white bg-gradient-to-br ${services[activeTab].color} p-4 rounded-2xl shadow-lg`
+                    className: `w-16 h-16 text-white bg-support-500 p-4 rounded-2xl shadow-lg`
                   })}
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">{services[activeTab].title}</h2>
@@ -187,10 +188,18 @@ const Services: React.FC = () => {
                   <p className="text-gray-700 leading-relaxed text-lg">{services[activeTab].description}</p>
                 </div>
 
-                <button className="btn-premium inline-flex items-center">
-                  {services[activeTab].cta}
-                  <ArrowRight className="w-5 h-5 ml-3" />
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {/* <button className="btn-premium inline-flex items-center">
+                    {services[activeTab].cta}
+                    <ArrowRight className="w-5 h-5 ml-3" />
+                  </button> */}
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gray-900 text-gray-900 font-semibold hover:bg-gray-900 hover:text-white transition-colors duration-200"
+                  >
+                    Contactar a un asesor
+                  </Link>
+                </div>
               </div>
 
               <div className={`card-premium p-10 bg-gradient-to-br ${services[activeTab].bgColor}`}>

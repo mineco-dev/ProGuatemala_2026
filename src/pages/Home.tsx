@@ -8,12 +8,10 @@ import {
   Play, FileText, Phone, Mail, Globe,
   Award, Handshake, Target, CheckCircle, Clock
 } from 'lucide-react';
-import AgroindustriaImg from '../assets/images/agroindustria.jpg';
-import ManufacturaImg from '../assets/images/manufactura.jpg';
-import ServiciosGlobalesImg from '../assets/images/serviciosglobales.jpg';
-import EnergiasLimpiasImg from '../assets/images/energiaslimpias.jpg';
-import TurismoSostenibleImg from '../assets/images/turismo.jpg';
 import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
+import GuiaInversionistaEs from '../assets/files/16_07_25 ESPAÑOL-TRIFOLIAR-PaginaWeb (1).pdf';
+import PorqueGTImg from '../assets/images/porqueGT.png';
+import SectorsCarousel from '../components/SectorsCarousel';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
@@ -26,7 +24,8 @@ const Home: React.FC = () => {
         const vizElement = divElement.getElementsByTagName('object')[0];
         if (vizElement) {
           vizElement.style.width = '100%';
-          vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+          const computedHeight = Math.max(1700, Math.round(divElement.offsetWidth * 0.9));
+          vizElement.style.height = `${computedHeight}px`;
           vizElement.style.display = 'block';
           
           // Load Tableau API script if not already loaded
@@ -46,102 +45,74 @@ const Home: React.FC = () => {
   
   const guatemalaAdvantages = [
     {
-      icon: MapPin,
-      title: 'Ubicación Estratégica',
-      description: 'Puerta de entrada natural entre Norte y Sudamérica, con acceso privilegiado a mercados globales',
+      icon: TrendingUp,
+      title: 'Macroeconomía Robusta',
+      description: 'Fundamentos sólidos, baja inflación y un marco fiscal responsable que favorece la inversión.',
       details: [
-        'Acceso preferencial a 44 países sin aranceles',
-        'DR-CAFTA y Acuerdo de Asociación UE-CA',
-        'A solo 2 horas de vuelo de Miami',
-        'Conexión directa con puertos del Pacífico y Atlántico'
+        'Crecimiento sostenido del PIB',
+        'Inflación controlada y predecible',
+        'Sistema financiero sólido y regulado',
+        'Estabilidad cambiaria'
       ],
       color: 'bg-support-600',
       bgColor: 'bg-support-50',
-      stats: '44 países'
+      stats: 'Estabilidad'
+    },
+    {
+      icon: MapPin,
+      title: 'Ubicación Estratégica',
+      description: 'Puerta de entrada natural entre Norte y Sudamérica, con acceso privilegiado a mercados globales.',
+      details: [
+        'Acceso preferencial a múltiples mercados',
+        'Conexión con puertos del Pacífico y Atlántico',
+        'Cercanía a mercados clave',
+        'Plataforma logística regional'
+      ],
+      color: 'bg-support-600',
+      bgColor: 'bg-support-50',
+      stats: 'Conectividad'
     },
     {
       icon: Users,
-      title: 'Capital Humano Joven',
-      description: 'Población joven y dinámica con creciente nivel educativo y habilidades técnicas especializadas',
+      title: 'Talento Joven y Calificado',
+      description: 'Población joven y dinámica con creciente nivel educativo y habilidades técnicas especializadas.',
       details: [
-        '60% de la población menor de 30 años',
-        '16.8 millones de habitantes',
-        'Fuerza laboral bilingüe en crecimiento',
-        'Programas de capacitación técnica especializados'
+        'Fuerza laboral en crecimiento',
+        'Capacitación técnica especializada',
+        'Bilingüismo en expansión',
+        'Alta adaptabilidad'
       ],
       color: 'bg-support-600',
       bgColor: 'bg-support-50',
-      stats: '60% <30 años'
+      stats: 'Talento'
     },
     {
-      icon: TrendingUp,
-      title: 'Estabilidad Macroeconómica',
-      description: 'Economía sólida con crecimiento sostenido, baja inflación y marco fiscal responsable',
+      icon: Globe,
+      title: 'Energía Renovable y Confiable',
+      description: 'Matriz energética diversificada con alta participación de fuentes renovables.',
       details: [
-        'Crecimiento promedio del PIB: 3.5% anual',
-        'PIB de $87.6 mil millones (2023)',
-        'Inflación controlada y predecible',
-        'Sistema financiero sólido y regulado'
+        'Capacidad hidroeléctrica y solar',
+        'Suministro confiable',
+        'Oportunidades en energías limpias',
+        'Costos competitivos'
       ],
       color: 'bg-support-600',
       bgColor: 'bg-support-50',
-      stats: '3.5% crecimiento'
-    },
-    {
-      icon: Shield,
-      title: 'Marco Legal Sólido',
-      description: 'Protección jurídica robusta para inversionistas con tratados internacionales y garantías constitucionales',
-      details: [
-        'Más de 25 tratados de protección de inversiones',
-        'Ley de Inversión Extranjera actualizada',
-        'Acceso a arbitraje internacional',
-        'Garantías constitucionales para inversionistas'
-      ],
-      color: 'bg-support-600',
-      bgColor: 'bg-support-50',
-      stats: '25+ tratados'
+      stats: 'Energía limpia'
     },
     {
       icon: Award,
-      title: 'Incentivos Competitivos',
-      description: 'Régimen de incentivos fiscales y facilidades para maximizar el retorno de inversión',
+      title: 'Regímenes Especiales e Incentivos Fiscales',
+      description: 'Herramientas e incentivos para maximizar el retorno de inversión.',
       details: [
-        'Exención del ISR hasta por 10 años',
-        'Zonas Francas con beneficios especiales',
-        'ZDEEP para energías renovables',
+        'Zonas Francas con beneficios',
+        'ZDEEP y regímenes especiales',
+        'Exenciones y facilidades',
         'Depreciación acelerada de activos'
       ],
       color: 'bg-support-700',
       bgColor: 'bg-support-50',
-      stats: '0% ISR 10 años'
-    }
-  ];
-
-  const sectors = [
-    {
-      name: 'Agroindustria',
-      image: AgroindustriaImg,
-      description: 'Aprovecha el clima tropical y la tradición agrícola'
-    },
-    {
-      name: 'Manufactura Liviana',
-      image: ManufacturaImg,
-      description: 'Textiles, confección y productos especializados'
-    },
-    {
-      name: 'Servicios Globales',
-      image: ServiciosGlobalesImg,
-      description: 'Call centers, BPO y servicios digitales'
-    },
-    {
-      name: 'Energías Limpias',
-      image: EnergiasLimpiasImg,
-      description: 'Hidroeléctrica, solar y geotérmica'
-    },
-    {
-      name: 'Turismo Sostenible',
-      image: TurismoSostenibleImg,
-      description: 'Patrimonio cultural y natural excepcional'
+      stats: 'Incentivos'
     }
   ];
 
@@ -165,10 +136,17 @@ const Home: React.FC = () => {
                 {t('home.hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center" style={{ background: '#FFDB60' }} onMouseEnter={(e) => e.currentTarget.style.background = '#FFE68A'} onMouseLeave={(e) => e.currentTarget.style.background = '#FFDB60'}>
+                <a
+                  href={GuiaInversionistaEs}
+                  download="Guia del Inversionista.pdf"
+                  className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  style={{ background: '#FFDB60' }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#FFE68A'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = '#FFDB60'}
+                >
                   <Download className="w-5 h-5 mr-2" />
                   {t('home.hero.download')}
-                </button>
+                </a>
                 <Link
                   to="/contact"
                   className="border border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
@@ -235,6 +213,13 @@ const Home: React.FC = () => {
               Cinco ventajas únicas que posicionan a Guatemala como el destino de inversión 
               más atractivo y estratégico de Centroamérica
             </p>
+            <div className="flex justify-center mb-6">
+              <img
+                src={PorqueGTImg}
+                alt="Por qué elegir Guatemala"
+                className="w-full max-w-3xl rounded-2xl shadow-lg"
+              />
+            </div>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -306,16 +291,6 @@ const Home: React.FC = () => {
                 Descarga nuestro fact sheet completo con datos actualizados y análisis detallado
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/why-guatemala"
-                  className="text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105"
-                  style={{ background: '#021049' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#010D3A'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = '#021049'}
-                >
-                  <TrendingUp className="w-5 h-5 mr-2" />
-                  Ver análisis completo
-                </Link>
                 <a
                   href={FactSheetEs}
                   download="FACT SHEET EN ESPAÑOL.pdf"
@@ -333,118 +308,70 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Strategic Sectors Carousel */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t('home.sectors.title')}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('home.sectors.subtitle')}
-            </p>
-          </motion.div>
-
+      {/* Mensaje del Presidente */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-support-50 to-support-50 rounded-2xl p-8 md:p-12 mb-16 shadow-xl border border-blue-100"
+            className="bg-gradient-to-br from-support-50 to-support-50 rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
           >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              <div className="lg:col-span-1 flex justify-center">
+              <div className="lg:col-span-1 flex flex-col items-center text-center">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-support-400 to-support-400 rounded-full blur-2xl opacity-30"></div>
                   <img
                     src="https://raw.githubusercontent.com/RedCiudadana/RecursosProGuatemala/refs/heads/main/equipo/PRESIDENTE%20BERNARDO%20AREVALO%20RETRATO%20OFICIAL%20.jpg"
                     alt="Presidente de Guatemala"
-                    className="relative w-64 h-64 object-cover rounded-full border-8 border-white shadow-2xl"
+                    className="relative w-64 h-64 object-contain rounded-full border-8 border-white shadow-2xl bg-white"
                   />
                 </div>
+                <h3 className="text-3xl font-bold text-gray-900 mt-4">
+                  Bernardo Arévalo de León
+                </h3>
+                <p className="text-blue-600 font-semibold">Presidente de la República de Guatemala</p>
               </div>
               <div className="lg:col-span-2">
                 <div className="mb-6">
                   <div className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     Mensaje del Presidente
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                    Bernardo Arévalo de León
-                  </h3>
-                  <p className="text-blue-600 font-semibold mb-6">Presidente de la República de Guatemala</p>
                 </div>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p className="text-lg">
-                    "Guatemala es una tierra de oportunidades sin precedentes. Nuestro compromiso es crear un ambiente propicio para la inversión extranjera, basado en la transparencia, el estado de derecho y la seguridad jurídica."
+                    Estimados inversores, en nombre del pueblo de Guatemala, me complace darles una cálida bienvenida durante su proceso de explorar las oportunidades de inversión en nuestro país. Guatemala se presenta como un faro de oportunidades en Centroamérica, con una economía estable, una ubicación estratégica y un entorno empresarial favorable. A medida que navegan por el panorama de posibilidades de inversión, deseamos mostrarles las innumerables razones por las que Guatemala debería estar al frente de sus consideraciones.
                   </p>
                   <p className="text-lg">
-                    "Los invito a descubrir las ventajas competitivas de nuestro país: una ubicación estratégica, una fuerza laboral talentosa y joven, y un mercado dinámico con acceso preferencial a las economías más importantes del mundo."
+                    El compromiso de nuestra nación con la estabilidad económica y el crecimiento es inquebrantable. Con un marco legal sólido, regulaciones transparentes y un enfoque proactivo para la facilitación de inversiones, Guatemala ofrece un entorno seguro y propicio para que las empresas prosperen.
+                  </p>
+                  <p className="text-lg">
+                    Nuestra ubicación estratégica, la cual une América del Norte y América del Sur, presenta un acceso privilegiado a mercados clave, lo cual facilita el comercio y la conectividad, ya sea que busquen establecer instalaciones de manufactura, explorar sectores como alimentos y bebidas, energía renovable, o aprovechar nuestro ecosistema de turismo y servicios de salud. Guatemala ofrece una gran cantidad de oportunidades.
+                  </p>
+                  <p className="text-lg">
+                    Más allá del panorama empresarial, el rico patrimonio cultural, los impresionantes paisajes y la cálida hospitalidad, el país ofrece una experiencia de vida única. Nuestra nación se está moviendo rápidamente hacia una sociedad moderna, diversa y más inclusiva, donde los inversionistas y sus familias puedan prosperar.
+                  </p>
+                  <p className="text-lg">
+                    Al embarcarse en este viaje, tengan la seguridad de que nuestra Agencia de Atracción de Inversión Nacional y Extranjera está aquí para apoyarlos y guiarlos en cada paso del camino. Nuestro dedicado equipo de expertos está listo para brindar asistencia personalizada, facilitar las conexiones y sortear cualquier desafío que pueda surgir, asegurando que su recorrido de inversión sea lo más fluido y exitoso posible.
+                  </p>
+                  <p className="text-lg">
+                    Finalmente, extiendo mi más sincero agradecimiento por considerar a Guatemala como su destino de inversión. Estamos deseosos de asociarnos con ustedes para lograr sus objetivos y contribuir a la prosperidad mutua de nuestras naciones.
                   </p>
                   <p className="text-lg font-semibold text-blue-900">
-                    "Guatemala les da la bienvenida. Juntos construiremos un futuro de prosperidad compartida."
+                    Dr. Bernardo Arévalo
                   </p>
                 </div>
               </div>
             </div>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sectors.map((sector, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={sector.image}
-                    alt={sector.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{sector.name}</h3>
-                  <p className="text-sm text-gray-200 mb-4">{sector.description}</p>
-                  <Link
-                    to={`/strategic-sectors/${sector.name.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="inline-flex items-center font-semibold"
-                    style={{ color: '#FFDB60' }}
-                  >
-                    {t('home.sectors.learn-more')}
-                    <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link
-              to="/strategic-sectors"
-              className="inline-flex items-center text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
-              style={{ background: '#021049' }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#010D3A'}
-              onMouseLeave={(e) => e.currentTarget.style.background = '#021049'}
-            >
-              {t('home.sectors.view-all')}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </div>
         </div>
       </section>
 
+      <SectorsCarousel showAllLink allLinkLabel={t('home.sectors.view-all')} />
+
       {/* Quick Access Links */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -532,10 +459,10 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Legal Requirements Checklist */}
-      <section id="legal-requirements" className="py-16 bg-gray-50">
+      {/* <section id="legal-requirements" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -601,7 +528,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Interactive Map Section */}
       <section className="py-16 bg-white">
@@ -613,7 +540,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Guatemala: Conectividad Global
             </h2>
             <p className="text-xl text-gray-600">
@@ -626,14 +553,14 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-2xl shadow-xl overflow-hidden"
+            className="bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
-            <div className="p-4 text-white" style={{ background: '#021049' }}>
-              <h3 className="text-lg font-semibold">Dashboard de Inversión Extranjera Directa</h3>
-              <p className="text-blue-100 text-sm">Explora datos actualizados sobre IED y oportunidades de inversión en Guatemala</p>
+            <div className="p-6 text-white" style={{ background: '#021049' }}>
+              <h3 className="text-xl font-semibold">Dashboard de Inversión Extranjera Directa</h3>
+              <p className="text-blue-100">Explora datos actualizados sobre IED y oportunidades de inversión en Guatemala</p>
             </div>
-            <div className="p-4">
-              <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+            <div className="p-6">
+              <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[900px]">
                 <div 
                   className="tableauPlaceholder w-full h-full" 
                   id="viz1757690928347" 

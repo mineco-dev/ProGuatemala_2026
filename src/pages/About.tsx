@@ -167,8 +167,32 @@ const About: React.FC = () => {
                   transition={{ delay: 0.6, duration: 0.8 }}
                   className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
                 >
-                  Somos la agencia nacional de promoción de inversión extranjera directa, 
-                  comprometidos con conectar oportunidades globales con el potencial de Guatemala
+                  En ProGuatemala estamos para acompañarte. Somos la Agencia Nacional de
+Atracción de Inversión Extranjera Directa. Nuestro equipo te conecta con las
+oportunidades, te guía paso a paso, y te ayuda a instalar y hacer crecer tu
+inversión en Guatemala. Con autoridad técnica y respaldo institucional,
+convertimos la complejidad en claridad.
+                </motion.p>
+                <motion.p
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
+                >
+ProGuatemala brinda asesoría especializada, gratuita y personalizada durante
+todo el proceso de inversión.
+Acompañamos desde la exploración inicial hasta la expansión y reinversión,
+articulando con las instituciones clave.
+
+                </motion.p>
+                <motion.p
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
+                >
+No estás solo: nuestro equipo técnico te ayuda a navegar trámites, identificar
+aliados y acelerar tu instalación.
                 </motion.p>
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
@@ -200,17 +224,28 @@ const About: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Quienes Somos
+              Quiénes Somos
             </h2>
             <div className="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-6">
               <p>
-                En ProGuatemala, sabemos que tomar la decisión de invertir es un paso importante, y estamos aquí para facilitar tu camino. Nuestra misión es ser tu guía confiable para establecer o expandir tus proyectos en Guatemala, ofreciendo servicios especializados que se adaptan a tus necesidades.
+                En ProGuatemala, reconocemos que la decisión de invertir representa un paso estratégico y de gran importancia. Por ello, nuestro compromiso es acompañar a cada inversionista en el proceso de establecer o expandir sus proyectos en Guatemala, brindando asesoría especializada y soluciones adaptadas a sus necesidades.
               </p>
               <p>
-                Hemos diseñado herramientas estratégicas para apoyarte en cada etapa: con Atención al Inversionista, te proporcionamos asesoría gratuita para que conozcas las oportunidades únicas que ofrece nuestro país; a través de Aftercare, te acompañamos en el seguimiento y crecimiento de tu inversión; y con nuestra Inteligencia de Inversión, ponemos a tu disposición datos clave y análisis que te ayudarán a tomar decisiones informadas y seguras.
+                Nuestra labor se sustenta en herramientas y programas diseñados para garantizar un acompañamiento integral:
               </p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>
+                  Atención al Inversionista, mediante la cual proporcionamos asesoría gratuita y orientación sobre las oportunidades que ofrece el país.
+                </li>
+                <li>
+                  Inteligencia de Inversión, que pone a disposición información estratégica, datos actualizados y análisis especializados para respaldar la toma de decisiones.
+                </li>
+                <li>
+                  Aftercare, que promueve el fortalecimiento, consolidación y crecimiento de las inversiones ya establecidas.
+                </li>
+              </ul>
               <p>
-                En ProGuatemala, creemos que el éxito de tu inversión no solo beneficia a tu empresa, sino que también fortalece nuestra economía y crea oportunidades para todos. Juntos podemos construir un futuro con más crecimiento y desarrollo.
+                En ProGuatemala, creemos firmemente que el éxito de cada inversión contribuye al desarrollo económico nacional y a la generación de nuevas oportunidades para la población. Juntos impulsamos un entorno favorable para el crecimiento y la prosperidad del país.
               </p>
             </div>
           </motion.div>

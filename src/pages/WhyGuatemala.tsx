@@ -2,11 +2,59 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, Users, TrendingUp, Shield, Globe, 
-  Download, ArrowRight, BarChart3, Clock, CheckCircle 
+  Download, ArrowRight, BarChart3, Clock, CheckCircle, ChevronLeft, ChevronRight 
 } from 'lucide-react';
+import ParquePlaceholderImg from '../assets/images/Castillo de San Felipe_DJI_0904.JPG';
+
 import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
 
 const WhyGuatemala: React.FC = () => {
+  const [activeModalId, setActiveModalId] = React.useState<string | null>(null);
+  const [slideIndexes, setSlideIndexes] = React.useState<Record<string, number>>({});
+
+  const parks = [
+    {
+      id: 'interoceanica',
+      title: 'Interoceánica',
+      description: 'Parque industrial con conectividad logística clave entre océanos.',
+      highlights: ['Ubicación estratégica', 'Infraestructura moderna', 'Acceso a rutas principales'],
+      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+    },
+    {
+      id: 'michatoya',
+      title: 'Michatoya Pacífico',
+      description: 'Centro productivo con acceso a corredores del Pacífico.',
+      highlights: ['Cercanía a puertos', 'Servicios integrados', 'Zonas de carga'],
+      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+    },
+    {
+      id: 'puerta-istmo',
+      title: 'Puerta del Istmo',
+      description: 'Hub empresarial con servicios para manufactura y distribución.',
+      highlights: ['Conectividad regional', 'Espacios flexibles', 'Seguridad 24/7'],
+      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+    },
+    {
+      id: 'synergy',
+      title: 'Synergy Industrial Park',
+      description: 'Parque industrial con ecosistema empresarial consolidado.',
+      highlights: ['Servicios corporativos', 'Energía confiable', 'Accesos controlados'],
+      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+    },
+    {
+      id: 'zona-libre-quetzal',
+      title: 'Zona Libre Quetzal',
+      description: 'Zona con incentivos y enfoque en comercio exterior.',
+      highlights: ['Régimen especial', 'Logística integrada', 'Proximidad a puerto'],
+      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+    }
+  ];
+
+  const getSlideIndex = (id: string) => slideIndexes[id] || 0;
+  const setSlideIndex = (id: string, nextIndex: number) => {
+    setSlideIndexes((prev) => ({ ...prev, [id]: nextIndex }));
+  };
+
   const advantages = [
     {
       icon: Users,
@@ -117,7 +165,7 @@ const WhyGuatemala: React.FC = () => {
                   Descubre las ventajas competitivas que posicionan a Guatemala como 
                   el destino de inversión más atractivo de Centroamérica
                 </motion.p>
-                <motion.div
+                {/* <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.9, duration: 0.8 }}
@@ -129,7 +177,7 @@ const WhyGuatemala: React.FC = () => {
                   <button className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
                     Ver estadísticas
                   </button>
-                </motion.div>
+                </motion.div> */}
               </div>
             </div>
           </motion.div>
@@ -237,7 +285,7 @@ const WhyGuatemala: React.FC = () => {
       </section>
 
       {/* Presidential Message Section */}
-      <section className="py-16 bg-gray-50">
+      {/* <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -298,7 +346,7 @@ const WhyGuatemala: React.FC = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Interactive Map Section */}
       <section className="py-16 bg-white">
@@ -401,6 +449,135 @@ const WhyGuatemala: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Centros Productivos y Empresariales */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Centros Productivos y Empresariales
+            </h2>
+            <p className="text-xl text-gray-600">
+              Parques industriales con infraestructura y servicios para inversión
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {parks.map((park) => {
+              const currentIndex = getSlideIndex(park.id);
+              const total = park.images.length;
+              return (
+                <motion.div
+                  key={park.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  onClick={() => setActiveModalId(park.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveModalId(park.id); } }}
+                  className="text-left bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+                >
+                  <div className="relative aspect-[4/3] bg-gray-100">
+                    <img
+                      src={park.images[currentIndex]}
+                      alt={park.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {total > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          className="absolute top-3 left-3 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const next = (currentIndex - 1 + total) % total;
+                            setSlideIndex(park.id, next);
+                          }}
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                          type="button"
+                          className="absolute top-3 left-12 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const next = (currentIndex + 1) % total;
+                            setSlideIndex(park.id, next);
+                          }}
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{park.title}</h3>
+                    <p className="text-sm text-gray-600">{park.description}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {activeModalId && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          onClick={() => setActiveModalId(null)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {(() => {
+              const park = parks.find((p) => p.id === activeModalId);
+              if (!park) return null;
+              return (
+                <>
+                  <div className="relative aspect-[16/9] bg-gray-100">
+                    <img
+                      src={park.images[0]}
+                      alt={park.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{park.title}</h3>
+                    <p className="text-gray-700 mb-4">{park.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {park.highlights.map((item) => (
+                        <span
+                          key={item}
+                          className="bg-support-50 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="p-4 border-t bg-gray-50 flex justify-end">
+                    <button
+                      className="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800"
+                      onClick={() => setActiveModalId(null)}
+                    >
+                      Cerrar
+                    </button>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+        </div>
+      )}
 
       {/* Comparison Section */}
       <section className="py-16 bg-gray-50">

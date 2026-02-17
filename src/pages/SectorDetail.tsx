@@ -14,6 +14,7 @@ import TurismoSostenibleImg from '../assets/images/turismo.jpg';
 
 const SectorDetail: React.FC = () => {
   const { sector } = useParams();
+  const [showDashboard, setShowDashboard] = React.useState(false);
   
   // Sector data (in real app, this would come from an API)
   const sectorData = {
@@ -1155,6 +1156,29 @@ const SectorDetail: React.FC = () => {
 
   const currentSector = sectorData[sector as keyof typeof sectorData];
 
+  React.useEffect(() => {
+    if (!showDashboard) return;
+    const initTableau = () => {
+      const divElement = document.getElementById('viz1761665875269');
+      if (!divElement) return;
+      if (!divElement.querySelector('.tableauViz[style*="display: block"]')) {
+        const vizElement = divElement.getElementsByTagName('object')[0];
+        if (vizElement) {
+          vizElement.style.width = '100%';
+          vizElement.style.height = `${Math.max(700, Math.round(divElement.offsetWidth * 0.85))}px`;
+          vizElement.style.display = 'block';
+          if (!document.querySelector('script[src*="tableau.com/javascripts/api/viz_v1.js"]')) {
+            const scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode?.insertBefore(scriptElement, vizElement);
+          }
+        }
+      }
+    };
+    const timer = setTimeout(initTableau, 100);
+    return () => clearTimeout(timer);
+  }, [showDashboard]);
+
   if (!currentSector) {
     return (
       <div className="pt-16 min-h-screen flex items-center justify-center">
@@ -1204,6 +1228,13 @@ const SectorDetail: React.FC = () => {
                   <Download className="w-5 h-5 mr-2" />
                   Descargar ficha sectorial
                 </button>
+                <button
+                  className="bg-white/90 text-sector-6 hover:bg-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                  onClick={() => setShowDashboard(true)}
+                >
+                  <BarChart3 className="w-5 h-5 mr-2" />
+                  Ver dashboard
+                </button>
                 <Link
                   to="/contact"
                   className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
@@ -1229,6 +1260,56 @@ const SectorDetail: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {showDashboard && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          onClick={() => setShowDashboard(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 bg-sector-6 text-white flex items-center justify-between">
+              <div className="font-semibold">Dashboard Sectores Estratégicos</div>
+              <button
+                className="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20"
+                onClick={() => setShowDashboard(false)}
+              >
+                Cerrar
+              </button>
+            </div>
+            <div className="p-4">
+              <div className="tableauPlaceholder" id="viz1761665875269" style={{ position: 'relative' }}>
+                <noscript>
+                  <a href="#">
+                    <img
+                      alt="Historia 1"
+                      src="https://public.tableau.com/static/images/Da/DashboardSectoresEstrategia/Historia1/1_rss.png"
+                      style={{ border: 'none' }}
+                    />
+                  </a>
+                </noscript>
+                <object className="tableauViz" style={{ display: 'none' }}>
+                  <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                  <param name="embed_code_version" value="3" />
+                  <param name="site_root" value="" />
+                  <param name="name" value="DashboardSectoresEstrategia/Historia1" />
+                  <param name="tabs" value="no" />
+                  <param name="toolbar" value="yes" />
+                  <param name="static_image" value="https://public.tableau.com/static/images/Da/DashboardSectoresEstrategia/Historia1/1.png" />
+                  <param name="animate_transition" value="yes" />
+                  <param name="display_static_image" value="yes" />
+                  <param name="display_spinner" value="yes" />
+                  <param name="display_overlay" value="yes" />
+                  <param name="display_count" value="yes" />
+                  <param name="language" value="es-ES" />
+                </object>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Key Statistics */}
       <section className="py-16 bg-white">
@@ -1263,7 +1344,7 @@ const SectorDetail: React.FC = () => {
                   className="text-center bg-gray-50 rounded-2xl p-6"
                 >
                   <div className={`w-16 h-16 ${stat.color.replace('text', 'bg').replace('600', '100')} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <Icon className={`w-8 h-8 ${stat.color}`} />
+                    <Icon className={`w-8 h-8 text-white`} />
                   </div>
                   <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-600">{stat.label}</div>

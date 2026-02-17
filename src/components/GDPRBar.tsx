@@ -76,7 +76,7 @@ const GDPRBar: React.FC = () => {
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
               <div className="flex items-start space-x-4 flex-1">
                 <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                  <Shield className="w-6 h-6 text-blue-600" />
+                  <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">
