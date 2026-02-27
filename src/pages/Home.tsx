@@ -119,7 +119,7 @@ const Home: React.FC = () => {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative text-white py-20 lg:py-32" style={{ background: 'rgb(2, 16, 73)' }}>
+      <section className="relative text-white py-20 lg:py-32" style={{ background: '#0f5ce1' }}>
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -130,9 +130,9 @@ const Home: React.FC = () => {
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 {t('home.hero.title')}{' '}
-                <span style={{ color: '#FFDB60' }}>{t('home.hero.highlight')}</span>
+                <span style={{ color: '#B7FFFF' }}>{t('home.hero.highlight')}</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              <p className="text-xl md:text-2xl mb-8 text-white">
                 {t('home.hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -140,9 +140,7 @@ const Home: React.FC = () => {
                   href={GuiaInversionistaEs}
                   download="Guia del Inversionista.pdf"
                   className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
-                  style={{ background: '#FFDB60' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#FFE68A'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = '#FFDB60'}
+                  style={{ background: '#FFFFFF' }}
                 >
                   <Download className="w-5 h-5 mr-2" />
                   {t('home.hero.download')}
@@ -150,14 +148,14 @@ const Home: React.FC = () => {
                 <Link
                   to="/contact"
                   className="border border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
-                  style={{ borderColor: '#FFDB60', color: '#FFDB60' }}
+                  style={{ borderColor: '#FFFFFF', color: '#FFFFFF' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#FFDB60';
+                    e.currentTarget.style.background = '#FFFFFF';
                     e.currentTarget.style.color = '#021049';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = '#FFDB60';
+                    e.currentTarget.style.color = '#FFFFFF';
                   }}
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
@@ -283,7 +281,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-center mt-16"
           >
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
+            <div className="rounded-2xl p-8 shadow-xl border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 ¿Quieres conocer más detalles?
               </h3>
@@ -294,10 +292,8 @@ const Home: React.FC = () => {
                 <a
                   href={FactSheetEs}
                   download="FACT SHEET EN ESPAÑOL.pdf"
-                  className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center border-2"
-                  style={{ background: '#FFDB60', borderColor: '#FFDB60' }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#FFE68A'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = '#FFDB60'}
+                  className="text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center border-2"
+                  style={{ background: '#0f5ce1', borderColor: '#0f5ce1' }}
                 >
                   <Download className="w-5 h-5 mr-2" />
                   Descargar fact sheet
@@ -316,7 +312,8 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-support-50 to-support-50 rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
+            style={{ background: '#258CFB' }}
+            className=" rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
           >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-1 flex flex-col items-center text-center">
@@ -328,18 +325,18 @@ const Home: React.FC = () => {
                     className="relative w-64 h-64 object-contain rounded-full border-8 border-white shadow-2xl bg-white"
                   />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mt-4">
+                <h3 className="text-3xl font-bold text-white mt-4">
                   Bernardo Arévalo de León
                 </h3>
-                <p className="text-blue-600 font-semibold">Presidente de la República de Guatemala</p>
+                <p className="text-white font-semibold">Presidente de la República de Guatemala</p>
               </div>
               <div className="lg:col-span-2">
                 <div className="mb-6">
-                  <div className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                  <div className="inline-block bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     Mensaje del Presidente
                   </div>
                 </div>
-                <div className="space-y-4 text-gray-700 leading-relaxed">
+                <div className="space-y-4 text-white leading-relaxed">
                   <p className="text-lg">
                     Estimados inversores, en nombre del pueblo de Guatemala, me complace darles una cálida bienvenida durante su proceso de explorar las oportunidades de inversión en nuestro país. Guatemala se presenta como un faro de oportunidades en Centroamérica, con una economía estable, una ubicación estratégica y un entorno empresarial favorable. A medida que navegan por el panorama de posibilidades de inversión, deseamos mostrarles las innumerables razones por las que Guatemala debería estar al frente de sus consideraciones.
                   </p>

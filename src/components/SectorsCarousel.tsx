@@ -312,7 +312,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
   }, [showDashboard]);
 
   return (
-    <div>
+    <div className="font-montserrat">
       {showFilters && (
         <section className="py-8 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -327,7 +327,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                 <Filter className="w-6 h-6 text-sector-6 mr-2" />
                 <h2 className="text-2xl font-bold text-gray-900">Filtrar por Horizonte Temporal</h2>
               </div>
-              <p className="text-gray-600">Selecciona el plazo de implementación para ver los sectores correspondientes</p>
+              <p className="text-gray-600 font-normal">Selecciona el plazo de implementación para ver los sectores correspondientes</p>
             </motion.div>
             
             <div className="flex flex-wrap justify-center gap-4">
@@ -374,7 +374,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                  selectedTimeframe === 'medium' ? 'Sectores de Mediano Plazo' :
                  'Sectores de Largo Plazo'}
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 font-normal">
                 {filteredSectors.length} sectores priorizados con oportunidades de inversión
               </p>
             </motion.div>
@@ -446,7 +446,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                       <h3 className="text-xl font-bold text-gray-900">{sector.name}</h3>
                     </div>
                     
-                    <p className="text-gray-600 mb-4">{sector.description}</p>
+                    <p className="text-gray-600 mb-4 font-normal">{sector.description}</p>
                     
                     <div className="grid grid-cols-3 gap-2 mb-4">
                       <div className="text-center p-2 bg-gray-50 rounded-lg">
@@ -505,7 +505,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
 
           {filteredSectors.length > sectorsPerSlide && (
             <div className="text-center mt-12">
-              <div className="text-gray-600 mb-4">
+              <div className="text-gray-600 mb-4 font-normal">
                 Mostrando {getCurrentSectors().length} de {filteredSectors.length} sectores
               </div>
             </div>
