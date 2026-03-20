@@ -15,7 +15,7 @@ import SectorsCarousel from '../components/SectorsCarousel';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
-
+  const [highlightedAdvantage, setHighlightedAdvantage] = React.useState<string | null>(null);
   // Initialize Tableau visualization after component mounts
   React.useEffect(() => {
     const initTableau = () => {
@@ -116,6 +116,21 @@ const Home: React.FC = () => {
     }
   ];
 
+  const competitiveAdvantageHotspots = [
+    { id: 'escalabilidad', label: 'Escalabilidad', top: '72%', left: '12%', targetId: 'advantage-macroeconomia-robusta' },
+    { id: 'conectividad', label: 'Conectividad', top: '27%', left: '31%', targetId: 'advantage-ubicacion-estrategica' },
+    { id: 'talento', label: 'Talento', top: '70%', left: '50%', targetId: 'advantage-talento-joven-y-calificado' },
+    { id: 'energia-limpia', label: 'Energía limpia', top: '27%', left: '68%', targetId: 'advantage-energia-renovable-y-confiable' },
+    { id: 'incentivos', label: 'Incentivos', top: '70%', left: '87%', targetId: 'advantage-regimenes-especiales-e-incentivos-fiscales' }
+  ];
+
+  const handleHotspotClick = (targetId: string) => {
+    setHighlightedAdvantage(targetId);
+    window.setTimeout(() => {
+      setHighlightedAdvantage((current) => current === targetId ? null : current);
+    }, 1000);
+  };
+
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
@@ -212,11 +227,31 @@ const Home: React.FC = () => {
               más atractivo y estratégico de Centroamérica
             </p>
             <div className="flex justify-center mb-6">
+              <div className="relative w-full max-w-3xl">
               <img
                 src={PorqueGTImg}
                 alt="Por qué elegir Guatemala"
-                className="w-full max-w-3xl rounded-2xl shadow-lg"
+                className="w-full rounded-2xl shadow-lg"
               />
+                {competitiveAdvantageHotspots.map((hotspot) => (
+                  <a
+                    key={hotspot.id}
+                    href={`#${hotspot.targetId}`}
+                    aria-label={hotspot.label}
+                    title={hotspot.label}
+                    className="group absolute z-20 -translate-x-1/2 -translate-y-1/2 rounded-full focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300"
+                    style={{ top: hotspot.top, left: hotspot.left }}
+                    onClick={() => handleHotspotClick(hotspot.targetId)}
+                  >
+                    <span className="block h-20 w-20 rounded-full bg-transparent md:h-24 md:w-24" />
+                    <span className="pointer-events-none absolute left-1/2 top-0 w-max max-w-[220px] -translate-x-1/2 -translate-y-[118%] rounded-2xl border border-blue-100 bg-white/95 px-4 py-3 text-center shadow-[0_18px_45px_rgba(2,16,73,0.18)] backdrop-blur-md opacity-0 transition-all duration-300 group-hover:-translate-y-[128%] group-hover:opacity-100 group-focus-visible:-translate-y-[128%] group-focus-visible:opacity-100">
+                      <span className="block text-base font-bold text-[#021049] md:text-lg">
+                        {hotspot.label}
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
           
@@ -226,11 +261,26 @@ const Home: React.FC = () => {
               return (
                 <motion.div
                   key={index}
+                  id={`advantage-${advantage.title
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '')}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative ${advantage.bgColor} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-white/50 backdrop-blur-sm group overflow-hidden`}
+                  className={`relative scroll-mt-24 rounded-2xl p-8 border border-white/50 backdrop-blur-sm group overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
+                    highlightedAdvantage === `advantage-${advantage.title
+                      .toLowerCase()
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')
+                      .replace(/[^a-z0-9]+/g, '-')
+                      .replace(/^-+|-+$/g, '')}`
+                      ? `${advantage.bgColor} shadow-[0_0_0_4px_rgba(15,92,225,0.18),0_0_38px_rgba(15,92,225,0.35)]`
+                      : `${advantage.bgColor} shadow-xl hover:shadow-2xl`
+                  }`}
                 >
                   {/* Background Pattern */}
                   <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
