@@ -7,11 +7,24 @@ import {
   Building, ShoppingBag, Droplet, Shirt, FlaskConical, Battery, Wrench,
   Filter, ChevronLeft, ChevronRight, Heart, Cpu
 } from 'lucide-react';
-import AgroindustriaImg from '../assets/images/agroindustria.jpg';
-import ManufacturaImg from '../assets/images/manufactura.jpg';
-import ServiciosGlobalesImg from '../assets/images/serviciosglobales.jpg';
-import EnergiasLimpiasImg from '../assets/images/energiaslimpias.jpg';
-import TurismoSostenibleImg from '../assets/images/turismo.jpg';
+
+import metalmecanicaImg from '../assets/images/sectores/Metalmecánica.jpg';
+import alimentosProcesadosImg from '../assets/images/sectores/Alimentos procesados.jpeg';
+import bebidasNoAlcoholicas from '../assets/images/sectores/Bebidas no alcohólicas.jpeg';
+import biotecnologiaImg from '../assets/images/sectores/Biotecnología.jpg';
+import centroServiciosCompartidosImg from '../assets/images/sectores/Centro de servicios compartidos.jpg';
+import componentesElectronicosImg from '../assets/images/sectores/Componentes y equipo electrónico.jpeg';
+import dispositivosMedicosImg from '../assets/images/sectores/Dispositivos y equipo médico.jpg';
+import electricoElectronico from '../assets/images/sectores/Eléctrico-Electrónico (autopartes).jpg';
+import energiaImg from '../assets/images/sectores/Energía.jpg';
+import farmaceuticosImg from '../assets/images/sectores/Farmaceúticos.jpg';
+import quimicosImg from '../assets/images/sectores/Químicos.jpeg';
+import serviciosSaludImg from '../assets/images/sectores/Servicios de Salud.jpg';
+import serviciosEmpresarialesImg from '../assets/images/sectores/Servicios empresariales, contact centers y BPOs.jpg';
+import tecnologiaInformacion from '../assets/images/sectores/Tecnologías de la información para manufactura avanzada.jpg';
+import ticsSoftware from '../assets/images/sectores/TICS y Softwares.jpeg';
+import turismoImg from '../assets/images/sectores/Turismo.jpg';
+import vestuarioImg from '../assets/images/sectores/Vestuario y textil.jpg';
 
 type SectorsCarouselProps = {
   showFilters?: boolean;
@@ -36,7 +49,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'alimentos-procesados',
       name: 'Alimentos Procesados',
       icon: ShoppingBag,
-      image: AgroindustriaImg,
+      image: alimentosProcesadosImg,
       description: 'Procesamiento y transformación de productos alimenticios para mercados locales e internacionales',
       highlights: ['Alimentos procesados', 'Productos orgánicos', 'Café de especialidad', 'Snacks saludables'],
       investment: '$2.3B',
@@ -49,7 +62,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'bebidas-no-alcoholicas',
       name: 'Bebidas no alcohólicas',
       icon: Droplet,
-      image: 'https://images.pexels.com/photos/1854652/pexels-photo-1854652.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: bebidasNoAlcoholicas,
       description: 'Producción de bebidas naturales, jugos y bebidas funcionales',
       highlights: ['Jugos naturales', 'Bebidas funcionales', 'Agua embotellada', 'Bebidas energéticas'],
       investment: '$1.2B',
@@ -62,7 +75,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'vestuario-textil',
       name: 'Vestuario y textil',
       icon: Shirt,
-      image: ManufacturaImg,
+      image: vestuarioImg,
       description: 'Industria textil y de confección con estándares internacionales',
       highlights: ['Textiles técnicos', 'Confección de prendas', 'Moda sostenible', 'Uniformes especializados'],
       investment: '$1.8B',
@@ -75,7 +88,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'quimicos',
       name: 'Químicos',
       icon: FlaskConical,
-      image: 'https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: quimicosImg,
       description: 'Productos químicos industriales y especializados',
       highlights: ['Químicos industriales', 'Productos de limpieza', 'Fertilizantes', 'Cosméticos'],
       investment: '$950M',
@@ -88,7 +101,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'farmaceuticos',
       name: 'Farmacéuticos',
       icon: Heart,
-      image: 'https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: farmaceuticosImg,
       description: 'Producción farmacéutica y medicamentos genéricos',
       highlights: ['Medicamentos genéricos', 'Productos farmacéuticos', 'Suplementos', 'Vitaminas'],
       investment: '$820M',
@@ -101,7 +114,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'tics-software',
       name: 'TICS y Softwares',
       icon: Cpu,
-      image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: ticsSoftware,
       description: 'Desarrollo de software y servicios de tecnología de la información',
       highlights: ['Desarrollo de software', 'Aplicaciones móviles', 'Cloud computing', 'Ciberseguridad'],
       investment: '$750M',
@@ -114,7 +127,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'servicios-empresariales',
       name: 'Servicios empresariales, contact centers y BPOs',
       icon: Headphones,
-      image: ServiciosGlobalesImg,
+      image: serviciosEmpresarialesImg,
       description: 'Servicios de outsourcing, call centers y procesos de negocio',
       highlights: ['Contact centers', 'BPO', 'Back office services', 'Soporte técnico'],
       investment: '$950M',
@@ -127,7 +140,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'energia',
       name: 'Energía',
       icon: Zap,
-      image: EnergiasLimpiasImg,
+      image: energiaImg,
       description: 'Generación y distribución de energía renovable',
       highlights: ['Energía hidroeléctrica', 'Energía solar', 'Energía eólica', 'Biomasa'],
       investment: '$3.2B',
@@ -141,7 +154,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'servicios-compartidos',
       name: 'Centro de Servicios Compartidos',
       icon: Building,
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: centroServiciosCompartidosImg,
       description: 'Centros de servicios compartidos para empresas multinacionales',
       highlights: ['Servicios corporativos', 'Finanzas compartidas', 'IT compartido', 'RH compartido'],
       investment: '$1.1B',
@@ -154,7 +167,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'electrico-electronico',
       name: 'Eléctrico-Electrónico (autopartes)',
       icon: Battery,
-      image: 'https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: electricoElectronico,
       description: 'Manufactura de componentes eléctricos y electrónicos para la industria automotriz',
       highlights: ['Autopartes eléctricas', 'Componentes electrónicos', 'Sensores', 'Sistemas de control'],
       investment: '$980M',
@@ -167,7 +180,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'servicios-salud',
       name: 'Servicios de Salud',
       icon: Heart,
-      image: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: serviciosSaludImg,
       description: 'Servicios médicos especializados y turismo de salud',
       highlights: ['Turismo médico', 'Telemedicina', 'Clínicas especializadas', 'Atención domiciliaria'],
       investment: '$890M',
@@ -180,7 +193,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'metalmecanica',
       name: 'Metalmecánica',
       icon: Wrench,
-      image: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: metalmecanicaImg,
       description: 'Fabricación de productos metálicos y maquinaria',
       highlights: ['Estructuras metálicas', 'Maquinaria industrial', 'Herramientas', 'Componentes mecánicos'],
       investment: '$720M',
@@ -193,7 +206,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'turismo',
       name: 'Turismo',
       icon: Plane,
-      image: TurismoSostenibleImg,
+      image: turismoImg,
       description: 'Desarrollo turístico sostenible y turismo cultural',
       highlights: ['Turismo cultural', 'Ecoturismo', 'Turismo de aventura', 'MICE'],
       investment: '$1.1B',
@@ -207,7 +220,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'biotecnologia',
       name: 'Biotecnología',
       icon: Leaf,
-      image: 'https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: biotecnologiaImg,
       description: 'Investigación y desarrollo en biotecnología agrícola y médica',
       highlights: ['Biotech agrícola', 'Medicina personalizada', 'Biocombustibles', 'Investigación genética'],
       investment: '$650M',
@@ -220,7 +233,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'dispositivos-medicos',
       name: 'Dispositivos y equipo médico',
       icon: Heart,
-      image: 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: dispositivosMedicosImg,
       description: 'Fabricación de dispositivos y equipos médicos especializados',
       highlights: ['Dispositivos médicos', 'Equipos de diagnóstico', 'Instrumental quirúrgico', 'Prótesis'],
       investment: '$580M',
@@ -233,7 +246,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'componentes-electronicos',
       name: 'Componentes y equipo electrónico',
       icon: Cpu,
-      image: 'https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: componentesElectronicosImg,
       description: 'Manufactura de componentes electrónicos avanzados',
       highlights: ['Semiconductores', 'Circuitos integrados', 'Componentes PCB', 'Sensores avanzados'],
       investment: '$720M',
@@ -246,7 +259,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       id: 'ti-manufactura-avanzada',
       name: 'Tecnologías de la información para manufactura avanzada',
       icon: Factory,
-      image: 'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: tecnologiaInformacion,
       description: 'Soluciones tecnológicas para la industria 4.0 y manufactura inteligente',
       highlights: ['IoT industrial', 'Automatización', 'IA para manufactura', 'Robótica'],
       investment: '$840M',
@@ -334,7 +347,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
               {timeframes.map((timeframe) => (
                 <button
                   key={timeframe.id}
-                  onClick={() => setSelectedTimeframe(timeframe.id as any)}
+                  onClick={() => setSelectedTimeframe(timeframe.id as never)}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
                     selectedTimeframe === timeframe.id
                       ? `${timeframe.color} text-white shadow-lg`
