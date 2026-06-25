@@ -4,7 +4,11 @@ import {
   MapPin, Users, TrendingUp, Shield, Globe, 
   Download, ArrowRight, BarChart3, Clock, CheckCircle, ChevronLeft, ChevronRight 
 } from 'lucide-react';
-import ParquePlaceholderImg from '../assets/images/Castillo de San Felipe_DJI_0904.JPG';
+import interoceanicaImg from '../assets/images/centros_productivos_empresariales/Interoceanica.jpg';
+import michatoyaImg from '../assets/images/centros_productivos_empresariales/Michatoya Pacífico.jpg';
+import zonaLibreQuetzalImg from '../assets/images/centros_productivos_empresariales/Zona Libre Quetzal.jpg';
+import puertasItsmoImg from '../assets/images/centros_productivos_empresariales/Puertas del Istmo.png';
+import synergyIndustrialImg from '../assets/images/centros_productivos_empresariales/Synergy Industrial Park.jpg';
 
 import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
 
@@ -18,35 +22,35 @@ const WhyGuatemala: React.FC = () => {
       title: 'Interoceánica',
       description: 'Parque industrial con conectividad logística clave entre océanos.',
       highlights: ['Ubicación estratégica', 'Infraestructura moderna', 'Acceso a rutas principales'],
-      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+      images: [interoceanicaImg, interoceanicaImg, interoceanicaImg]
     },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',
       description: 'Centro productivo con acceso a corredores del Pacífico.',
       highlights: ['Cercanía a puertos', 'Servicios integrados', 'Zonas de carga'],
-      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+      images: [michatoyaImg, michatoyaImg, michatoyaImg]
     },
     {
       id: 'puerta-istmo',
       title: 'Puerta del Istmo',
       description: 'Hub empresarial con servicios para manufactura y distribución.',
       highlights: ['Conectividad regional', 'Espacios flexibles', 'Seguridad 24/7'],
-      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+      images: [puertasItsmoImg, puertasItsmoImg, puertasItsmoImg]
     },
     {
       id: 'synergy',
       title: 'Synergy Industrial Park',
       description: 'Parque industrial con ecosistema empresarial consolidado.',
       highlights: ['Servicios corporativos', 'Energía confiable', 'Accesos controlados'],
-      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+      images: [synergyIndustrialImg, synergyIndustrialImg, synergyIndustrialImg]
     },
     {
       id: 'zona-libre-quetzal',
       title: 'Zona Libre Quetzal',
       description: 'Zona con incentivos y enfoque en comercio exterior.',
       highlights: ['Régimen especial', 'Logística integrada', 'Proximidad a puerto'],
-      images: [ParquePlaceholderImg, ParquePlaceholderImg, ParquePlaceholderImg]
+      images: [zonaLibreQuetzalImg, zonaLibreQuetzalImg, zonaLibreQuetzalImg]
     }
   ];
 
