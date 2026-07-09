@@ -16,15 +16,18 @@ import SectorsCarousel from '../components/SectorsCarousel';
 const Home: React.FC = () => {
   const { t } = useLanguage();
   const [highlightedAdvantage, setHighlightedAdvantage] = React.useState<string | null>(null);
+
   // Initialize Tableau visualization after component mounts
   React.useEffect(() => {
     const initTableau = () => {
-      const divElement = document.getElementById('viz1757690928347');
+      // ID actualizado del nuevo Dashboard
+      const divElement = document.getElementById('viz1782919716147');
       if (divElement && !divElement.querySelector('.tableauViz[style*="display: block"]')) {
         const vizElement = divElement.getElementsByTagName('object')[0];
         if (vizElement) {
           vizElement.style.width = '100%';
-          const computedHeight = Math.max(1700, Math.round(divElement.offsetWidth * 0.9));
+          // Proporción actualizada a * 0.75 según el nuevo script
+          const computedHeight = Math.round(divElement.offsetWidth * 0.75);
           vizElement.style.height = `${computedHeight}px`;
           vizElement.style.display = 'block';
           
@@ -60,7 +63,7 @@ const Home: React.FC = () => {
     },
     {
       icon: MapPin,
-      title: 'Ubicación Estratégica',
+      title: 'Ubicación Strategica',
       description: 'Puerta de entrada natural entre Norte y Sudamérica, con acceso privilegiado a mercados globales.',
       details: [
         'Acceso preferencial a múltiples mercados',
@@ -417,166 +420,6 @@ const Home: React.FC = () => {
 
       <SectorsCarousel showAllLink allLinkLabel={t('home.sectors.view-all')} />
 
-      {/* Quick Access Links */}
-      {/* <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t('home.access.title')}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {t('home.access.subtitle')}
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FileText className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.access.resources.title')}</h3>
-              <p className="text-gray-600 mb-6">
-                {t('home.access.resources.desc')}
-              </p>
-              <Link
-                to="/resources"
-                className="inline-flex items-center text-support-500 hover:text-teal-700 font-semibold"
-              >
-                {t('home.access.resources.action')}
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Requisitos Legales</h3>
-              <p className="text-gray-600 mb-6">
-                Conoce los pasos y tiempos para establecer operaciones en Guatemala
-              </p>
-              <a
-                href="#legal-requirements"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
-              >
-                Ver requisitos
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </a>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('home.access.contact.title')}</h3>
-              <p className="text-gray-600 mb-6">
-                {t('home.access.contact.desc')}
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-semibold"
-              >
-                {t('home.access.contact.action')}
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Legal Requirements Checklist */}
-      {/* <section id="legal-requirements" className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Requisitos Legales: Establecimiento de Operaciones
-            </h2>
-            <p className="text-xl text-gray-600">
-              Pasos necesarios y tiempos estimados para iniciar operaciones en Guatemala
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="bg-blue-600 text-white p-6">
-                <h3 className="text-xl font-bold">Tiempo total estimado: 60-90 días</h3>
-                <p className="text-blue-100">Muchos procesos pueden realizarse en paralelo para acelerar los tiempos</p>
-              </div>
-
-              <div className="p-6 space-y-4">
-                {[
-                  { title: 'Registro de empresa', time: '15-20 días', status: 'required' },
-                  { title: 'Permisos municipales', time: '10-15 días', status: 'required' },
-                  { title: 'Inscripción tributaria', time: '5-7 días', status: 'required' },
-                  { title: 'Permisos sectoriales', time: '30-45 días', status: 'conditional' },
-                  { title: 'Registro laboral', time: '7-10 días', status: 'required' },
-                  { title: 'Inicio de operaciones', time: '60-90 días total', status: 'complete' }
-                ].map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white bg-support-500`}>
-                        {step.status === 'complete' ? (
-                          <CheckCircle className="w-5 h-5 text-white" />
-                        ) : (
-                          <span className="font-bold text-sm">{index + 1}</span>
-                        )}
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">{step.title}</div>
-                        <div className="text-sm text-gray-600">
-                          {step.status === 'required' ? 'Obligatorio' :
-                           step.status === 'conditional' ? 'Según el sector' : 'Listo para operar'}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-medium text-gray-900">{step.time}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* Interactive Map Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -608,15 +451,16 @@ const Home: React.FC = () => {
             </div>
             <div className="p-6">
               <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[900px]">
+                {/* ID Actualizado aquí */}
                 <div 
                   className="tableauPlaceholder w-full h-full" 
-                  id="viz1757690928347" 
+                  id="viz1782919716147" 
                   style={{ position: 'relative' }}
                 >
                   <noscript>
                     <a href="#">
                       <img 
-                        alt="Dashboard IED ProGuatemala" 
+                        alt="Historia 1" 
                         src="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1_rss.png" 
                         style={{ border: 'none' }} 
                       />
@@ -626,7 +470,7 @@ const Home: React.FC = () => {
                     <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
                     <param name="embed_code_version" value="3" />
                     <param name="site_root" value="" />
-                    <param name="name" value="Tablero_IED_ProGuatemala&#47;Historia1" />
+                    <param name="name" value="Tablero_IED_ProGuatemala/Historia1" />
                     <param name="tabs" value="no" />
                     <param name="toolbar" value="yes" />
                     <param name="static_image" value="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png" />

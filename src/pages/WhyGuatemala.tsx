@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, Users, TrendingUp, Shield, Globe, 
@@ -15,6 +15,7 @@ import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
 const WhyGuatemala: React.FC = () => {
   const [activeModalId, setActiveModalId] = React.useState<string | null>(null);
   const [slideIndexes, setSlideIndexes] = React.useState<Record<string, number>>({});
+  const tableauContainerRef = useRef(null);
 
   const parks = [
     {
@@ -105,35 +106,69 @@ const WhyGuatemala: React.FC = () => {
   const statistics = [
     {
       label: 'PIB',
-      value: '3.7% crecimiento del PIB 2024',
-      change: 'US$ 113,800 millones',
+      value: 'US$ 123,310',
+      suffix: 'millones',
+      badge: '+4.3% Crecimiento 2025',
       subtitle: 'PIB Nominal'
     },
     {
       label: 'POBLACIÓN',
-      value: '18.1 millones',
-      change: 'de habitantes',
-      subtitle: ''
+      value: '18',
+      suffix: 'millones',
+      badge: 'de habitantes',
+      subtitle: 'Población total'
     },
     {
       label: 'EXPORTACIÓN DE BIENES',
-      value: '2.6% de crecimiento',
-      change: 'comparado al año anterior',
-      subtitle: 'US$ 14,557 millones'
+      value: 'US$ 15,595',
+      suffix: 'millones',
+      badge: '+7.1% vs año anterior',
+      subtitle: '2025'
     },
     {
       label: 'EXPORTACIÓN DE SERVICIOS',
-      value: '9% de crecimiento',
-      change: 'comparado al año anterior',
-      subtitle: 'US$ 4,667 millones'
+      value: 'US$ 4,888.3',
+      suffix: 'millones',
+      badge: '+4.8% vs año anterior',
+      subtitle: '2025'
     },
     {
-      label: 'IED 2024',
-      value: 'US$ 1,694.5 millones',
-      change: '',
-      subtitle: ''
+      label: 'IED',
+      value: 'US$ 1,881.7',
+      suffix: 'millones',
+      badge: '2025',
+      subtitle: 'Inversión Extranjera Directa'
     }
   ];
+
+  useEffect(() => {
+    const divElement = tableauContainerRef.current;
+    if (!divElement) return;
+
+    const vizElement = divElement.getElementsByTagName('object')[0];
+    
+    if (vizElement && divElement.offsetWidth) {
+      // Ajuste dinámico de dimensiones según el contenedor actual
+      vizElement.style.width = '100%';
+      vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+    }
+
+    // Carga e inyección del script de Tableau
+    const scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    scriptElement.async = true;
+    
+    if (vizElement && vizElement.parentNode) {
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    }
+
+    // Limpieza al desmontar para evitar duplicados en el DOM
+    return () => {
+      if (scriptElement && scriptElement.parentNode) {
+        scriptElement.parentNode.removeChild(scriptElement);
+      }
+    };
+  }, []);
 
   return (
     <div>
@@ -169,19 +204,25 @@ const WhyGuatemala: React.FC = () => {
                   Descubre las ventajas competitivas que posicionan a Guatemala como 
                   el destino de inversión más atractivo de Centroamérica
                 </motion.p>
-                {/* <motion.div
+                <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.9, duration: 0.8 }}
                   className="flex flex-col sm:flex-row gap-4 justify-center"
                 >
-                  <button className="text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 bg-blue-600 hover:bg-blue-700">
+                  {/* Botón con el scroll behavior configurado */}
+                  <button 
+                    onClick={() => document.getElementById('advantages-grid')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 bg-blue-600 hover:bg-blue-700"
+                  >
                     Explorar ventajas
                   </button>
-                  <button className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
+                  <button 
+                    onClick={() => document.getElementById('stats-grid')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
                     Ver estadísticas
                   </button>
-                </motion.div> */}
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -206,25 +247,51 @@ const WhyGuatemala: React.FC = () => {
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 p-4 bg-gray-50/50">
             {statistics.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                className="text-center card-premium p-8 hover-lift"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex flex-col items-center text-center justify-between min-h-[340px] hover:shadow-md transition-shadow duration-300"
               >
-                <div className="bg-gradient-to-br from-blue-500 to-blue-700 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <BarChart3 className="w-8 h-8 text-white" />
+                {/* Icono Contenedor */}
+                <div className="bg-[#2563eb] w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm shadow-blue-200">
+                  <BarChart3 className="w-7 h-7 text-white" />
                 </div>
-                <div className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">{stat.label}</div>
-                <div className="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-snug break-words">{stat.value}</div>
-                {stat.change && (
-                  <div className="text-xs text-white font-semibold bg-green-50 px-3 py-1 rounded-full inline-block mb-2">{stat.change}</div>
-                )}
-                {stat.subtitle && <div className="text-xs text-gray-500 mt-1">{stat.subtitle}</div>}
+
+                {/* Contenido de Texto Principal */}
+                <div className="flex-1 flex flex-col justify-center w-full">
+                  {/* Etiqueta / Título superior */}
+                  <h4 className="text-xs font-extrabold text-gray-900 uppercase tracking-wider mb-3 px-2">
+                    {stat.label}
+                  </h4>
+
+                  {/* Valor Numérico Grande */}
+                  <div className="text-3xl font-bold text-gray-900 tracking-tight leading-tight whitespace-pre-line">
+                    {stat.value}
+                  </div>
+                  
+                  {/* Sufijo Dorado ("millones") */}
+                  <div className="text-3xl font-bold text-[#b5944a] tracking-tight mt-0.5 mb-4">
+                    {stat.suffix}
+                  </div>
+                </div>
+
+                {/* Badge e Info Inferior */}
+                <div className="w-full mt-auto flex flex-col items-center gap-2">
+                  {stat.badge && (
+                    <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50/80 border border-emerald-100/50 px-3 py-1 rounded-full inline-block">
+                      {stat.badge}
+                    </span>
+                  )}
+                  
+                  <p className="text-[11px] text-gray-400 font-medium tracking-normal min-h-[16px]">
+                    {stat.subtitle || '\u00A0'}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -233,7 +300,7 @@ const WhyGuatemala: React.FC = () => {
       </section>
 
       {/* Advantages Grid */}
-      <section className="section-premium bg-white">
+      <section id="advantages-grid" className="section-premium bg-white scroll-mt-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -288,73 +355,11 @@ const WhyGuatemala: React.FC = () => {
         </div>
       </section>
 
-      {/* Presidential Message Section */}
-      {/* <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Mensaje del Presidente
-            </h2>
-            <p className="text-xl text-gray-600">
-              Bienvenida a inversionistas de todo el mundo
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-2xl p-8 md:p-12 shadow-xl"
-          >
-            <div className="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-8">
-              <div className="flex-shrink-0">
-                <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg border-4 border-blue-100">
-                  <img
-                    src="https://raw.githubusercontent.com/RedCiudadana/RecursosProGuatemala/refs/heads/main/equipo/PRESIDENTE%20BERNARDO%20AREVALO%20RETRATO%20OFICIAL%20.jpg"
-                    alt="Dr. Bernardo Arévalo de León"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-center mt-4">
-                  <h3 className="text-lg font-bold text-gray-900">Dr. Bernardo Arévalo de León</h3>
-                  <p className="text-blue-600 font-medium text-sm">Presidente de la República</p>
-                </div>
-              </div>
-
-              <div className="flex-1">
-                <div className="text-gray-700 leading-relaxed space-y-4">
-                  <p className="text-lg">
-                    Estimados inversores, en nombre del pueblo de Guatemala, me complace darles una cálida bienvenida durante su proceso de explorar las oportunidades de inversión en nuestro país.
-                  </p>
-                  <p>
-                    Guatemala se presenta como un faro de oportunidades en Centroamérica, con una economía estable, una ubicación estratégica y un entorno empresarial favorable.
-                  </p>
-                  <p>
-                    El compromiso de nuestra nación con la estabilidad económica y el crecimiento es inquebrantable. Con un marco legal sólido, regulaciones transparentes y un enfoque proactivo para la facilitación de inversiones, Guatemala ofrece un entorno seguro y propicio para que las empresas prosperen.
-                  </p>
-                  <p>
-                    Nuestra ubicación estratégica presenta un acceso privilegiado a mercados clave, facilitando el comercio y la conectividad. Ya sea que busquen establecer instalaciones de manufactura, explorar sectores como alimentos y bebidas, energía renovable, o aprovechar nuestro ecosistema de turismo y servicios de salud, Guatemala ofrece una gran cantidad de oportunidades.
-                  </p>
-                  <p className="font-semibold text-gray-900">
-                    Al embarcarse en este viaje, tengan la seguridad de que nuestra Agencia está aquí para apoyarlos y guiarlos en cada paso del camino. Estamos deseosos de asociarnos con ustedes para lograr sus objetivos y contribuir a la prosperidad mutua de nuestras naciones.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section> */}
-
       {/* Interactive Map Section */}
-      <section className="py-16 bg-white">
+      <section id="stats-grid" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Encabezado de la Sección */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -370,86 +375,113 @@ const WhyGuatemala: React.FC = () => {
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Grid Asimétrico (3 columnas en desktop) */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            {/* Columna Izquierda: Tableau (Ocupa 2 columnas de 3) */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="lg:col-span-2"
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="p-4 bg-support-50">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hiddenZone border border-gray-100">
+                <div className="p-4 bg-support-50 border-b border-gray-100">
                   <h3 className="text-lg font-semibold">Mapa Interactivo de Conectividad</h3>
-                  <p className=" text-sm">Explora las conexiones comerciales de Guatemala</p>
+                  <p className="text-sm text-gray-600">Explora el potencial productivo regional y comercial de Guatemala</p>
                 </div>
                 <div className="p-4">
-                  <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                    <iframe
-                      src="https://flo.uri.sh/visualisation/18613495/embed"
-                      title="Guatemala Connectivity Map"
-                      width="100%"
-                      height="100%"
-                      frameBorder="0"
-                      scrolling="no"
-                      className="rounded-lg"
-                    />
+                  
+                  {/* Bloque de Tableau */}
+                  <div 
+                    className="tableauPlaceholder" 
+                    id="viz1781555972072" 
+                    ref={tableauContainerRef} 
+                    style={{ position: 'relative' }}
+                  >
+                    <noscript>
+                      <a href="#">
+                        <img 
+                          alt="Polos de Desarrollo Económico: Potencial Productivo Regional" 
+                          src="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1_rss.png" 
+                          style={{ border: 'none' }} 
+                        />
+                      </a>
+                    </noscript>
+                    
+                    <object className="tableauViz" style={{ display: 'none' }}>
+                      <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                      <param name="embed_code_version" value="3" />
+                      <param name="site_root" value="" />
+                      <param name="name" value="EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional" />
+                      <param name="tabs" value="no" />
+                      <param name="toolbar" value="yes" />
+                      <param name="static_image" value="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1.png" />
+                      <param name="animate_transition" value="yes" />
+                      <param name="display_static_image" value="yes" />
+                      <param name="display_spinner" value="yes" />
+                      <param name="display_overlay" value="yes" />
+                      <param name="display_count" value="yes" />
+                      <param name="language" value="en-US" />
+                      <param name="filter" value="publish=yes" />
+                    </object>
                   </div>
+
                 </div>
               </div>
             </motion.div>
             
+            {/* Columna Derecha: Conectividad Marítima (Ocupa 1 columna de 3) */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:col-span-1"
             >
-              <div className="bg-support-50 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Conectividad Aérea</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-gray-700">
-                    <Clock className="w-4 h-4 text-sky-600 mr-2" />
-                    2:50 horas a Miami
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <Clock className="w-4 h-4 text-sky-600 mr-2" />
-                    3 horas a Houston
-                  </li>
-                  <li className="flex items-center text-gray-700">
-                    <Clock className="w-4 h-4 text-sky-600 mr-2" />
-                    2:10 horas a Ciudad de México
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-support-50 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Conectividad Marítima</h3>
-                <ul className="space-y-3">
-                  <li className="text-gray-700">
-                    <div className="flex items-center mb-1">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2" />
-                      <span className="font-semibold">Puerto Quetzal (Pacífico)</span>
+              <div className="bg-support-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                  Conectividad Marítima
+                </h3>
+                
+                <ul className="space-y-6">
+                  {/* Puerto Quetzal */}
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
+                    <div className="flex items-center mb-1.5">
+                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                      <span className="font-semibold text-gray-900">Puerto Quetzal (Pacífico)</span>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6">Carga: 18,779.86 Miles TM</p>
+                    <p className="text-sm text-gray-600 ml-6 font-medium">
+                      Carga: <span className="text-emerald-600 font-bold">17.3 Millones TM</span>
+                    </p>
                   </li>
-                  <li className="text-gray-700">
-                    <div className="flex items-center mb-1">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2" />
-                      <span className="font-semibold">Puerto Santo Tomás (Atlántico)</span>
+                  
+                  {/* Puerto Santo Tomás */}
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
+                    <div className="flex items-center mb-1.5">
+                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                      <span className="font-semibold text-gray-900">Puerto Santo Tomás (Atlántico)</span>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6">Carga: 6,756.31 Miles TM</p>
+                    <p className="text-sm text-gray-600 ml-6 font-medium">
+                      Carga: <span className="text-emerald-600 font-bold">8.7 Millones TM</span>
+                    </p>
                   </li>
-                  <li className="text-gray-700">
-                    <div className="flex items-center mb-1">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2" />
-                      <span className="font-semibold">Puerto Barrios (Atlántico)</span>
+                  
+                  {/* Puerto Barrios */}
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
+                    <div className="flex items-center mb-1.5">
+                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                      <span className="font-semibold text-gray-900">Puerto Barrios (Atlántico)</span>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6">Carga: 5,510.87 Miles TM</p>
+                    <p className="text-sm text-gray-600 ml-6 font-medium">
+                      Carga: <span className="text-emerald-600 font-bold">5.6 Millones TM</span>
+                    </p>
                   </li>
                 </ul>
               </div>
             </motion.div>
+            
           </div>
         </div>
       </section>
@@ -586,6 +618,8 @@ const WhyGuatemala: React.FC = () => {
       {/* Comparison Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Encabezado de la sección */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -597,59 +631,93 @@ const WhyGuatemala: React.FC = () => {
               Guatemala vs. Región
             </h2>
             <p className="text-xl text-gray-600">
-              Comparación de indicadores clave de competitividad
+              Comparación de indicadores clave de competitividad (Actualizado 2025)
             </p>
           </motion.div>
           
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Contenedor de la Tabla */}
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
             <div className="overflow-x-auto">
-              <table className="w-full">
+              {/* Se añade un min-w para asegurar que en móviles se pueda scrollear horizontalmente sin colapsar el texto */}
+              <table className="w-full min-w-[900px]">
                 <thead className="bg-blue-600 text-white">
                   <tr>
-                    <th className="px-6 py-4 text-left">Indicador</th>
-                    <th className="px-6 py-4 text-center">Guatemala</th>
-                    <th className="px-6 py-4 text-center">Costa Rica</th>
-                    <th className="px-6 py-4 text-center">El Salvador</th>
-                    <th className="px-6 py-4 text-center">Honduras</th>
-                    <th className="px-6 py-4 text-center">República Dominicana</th>
+                    <th className="px-6 py-4 text-left font-semibold tracking-wide">Indicador</th>
+                    <th className="px-6 py-4 text-center font-bold bg-blue-700/30">Guatemala</th>
+                    <th className="px-6 py-4 text-center font-semibold tracking-wide">Costa Rica</th>
+                    <th className="px-6 py-4 text-center font-semibold tracking-wide">El Salvador</th>
+                    <th className="px-6 py-4 text-center font-semibold tracking-wide">Honduras</th>
+                    <th className="px-6 py-4 text-center font-semibold tracking-wide">Nicaragua</th>
+                    <th className="px-6 py-4 text-center font-semibold tracking-wide">República Dominicana</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">PIB 2024 (USD miles de millones)</td>
-                    <td className="px-6 py-4 text-center text-emerald-600 font-bold">$ 113.8</td>
-                    <td className="px-6 py-4 text-center">$ 95.35</td>
-                    <td className="px-6 py-4 text-center">$ 35.365</td>
-                    <td className="px-6 py-4 text-center">$ 37.09</td>
-                    <td className="px-6 py-4 text-center">$ 127.356</td>
+                <tbody className="divide-y divide-gray-200 text-sm text-gray-700">
+                  
+                  {/* FILA: PIB */}
+                  <tr className="hover:bg-gray-50/80 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-gray-900 bg-gray-50/30">
+                      PIB 2025 (USD miles de millones)
+                    </td>
+                    <td className="px-6 py-4 text-center text-emerald-600 font-extrabold bg-emerald-50/20 text-base">
+                      $ 123.31
+                    </td>
+                    <td className="px-6 py-4 text-center">$ 102.90</td>
+                    <td className="px-6 py-4 text-center">$ 36.71</td>
+                    <td className="px-6 py-4 text-center">$ 39.62</td>
+                    <td className="px-6 py-4 text-center">$ 22.24</td>
+                    <td className="px-6 py-4 text-center">$ 123.50</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">Población a 2025 (millones)</td>
-                    <td className="px-6 py-4 text-center text-emerald-600 font-bold">18.1</td>
+
+                  {/* FILA: Población */}
+                  <tr className="hover:bg-gray-50/80 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-gray-900 bg-gray-50/30">
+                      Población a 2025 (millones)
+                    </td>
+                    <td className="px-6 py-4 text-center text-emerald-600 font-bold bg-emerald-50/20">
+                      18.0
+                    </td>
                     <td className="px-6 py-4 text-center">5.13</td>
                     <td className="px-6 py-4 text-center">6.338</td>
                     <td className="px-6 py-4 text-center">10.83</td>
+                    <td className="px-6 py-4 text-center">7.15</td>
                     <td className="px-6 py-4 text-center">11.43</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">Salario mínimo 2025 (USD/mes)*</td>
-                    <td className="px-6 py-4 text-center text-emerald-600 font-bold">$518.00</td>
+
+                  {/* FILA: Salario Mínimo */}
+                  <tr className="hover:bg-gray-50/80 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-gray-900 bg-gray-50/30">
+                      Salario mínimo 2025 (USD/mes)*
+                    </td>
+                    <td className="px-6 py-4 text-center text-emerald-600 font-bold bg-emerald-50/20">
+                      $518.00
+                    </td>
                     <td className="px-6 py-4 text-center">$726.00</td>
                     <td className="px-6 py-4 text-center">$408.80</td>
                     <td className="px-6 py-4 text-center">$357.00</td>
+                    <td className="px-6 py-4 text-center">$228.50</td>
                     <td className="px-6 py-4 text-center">$480.51</td>
                   </tr>
+
                 </tbody>
               </table>
             </div>
-            <p className="text-sm text-gray-600 mt-4 text-center">*Los salarios indicados son referenciales y pueden variar según el sector económico, el tamaño de la empresa y otros factores.</p>
-            <p className="text-sm text-gray-500 mt-2 text-center">Fuente: Banco de Guatemala</p>
+
+            {/* Notas al pie de la tabla */}
+            <div className="p-5 bg-gray-50 border-t border-gray-100 text-center space-y-1">
+              <p className="text-xs text-gray-500">
+                *Los salarios indicados son referenciales y pueden variar según el sector económico, el tamaño de la empresa y otros factores.
+              </p>
+              <p className="text-xs text-gray-400 font-medium">
+                Fuente: Banco de Guatemala y Consejos de Salarios Mínimos Regionales
+              </p>
+            </div>
           </div>
+
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-support-500 text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1464df] to-[#058490] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -657,31 +725,40 @@ const WhyGuatemala: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            {/* Título en blanco puro con tracking ajustado */}
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">
               Descarga el Fact Sheet de Guatemala
             </h2>
-            <p className="text-xl mb-8 text-gray-900">
+            
+            {/* Párrafo descriptivo legible */}
+            <p className="text-lg md:text-xl mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed font-normal">
               Obtén datos detallados, indicadores económicos y toda la información 
               que necesitas para tomar la mejor decisión de inversión.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            {/* Contenedor de Botones */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              {/* Botón Principal: Descarga */}
               <a
-                href={FactSheetEs}
-                download="FACT SHEET EN ESPAÑOL.pdf"
-                className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                href="https://mineco.gob.gt/files/proguatemala/es/TRIFOLIAR%20PROGUATE%202026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto bg-white text-[#1464df] hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center shadow-md text-base"
               >
-                <Download className="w-5 h-5 mr-2" />
+                <Download className="w-5 h-5 mr-2.5 stroke-[2.5]" />
                 Descargar Fact Sheet
               </a>
-              <button className="border border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center">
+              
+              {/* Botón Secundario: Contacto */}
+              <button className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base">
                 Habla con un asesor
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
               </button>
             </div>
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
   );
 };
 
