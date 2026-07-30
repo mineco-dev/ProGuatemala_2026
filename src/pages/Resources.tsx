@@ -6,6 +6,7 @@ import {
   ExternalLink, Eye, Calendar, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import resImg from '../assets/images/portadas/5. CENTRO DE RECURSOS.jpeg';
 
 interface Resource {
   id: string;
@@ -166,7 +167,7 @@ const Resources: React.FC = () => {
             className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700"
           >
             <div className="absolute inset-0 bg-black/30"></div>
-            <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${resImg})` }}></div>
             <div className="relative h-full flex items-center justify-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                 <motion.h1

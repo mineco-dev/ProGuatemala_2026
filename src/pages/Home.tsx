@@ -1,50 +1,90 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import {
-  MapPin, Users, TrendingUp, Shield,
-  Download, MessageCircle, ArrowRight,
-  Play, FileText, Phone, Mail, Globe,
-  Award, Handshake, Target, CheckCircle, Clock
+  MapPin, Users, TrendingUp,
+  Download, MessageCircle, Phone, Mail, Globe,
+  Award,
 } from 'lucide-react';
-import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
+import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL-3.pdf';
 import GuiaInversionistaEs from '../assets/files/16_07_25 ESPAÑOL-TRIFOLIAR-PaginaWeb (1).pdf';
 import PorqueGTImg from '../assets/images/porqueGT.png';
 import SectorsCarousel from '../components/SectorsCarousel';
 
-const Home: React.FC = () => {
-  const { t } = useLanguage();
-  const [highlightedAdvantage, setHighlightedAdvantage] = React.useState<string | null>(null);
+const IEDDashboardEmbed: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Tableau visualization after component mounts
-  React.useEffect(() => {
-    const initTableau = () => {
-      // ID actualizado del nuevo Dashboard
-      const divElement = document.getElementById('viz1782919716147');
-      if (divElement && !divElement.querySelector('.tableauViz[style*="display: block"]')) {
-        const vizElement = divElement.getElementsByTagName('object')[0];
-        if (vizElement) {
-          vizElement.style.width = '100%';
-          // Proporción actualizada a * 0.75 según el nuevo script
-          const computedHeight = Math.round(divElement.offsetWidth * 0.75);
-          vizElement.style.height = `${computedHeight}px`;
-          vizElement.style.display = 'block';
-          
-          // Load Tableau API script if not already loaded
-          if (!document.querySelector('script[src*="tableau.com/javascripts/api/viz_v1.js"]')) {
-            const scriptElement = document.createElement('script');
-            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-            vizElement.parentNode?.insertBefore(scriptElement, vizElement);
-          }
-        }
+  useEffect(() => {
+    const divElement = containerRef.current;
+    if (!divElement) return;
+
+    const vizElement = divElement.getElementsByTagName('object')[0] as HTMLElement | undefined;
+    if (vizElement && divElement.offsetWidth) {
+      vizElement.style.width = '100%';
+      // Aseguramos una proporción responsiva ideal con un mínimo de base para evitar colapsos
+      vizElement.style.height = Math.max(divElement.offsetWidth * 0.75, 800) + 'px';
+      vizElement.style.display = 'block';
+    }
+
+    // Carga limpia del script de la API de Tableau
+    const scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    scriptElement.async = true;
+
+    if (vizElement && vizElement.parentNode) {
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    }
+
+    // Limpieza al desmontar para prevenir fugas de memoria
+    return () => {
+      if (scriptElement && scriptElement.parentNode) {
+        scriptElement.parentNode.removeChild(scriptElement);
       }
     };
-
-    // Delay initialization to ensure DOM is ready
-    const timer = setTimeout(initTableau, 1000);
-    return () => clearTimeout(timer);
   }, []);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="tableauPlaceholder w-full" 
+      id="viz1782919716147" 
+      style={{ position: 'relative' }}
+    >
+      <noscript>
+        <a href="#!">
+          <img 
+            alt="Historia 1" 
+            src="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1_rss.png" 
+            style={{ border: 'none' }} 
+          />
+        </a>
+      </noscript>
+      <object className="tableauViz" style={{ display: 'none' }}>
+        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+        <param name="embed_code_version" value="3" />
+        <param name="site_root" value="" />
+        <param name="name" value="Tablero_IED_ProGuatemala/Historia1" />
+        <param name="tabs" value="no" />
+        <param name="toolbar" value="yes" />
+        <param name="static_image" value="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png" />
+        <param name="animate_transition" value="yes" />
+        <param name="display_static_image" value="yes" />
+        <param name="display_spinner" value="yes" />
+        <param name="display_overlay" value="yes" />
+        <param name="display_count" value="yes" />
+        <param name="language" value="es-ES" />
+      </object>
+    </div>
+  );
+};
+
+// ==========================================
+// COMPONENTE PRINCIPAL
+// ==========================================
+const Home: React.FC = () => {
+  const { t } = useLanguage();
+  const [highlightedAdvantage, setHighlightedAdvantage] = useState<string | null>(null);
   
   const guatemalaAdvantages = [
     {
@@ -63,7 +103,7 @@ const Home: React.FC = () => {
     },
     {
       icon: MapPin,
-      title: 'Ubicación Strategica',
+      title: 'Ubicación Estratégica', // Corregido el typo para que coincida con el hotspot ID
       description: 'Puerta de entrada natural entre Norte y Sudamérica, con acceso privilegiado a mercados globales.',
       details: [
         'Acceso preferencial a múltiples mercados',
@@ -219,7 +259,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center bg-blue-100 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <div className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
               🇬🇹 Ventajas Competitivas
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -231,11 +271,11 @@ const Home: React.FC = () => {
             </p>
             <div className="flex justify-center mb-6">
               <div className="relative w-full max-w-3xl">
-              <img
-                src={PorqueGTImg}
-                alt="Por qué elegir Guatemala"
-                className="w-full rounded-2xl shadow-lg"
-              />
+                <img
+                  src={PorqueGTImg}
+                  alt="Por qué elegir Guatemala"
+                  className="w-full rounded-2xl shadow-lg"
+                />
                 {competitiveAdvantageHotspots.map((hotspot) => (
                   <a
                     key={hotspot.id}
@@ -261,36 +301,31 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {guatemalaAdvantages.map((advantage, index) => {
               const Icon = advantage.icon;
+              const normalizedId = `advantage-${advantage.title
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '')}`;
+
               return (
                 <motion.div
                   key={index}
-                  id={`advantage-${advantage.title
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '')}`}
+                  id={normalizedId}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={`relative scroll-mt-24 rounded-2xl p-8 border border-white/50 backdrop-blur-sm group overflow-hidden transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
-                    highlightedAdvantage === `advantage-${advantage.title
-                      .toLowerCase()
-                      .normalize('NFD')
-                      .replace(/[\u0300-\u036f]/g, '')
-                      .replace(/[^a-z0-9]+/g, '-')
-                      .replace(/^-+|-+$/g, '')}`
+                    highlightedAdvantage === normalizedId
                       ? `${advantage.bgColor} shadow-[0_0_0_4px_rgba(15,92,225,0.18),0_0_38px_rgba(15,92,225,0.35)]`
                       : `${advantage.bgColor} shadow-xl hover:shadow-2xl`
                   }`}
                 >
-                  {/* Background Pattern */}
                   <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
                     <div className={`w-full h-full ${advantage.color} rounded-full blur-2xl transform translate-x-8 -translate-y-8`}></div>
                   </div>
                   
-                  {/* Icon and Stats */}
                   <div className="relative flex items-start justify-between mb-6">
                     <div className={`${advantage.color} w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-6 transition-transform duration-300`}>
                       <Icon className="w-10 h-10 text-white drop-shadow-lg" />
@@ -303,12 +338,10 @@ const Home: React.FC = () => {
                     </div>
                   </div>
                   
-                  {/* Content */}
                   <div className="relative">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">{advantage.title}</h3>
                     <p className="text-gray-700 mb-6 leading-relaxed text-base">{advantage.description}</p>
                     
-                    {/* Details List */}
                     <ul className="space-y-3">
                       {advantage.details.map((detail, detailIndex) => (
                         <li key={detailIndex} className="flex items-start">
@@ -319,7 +352,6 @@ const Home: React.FC = () => {
                     </ul>
                   </div>
                   
-                  {/* Hover Effect Overlay */}
                   <div className="absolute inset-0 bg-support-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl"></div>
                 </motion.div>
               );
@@ -334,7 +366,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-center mt-16"
           >
-            <div className="rounded-2xl p-8 shadow-xl border border-gray-100">
+            <div className="rounded-2xl p-8 shadow-xl border border-gray-100 bg-white">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 ¿Quieres conocer más detalles?
               </h3>
@@ -345,7 +377,7 @@ const Home: React.FC = () => {
                 <a
                   href={FactSheetEs}
                   download="FACT SHEET EN ESPAÑOL.pdf"
-                  className="text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center border-2"
+                  className="text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center border-2 hover:brightness-110"
                   style={{ background: '#0f5ce1', borderColor: '#0f5ce1' }}
                 >
                   <Download className="w-5 h-5 mr-2" />
@@ -366,7 +398,7 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{ background: '#258CFB' }}
-            className=" rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
+            className="rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
           >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-1 flex flex-col items-center text-center">
@@ -382,6 +414,7 @@ const Home: React.FC = () => {
                   Bernardo Arévalo de León
                 </h3>
                 <p className="text-white font-semibold">Presidente de la República de Guatemala</p>
+                <p className="text-sm text-blue-900 font-semibold mt-1">Dr. Bernardo Arévalo</p>
               </div>
               <div className="lg:col-span-2">
                 <div className="mb-6">
@@ -408,9 +441,6 @@ const Home: React.FC = () => {
                   <p className="text-lg">
                     Finalmente, extiendo mi más sincero agradecimiento por considerar a Guatemala como su destino de inversión. Estamos deseosos de asociarnos con ustedes para lograr sus objetivos y contribuir a la prosperidad mutua de nuestras naciones.
                   </p>
-                  <p className="text-lg font-semibold text-blue-900">
-                    Dr. Bernardo Arévalo
-                  </p>
                 </div>
               </div>
             </div>
@@ -422,7 +452,7 @@ const Home: React.FC = () => {
 
       {/* Interactive Map Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -450,38 +480,9 @@ const Home: React.FC = () => {
               <p className="text-blue-100">Explora datos actualizados sobre IED y oportunidades de inversión en Guatemala</p>
             </div>
             <div className="p-6">
-              <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[900px]">
-                {/* ID Actualizado aquí */}
-                <div 
-                  className="tableauPlaceholder w-full h-full" 
-                  id="viz1782919716147" 
-                  style={{ position: 'relative' }}
-                >
-                  <noscript>
-                    <a href="#">
-                      <img 
-                        alt="Historia 1" 
-                        src="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1_rss.png" 
-                        style={{ border: 'none' }} 
-                      />
-                    </a>
-                  </noscript>
-                  <object className="tableauViz" style={{ display: 'none' }}>
-                    <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-                    <param name="embed_code_version" value="3" />
-                    <param name="site_root" value="" />
-                    <param name="name" value="Tablero_IED_ProGuatemala/Historia1" />
-                    <param name="tabs" value="no" />
-                    <param name="toolbar" value="yes" />
-                    <param name="static_image" value="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png" />
-                    <param name="animate_transition" value="yes" />
-                    <param name="display_static_image" value="yes" />
-                    <param name="display_spinner" value="yes" />
-                    <param name="display_overlay" value="yes" />
-                    <param name="display_count" value="yes" />
-                    <param name="language" value="es-ES" />
-                  </object>
-                </div>
+              {/* Contenedor elástico que aloja el iframe inyectado de Tableau de forma aislada */}
+              <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[600px] flex items-start justify-center">
+                <IEDDashboardEmbed />
               </div>
             </div>
           </motion.div>

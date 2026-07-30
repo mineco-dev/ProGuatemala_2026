@@ -5,8 +5,25 @@ import {
   ArrowRight, Download
 } from 'lucide-react';
 import SectorsCarousel from '../components/SectorsCarousel';
+import secotresImg from '../assets/images/portadas/3. SECTORES.jpg';
 
 const StrategicSectors: React.FC = () => {
+
+  const scrollToFilters = () => {
+    const element = document.getElementById('horizonte-temporal');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleDownload = () => {
+    window.open(
+      'https://mineco.gob.gt/files/proguatemala/es/Atraccion_Inversiones-Espanol.pdf', 
+      '_blank', 
+      'noopener,noreferrer'
+    );
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -19,7 +36,7 @@ const StrategicSectors: React.FC = () => {
             className="absolute inset-0 bg-gradient-to-br from-sector-6 via-sector-1 to-sector-3"
           >
             <div className="absolute inset-0 bg-black/30"></div>
-            <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${secotresImg})` }}></div>
             <div className="relative h-full flex items-center justify-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                 <motion.h1
@@ -45,10 +62,16 @@ const StrategicSectors: React.FC = () => {
                   transition={{ delay: 0.9, duration: 0.8 }}
                   className="flex flex-col sm:flex-row gap-4 justify-center"
                 >
-                  <button className="bg-sector-4 hover:brightness-110 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200">
+                  <button 
+                    onClick={scrollToFilters}
+                    className="bg-sector-4 hover:brightness-110 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
+                  >
                     Explorar por plazo
                   </button>
-                  <button className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
+                  <button 
+                    onClick={handleDownload}
+                    className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200"
+                  >
                     Descargar estrategia sectorial
                   </button>
                 </motion.div>

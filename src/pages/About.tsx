@@ -4,6 +4,7 @@ import {
   Target, Eye, Heart, Users, Award, Star,
   Download, Mail, Linkedin, User, Lightbulb, Shield, BarChart3
 } from 'lucide-react';
+import aboutImg from '../assets/images/portadas/4. ACERCA DE PROGUATEMALA.jpg';
 
 const About: React.FC = () => {
   const values = [
@@ -150,7 +151,7 @@ const About: React.FC = () => {
             className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700"
           >
             <div className="absolute inset-0 bg-black/30"></div>
-            <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${aboutImg})` }}></div>
             <div className="relative h-full flex items-center justify-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                 <motion.h1

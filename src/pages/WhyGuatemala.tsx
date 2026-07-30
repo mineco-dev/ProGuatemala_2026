@@ -2,20 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, Users, TrendingUp, Shield, Globe, 
-  Download, ArrowRight, BarChart3, Clock, CheckCircle, ChevronLeft, ChevronRight 
+  Download, ArrowRight, BarChart3, CheckCircle, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 import interoceanicaImg from '../assets/images/centros_productivos_empresariales/Interoceanica.jpg';
 import michatoyaImg from '../assets/images/centros_productivos_empresariales/Michatoya Pacífico.jpg';
 import zonaLibreQuetzalImg from '../assets/images/centros_productivos_empresariales/Zona Libre Quetzal.jpg';
 import puertasItsmoImg from '../assets/images/centros_productivos_empresariales/Puertas del Istmo.png';
 import synergyIndustrialImg from '../assets/images/centros_productivos_empresariales/Synergy Industrial Park.jpg';
-
-import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
+import whyGuatemalaImg from '../assets/images/portadas/1.POR QUE GUATEMALA.jpg';
 
 const WhyGuatemala: React.FC = () => {
   const [activeModalId, setActiveModalId] = React.useState<string | null>(null);
   const [slideIndexes, setSlideIndexes] = React.useState<Record<string, number>>({});
-  const tableauContainerRef = useRef(null);
+  const tableauContainerRef = useRef<HTMLDivElement>(null);
 
   const parks = [
     {
@@ -143,9 +142,10 @@ const WhyGuatemala: React.FC = () => {
 
   useEffect(() => {
     const divElement = tableauContainerRef.current;
-    if (!divElement) return;
+    if (!divElement) return; // Ahora TS sabe que aquí divElement es un HTMLDivElement legítimo
 
-    const vizElement = divElement.getElementsByTagName('object')[0];
+    // Forzamos el tipo a HTMLElement para que TS no chille por la propiedad .style
+    const vizElement = divElement.getElementsByTagName('object')[0] as HTMLElement | undefined;
     
     if (vizElement && divElement.offsetWidth) {
       // Ajuste dinámico de dimensiones según el contenedor actual
@@ -184,7 +184,7 @@ const WhyGuatemala: React.FC = () => {
             className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700"
           >
             <div className="absolute inset-0 bg-black/30"></div>
-            <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${whyGuatemalaImg})` }}></div>
             <div className="relative h-full flex items-center justify-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
                 <motion.h1
@@ -357,7 +357,7 @@ const WhyGuatemala: React.FC = () => {
 
       {/* Interactive Map Section */}
       <section id="stats-grid" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado de la Sección */}
           <motion.div
@@ -375,18 +375,18 @@ const WhyGuatemala: React.FC = () => {
             </p>
           </motion.div>
           
-          {/* Grid Asimétrico (3 columnas en desktop) */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* CAMBIO: Contenedor principal ahora maneja una sola columna (Filas directas) */}
+          <div className="grid grid-cols-1 gap-8">
             
-            {/* Columna Izquierda: Tableau (Ocupa 2 columnas de 3) */}
+            {/* FILA 1: Tableau (Ocupa el 100% del ancho) */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }} // Ajustado a "y" para una transición vertical natural
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-2"
+              className="w-full"
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hiddenZone border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
                 <div className="p-4 bg-support-50 border-b border-gray-100">
                   <h3 className="text-lg font-semibold">Mapa Interactivo de Conectividad</h3>
                   <p className="text-sm text-gray-600">Explora el potencial productivo regional y comercial de Guatemala</p>
@@ -395,7 +395,7 @@ const WhyGuatemala: React.FC = () => {
                   
                   {/* Bloque de Tableau */}
                   <div 
-                    className="tableauPlaceholder" 
+                    className="tableauPlaceholder w-full h-[600px] lg:h-[750px]"
                     id="viz1781555972072" 
                     ref={tableauContainerRef} 
                     style={{ position: 'relative' }}
@@ -432,51 +432,58 @@ const WhyGuatemala: React.FC = () => {
               </div>
             </motion.div>
             
-            {/* Columna Derecha: Conectividad Marítima (Ocupa 1 columna de 3) */}
+            {/* FILA 2: Conectividad Marítima (Ocupa el 100% del ancho abajo) */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-1"
+              className="w-full"
             >
               <div className="bg-support-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                   Conectividad Marítima
                 </h3>
                 
-                <ul className="space-y-6">
+                {/* CAMBIO INTERNO: El listado ahora se distribuye en 3 columnas en desktop */}
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Puerto Quetzal */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
-                    <div className="flex items-center mb-1.5">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                      <span className="font-semibold text-gray-900">Puerto Quetzal (Pacífico)</span>
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center mb-1.5">
+                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                        <span className="font-semibold text-gray-900">Puerto Quetzal (Pacífico)</span>
+                      </div>
+                      <p className="text-sm text-gray-600 ml-6 font-medium">
+                        Carga: <span className="text-emerald-600 font-bold">17.3 Millones TM</span>
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6 font-medium">
-                      Carga: <span className="text-emerald-600 font-bold">17.3 Millones TM</span>
-                    </p>
                   </li>
                   
                   {/* Puerto Santo Tomás */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
-                    <div className="flex items-center mb-1.5">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                      <span className="font-semibold text-gray-900">Puerto Santo Tomás (Atlántico)</span>
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center mb-1.5">
+                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                        <span className="font-semibold text-gray-900">Puerto Santo Tomás (Atlántico)</span>
+                      </div>
+                      <p className="text-sm text-gray-600 ml-6 font-medium">
+                        Carga: <span className="text-emerald-600 font-bold">8.7 Millones TM</span>
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6 font-medium">
-                      Carga: <span className="text-emerald-600 font-bold">8.7 Millones TM</span>
-                    </p>
                   </li>
                   
                   {/* Puerto Barrios */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm">
-                    <div className="flex items-center mb-1.5">
-                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                      <span className="font-semibold text-gray-900">Puerto Barrios (Atlántico)</span>
+                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center mb-1.5">
+                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                        <span className="font-semibold text-gray-900">Puerto Barrios (Atlántico)</span>
+                      </div>
+                      <p className="text-sm text-gray-600 ml-6 font-medium">
+                        Carga: <span className="text-emerald-600 font-bold">5.6 Millones TM</span>
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-600 ml-6 font-medium">
-                      Carga: <span className="text-emerald-600 font-bold">5.6 Millones TM</span>
-                    </p>
                   </li>
                 </ul>
               </div>
