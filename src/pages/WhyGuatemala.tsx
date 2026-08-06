@@ -1,20 +1,69 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, Users, TrendingUp, Shield, Globe, 
-  Download, ArrowRight, BarChart3, CheckCircle, ChevronLeft, ChevronRight 
+  Download, ArrowRight, BarChart3, CheckCircle, ChevronLeft, ChevronRight, 
+  X
 } from 'lucide-react';
-import interoceanicaImg from '../assets/images/centros_productivos_empresariales/Interoceanica.jpg';
-import michatoyaImg from '../assets/images/centros_productivos_empresariales/Michatoya Pacífico.jpg';
-import zonaLibreQuetzalImg from '../assets/images/centros_productivos_empresariales/Zona Libre Quetzal.jpg';
-import puertasItsmoImg from '../assets/images/centros_productivos_empresariales/Puertas del Istmo.png';
-import synergyIndustrialImg from '../assets/images/centros_productivos_empresariales/Synergy Industrial Park.jpg';
+import interoceanicaImg from '../assets/images/centros_productivos_empresariales/interoceanica/Interoceanica.jpg';
+import interoceanicaImg2 from '../assets/images/centros_productivos_empresariales/interoceanica/1.jpeg';
+import interoceanicaImg3 from '../assets/images/centros_productivos_empresariales/interoceanica/2.jpeg';
+import interoceanicaImg4 from '../assets/images/centros_productivos_empresariales/interoceanica/DJI_0944.JPG';
+import interoceanicaImg5 from '../assets/images/centros_productivos_empresariales/interoceanica/DJI_0945.JPG';
+import interoceanicaImg6 from '../assets/images/centros_productivos_empresariales/interoceanica/DJI_0946.JPG';
+import interoceanicaImg7 from '../assets/images/centros_productivos_empresariales/interoceanica/DJI_0949.JPG';
+
+import michatoyaImg from '../assets/images/centros_productivos_empresariales/michatoya/Michatoya Pacífico.jpg';
+import michatoyaImg2 from '../assets/images/centros_productivos_empresariales/michatoya/BODEGAS ALTA.jpg';
+import michatoyaImg3 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 1.jpg';
+import michatoyaImg4 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 2.jpg';
+import michatoyaImg5 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 3.jpg';
+import michatoyaImg6 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 4.jpg';
+import michatoyaImg7 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 5.jpg';
+import michatoyaImg8 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 6.jpg';
+import michatoyaImg9 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 7.jpg';
+import michatoyaImg10 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 8.jpg';
+import michatoyaImg11 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 9.jpg';
+import michatoyaImg12 from '../assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 10.jpg';
+
+import zonaLibreQuetzalImg from '../assets/images/centros_productivos_empresariales/quetzal/Zona Libre Quetzal.jpg';
+import zonaLibreQuetzalImg3 from '../assets/images/centros_productivos_empresariales/quetzal/ZLQ general .jpg';
+import zonaLibreQuetzalImg4 from '../assets/images/centros_productivos_empresariales/quetzal/Fachasa MT2 .jpg';
+import zonaLibreQuetzalImg5 from '../assets/images/centros_productivos_empresariales/quetzal/Garita y administracion .jpg';
+import zonaLibreQuetzalImg6 from '../assets/images/centros_productivos_empresariales/quetzal/logo_zonalibrequetzal-scaled.png';
+import zonaLibreQuetzalImg7 from '../assets/images/centros_productivos_empresariales/quetzal/ZLQ vista áerea.jpg';
+
+import puertasItsmoImg from '../assets/images/centros_productivos_empresariales/istmo/Puertas del Istmo.png';
+
+import synergyIndustrialImg from '../assets/images/centros_productivos_empresariales/synergy/Synergy Industrial Park.jpg';
+import synergyIndustrialImg2 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx.png';
+import synergyIndustrialImg3 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx2.png';
+import synergyIndustrialImg4 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx3.png';
+import synergyIndustrialImg5 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx4.png';
+import synergyIndustrialImg6 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx5.png';
+import synergyIndustrialImg7 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx6.png';
+import synergyIndustrialImg8 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx7.png';
+import synergyIndustrialImg9 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx8.png';
+import synergyIndustrialImg10 from '../assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx9.png';
+
 import whyGuatemalaImg from '../assets/images/portadas/1.POR QUE GUATEMALA.jpg';
+import mapaEstrategico from '../assets/images/Mapa_Macro_Estrategico_MINECO.png';
+import { TableauEmbed } from '../components/layouts/TableauEmbed';
 
 const WhyGuatemala: React.FC = () => {
   const [activeModalId, setActiveModalId] = React.useState<string | null>(null);
-  const [slideIndexes, setSlideIndexes] = React.useState<Record<string, number>>({});
   const tableauContainerRef = useRef<HTMLDivElement>(null);
+
+  const [slideIndexes, setSlideIndexes] = useState<Record<string, number>>({});
+
+  const getSlideIndex = (id: string) => slideIndexes[id] || 0;
+
+  const setSlideIndex = (id: string, index: number) => {
+  setSlideIndexes((prev) => ({
+    ...prev,
+    [id]: index,
+  }));
+};
 
   const parks = [
     {
@@ -22,14 +71,14 @@ const WhyGuatemala: React.FC = () => {
       title: 'Interoceánica',
       description: 'Parque industrial con conectividad logística clave entre océanos.',
       highlights: ['Ubicación estratégica', 'Infraestructura moderna', 'Acceso a rutas principales'],
-      images: [interoceanicaImg, interoceanicaImg, interoceanicaImg]
+      images: [interoceanicaImg, interoceanicaImg2, interoceanicaImg3, interoceanicaImg4, interoceanicaImg5, interoceanicaImg6, interoceanicaImg7]
     },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',
       description: 'Centro productivo con acceso a corredores del Pacífico.',
       highlights: ['Cercanía a puertos', 'Servicios integrados', 'Zonas de carga'],
-      images: [michatoyaImg, michatoyaImg, michatoyaImg]
+      images: [michatoyaImg, michatoyaImg2, michatoyaImg3, michatoyaImg4, michatoyaImg5, michatoyaImg6, michatoyaImg7, michatoyaImg8, michatoyaImg9, michatoyaImg10, michatoyaImg11, michatoyaImg12]
     },
     {
       id: 'puerta-istmo',
@@ -43,21 +92,16 @@ const WhyGuatemala: React.FC = () => {
       title: 'Synergy Industrial Park',
       description: 'Parque industrial con ecosistema empresarial consolidado.',
       highlights: ['Servicios corporativos', 'Energía confiable', 'Accesos controlados'],
-      images: [synergyIndustrialImg, synergyIndustrialImg, synergyIndustrialImg]
+      images: [synergyIndustrialImg, synergyIndustrialImg2, synergyIndustrialImg3, synergyIndustrialImg4, synergyIndustrialImg5, synergyIndustrialImg6, synergyIndustrialImg7, synergyIndustrialImg8, synergyIndustrialImg9, synergyIndustrialImg10]
     },
     {
       id: 'zona-libre-quetzal',
       title: 'Zona Libre Quetzal',
       description: 'Zona con incentivos y enfoque en comercio exterior.',
       highlights: ['Régimen especial', 'Logística integrada', 'Proximidad a puerto'],
-      images: [zonaLibreQuetzalImg, zonaLibreQuetzalImg, zonaLibreQuetzalImg]
+      images: [zonaLibreQuetzalImg, zonaLibreQuetzalImg3, zonaLibreQuetzalImg4, zonaLibreQuetzalImg5, zonaLibreQuetzalImg6, zonaLibreQuetzalImg7]
     }
   ];
-
-  const getSlideIndex = (id: string) => slideIndexes[id] || 0;
-  const setSlideIndex = (id: string, nextIndex: number) => {
-    setSlideIndexes((prev) => ({ ...prev, [id]: nextIndex }));
-  };
 
   const advantages = [
     {
@@ -380,55 +424,37 @@ const WhyGuatemala: React.FC = () => {
             
             {/* FILA 1: Tableau (Ocupa el 100% del ancho) */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }} // Ajustado a "y" para una transición vertical natural
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="w-full"
+              className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-                <div className="p-4 bg-support-50 border-b border-gray-100">
-                  <h3 className="text-lg font-semibold">Mapa Interactivo de Conectividad</h3>
-                  <p className="text-sm text-gray-600">Explora el potencial productivo regional y comercial de Guatemala</p>
+              <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                
+                {/* Encabezado oscuro acorde a la línea gráfica */}
+                <div className="p-6 sm:p-8 bg-[#0B1B3D] text-white">
+                  <h3 className="text-xl sm:text-2xl font-bold">
+                    Mapa Interactivo de Conectividad
+                  </h3>
+                  <p className="text-sm sm:text-base text-blue-200 mt-1">
+                    Explora el potencial productivo regional y comercial de Guatemala
+                  </p>
                 </div>
-                <div className="p-4">
-                  
-                  {/* Bloque de Tableau */}
-                  <div 
-                    className="tableauPlaceholder w-full h-[600px] lg:h-[750px]"
-                    id="viz1781555972072" 
-                    ref={tableauContainerRef} 
-                    style={{ position: 'relative' }}
-                  >
-                    <noscript>
-                      <a href="#">
-                        <img 
-                          alt="Polos de Desarrollo Económico: Potencial Productivo Regional" 
-                          src="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1_rss.png" 
-                          style={{ border: 'none' }} 
-                        />
-                      </a>
-                    </noscript>
-                    
-                    <object className="tableauViz" style={{ display: 'none' }}>
-                      <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-                      <param name="embed_code_version" value="3" />
-                      <param name="site_root" value="" />
-                      <param name="name" value="EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional" />
-                      <param name="tabs" value="no" />
-                      <param name="toolbar" value="yes" />
-                      <param name="static_image" value="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1.png" />
-                      <param name="animate_transition" value="yes" />
-                      <param name="display_static_image" value="yes" />
-                      <param name="display_spinner" value="yes" />
-                      <param name="display_overlay" value="yes" />
-                      <param name="display_count" value="yes" />
-                      <param name="language" value="en-US" />
-                      <param name="filter" value="publish=yes" />
-                    </object>
-                  </div>
 
+                {/* Cuerpo de la tarjeta para alojar el embed */}
+                <div className="p-4 sm:p-6 bg-slate-50/50">
+                  <TableauEmbed 
+                    vizName="EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional"
+                    aspectRatio={0.65}
+                    language="en-US"
+                    staticImageUrl="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1.png"
+                    params={{
+                      filter: 'publish=yes'
+                    }}
+                  />
                 </div>
+
               </div>
             </motion.div>
             
@@ -438,54 +464,70 @@ const WhyGuatemala: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="w-full"
+              className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
             >
               <div className="bg-support-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
                   Conectividad Marítima
                 </h3>
-                
-                {/* CAMBIO INTERNO: El listado ahora se distribuye en 3 columnas en desktop */}
-                <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Puerto Quetzal */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center mb-1.5">
-                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                        <span className="font-semibold text-gray-900">Puerto Quetzal (Pacífico)</span>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-6 font-medium">
-                        Carga: <span className="text-emerald-600 font-bold">17.3 Millones TM</span>
-                      </p>
-                    </div>
-                  </li>
+
+                {/* Grid principal: 1 columna en móvil / 2 columnas en desktop */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
                   
-                  {/* Puerto Santo Tomás */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center mb-1.5">
-                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                        <span className="font-semibold text-gray-900">Puerto Santo Tomás (Atlántico)</span>
+                  {/* Columna Izquierda: Imagen del Mapa */}
+                  <div className="relative w-full min-h-[300px] lg:min-h-0 rounded-xl overflow-hidden border border-gray-150/50 shadow-sm">
+                    <img
+                      src={mapaEstrategico} // <--- Coloca aquí la variable o ruta de tu imagen
+                      alt="Mapa de Conectividad Marítima"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Columna Derecha: Tarjetas apiladas ocupando la misma altura */}
+                  <ul className="flex flex-col gap-4 h-full">
+                    
+                    {/* Puerto Quetzal */}
+                    <li className="flex-1 text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-center">
+                      <div>
+                        <div className="flex items-center mb-1.5">
+                          <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                          <span className="font-semibold text-gray-900">Puerto Quetzal (Pacífico)</span>
+                        </div>
+                        <p className="text-sm text-gray-600 ml-6 font-medium">
+                          Carga: <span className="text-emerald-600 font-bold">17.3 Millones TM</span>
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-600 ml-6 font-medium">
-                        Carga: <span className="text-emerald-600 font-bold">8.7 Millones TM</span>
-                      </p>
-                    </div>
-                  </li>
-                  
-                  {/* Puerto Barrios */}
-                  <li className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center mb-1.5">
-                        <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                        <span className="font-semibold text-gray-900">Puerto Barrios (Atlántico)</span>
+                    </li>
+
+                    {/* Puerto Santo Tomás */}
+                    <li className="flex-1 text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-center">
+                      <div>
+                        <div className="flex items-center mb-1.5">
+                          <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                          <span className="font-semibold text-gray-900">Puerto Santo Tomás (Atlántico)</span>
+                        </div>
+                        <p className="text-sm text-gray-600 ml-6 font-medium">
+                          Carga: <span className="text-emerald-600 font-bold">8.7 Millones TM</span>
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-600 ml-6 font-medium">
-                        Carga: <span className="text-emerald-600 font-bold">5.6 Millones TM</span>
-                      </p>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+
+                    {/* Puerto Barrios */}
+                    <li className="flex-1 text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-center">
+                      <div>
+                        <div className="flex items-center mb-1.5">
+                          <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                          <span className="font-semibold text-gray-900">Puerto Barrios (Atlántico)</span>
+                        </div>
+                        <p className="text-sm text-gray-600 ml-6 font-medium">
+                          Carga: <span className="text-emerald-600 font-bold">5.6 Millones TM</span>
+                        </p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
               </div>
             </motion.div>
             
@@ -512,90 +554,126 @@ const WhyGuatemala: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {parks.map((park) => {
-              const currentIndex = getSlideIndex(park.id);
-              const total = park.images.length;
-              return (
-                <motion.div
-                  key={park.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  onClick={() => setActiveModalId(park.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveModalId(park.id); } }}
-                  className="text-left bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-                >
-                  <div className="relative aspect-[4/3] bg-gray-100">
-                    <img
-                      src={park.images[currentIndex]}
-                      alt={park.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {total > 1 && (
-                      <>
-                        <button
-                          type="button"
-                          className="absolute top-3 left-3 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const next = (currentIndex - 1 + total) % total;
-                            setSlideIndex(park.id, next);
-                          }}
-                        >
-                          <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        <button
-                          type="button"
-                          className="absolute top-3 left-12 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const next = (currentIndex + 1) % total;
-                            setSlideIndex(park.id, next);
-                          }}
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </>
-                    )}
+            {parks.map((park) => (
+              <motion.div
+                key={park.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                onClick={() => setActiveModalId(park.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveModalId(park.id);
+                  }
+                }}
+                className="group text-left bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col"
+              >
+                {/* Miniatura estática (muestra siempre la primera foto como portada) */}
+                <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                  <img
+                    src={park.images[0]}
+                    alt={park.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Información de la Tarjeta */}
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-900 transition-colors">
+                      {park.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {park.description}
+                    </p>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{park.title}</h3>
-                    <p className="text-sm text-gray-600">{park.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {activeModalId && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm overflow-y-auto"
           onClick={() => setActiveModalId(null)}
         >
+          {/* 1. Ampliamos el contenedor de max-w-2xl (672px) a max-w-5xl (1024px) */}
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
+            className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden flex flex-col max-h-[90vh] my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {(() => {
               const park = parks.find((p) => p.id === activeModalId);
               if (!park) return null;
+
+              const currentIndex = getSlideIndex(park.id);
+              const total = park.images ? park.images.length : 0;
+
               return (
                 <>
-                  <div className="relative aspect-[16/9] bg-gray-100">
+                  {/* 2. Galería más grande: Le damos mayor proporción (16/10) y un alto máximo responsive */}
+                  <div className="relative aspect-[16/10] bg-gray-900 overflow-hidden group max-h-[60vh] shrink-0">
                     <img
-                      src={park.images[0]}
-                      alt={park.title}
-                      className="w-full h-full object-cover"
+                      src={park.images[currentIndex]}
+                      alt={`${park.title} - Imagen ${currentIndex + 1}`}
+                      className="w-full h-full object-cover transition-all duration-300"
                     />
+
+                    {/* Botón flotante para cerrar (X) */}
+                    <button
+                      type="button"
+                      aria-label="Cerrar modal"
+                      className="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white rounded-full p-2.5 transition-colors z-20"
+                      onClick={() => setActiveModalId(null)}
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+
+                    {/* Controles de Navegación del Slider */}
+                    {total > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          aria-label="Imagen anterior"
+                          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full p-2.5 transition-colors z-10"
+                          onClick={() => {
+                            const next = (currentIndex - 1 + total) % total;
+                            setSlideIndex(park.id, next);
+                          }}
+                        >
+                          <ChevronLeft className="w-7 h-7" />
+                        </button>
+
+                        <button
+                          type="button"
+                          aria-label="Siguiente imagen"
+                          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white rounded-full p-2.5 transition-colors z-10"
+                          onClick={() => {
+                            const next = (currentIndex + 1) % total;
+                            setSlideIndex(park.id, next);
+                          }}
+                        >
+                          <ChevronRight className="w-7 h-7" />
+                        </button>
+
+                        <div className="absolute bottom-4 right-4 bg-black/60 text-white text-sm px-3.5 py-1.5 rounded-full font-medium backdrop-blur-sm z-10">
+                          {currentIndex + 1} / {total}
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="p-6">
+
+                  {/* Contenido con scroll independiente por si el texto es largo */}
+                  <div className="p-6 overflow-y-auto">
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">{park.title}</h3>
                     <p className="text-gray-700 mb-4">{park.description}</p>
+                    
                     <div className="flex flex-wrap gap-2">
                       {park.highlights.map((item) => (
                         <span
@@ -607,9 +685,11 @@ const WhyGuatemala: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="p-4 border-t bg-gray-50 flex justify-end">
+
+                  {/* Pie del Modal */}
+                  <div className="p-4 border-t bg-gray-50 flex justify-end shrink-0">
                     <button
-                      className="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800"
+                      className="px-5 py-2.5 rounded-lg bg-gray-900 text-white hover:bg-gray-800 transition-colors font-medium"
                       onClick={() => setActiveModalId(null)}
                     >
                       Cerrar

@@ -214,6 +214,71 @@ aliados y acelerar tu instalación.
         </div>
       </section>
 
+      {/* Mensaje del Presidente */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-[#f0f8ff] rounded-3xl p-8 md:p-12 shadow-lg border border-blue-100/60 max-w-5xl mx-auto"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+              
+              {/* Columna Izquierda: Fotografía */}
+              <div className="md:col-span-4 flex justify-center items-center">
+                <div className="relative">
+                  {/* Halo azul difuminado detrás */}
+                  <div className="absolute inset-0 bg-blue-300 rounded-full blur-2xl opacity-40 transform scale-95"></div>
+                  <img
+                    src="https://raw.githubusercontent.com/RedCiudadana/RecursosProGuatemala/refs/heads/main/equipo/PRESIDENTE%20BERNARDO%20AREVALO%20RETRATO%20OFICIAL%20.jpg"
+                    alt="Presidente de Guatemala"
+                    className="relative w-56 h-56 md:w-64 md:h-64 object-cover object-top rounded-full border-4 border-white shadow-md bg-white"
+                  />
+                </div>
+              </div>
+
+              {/* Columna Derecha: Contenido */}
+              <div className="md:col-span-8 space-y-4">
+                
+                {/* Badge */}
+                <div>
+                  <span className="inline-block bg-[#2563eb] text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm">
+                    Mensaje del Presidente
+                  </span>
+                </div>
+
+                {/* Nombre y Cargo */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">
+                    Bernardo Arévalo de León
+                  </h3>
+                  <p className="text-sm md:text-base font-semibold text-[#2563eb] mt-1">
+                    Presidente de la República de Guatemala
+                  </p>
+                </div>
+
+                {/* Párrafos del texto */}
+                <div className="space-y-4 text-gray-600 text-sm md:text-base leading-relaxed pt-1">
+                  <p>
+                    "Guatemala es una tierra de oportunidades sin precedentes. Nuestro compromiso es crear un ambiente propicio para la inversión extranjera, basado en la transparencia, el estado de derecho y la seguridad jurídica."
+                  </p>
+                  <p>
+                    "Los invito a descubrir las ventajas competitivas de nuestro país: una ubicación estratégica, una fuerza laboral talentosa y joven, y un mercado dinámico con acceso preferencial a las economías más importantes del mundo."
+                  </p>
+                  <p className="text-[#1e3a8a] font-bold">
+                    "Guatemala les da la bienvenida. Juntos construiremos un futuro de prosperidad compartida."
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Mission & Vision */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

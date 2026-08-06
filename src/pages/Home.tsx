@@ -1,90 +1,48 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import {
   MapPin, Users, TrendingUp,
   Download, MessageCircle, Phone, Mail, Globe,
   Award,
+  Building,
+  Send,
+  User,
+  X,
 } from 'lucide-react';
-import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL-3.pdf';
+import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
 import GuiaInversionistaEs from '../assets/files/16_07_25 ESPAÑOL-TRIFOLIAR-PaginaWeb (1).pdf';
 import PorqueGTImg from '../assets/images/porqueGT.png';
-import SectorsCarousel from '../components/SectorsCarousel';
+import { supabase } from '../lib/supabase';
+import { TableauEmbed } from '../components/layouts/TableauEmbed';
 
-const IEDDashboardEmbed: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const divElement = containerRef.current;
-    if (!divElement) return;
-
-    const vizElement = divElement.getElementsByTagName('object')[0] as HTMLElement | undefined;
-    if (vizElement && divElement.offsetWidth) {
-      vizElement.style.width = '100%';
-      // Aseguramos una proporción responsiva ideal con un mínimo de base para evitar colapsos
-      vizElement.style.height = Math.max(divElement.offsetWidth * 0.75, 800) + 'px';
-      vizElement.style.display = 'block';
-    }
-
-    // Carga limpia del script de la API de Tableau
-    const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    scriptElement.async = true;
-
-    if (vizElement && vizElement.parentNode) {
-      vizElement.parentNode.insertBefore(scriptElement, vizElement);
-    }
-
-    // Limpieza al desmontar para prevenir fugas de memoria
-    return () => {
-      if (scriptElement && scriptElement.parentNode) {
-        scriptElement.parentNode.removeChild(scriptElement);
-      }
+declare global {
+  interface Window {
+    tableau?: {
+      vizManager?: {
+        refresh: () => void;
+      };
     };
-  }, []);
+  }
+}
 
-  return (
-    <div 
-      ref={containerRef}
-      className="tableauPlaceholder w-full" 
-      id="viz1782919716147" 
-      style={{ position: 'relative' }}
-    >
-      <noscript>
-        <a href="#!">
-          <img 
-            alt="Historia 1" 
-            src="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1_rss.png" 
-            style={{ border: 'none' }} 
-          />
-        </a>
-      </noscript>
-      <object className="tableauViz" style={{ display: 'none' }}>
-        <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
-        <param name="embed_code_version" value="3" />
-        <param name="site_root" value="" />
-        <param name="name" value="Tablero_IED_ProGuatemala/Historia1" />
-        <param name="tabs" value="no" />
-        <param name="toolbar" value="yes" />
-        <param name="static_image" value="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png" />
-        <param name="animate_transition" value="yes" />
-        <param name="display_static_image" value="yes" />
-        <param name="display_spinner" value="yes" />
-        <param name="display_overlay" value="yes" />
-        <param name="display_count" value="yes" />
-        <param name="language" value="es-ES" />
-      </object>
-    </div>
-  );
-};
-
-// ==========================================
-// COMPONENTE PRINCIPAL
-// ==========================================
 const Home: React.FC = () => {
   const { t } = useLanguage();
   const [highlightedAdvantage, setHighlightedAdvantage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      interest: '',
+      message: ''
+    });
+  const { language } = useLanguage();
   
   const guatemalaAdvantages = [
     {
@@ -103,7 +61,7 @@ const Home: React.FC = () => {
     },
     {
       icon: MapPin,
-      title: 'Ubicación Estratégica', // Corregido el typo para que coincida con el hotspot ID
+      title: 'Ubicación Estratégica',
       description: 'Puerta de entrada natural entre Norte y Sudamérica, con acceso privilegiado a mercados globales.',
       details: [
         'Acceso preferencial a múltiples mercados',
@@ -174,6 +132,65 @@ const Home: React.FC = () => {
     }, 1000);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      setError(null);
+  
+      try {
+        const { error: submitError } = await supabase
+          .from('contact_submissions')
+          .insert([
+            {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone || null,
+              company: formData.company || null,
+              subject: formData.interest,
+              message: formData.message,
+              language: language,
+              status: 'new'
+            }
+          ]);
+  
+        if (submitError) {
+          throw submitError;
+        }
+  
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          interest: '',
+          message: ''
+        });
+      } catch (err) {
+        console.error('Error submitting form:', err);
+        setError('Hubo un error al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+          ...prev,
+          [name]: value
+        }));
+      };
+
+    const interestOptions = [
+      'Agroindustria',
+      'Manufactura Liviana',
+      'Servicios Globales',
+      'Energías Renovables',
+      'Turismo Sostenible',
+      'Otro'
+    ];
+
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
@@ -203,9 +220,11 @@ const Home: React.FC = () => {
                   <Download className="w-5 h-5 mr-2" />
                   {t('home.hero.download')}
                 </a>
-                <Link
-                  to="/contact"
-                  className="border border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
+                
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="border border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center cursor-pointer"
                   style={{ borderColor: '#FFFFFF', color: '#FFFFFF' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#FFFFFF';
@@ -218,7 +237,8 @@ const Home: React.FC = () => {
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   {t('home.hero.contact')}
-                </Link>
+                </button>
+
               </div>
             </motion.div>
             <motion.div
@@ -259,7 +279,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <div className="inline-flex items-center bg-blue-100 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
               🇬🇹 Ventajas Competitivas
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -389,70 +409,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Mensaje del Presidente */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ background: '#258CFB' }}
-            className="rounded-2xl p-8 md:p-12 shadow-xl border border-blue-100"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              <div className="lg:col-span-1 flex flex-col items-center text-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-support-400 to-support-400 rounded-full blur-2xl opacity-30"></div>
-                  <img
-                    src="https://raw.githubusercontent.com/RedCiudadana/RecursosProGuatemala/refs/heads/main/equipo/PRESIDENTE%20BERNARDO%20AREVALO%20RETRATO%20OFICIAL%20.jpg"
-                    alt="Presidente de Guatemala"
-                    className="relative w-64 h-64 object-contain rounded-full border-8 border-white shadow-2xl bg-white"
-                  />
-                </div>
-                <h3 className="text-3xl font-bold text-white mt-4">
-                  Bernardo Arévalo de León
-                </h3>
-                <p className="text-white font-semibold">Presidente de la República de Guatemala</p>
-                <p className="text-sm text-blue-900 font-semibold mt-1">Dr. Bernardo Arévalo</p>
-              </div>
-              <div className="lg:col-span-2">
-                <div className="mb-6">
-                  <div className="inline-block bg-white text-gray-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                    Mensaje del Presidente
-                  </div>
-                </div>
-                <div className="space-y-4 text-white leading-relaxed">
-                  <p className="text-lg">
-                    Estimados inversores, en nombre del pueblo de Guatemala, me complace darles una cálida bienvenida durante su proceso de explorar las oportunidades de inversión en nuestro país. Guatemala se presenta como un faro de oportunidades en Centroamérica, con una economía estable, una ubicación estratégica y un entorno empresarial favorable. A medida que navegan por el panorama de posibilidades de inversión, deseamos mostrarles las innumerables razones por las que Guatemala debería estar al frente de sus consideraciones.
-                  </p>
-                  <p className="text-lg">
-                    El compromiso de nuestra nación con la estabilidad económica y el crecimiento es inquebrantable. Con un marco legal sólido, regulaciones transparentes y un enfoque proactivo para la facilitación de inversiones, Guatemala ofrece un entorno seguro y propicio para que las empresas prosperen.
-                  </p>
-                  <p className="text-lg">
-                    Nuestra ubicación estratégica, la cual une América del Norte y América del Sur, presenta un acceso privilegiado a mercados clave, lo cual facilita el comercio y la conectividad, ya sea que busquen establecer instalaciones de manufactura, explorar sectores como alimentos y bebidas, energía renovable, o aprovechar nuestro ecosistema de turismo y servicios de salud. Guatemala ofrece una gran cantidad de oportunidades.
-                  </p>
-                  <p className="text-lg">
-                    Más allá del panorama empresarial, el rico patrimonio cultural, los impresionantes paisajes y la cálida hospitalidad, el país ofrece una experiencia de vida única. Nuestra nación se está moviendo rápidamente hacia una sociedad moderna, diversa y más inclusiva, donde los inversionistas y sus familias puedan prosperar.
-                  </p>
-                  <p className="text-lg">
-                    Al embarcarse en este viaje, tengan la seguridad de que nuestra Agencia de Atracción de Inversión Nacional y Extranjera está aquí para apoyarlos y guiarlos en cada paso del camino. Nuestro dedicado equipo de expertos está listo para brindar asistencia personalizada, facilitar las conexiones y sortear cualquier desafío que pueda surgir, asegurando que su recorrido de inversión sea lo más fluido y exitoso posible.
-                  </p>
-                  <p className="text-lg">
-                    Finalmente, extiendo mi más sincero agradecimiento por considerar a Guatemala como su destino de inversión. Estamos deseosos de asociarnos con ustedes para lograr sus objetivos y contribuir a la prosperidad mutua de nuestras naciones.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <SectorsCarousel showAllLink allLinkLabel={t('home.sectors.view-all')} />
-
       {/* Interactive Map Section */}
       <section className="py-16 bg-white">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -473,16 +432,20 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-3xl shadow-2xl overflow-hidden"
+            className="bg-white rounded-3xl shadow-2xl overflow-hidden w-full"
           >
             <div className="p-6 text-white" style={{ background: '#021049' }}>
               <h3 className="text-xl font-semibold">Dashboard de Inversión Extranjera Directa</h3>
               <p className="text-blue-100">Explora datos actualizados sobre IED y oportunidades de inversión en Guatemala</p>
             </div>
-            <div className="p-6">
-              {/* Contenedor elástico que aloja el iframe inyectado de Tableau de forma aislada */}
-              <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[600px] flex items-start justify-center">
-                <IEDDashboardEmbed />
+            <div className="p-4 md:p-6 w-full">
+              {/* Contenedor fluido sin restricciones flex innecesarias */}
+              <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[650px] w-full">
+                <TableauEmbed 
+                  vizName="Tablero_IED_ProGuatemala/Historia1"
+                  aspectRatio={0.65}
+                  staticImageUrl="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png"
+                />
               </div>
             </div>
           </motion.div>
@@ -534,6 +497,182 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+            {/* Cierre al hacer clic fuera del modal (Backdrop) */}
+            <div 
+              className="fixed inset-0" 
+              onClick={() => setIsModalOpen(false)} 
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl p-8 shadow-xl max-w-2xl w-full relative z-10 max-h-[90vh] overflow-y-auto my-auto"
+            >
+              {/* Botón de cerrar */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                Nosotros te contactamos
+              </h2>
+              <p className="text-gray-600 mb-8">
+                Completa el formulario y uno de nuestros especialistas se comunicará contigo 
+                para brindarte información personalizada.
+              </p>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <p className="text-red-800 text-sm">{error}</p>
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nombre completo *
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Tu nombre"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Correo electrónico *
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="tu@email.com"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Teléfono
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="+502 XXXX-XXXX"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Empresa
+                  </label>
+                  <div className="relative">
+                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Nombre de tu empresa"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Sector de interés *
+                  </label>
+                  <select
+                    name="interest"
+                    required
+                    value={formData.interest}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    disabled={isSubmitting}
+                  >
+                    <option value="">Selecciona un sector</option>
+                    {interestOptions.map((option, index) => (
+                      <option key={index} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mensaje *
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    placeholder="Cuéntanos sobre tu proyecto de inversión, expectativas, timeline, o cualquier pregunta específica que tengas..."
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition-colors duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Enviar mensaje
+                    </>
+                  )}
+                </button>
+                
+                <p className="text-sm text-gray-500 text-center">
+                  * Campos obligatorios. Nosotros te contactamos en 24 horas hábiles.
+                </p>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

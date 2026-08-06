@@ -36,19 +36,8 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="font-semibold mb-4">{t('footer.services')}</h3>
-            <ul className="space-y-2 text-sm">
-              <li className="text-gray-400">Promoción de Inversiones</li>
-              <li className="text-gray-400">Softlanding</li>
-              <li className="text-gray-400">Inteligencia de Inversión</li>
-              <li className="text-gray-400">Aftercare</li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
+          {/* Contact (Fijado a la columna 4) */}
+          <div className="lg:col-start-4">
             <h3 className="font-semibold mb-4">{t('footer.contact')}</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2 text-gray-400">
