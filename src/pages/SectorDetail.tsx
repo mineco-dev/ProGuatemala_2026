@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, Download, MessageCircle, BarChart3, 
-  Users, DollarSign, TrendingUp, MapPin, Award,
-  CheckCircle, Building, Globe, Star
+  Users, DollarSign, TrendingUp,
+  CheckCircle, Globe
 } from 'lucide-react';
 import AgroindustriaImg from '../assets/images/agroindustria.jpg';
 import ManufacturaImg from '../assets/images/manufactura.jpg';
 import ServiciosGlobalesImg from '../assets/images/serviciosglobales.jpg';
 import EnergiasLimpiasImg from '../assets/images/energiaslimpias.jpg';
 import TurismoSostenibleImg from '../assets/images/turismo.jpg';
+import { ContactModal } from '../components/ContactModal';
 
 const SectorDetail: React.FC = () => {
   const { sector } = useParams();
   const [showDashboard, setShowDashboard] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Sector data (in real app, this would come from an API)
   const sectorData = {
@@ -1235,13 +1237,20 @@ const SectorDetail: React.FC = () => {
                   <BarChart3 className="w-5 h-5 mr-2" />
                   Ver dashboard
                 </button>
-                <Link
-                  to="/contact"
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
                   className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Habla con un especialista
-                </Link>
+                </button>
+
+                <ContactModal 
+                  isOpen={isModalOpen} 
+                  onClose={() => setIsModalOpen(false)} 
+                  language="es"
+                />
               </div>
             </motion.div>
             <motion.div

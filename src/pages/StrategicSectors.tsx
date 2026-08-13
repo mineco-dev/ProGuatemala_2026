@@ -1,13 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import {
-  ArrowRight, Download
-} from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import SectorsCarousel from '../components/SectorsCarousel';
 import secotresImg from '../assets/images/portadas/3. SECTORES.jpg';
+import { ContactModal } from '../components/ContactModal';
 
 const StrategicSectors: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Inicialización del script de Tableau
+  useEffect(() => {
+    const id = 'viz1778621141469'; // ID del segundo tablero
+    const aspectRatio = 0.75;
+    const divElement = document.getElementById(id);
+
+    if (divElement) {
+      const vizElement = divElement.getElementsByTagName('object')[0] as HTMLElement;
+
+      if (vizElement) {
+        // 1. Establecer dimensiones antes de cargar el script
+        vizElement.style.width = '100%';
+        const width = divElement.offsetWidth;
+        vizElement.style.height = (width > 768 ? width * aspectRatio : 600) + 'px';
+
+        // 2. Cargar el script de Tableau si no existe o refrescar si ya se cargó
+        if (!document.querySelector('script[src*="viz_v1.js"]')) {
+          const scriptElement = document.createElement('script');
+          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+          scriptElement.async = true;
+          vizElement.parentNode?.insertBefore(scriptElement, vizElement);
+        } else {
+          // @ts-expect-error
+          if (window.tableau && window.tableau.vizManager) {
+            // @ts-expect-error
+            window.tableau.vizManager.refresh();
+          }
+        }
+      }
+    }
+  }, []);
 
   const scrollToFilters = () => {
     const element = document.getElementById('horizonte-temporal');
@@ -18,8 +49,8 @@ const StrategicSectors: React.FC = () => {
 
   const handleDownload = () => {
     window.open(
-      'https://mineco.gob.gt/files/proguatemala/es/Atraccion_Inversiones-Espanol.pdf', 
-      '_blank', 
+      'https://mineco.gob.gt/files/proguatemala/es/Atraccion_Inversiones-Espanol.pdf',
+      '_blank',
       'noopener,noreferrer'
     );
   };
@@ -81,8 +112,23 @@ const StrategicSectors: React.FC = () => {
         </div>
       </section>
 
-
       <SectorsCarousel />
+
+      {/* Segundo Tablero de Tableau */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="p-2 sm:p-4 rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden flex items-center justify-center min-h-[400px]">
+            <div className="tableauPlaceholder w-full" id="viz1778621141469" style={{ position: 'relative' }}>
+              <object className="tableauViz" style={{ display: 'none' }}>
+                <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                <param name="path" value="shared/F89ZK327W" />
+                <param name="toolbar" value="yes" />
+                <param name="language" value="es-ES" />
+              </object>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-sector-6 to-sector-3 text-white">
@@ -105,13 +151,20 @@ const StrategicSectors: React.FC = () => {
                 <Download className="w-5 h-5 mr-2" />
                 Descargar estrategia sectorial completa
               </button>
-              <Link
-                to="/contact"
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
                 className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
               >
                 Habla con un especialista sectorial
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              </button>
+
+              <ContactModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                language="es"
+              />
             </div>
           </motion.div>
         </div>

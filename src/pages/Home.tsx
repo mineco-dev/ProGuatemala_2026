@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import {
   MapPin, Users, TrendingUp,
   Download, MessageCircle, Phone, Mail, Globe,
   Award,
-  Building,
-  Send,
-  User,
-  X,
 } from 'lucide-react';
 import FactSheetEs from '../assets/files/FACT SHEET EN ESPAÑOL.pdf';
 import GuiaInversionistaEs from '../assets/files/16_07_25 ESPAÑOL-TRIFOLIAR-PaginaWeb (1).pdf';
 import PorqueGTImg from '../assets/images/porqueGT.png';
-import { supabase } from '../lib/supabase';
 import { TableauEmbed } from '../components/layouts/TableauEmbed';
+import { ContactModal } from '../components/ContactModal';
 
 declare global {
   interface Window {
@@ -31,18 +27,6 @@ const Home: React.FC = () => {
   const { t } = useLanguage();
   const [highlightedAdvantage, setHighlightedAdvantage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      interest: '',
-      message: ''
-    });
-  const { language } = useLanguage();
   
   const guatemalaAdvantages = [
     {
@@ -131,65 +115,6 @@ const Home: React.FC = () => {
       setHighlightedAdvantage((current) => current === targetId ? null : current);
     }, 1000);
   };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsSubmitting(true);
-      setError(null);
-  
-      try {
-        const { error: submitError } = await supabase
-          .from('contact_submissions')
-          .insert([
-            {
-              name: formData.name,
-              email: formData.email,
-              phone: formData.phone || null,
-              company: formData.company || null,
-              subject: formData.interest,
-              message: formData.message,
-              language: language,
-              status: 'new'
-            }
-          ]);
-  
-        if (submitError) {
-          throw submitError;
-        }
-  
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          interest: '',
-          message: ''
-        });
-      } catch (err) {
-        console.error('Error submitting form:', err);
-        setError('Hubo un error al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-          ...prev,
-          [name]: value
-        }));
-      };
-
-    const interestOptions = [
-      'Agroindustria',
-      'Manufactura Liviana',
-      'Servicios Globales',
-      'Energías Renovables',
-      'Turismo Sostenible',
-      'Otro'
-    ];
 
   return (
     <div className="overflow-x-hidden">
@@ -498,181 +423,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-            {/* Cierre al hacer clic fuera del modal (Backdrop) */}
-            <div 
-              className="fixed inset-0" 
-              onClick={() => setIsModalOpen(false)} 
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl p-8 shadow-xl max-w-2xl w-full relative z-10 max-h-[90vh] overflow-y-auto my-auto"
-            >
-              {/* Botón de cerrar */}
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
-                aria-label="Cerrar modal"
-              >
-                <X className="w-6 h-6" />
-              </button>
-
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Nosotros te contactamos
-              </h2>
-              <p className="text-gray-600 mb-8">
-                Completa el formulario y uno de nuestros especialistas se comunicará contigo 
-                para brindarte información personalizada.
-              </p>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {error && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-800 text-sm">{error}</p>
-                  </div>
-                )}
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nombre completo *
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Tu nombre"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Correo electrónico *
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="tu@email.com"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Teléfono
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="+502 XXXX-XXXX"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Empresa
-                  </label>
-                  <div className="relative">
-                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Nombre de tu empresa"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Sector de interés *
-                  </label>
-                  <select
-                    name="interest"
-                    required
-                    value={formData.interest}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    disabled={isSubmitting}
-                  >
-                    <option value="">Selecciona un sector</option>
-                    {interestOptions.map((option, index) => (
-                      <option key={index} value={option}>{option}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Mensaje *
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                    placeholder="Cuéntanos sobre tu proyecto de inversión, expectativas, timeline, o cualquier pregunta específica que tengas..."
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition-colors duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Enviando...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      Enviar mensaje
-                    </>
-                  )}
-                </button>
-                
-                <p className="text-sm text-gray-500 text-center">
-                  * Campos obligatorios. Nosotros te contactamos en 24 horas hábiles.
-                </p>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <div>
+        <ContactModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          language="es"
+        />
+      </div>
     </div>
   );
 };

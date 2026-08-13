@@ -1,12 +1,134 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { 
-  Target, Eye, Heart, Users, Award, Star,
-  Download, Mail, Linkedin, User, Lightbulb, Shield, BarChart3
+  Target, Eye, Users, Award,
+  Mail, User, Lightbulb, Shield,
+  Compass,
+  ShieldCheck,
+  Sparkles,
+  Handshake,
+  LineChart,
+  RefreshCw,
+  CheckCircle,
+  HeartHandshake,
+  Plane,
+  TrendingUp,
+  Globe
 } from 'lucide-react';
 import aboutImg from '../assets/images/portadas/4. ACERCA DE PROGUATEMALA.jpg';
+import promoInvImage from '../assets/images/promoinv.png';
+import ministraImg from '../assets/images/autoridades/Ministra.jpeg';
 
 const About: React.FC = () => {
+
+  const [activeTab, setActiveTab] = useState(0);
+
+  const VALUE_THEMES = [
+  {
+    // 1. EXCELENCIA - NARANJA / ÁMBAR
+    cardBg: 'bg-amber-50/90 border-amber-200/70',
+    iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
+    shadowColor: 'hover:shadow-amber-100',
+    styleCard: { backgroundColor: '#fffdf2', borderColor: '#fef3c7' },
+    styleIcon: { background: 'linear-gradient(135deg, #fbbf24, #f97316)' }
+  },
+  {
+    // 2. TRANSPARENCIA - VERDE PRONUNCIADO
+    cardBg: 'bg-emerald-50/90 border-emerald-200/70',
+    iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+    shadowColor: 'hover:shadow-emerald-100',
+    styleCard: { backgroundColor: '#f0fdf4', borderColor: '#a7f3d0' },
+    styleIcon: { background: 'linear-gradient(135deg, #10b981, #0d785f)' }
+  },
+  {
+    // 3. COLABORACIÓN - AZUL
+    cardBg: 'bg-blue-50/90 border-blue-200/70',
+    iconBg: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    shadowColor: 'hover:shadow-blue-100',
+    styleCard: { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' },
+    styleIcon: { background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }
+  },
+  {
+    // 4. INNOVACIÓN - MORADO
+    cardBg: 'bg-purple-50/90 border-purple-200/70',
+    iconBg: 'bg-gradient-to-br from-purple-500 to-violet-600',
+    shadowColor: 'hover:shadow-purple-100',
+    styleCard: { backgroundColor: '#faf5ff', borderColor: '#e9d5ff' },
+    styleIcon: { background: 'linear-gradient(135deg, #a855f7, #7c3aed)' }
+  }
+];
+
+  const services = [
+    {
+      id: 'promocion',
+      title: 'PROMOCIÓN DE INVERSIONES',
+      icon: Target,
+      description: 'Se brinda orientación personalizada en cada etapa del proceso de inversión, incluyendo la organización de reuniones con actores clave del sector público y privado para avanzar en los proyectos de inversión. Se brinda apoyo a las empresas extranjeras en el establecimiento de operaciones, acompañamiento en procedimientos regulatorios, legales y administrativos.',
+      color: 'from-blue-500 to-cyan-600',
+      bgColor: 'from-blue-50 to-cyan-50',
+      image: promoInvImage,
+      features: [
+        'Asesoría profesional y gratuita.',
+        'Información estratégica para la toma de decisiones según requerimiento del inversionista.',
+        'Elaboración y acompañamiento de agendas de negocios con actores clave del sector público y privado.',
+        'Servicios especializados de softlanding para facilitar procesos legales y administrativos de establecimiento de empresas extranjeras en el país.',
+        'Atención uno a uno, a requerimientos específicos de cada empresa y sector.'
+      ],
+      cta: 'Explorar oportunidades'
+    },
+    {
+      id: 'softlanding',
+      title: 'Softlanding',
+      icon: Plane,
+      description: 'Acompañamos a inversionistas extranjeros durante su proceso de establecimiento en Guatemala, facilitando el cumplimiento de trámites, permisos y licencias necesarios para la operación de sus empresas. Nuestro servicio especializado brinda atención integral, asegurando un proceso ágil y transparente.',
+      color: 'from-emerald-500 to-teal-600',
+      bgColor: 'from-emerald-50 to-teal-50',
+      features: [
+        'Asesoría especializada durante el proceso de radicación en el país',
+        'Acompañamiento en trámites legales, permisos y licencias',
+        'Orientación para el establecimiento y operación de empresas extranjeras',
+        'Facilitación de contactos institucionales clave'
+      ],
+      cta: 'Solicitar acompañamiento'
+    },
+    {
+      id: 'inteligencia',
+      title: 'Inteligencia de Inversión',
+      icon: TrendingUp,
+      description: 'Identificamos oportunidades de inversión a partir del análisis de datos clave como tendencias de mercado, sectores estratégicos, flujos de inversión extranjera y dinámicas macroeconómicas. Nuestro equipo juega un papel esencial en la detección de empresas con alto potencial de inversión, generando materiales y herramientas informativas que respaldan la toma de decisiones de los inversionistas y fortalecen las gestiones de promoción.',
+      color: 'from-indigo-500 to-blue-600',
+      bgColor: 'from-indigo-50 to-blue-50',
+      features: [
+        'Análisis de tendencias de mercado y dinámicas macroeconómicas',
+        'Perfiles sectoriales con oportunidades de inversión en industrias estratégicas',
+        'Infografías y material visual que resumen datos clave de manera ágil',
+        'Información estratégica de país y a nivel departamental que muestran ventajas competitivas',
+        'Información especializada a solicitud del inversionista, adaptada a sus necesidades'
+      ],
+      cta: 'Solicitar análisis'
+    },
+    {
+      id: 'aftercare',
+      title: 'Aftercare',
+      icon: HeartHandshake,
+      description: 'En ProGuatemala acompañamos a las empresas ya establecidas en el país, brindando asesoría personalizada y gratuita para que su operación sea eficiente y sostenible en el tiempo. Conectamos a las compañías con actores clave del sector público y privado, actualizamos información sobre regulaciones y facilitamos procesos de expansión y reinversión en Guatemala.',
+      color: 'from-orange-500 to-amber-600',
+      bgColor: 'from-orange-50 to-amber-50',
+      features: [
+        'Asesoría y acompañamiento continuo para empresas ya establecidas',
+        'Vinculación con actores estratégicos del sector público y privado, para resolución de problemas',
+        'Actualización en regulaciones y normativas relevantes',
+        'Identificación y resolución de retos operativos',
+        'Apoyo en procesos administrativos y de expansión',
+        'Facilitación de contactos para reinversión y crecimiento en Guatemala'
+      ],
+      cta: 'Solicitar apoyo'
+    }
+  ];
+
+  const currentService = services[activeTab];
+  const CurrentIcon = currentService?.icon;
+
   const values = [
     {
       icon: Award,
@@ -51,13 +173,8 @@ const About: React.FC = () => {
       name: 'Gabriela García',
       position: 'Ministra de Economía',
       bio: 'Experta con más de 25 años de experiencia en desarrollo económico a nivel local y regional. Posee una Maestría en Administración de Proyectos de Desarrollo y una Licenciatura en Relaciones Internacionales de la American University en Washington D.C. Su trayectoria incluye liderazgo en la formulación de programas para fomentar el comercio y atraer inversión extranjera directa, así como roles destacados en organizaciones como USAID.',
-      email: 'ministra@mineco.gob.gt'
-    },
-    {
-      name: 'Valeria Prado',
-      position: 'Viceministra de Inversión y Competencia',
-      bio: 'Es abogada y notaria, con especialización en Derecho Corporativo y Comercio Internacional. Cuenta con más de 15 años de experiencia en sostenibilidad, gestión ambiental, desarrollo comunitario y promoción de inversiones. A lo largo de su carrera ha liderado proyectos estratégicos en los sectores energético e hidroeléctrico, impulsando programas sociales, procesos de certificación ambiental y el cumplimiento de normativas nacionales e internacionales.',
-      email: ''
+      email: 'ministra@mineco.gob.gt',
+      image: ministraImg
     }
   ];
 
@@ -130,87 +247,126 @@ const About: React.FC = () => {
     }
   ];
 
-  const stats = [
-    { label: 'Años de experiencia', value: '15+' },
-    { label: 'Inversiones facilitadas', value: '$3.2B' },
-    { label: 'Empresas atendidas', value: '500+' },
-    { label: 'Empleos generados', value: '125K' }
+  const pillars = [
+    {
+      icon: Handshake,
+      title: "Atención al Inversionista",
+      description: "Asesoría gratuita y orientación integral sobre las mejores oportunidades de negocio en el país.",
+      color: "from-blue-500/10 to-blue-600/5",
+      iconColor: "text-blue-600",
+      borderColor: "hover:border-blue-300"
+    },
+    {
+      icon: LineChart,
+      title: "Inteligencia de Inversión",
+      description: "Información estratégica, datos actualizados y análisis especializados para la toma de decisiones.",
+      color: "from-amber-500/10 to-amber-600/5",
+      iconColor: "text-amber-600",
+      borderColor: "hover:border-amber-300"
+    },
+    {
+      icon: RefreshCw,
+      title: "Aftercare",
+      description: "Acompañamiento continuo para el fortalecimiento, consolidación y reinversión de proyectos ya instalados.",
+      color: "from-teal-500/10 to-teal-600/5",
+      iconColor: "text-teal-600",
+      borderColor: "hover:border-teal-300"
+    }
   ];
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
-        {/* Hero Slider */}
-        <div className="relative h-full">
-          {/* Slide 1 */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700"
-          >
-            <div className="absolute inset-0 bg-black/30"></div>
-            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${aboutImg})` }}></div>
-            <div className="relative h-full flex items-center justify-center">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <motion.h1
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-                >
-                  Acerca de <span className="text-yellow-500">ProGuatemala</span>
-                </motion.h1>
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
-                  className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
-                >
-                  En ProGuatemala estamos para acompañarte. Somos la Agencia Nacional de
-Atracción de Inversión Extranjera Directa. Nuestro equipo te conecta con las
-oportunidades, te guía paso a paso, y te ayuda a instalar y hacer crecer tu
-inversión en Guatemala. Con autoridad técnica y respaldo institucional,
-convertimos la complejidad en claridad.
-                </motion.p>
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
-                  className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
-                >
-ProGuatemala brinda asesoría especializada, gratuita y personalizada durante
-todo el proceso de inversión.
-Acompañamos desde la exploración inicial hasta la expansión y reinversión,
-articulando con las instituciones clave.
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 py-20 lg:py-28">
+        {/* 1. Background Image - Full Opacity / Crisp Visibility */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-100"
+          style={{ backgroundImage: `url(${aboutImg})` }}
+        />
+        
+        {/* 2. Very Light Blue/Teal Tint Overlay (Reduced Opacity for Luminosity) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/35 via-blue-800/25 to-teal-800/25 pointer-events-none" />
 
-                </motion.p>
-                <motion.p
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
-                  className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-8"
-                >
-No estás solo: nuestro equipo técnico te ayuda a navegar trámites, identificar
-aliados y acelerar tu instalación.
-                </motion.p>
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
-                >
-                  <button className="bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200">
-                    Conoce nuestro equipo
-                  </button>
-                  <button className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
-                    Nuestra misión
-                  </button>
-                </motion.div>
+        {/* Main Content Container */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          {/* Main Heading with Text Shadow */}
+          <motion.h1
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
+          >
+            Acerca de <span className="text-[#fcd34d] drop-shadow-md">ProGuatemala</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-lg sm:text-xl md:text-2xl text-white max-w-3xl mx-auto mb-12 font-normal leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          >
+            Convertimos la complejidad en claridad. Te acompañamos desde la exploración inicial hasta la expansión de tu inversión en Guatemala.
+          </motion.p>
+
+          {/* Feature Cards with Glassmorphism */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 max-w-5xl mx-auto mb-12 text-left"
+          >
+            <div className="p-6 rounded-2xl bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-xl hover:bg-slate-900/50 transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-amber-300/20 border border-amber-300/40 flex items-center justify-center mb-4 text-amber-300">
+                <Compass className="w-6 h-6" />
               </div>
+              <h3 className="text-white font-bold text-lg mb-2">Acompañamiento 360°</h3>
+              <p className="text-slate-100 text-sm leading-relaxed">
+                Te guiamos paso a paso en la exploración, instalación y posterior reinversión.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-xl hover:bg-slate-900/50 transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-amber-300/20 border border-amber-300/40 flex items-center justify-center mb-4 text-amber-300">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="text-white font-bold text-lg mb-2">Asesoría Gratuita</h3>
+              <p className="text-slate-100 text-sm leading-relaxed">
+                Atención 100% personalizada y especializada, articulando con instituciones clave.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-xl hover:bg-slate-900/50 transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-amber-300/20 border border-amber-300/40 flex items-center justify-center mb-4 text-amber-300">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h3 className="text-white font-bold text-lg mb-2">Respaldo Técnico</h3>
+              <p className="text-slate-100 text-sm leading-relaxed">
+                Facilitamos trámites, identificamos aliados y aceleramos tu llegada al país.
+              </p>
             </div>
           </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            {/* Primary Button */}
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+              <Users className="w-5 h-5 text-white" />
+              <span>Conoce nuestro equipo</span>
+            </button>
+            
+            {/* Secondary Glass Button */}
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900/50 hover:bg-slate-900/70 backdrop-blur-md border border-white/30 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+              <Target className="w-5 h-5 text-amber-300" />
+              <span>Nuestra misión</span>
+            </button>
+          </motion.div>
+
         </div>
       </section>
 
@@ -280,6 +436,304 @@ aliados y acelerar tu instalación.
       </section>
 
       {/* Mission & Vision */}
+      <section className="py-20 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Header Block */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <span className="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-2 block">
+              Nuestra Esencia
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+              Quiénes Somos
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              En <strong className="text-slate-900 font-semibold">ProGuatemala</strong> reconocemos que invertir es un paso estratégico determinante. Acompañamos a cada inversionista a establecer o expandir sus proyectos con asesoría especializada y soluciones a la medida.
+            </p>
+          </motion.div>
+
+          {/* Core Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            {pillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  className={`bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pillar.borderColor} flex flex-col justify-between`}
+                >
+                  <div>
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6`}>
+                      <Icon className={`w-7 h-7 ${pillar.iconColor}`} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Commitment Statement Callout */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-blue-900 rounded-2xl p-8 sm:p-10 text-white mb-16 shadow-xl relative overflow-hidden"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
+              <p className="text-lg sm:text-xl font-medium leading-relaxed text-slate-100 text-center md:text-left">
+                "Creemos firmemente que el éxito de cada inversión contribuye al desarrollo económico nacional y a la generación de nuevas oportunidades para Guatemala."
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Mission & Vision Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Misión Card - Azul */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-blue-50/80 rounded-3xl p-8 sm:p-10 border border-blue-100 shadow-sm relative overflow-hidden group transition-all duration-300 hover:shadow-md hover:border-blue-200"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div className="bg-blue-600 w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md">
+                <Target className="w-7 h-7 text-white" size={28} />
+              </div>
+              <div>
+                <span className="text-xs font-bold text-blue-600 tracking-wider uppercase block mb-0.5">
+                  Propósito
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900">Misión</h3>
+              </div>
+            </div>
+            <p className="text-slate-700 leading-relaxed text-base">
+              Promover y facilitar la inversión extranjera directa en Guatemala mediante servicios especializados, información estratégica y acompañamiento integral, contribuyendo al desarrollo económico sostenible del país y la generación de empleo de calidad.
+            </p>
+          </motion.div>
+
+          {/* Visión Card - Verde Pronunciado e Inmune a estilos globales */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-3xl p-8 sm:p-10 border shadow-sm relative overflow-hidden group transition-all duration-300 hover:shadow-md"
+            style={{ 
+              backgroundColor: '#eff9f5', // Verde pastel menta
+              borderColor: '#bbf7d0'      // Borde verde suave
+            }}
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div 
+                className="w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md"
+                style={{ backgroundColor: '#0d785f' }} // Verde oscuro pronunciado
+              >
+                <Eye className="w-7 h-7 !text-white" size={28} style={{ color: '#ffffff' }} />
+              </div>
+              <div>
+                <span 
+                  className="text-xs font-bold tracking-wider uppercase block mb-0.5"
+                  style={{ color: '#0d785f' }}
+                >
+                  Aspiración
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900">Visión</h3>
+              </div>
+            </div>
+            <p className="text-slate-700 leading-relaxed text-base">
+              Ser reconocidos como la agencia de promoción de inversiones más efectiva de Centroamérica, posicionando a Guatemala como el destino preferido para la inversión extranjera directa en la región, gracias a nuestro servicio excepcional y resultados medibles.
+            </p>
+          </motion.div>
+
+        </div>
+
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="pt-12 pb-2 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Encabezado */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+              Nuestros Valores
+            </h2>
+            <p className="text-lg text-slate-600">
+              Los principios que guían nuestro trabajo diario
+            </p>
+          </motion.div>
+
+          {/* Grid de Valores */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              // Asignación explícita del tema según el índice
+              const theme = VALUE_THEMES[index % VALUE_THEMES.length];
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`${theme.cardBg} ${theme.shadowColor} rounded-3xl p-8 text-center border shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-start group`}
+                  style={theme.styleCard} // Respaldo inmune a purga de CSS
+                >
+                  {/* Cuadro de Icono con Gradiente Saturado */}
+                  <div 
+                    className={`${theme.iconBg} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md shrink-0 transition-transform duration-300 group-hover:scale-105`}
+                    style={theme.styleIcon} // Respaldo inmune a purga de CSS
+                  >
+                    <Icon className="w-8 h-8 text-white" size={32} />
+                  </div>
+
+                  {/* Título y Descripción */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
+                    {value.title}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">
+                    {value.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Services Tabs */}
+      <section className="section-premium bg-gradient-to-b from-white to-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Tab Navigation - Scrollable on mobile, Centered on desktop */}
+          <div className="flex items-center pt-4 pb-5 justify-start md:justify-center overflow-x-auto no-scrollbar mb-12 bg-white/80 backdrop-blur-md rounded-2xl p-2 shadow-xl border border-gray-100 gap-1 sm:gap-2">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const isActive = activeTab === index;
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => setActiveTab(index)}
+                  className={`relative flex items-center space-x-2.5 px-5 py-3.5 font-semibold text-sm sm:text-base rounded-xl transition-all duration-200 whitespace-nowrap select-none shrink-0 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/70'
+                  }`}
+                >
+                  {/* Sliding Background Indicator */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute inset-0 bg-support-500 rounded-xl shadow-md"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+
+                  <Icon className={`w-5 h-5 relative z-10 transition-colors duration-200 ${isActive ? 'text-white' : 'text-gray-500'}`} />
+                  <span className="relative z-10">{service.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Tab Content with Smooth AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15, scale: 0.99 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.99 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+            >
+
+              {/* Main Content Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                
+                {/* Main Info Card */}
+                <div className="card-premium p-8 sm:p-10 bg-white flex flex-col justify-between shadow-lg rounded-2xl border border-gray-100">
+                  <div>
+                    <div className="flex items-center space-x-5 mb-8">
+                      {CurrentIcon && (
+                        <div className="bg-support-500 p-4 rounded-2xl shadow-lg shrink-0">
+                          <CurrentIcon className="w-10 h-10 text-white" />
+                        </div>
+                      )}
+                      <div>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+                          {currentService.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6 mb-10">
+                      <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
+                        {currentService.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Features Side Card */}
+                <div className="card-premium p-8 sm:p-10 !bg-sky-100/70 border border-sky-200/80 shadow-lg rounded-2xl flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                      <div className={`bg-gradient-to-br ${currentService.color} w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-md shrink-0`}>
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      ¿Qué incluye?
+                    </h3>
+
+                    <div className="space-y-3.5">
+                      {currentService.features.map((feature, index) => (
+                        <div
+                          key={index}
+                          className="flex items-start space-x-4 p-4 bg-white/90 hover:bg-white rounded-xl hover:shadow-sm hover:translate-x-1.5 transition-all duration-200 border border-sky-200/50"
+                        >
+                          <CheckCircle className="w-5 h-5 text-sky-600 mt-0.5 shrink-0" />
+                          <span className="text-gray-800 font-medium leading-relaxed text-sm sm:text-base">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -289,102 +743,50 @@ aliados y acelerar tu instalación.
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-              Quiénes Somos
-            </h2>
-            <div className="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-6">
-              <p>
-                En ProGuatemala, reconocemos que la decisión de invertir representa un paso estratégico y de gran importancia. Por ello, nuestro compromiso es acompañar a cada inversionista en el proceso de establecer o expandir sus proyectos en Guatemala, brindando asesoría especializada y soluciones adaptadas a sus necesidades.
-              </p>
-              <p>
-                Nuestra labor se sustenta en herramientas y programas diseñados para garantizar un acompañamiento integral:
-              </p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>
-                  Atención al Inversionista, mediante la cual proporcionamos asesoría gratuita y orientación sobre las oportunidades que ofrece el país.
-                </li>
-                <li>
-                  Inteligencia de Inversión, que pone a disposición información estratégica, datos actualizados y análisis especializados para respaldar la toma de decisiones.
-                </li>
-                <li>
-                  Aftercare, que promueve el fortalecimiento, consolidación y crecimiento de las inversiones ya establecidas.
-                </li>
-              </ul>
-              <p>
-                En ProGuatemala, creemos firmemente que el éxito de cada inversión contribuye al desarrollo económico nacional y a la generación de nuevas oportunidades para la población. Juntos impulsamos un entorno favorable para el crecimiento y la prosperidad del país.
-              </p>
-            </div>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="bg-support-50 rounded-2xl p-8">
-                <div className="flex items-center mb-6">
-                  <div className="bg-blue-600 p-3 rounded-xl mr-4">
-                    <Target className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-900">Misión</h2>
-                </div>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Promover y facilitar la inversión extranjera directa en Guatemala mediante 
-                  servicios especializados, información estratégica y acompañamiento integral, 
-                  contribuyendo al desarrollo económico sostenible del país y la generación 
-                  de empleo de calidad.
-                </p>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="bg-support-50 rounded-2xl p-8">
-                <div className="flex items-center mb-6">
-                  <div className="bg-teal-600 p-3 rounded-xl mr-4">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-3xl font-bold text-gray-900">Visión</h2>
-                </div>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Ser reconocidos como la agencia de promoción de inversiones más efectiva 
-                  de Centroamérica, posicionando a Guatemala como el destino preferido para 
-                  la inversión extranjera directa en la región, gracias a nuestro servicio 
-                  excepcional y resultados medibles.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Nuestros Valores
+              ¿Por qué elegir nuestros servicios?
             </h2>
             <p className="text-xl text-gray-600">
-              Los principios que guían nuestro trabajo diario
+              Ventajas únicas que ofrecemos a los inversionistas
             </p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
+            {[
+              {
+                icon: Award,
+                title: 'Gratuito',
+                description: 'Todos nuestros servicios son completamente gratuitos para los inversionistas',
+                hexColor: '#059669', // Verde Emerald
+                hexBg: '#ecfdf5',
+                hexBorder: '#a7f3d0'
+              },
+              {
+                icon: Globe,
+                title: 'Multilingüe',
+                description: 'Atención en español, inglés y otros idiomas según la necesidad',
+                hexColor: '#2563eb', // Azul
+                hexBg: '#eff6ff',
+                hexBorder: '#bfdbfe'
+              },
+              {
+                icon: Lightbulb,
+                title: 'Especializado',
+                description: 'Conocimiento profundo de sectores y regulaciones locales',
+                hexColor: '#9333ea', // Morado
+                hexBg: '#faf5ff',
+                hexBorder: '#e9d5ff'
+              },
+              {
+                icon: Shield,
+                title: 'Institucional',
+                description: 'Respaldo oficial del Gobierno de Guatemala en todo momento',
+                hexColor: '#ea580c', // Naranja
+                hexBg: '#fff7ed',
+                hexBorder: '#fed7aa'
+              }
+            ].map((benefit, index) => {
+              const Icon = benefit.icon;
               return (
                 <motion.div
                   key={index}
@@ -392,80 +794,34 @@ aliados y acelerar tu instalación.
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`bg-support-50 rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-white/50 backdrop-blur-sm shadow-support-100`}
+                  className="text-center p-6 flex flex-col items-center"
                 >
-                  <div className={`bg-support-500 w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl transform hover:rotate-6 transition-transform duration-300`}>
-                    <Icon className="w-12 h-12 text-white drop-shadow-lg" />
+                  {/* Contenedor del ícono con respaldo de estilos inmune a herencia CSS */}
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 border shadow-sm shrink-0"
+                    style={{ 
+                      backgroundColor: benefit.hexBg, 
+                      borderColor: benefit.hexBorder 
+                    }}
+                  >
+                    {Icon && (
+                      <Icon 
+                        size={32}
+                        className="w-8 h-8 shrink-0" 
+                        style={{ 
+                          color: benefit.hexColor, 
+                          stroke: benefit.hexColor 
+                        }} 
+                      />
+                    )}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">{value.title}</h3>
-                  <p className="text-gray-700 leading-relaxed text-base">{value.description}</p>
+
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{benefit.description}</p>
                 </motion.div>
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Nuestro Impacto
-            </h2>
-            <p className="text-xl text-gray-600">
-              Resultados que demuestran nuestro compromiso con el desarrollo de Guatemala
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100"
-              >
-                <div className="bg-gradient-to-br from-blue-500 to-teal-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <BarChart3 className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-3 tracking-tight">{stat.value}</div>
-                <div className="text-gray-700 font-semibold text-lg tracking-wide">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Download Strategy */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-              Estrategia Nacional de Inversiones
-            </h2>
-            <p className="text-xl mb-8 text-gray-900">
-              Descarga nuestra estrategia completa para el desarrollo económico y 
-              la atracción de inversión extranjera directa en Guatemala
-            </p>
-            <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center mx-auto">
-              <Download className="w-5 h-5 mr-2" />
-              Descargar Estrategia Nacional (PDF)
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -500,7 +856,7 @@ aliados y acelerar tu instalación.
                   <img
                     src="https://raw.githubusercontent.com/RedCiudadana/RecursosProGuatemala/refs/heads/main/equipo/PRESIDENTE%20BERNARDO%20AREVALO%20RETRATO%20OFICIAL%20.jpg"
                     alt="Dr. Bernardo Arévalo de León"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Dr. Bernardo Arévalo de León</h3>
@@ -521,14 +877,26 @@ aliados y acelerar tu instalación.
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="bg-gradient-to-br from-blue-500 to-teal-500 w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <User className="w-16 h-16 text-white" />
+                  
+                  {/* Contenedor circular con imagen */}
+                  <div className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg overflow-hidden border-1 border-white bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center shrink-0">
+                    {authority.image ? (
+                      <img
+                        src={authority.image}
+                        alt={authority.name}
+                        className="w-full h-full object-cover object-left"
+                      />
+                    ) : (
+                      <User className="w-16 h-16 text-white" />
+                    )}
                   </div>
+
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{authority.name}</h3>
                   <p className="text-blue-600 font-semibold mb-4">{authority.position}</p>
                   <p className="text-gray-700 leading-relaxed mb-4">
                     {authority.bio}
                   </p>
+
                   {authority.email && (
                     <div className="flex items-center space-x-2 text-sm text-gray-600">
                       <Mail className="w-4 h-4" />

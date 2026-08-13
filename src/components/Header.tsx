@@ -13,7 +13,6 @@ const Header: React.FC = () => {
   const navigation = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.why-guatemala'), href: '/why-guatemala' },
-    { name: t('nav.services'), href: '/services' },
     { name: t('nav.sectors'), href: '/strategic-sectors' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.resources'), href: '/resources' },

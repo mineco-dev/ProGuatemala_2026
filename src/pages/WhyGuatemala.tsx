@@ -49,10 +49,12 @@ import synergyIndustrialImg10 from '../assets/images/centros_productivos_empresa
 import whyGuatemalaImg from '../assets/images/portadas/1.POR QUE GUATEMALA.jpg';
 import mapaEstrategico from '../assets/images/Mapa_Macro_Estrategico_MINECO.png';
 import { TableauEmbed } from '../components/layouts/TableauEmbed';
+import { ContactModal } from '../components/ContactModal';
 
 const WhyGuatemala: React.FC = () => {
   const [activeModalId, setActiveModalId] = React.useState<string | null>(null);
   const tableauContainerRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [slideIndexes, setSlideIndexes] = useState<Record<string, number>>({});
 
@@ -837,10 +839,19 @@ const WhyGuatemala: React.FC = () => {
               </a>
               
               {/* Botón Secundario: Contacto */}
-              <button className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base">
-                Habla con un asesor
-                <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
-              </button>
+              <div>
+                <button onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base">
+                  Habla con un asesor
+                  <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
+                </button>
+
+                <ContactModal 
+                  isOpen={isModalOpen} 
+                  onClose={() => setIsModalOpen(false)} 
+                  language="es"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
