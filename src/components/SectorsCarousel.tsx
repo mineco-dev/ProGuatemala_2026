@@ -7,7 +7,9 @@ import {
 
 import { Sector } from '../types/sector';
 import { SectorModal } from './SectorModal';
-import { sectors } from '../data/sectorsData'; // Importación de la data separada
+import { sectors } from '@/data/sectorsData';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalized } from '@/hooks/useLocalized'; // Importación de la data separada
 
 type SectorsCarouselProps = {
   showFilters?: boolean;
@@ -27,16 +29,19 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSector, setSelectedSector] = useState<Sector | null>(null);
 
+  const { t } = useLanguage();
+  const allSectors = useLocalized(sectors);
+
   const timeframes = [
-    { id: 'all', name: 'Todos los Sectores', count: 17, color: 'bg-sector-6' },
-    { id: 'short', name: 'Corto Plazo', count: 8, color: 'bg-sector-3' },
-    { id: 'medium', name: 'Mediano Plazo', count: 5, color: 'bg-sector-1' },
-    { id: 'long', name: 'Largo Plazo', count: 4, color: 'bg-sector-2' }
+    { id: 'all', name: t('carousel.all'), count: 17, color: 'bg-sector-6' },
+    { id: 'short', name: t('carousel.short'), count: 8, color: 'bg-sector-3' },
+    { id: 'medium', name: t('carousel.medium'), count: 5, color: 'bg-sector-1' },
+    { id: 'long', name: t('carousel.long'), count: 4, color: 'bg-sector-2' }
   ];
 
   const filteredSectors = selectedTimeframe === 'all'
-    ? sectors
-    : sectors.filter(sector => sector.timeframe === selectedTimeframe);
+    ? allSectors
+    : allSectors.filter(sector => sector.timeframe === selectedTimeframe);
 
   const sectorsPerSlide = 3;
   const totalSlides = Math.ceil(filteredSectors.length / sectorsPerSlide);
@@ -130,13 +135,10 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
               className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {selectedTimeframe === 'all' ? 'Todos los Sectores Estratégicos' :
-                 selectedTimeframe === 'short' ? 'Sectores de Corto Plazo' :
-                 selectedTimeframe === 'medium' ? 'Sectores de Mediano Plazo' :
-                 'Sectores de Largo Plazo'}
+                {t(`carousel.title.${selectedTimeframe}`)}
               </h2>
               <p className="text-xl text-gray-600 font-normal">
-                {filteredSectors.length} sectores priorizados con oportunidades de inversión
+                {filteredSectors.length} {t('carousel.count')}
               </p>
             </motion.div>
           )}

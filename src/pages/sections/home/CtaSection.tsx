@@ -1,0 +1,61 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Mail, Phone } from 'lucide-react';
+import { ContactModal } from '@/components/ContactModal';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+export default function CtaSection() {
+  const { t, language } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <section className="py-16 text-white" style={{ background: '#021049' }}>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('home.cta.title')}</h2>
+          <p className="text-xl mb-8 text-white">{t('home.cta.subtitle')}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center cursor-pointer"
+              style={{ background: '#FFDB60' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#FFE68A')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#FFDB60')}
+              onClick={() => setIsModalOpen(true)}
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              {t('home.cta.info')}
+            </button>
+            <Link
+              to="/contact"
+              className="border text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
+              style={{ borderColor: '#FFDB60', color: '#FFDB60' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#FFDB60';
+                e.currentTarget.style.color = '#021049';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#FFDB60';
+              }}
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              {t('home.cta.meeting')}
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        language={language}
+      />
+    </section>
+  );
+}

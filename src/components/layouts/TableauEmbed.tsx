@@ -14,6 +14,12 @@ declare global {
 export interface TableauEmbedProps {
   /** Identificador de la vista en Tableau, ej: "Tablero_IED_ProGuatemala/Historia1" */
   vizName: string;
+  /**
+   * Ruta de una vista compartida, ej: "shared/F89ZK327W". Cuando se indica se
+   * usa en lugar de `vizName` para localizar el tablero; `vizName` queda solo
+   * como etiqueta accesible.
+   */
+  path?: string;
   /** URL base del servidor de Tableau. Por defecto 'https://public.tableau.com/' */
   hostUrl?: string;
   /** URL de la imagen estática de previsualización (para fallback y noscript) */
@@ -36,6 +42,7 @@ export interface TableauEmbedProps {
 
 export const TableauEmbed: React.FC<TableauEmbedProps> = ({
   vizName,
+  path,
   hostUrl = 'https://public.tableau.com/',
   staticImageUrl,
   aspectRatio = 0.65,
@@ -83,7 +90,7 @@ export const TableauEmbed: React.FC<TableauEmbedProps> = ({
         window.tableau.vizManager.refresh();
       }
     }
-  }, [vizName, aspectRatio, minMobileHeight, hostUrl]);
+  }, [vizName, path, aspectRatio, minMobileHeight, hostUrl]);
 
   return (
     <div className={`w-full ${className}`}>
@@ -110,7 +117,11 @@ export const TableauEmbed: React.FC<TableauEmbedProps> = ({
             <param name="host_url" value={encodedHostUrl} />
             <param name="embed_code_version" value="3" />
             <param name="site_root" value="" />
-            <param name="name" value={vizName} />
+            {path ? (
+              <param name="path" value={path} />
+            ) : (
+              <param name="name" value={vizName} />
+            )}
             <param name="tabs" value={showTabs ? 'yes' : 'no'} />
             <param name="toolbar" value={showToolbar ? 'yes' : 'no'} />
             {staticImageUrl && <param name="static_image" value={staticImageUrl} />}

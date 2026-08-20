@@ -4,7 +4,8 @@ import {
   X, DollarSign, Users, TrendingUp,
   Globe, Sparkles, CheckCircle2, Download
 } from 'lucide-react';
-import { Sector } from '../types/sector';
+import type { Sector } from '@/types/sector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface SectorModalProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ interface SectorModalProps {
 }
 
 export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, sector }) => {
+  const { t } = useLanguage();
+
   if (!sector) return null;
 
   const Icon = sector.icon;
@@ -67,28 +70,28 @@ export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, secto
                     {/* Ingresos - Azul Sólido */}
                     <div className="bg-blue-600 border border-blue-700 p-4 rounded-xl text-center shadow-sm">
                         <DollarSign className="w-5 h-5 text-white mx-auto mb-1" />
-                        <span className="text-xs text-white/80 font-medium block mb-1">Ingresos 2024</span>
+                        <span className="text-xs text-white/80 font-medium block mb-1">{t('sectorModal.revenue')}</span>
                         <span className="text-lg font-extrabold text-white block">{sector.investment}</span>
                     </div>
 
                     {/* Empleos - Esmeralda Sólido */}
                     <div className="bg-emerald-600 border border-emerald-700 p-4 rounded-xl text-center shadow-sm">
                         <Users className="w-5 h-5 text-white mx-auto mb-1" />
-                        <span className="text-xs text-white/80 font-medium block mb-1">Empleos 2024</span>
+                        <span className="text-xs text-white/80 font-medium block mb-1">{t('sectorModal.jobs')}</span>
                         <span className="text-lg font-extrabold text-white block">{sector.employment}</span>
                     </div>
 
                     {/* Crecimiento - Índigo Sólido */}
                     <div className="bg-indigo-600 border border-indigo-700 p-4 rounded-xl text-center shadow-sm">
                         <TrendingUp className="w-5 h-5 text-white mx-auto mb-1" />
-                        <span className="text-xs text-white/80 font-medium block mb-1">Crecimiento Interanual</span>
+                        <span className="text-xs text-white/80 font-medium block mb-1">{t('sectorModal.growth')}</span>
                         <span className="text-lg font-extrabold text-white block">{sector.growth}</span>
                     </div>
 
                     {/* Exportaciones - Ámbar Sólido */}
                     <div className="bg-amber-600 border border-amber-700 p-4 rounded-xl text-center shadow-sm">
                         <Globe className="w-5 h-5 text-white mx-auto mb-1" />
-                        <span className="text-xs text-white/80 font-medium block mb-1">Exportaciones 2025</span>
+                        <span className="text-xs text-white/80 font-medium block mb-1">{t('sectorModal.exports')}</span>
                         <span className="text-lg font-extrabold text-white block">{sector.exports || 'N/A'}</span>
                     </div>
                 </div>
@@ -99,7 +102,7 @@ export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, secto
                 <div>
                   <div className="flex items-center space-x-2 mb-4">
                     <Sparkles className="w-5 h-5 text-amber-500" />
-                    <h4 className="text-lg font-bold text-gray-900">Principales Oportunidades de Inversión</h4>
+                    <h4 className="text-lg font-bold text-gray-900">{t('sectorModal.opportunities')}</h4>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -131,7 +134,7 @@ export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, secto
               {/* Ventajas Competitivas */}
               {sector.advantages && sector.advantages.length > 0 && (
                 <div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-4">Ventajas Competitivas</h4>
+                  <h4 className="text-lg font-bold text-gray-900 mb-4">{t('sectorModal.advantages')}</h4>
                   <div className="bg-emerald-50/70 border border-emerald-200 p-5 rounded-xl">
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {sector.advantages.map((advantage, idx) => (
@@ -149,7 +152,7 @@ export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, secto
 
             {/* Pie del Modal */}
             <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
-              <span className="text-xs text-gray-600 font-semibold">Información oficial ProGuatemala</span>
+              <span className="text-xs text-gray-600 font-semibold">{t('sectorModal.official')}</span>
               {sector.pdfUrl && (
                 <a
                   href={sector.pdfUrl}

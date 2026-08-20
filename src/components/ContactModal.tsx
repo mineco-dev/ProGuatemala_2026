@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Mail, Phone, Building, Send, CheckCircle } from 'lucide-react';
 // Ajusta la ruta de importación de tu cliente de Supabase
-import { supabase } from '../lib/supabase'; 
+import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalized } from '@/hooks/useLocalized';
+import { interestOptions as defaultInterestOptions } from '@/data/contact';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
-  language?: string;
+  /** Fuerza un idioma concreto. Por defecto usa el idioma activo de la app. */
+  language?: 'es' | 'en';
   interestOptions?: string[];
   onSuccessCallback?: () => void;
 }
@@ -30,22 +34,19 @@ const INITIAL_FORM_STATE: FormDataState = {
   message: ''
 };
 
-const DEFAULT_INTEREST_OPTIONS = [
-  'Agroindustria',
-  'Manufactura Liviana',
-  'Servicios Globales',
-  'Energías Renovables',
-  'Turismo Sostenible',
-  'Otro'
-];
-
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  language = 'es',
-  interestOptions = DEFAULT_INTEREST_OPTIONS,
+  language,
+  interestOptions,
   onSuccessCallback
 }) => {
+  const { t, language: activeLanguage } = useLanguage();
+  const defaultOptions = useLocalized(defaultInterestOptions);
+  // `language` solo se conserva para forzar un idioma concreto; por defecto
+  // manda el idioma activo de la aplicacion.
+  const formLanguage = language ?? activeLanguage;
+  const options = interestOptions ?? defaultOptions;
   const [formData, setFormData] = useState<FormDataState>(INITIAL_FORM_STATE);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -77,7 +78,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             company: formData.company || null,
             subject: formData.interest,
             message: formData.message,
-            language: language,
+            language: formLanguage,
             status: 'new'
           }
         ]);
@@ -95,7 +96,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     } catch (err) {
       console.error('Error submitting form:', err);
       setError(
-        'Hubo un error al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.'
+        t('contact.form.error')
       );
     } finally {
       setIsSubmitting(false);
@@ -139,27 +140,26 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   <CheckCircle className="w-10 h-10" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  ¡Mensaje enviado con éxito!
+                  {t('contactModal.successTitle')}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Gracias por comunicarte con nosotros. Un especialista revisará tu solicitud y se pondrá en contacto contigo en las próximas 24 horas hábiles.
+                  {t('contactModal.successBody')}
                 </p>
                 <button
                   onClick={handleClose}
                   className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
                 >
-                  Cerrar
+                  {t('common.close')}
                 </button>
               </div>
             ) : (
               /* Formulario principal */
               <>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                  Nosotros te contactamos
+                  {t('contact.form.title')}
                 </h2>
                 <p className="text-gray-600 mb-8">
-                  Completa el formulario y uno de nuestros especialistas se comunicará contigo 
-                  para brindarte información personalizada.
+                  {t('contact.form.subtitle')}
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -171,7 +171,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Nombre completo *
+                      {t('contact.form.name')}
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -182,7 +182,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Tu nombre"
+                        placeholder={t('contact.form.namePlaceholder')}
                         disabled={isSubmitting}
                       />
                     </div>
@@ -190,7 +190,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Correo electrónico *
+                      {t('contact.form.email')}
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -201,7 +201,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="tu@email.com"
+                        placeholder={t('contact.form.emailPlaceholder')}
                         disabled={isSubmitting}
                       />
                     </div>
@@ -209,7 +209,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Teléfono
+                      {t('contact.form.phone')}
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -219,7 +219,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="+502 XXXX-XXXX"
+                        placeholder={t('contact.form.phonePlaceholder')}
                         disabled={isSubmitting}
                       />
                     </div>
@@ -227,7 +227,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Empresa
+                      {t('contact.form.company')}
                     </label>
                     <div className="relative">
                       <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -237,7 +237,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                         value={formData.company}
                         onChange={handleInputChange}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Nombre de tu empresa"
+                        placeholder={t('contact.form.companyPlaceholder')}
                         disabled={isSubmitting}
                       />
                     </div>
@@ -245,7 +245,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Sector de interés *
+                      {t('contact.form.interest')}
                     </label>
                     <select
                       name="interest"
@@ -255,8 +255,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       disabled={isSubmitting}
                     >
-                      <option value="">Selecciona un sector</option>
-                      {interestOptions.map((option, index) => (
+                      <option value="">{t('contact.form.interestPlaceholder')}</option>
+                      {options.map((option, index) => (
                         <option key={index} value={option}>
                           {option}
                         </option>
@@ -266,7 +266,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensaje *
+                      {t('contact.form.message')}
                     </label>
                     <textarea
                       name="message"
@@ -275,7 +275,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       value={formData.message}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                      placeholder="Cuéntanos sobre tu proyecto de inversión, expectativas, timeline, o cualquier pregunta específica que tengas..."
+                      placeholder={t('contact.form.messagePlaceholder')}
                       disabled={isSubmitting}
                     />
                   </div>
@@ -288,12 +288,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Enviando...
+                        {t('contact.form.submitting')}
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5 mr-2" />
-                        Enviar mensaje
+                        {t('contact.form.submit')}
                       </>
                     )}
                   </button>

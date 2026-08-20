@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const LoadingScreen: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 flex items-center justify-center z-50">
       {/* Background Pattern */}
@@ -39,7 +42,7 @@ const LoadingScreen: React.FC = () => {
           className="text-white text-center"
         >
           <h2 className="text-2xl font-bold mb-2">ProGuatemala</h2>
-          <p className="text-blue-200 mb-6">Cargando...</p>
+          <p className="text-blue-200 mb-6">{t('common.loading')}</p>
         </motion.div>
 
         {/* Loading Spinner */}
