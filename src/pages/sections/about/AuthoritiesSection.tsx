@@ -19,6 +19,8 @@ export default function AuthoritiesSection() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+          {/* Presidente: misma tarjeta que las demas autoridades, con la version
+              corta del mensaje para que las alturas coincidan. */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +38,10 @@ export default function AuthoritiesSection() {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{head.formalName}</h3>
               <p className="text-blue-600 font-semibold mb-4">{head.shortPosition}</p>
-              <p className="text-gray-700 leading-relaxed">{head.bio}</p>
+              <p className="text-gray-700 leading-relaxed mb-4">{head.bio}</p>
+              <p className="text-gray-600 italic leading-relaxed border-t border-gray-100 pt-4">
+                &ldquo;{head.shortQuote}&rdquo;
+              </p>
             </div>
           </motion.div>
 

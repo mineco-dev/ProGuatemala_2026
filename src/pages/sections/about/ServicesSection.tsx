@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
-import { services } from '@/data/about';
+import { pillars, services } from '@/data/about';
 
 export default function ServicesSection() {
   const { t } = useLanguage();
   const items = useLocalized(services);
+  const pillarItems = useLocalized(pillars);
   const [activeTab, setActiveTab] = useState(0);
 
   const currentService = items[activeTab];
@@ -16,6 +18,35 @@ export default function ServicesSection() {
   return (
     <section className="section-premium bg-gradient-to-b from-white to-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading title={t('about.services.title')} />
+
+        {/* Pilares de atencion: contexto previo a las pestanas de servicios. */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+          {pillarItems.map((pillar, index) => {
+            const Icon = pillar.icon;
+            return (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className={`bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pillar.borderColor} flex flex-col justify-between`}
+              >
+                <div>
+                  <div
+                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6`}
+                  >
+                    <Icon className={`w-7 h-7 ${pillar.iconColor}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">{pillar.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{pillar.description}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
         {/* Navegacion: scroll horizontal en movil, centrada en escritorio */}
         <div className="flex items-center pt-4 pb-5 justify-start md:justify-center overflow-x-auto no-scrollbar mb-12 bg-white/80 backdrop-blur-md rounded-2xl p-2 shadow-xl border border-gray-100 gap-1 sm:gap-2">
           {items.map((service, index) => {

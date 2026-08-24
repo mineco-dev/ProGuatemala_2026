@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { chipDocuments, resourceCategories } from '@/data/resources';
+import {
+  ENGLISH_CHIP_DOCUMENT_IDS,
+  chipDocuments,
+  resourceCategories,
+} from '@/data/resources';
 import type { Language } from '@/i18n';
-
-/** Documentos de la Ruta del Chip cuyo PDF esta redactado en ingles. */
-const ENGLISH_CHIP_DOCUMENT_IDS = new Set([14]);
 import type { Resource, ResourceCategoryWithCount } from '@/types/resource';
 
 /** Convierte los PDFs estaticos de la Ruta del Chip al mismo shape que los de Supabase. */
@@ -39,6 +40,11 @@ export function useResources() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchResources = useCallback(async () => {
+    // Los PDF de la Ruta del Chip son estaticos y no dependen de Supabase, asi
+    // que se muestran aunque la consulta falle; de lo contrario el catalogo
+    // quedaria vacio con un "no se encontraron recursos" enganoso.
+    const staticResources = chipDocumentsAsResources(language, t('resources.chip.description'));
+
     try {
       const { data, error } = await supabase
         .from('resources')
@@ -47,12 +53,10 @@ export function useResources() {
 
       if (error) throw error;
 
-      setResources([
-        ...chipDocumentsAsResources(language, t('resources.chip.description')),
-        ...(data ?? []),
-      ]);
+      setResources([...staticResources, ...(data ?? [])]);
     } catch (error) {
       console.error('Error fetching resources:', error);
+      setResources(staticResources);
     } finally {
       setLoading(false);
     }

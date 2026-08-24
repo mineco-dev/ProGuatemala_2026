@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
 import { Eye, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useLocalized } from '@/hooks/useLocalized';
-import { pillars } from '@/data/about';
 
 export default function MissionVisionSection() {
   const { t } = useLanguage();
-  const items = useLocalized(pillars);
 
   return (
     <section className="py-20 bg-slate-50 relative overflow-hidden">
@@ -30,32 +27,6 @@ export default function MissionVisionSection() {
             {t('about.essence.intro.after')}
           </p>
         </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {items.map((pillar, index) => {
-            const Icon = pillar.icon;
-            return (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className={`bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pillar.borderColor} flex flex-col justify-between`}
-              >
-                <div>
-                  <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6`}
-                  >
-                    <Icon className={`w-7 h-7 ${pillar.iconColor}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{pillar.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{pillar.description}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}

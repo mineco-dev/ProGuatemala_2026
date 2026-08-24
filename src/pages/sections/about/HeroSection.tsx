@@ -3,7 +3,7 @@ import { Compass, ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/i18n';
-import aboutImg from '@/assets/images/portadas/4. ACERCA DE PROGUATEMALA.jpg';
+import aboutImg from '@/assets/images/portadas/4. ACERCA DE PROGUATEMALA.png';
 
 const HIGHLIGHTS: Array<{ icon: LucideIcon; titleKey: TranslationKey; descKey: TranslationKey }> = [
   { icon: Compass, titleKey: 'about.hero.card1.title', descKey: 'about.hero.card1.desc' },

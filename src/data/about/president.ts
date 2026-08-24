@@ -8,6 +8,12 @@ interface PresidentContent {
   photo: string;
   quotes: string[];
   closingQuote: string;
+  /**
+   * Version corta del mensaje para la tarjeta de autoridades, donde la altura
+   * debe coincidir con las demas tarjetas. Son frases tomadas literalmente de
+   * `quotes` y `closingQuote`.
+   */
+  shortQuote: string;
   bio: string;
 }
 
@@ -31,6 +37,8 @@ export const president: Localized<PresidentContent> = {
     ],
     closingQuote:
       'Guatemala les da la bienvenida. Juntos construiremos un futuro de prosperidad compartida.',
+    shortQuote:
+      'Nuestro compromiso es crear un ambiente propicio para la inversión extranjera, basado en la transparencia, el estado de derecho y la seguridad jurídica. Guatemala les da la bienvenida.',
     bio: 'Lidera la visión del país para posicionar a Guatemala como destino de inversión preferido en Centroamérica, promoviendo el desarrollo económico sostenible y la generación de empleo de calidad.',
   },
   en: {
@@ -45,6 +53,8 @@ export const president: Localized<PresidentContent> = {
     ],
     closingQuote:
       'Guatemala welcomes you. Together we will build a future of shared prosperity.',
+    shortQuote:
+      'Our commitment is to create an environment that welcomes foreign investment, grounded in transparency, the rule of law and legal certainty. Guatemala welcomes you.',
     bio: "Leads the country's vision to position Guatemala as the preferred investment destination in Central America, promoting sustainable economic development and the creation of quality jobs.",
   },
 };

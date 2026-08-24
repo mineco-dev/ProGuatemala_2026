@@ -3,7 +3,6 @@ import {
   BenefitsSection,
   HeroSection,
   MissionVisionSection,
-  PresidentMessageSection,
   ServicesSection,
   StrategyDownloadSection,
   TeamSection,
@@ -14,7 +13,6 @@ export default function About() {
   return (
     <div>
       <HeroSection />
-      <PresidentMessageSection />
       <MissionVisionSection />
       <ValuesSection />
       <ServicesSection />

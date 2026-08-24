@@ -2,40 +2,83 @@ import type { Localized } from '@/i18n';
 import type { ChipDocument } from '@/types/resource';
 
 /**
+ * Origen desde el que se sirven los PDF de la Ruta del Chip.
+ *
+ * Hoy viven en el portal del Ministerio de Economia. Para servirlos desde este
+ * mismo sitio basta con dejar `BASE` vacio y copiar los archivos a
+ * `public/images/ruta_del_chip/`; las rutas relativas resultantes son las
+ * mismas que usa mineco.gob.gt.
+ */
+const BASE = 'https://www.mineco.gob.gt';
+
+/** Nombre de archivo de cada documento, en el orden en que se listan. */
+const FILES = [
+  '0. Ruta del Chip_DESCRIPCION_compressed.pdf',
+  '1. ONE PAGER RUTA DEL CHIP_compressed.pdf',
+  '2. One Pager Cadena de Valor_compressed.pdf',
+  '3. One Pager Diseno Semiconductores_compressed.pdf',
+  '8. Industria de Semiconductores - Ruta del Chip Gt_compressed.pdf',
+  '4. One Pager Cadena de Valor Prototipado_compressed.pdf',
+  '5. One Pager Cuenta Pasos - Ruta del Chip_compressed.pdf',
+  '6. One Pager Sensor Agroclimatico_compressed.pdf',
+  '7. One Pager Sensor de amenazas_compressed.pdf',
+  '10. Eje Talento Humano - Ruta del Chip Gt_compressed.pdf',
+  '11. Eje Entorno Empresarial - Ruta del Chip Gt_compressed.pdf',
+  '12. Eje Infraestructura y Facilidades - Ruta del Chip Gt_compressed.pdf',
+  '13. Eje Politica Publica - Ruta del Chip Gt_compressed.pdf',
+  'ONE PAGER RUTA DEL CHIP Ingles.pdf',
+] as const;
+
+/** Ids (1-based) cuyo PDF esta redactado en ingles. */
+export const ENGLISH_CHIP_DOCUMENT_IDS = new Set([14]);
+
+const NAMES: Localized<string[]> = {
+  es: [
+    'Presentación Ruta del Chip',
+    'Infografía Ruta del Chip',
+    'Cadena de valor de semiconductores',
+    'Diseño semiconductores',
+    'Industria de semiconductores',
+    'Cadena de Valor Prototipado',
+    'Cuenta Pasos',
+    'Sensor Agroclimático',
+    'Sensor de Amenazas',
+    'Talento Humano',
+    'Entorno Empresarial',
+    'Infraestructura y Facilidades',
+    'Política Pública',
+    'Infografía Ruta del Chip (inglés)',
+  ],
+  en: [
+    'Ruta del Chip Presentation',
+    'Ruta del Chip Infographic',
+    'Semiconductor value chain',
+    'Semiconductor design',
+    'Semiconductor industry',
+    'Prototyping value chain',
+    'Step Counter',
+    'Agroclimatic Sensor',
+    'Threat Sensor',
+    'Human Talent',
+    'Business Environment',
+    'Infrastructure and Facilities',
+    'Public Policy',
+    'Ruta del Chip Infographic (English)',
+  ],
+};
+
+const build = (names: string[]): ChipDocument[] =>
+  names.map((name, index) => ({
+    id: index + 1,
+    name,
+    link: `${BASE}/images/ruta_del_chip/${encodeURIComponent(FILES[index])}`,
+  }));
+
+/**
  * Documentos oficiales e infografias de la estrategia Ruta del Chip Guatemala.
  * El nombre del programa es una marca institucional y se mantiene en espanol.
  */
 export const chipDocuments: Localized<ChipDocument[]> = {
-  es: [
-    { id: 1, name: 'Presentación Ruta del Chip', link: 'https://mineco.gob.gt/images/ruta_del_chip/0.%20Ruta%20del%20Chip_DESCRIPCION_compressed.pdf' },
-    { id: 2, name: 'Infografía Ruta del Chip', link: 'https://mineco.gob.gt/images/ruta_del_chip/1.%20ONE%20PAGER%20RUTA%20DEL%20CHIP_compressed.pdf' },
-    { id: 3, name: 'Cadena de valor de semiconductores', link: 'https://mineco.gob.gt/images/ruta_del_chip/2.%20One%20Pager%20Cadena%20de%20Valor_compressed.pdf' },
-    { id: 4, name: 'Diseño semiconductores', link: 'https://mineco.gob.gt/images/ruta_del_chip/3.%20One%20Pager%20Diseno%20Semiconductores_compressed.pdf' },
-    { id: 5, name: 'Industria de semiconductores', link: 'https://mineco.gob.gt/images/ruta_del_chip/8.%20Industria%20de%20Semiconductores%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 6, name: 'Cadena de Valor Prototipado', link: 'https://mineco.gob.gt/images/ruta_del_chip/4.%20One%20Pager%20Cadena%20de%20Valor%20Prototipado_compressed.pdf' },
-    { id: 7, name: 'Cuenta Pasos', link: 'https://mineco.gob.gt/images/ruta_del_chip/5.%20One%20Pager%20Cuenta%20Pasos%20-%20Ruta%20del%20Chip_compressed.pdf' },
-    { id: 8, name: 'Sensor Agroclimático', link: 'https://mineco.gob.gt/images/ruta_del_chip/6.%20One%20Pager%20Sensor%20Agroclimatico_compressed.pdf' },
-    { id: 9, name: 'Sensor de Amenazas', link: 'https://mineco.gob.gt/images/ruta_del_chip/7.%20One%20Pager%20Sensor%20de%20amenazas_compressed.pdf' },
-    { id: 10, name: 'Talento Humano', link: 'https://mineco.gob.gt/images/ruta_del_chip/10.%20Eje%20Talento%20Humano%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 11, name: 'Entorno Empresarial', link: 'https://mineco.gob.gt/images/ruta_del_chip/11.%20Eje%20Entorno%20Empresarial%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 12, name: 'Infraestructura y Facilidades', link: 'https://mineco.gob.gt/images/ruta_del_chip/12.%20Eje%20Infraestructura%20y%20Facilidades%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 13, name: 'Política Pública', link: 'https://mineco.gob.gt/images/ruta_del_chip/13.%20Eje%20Politica%20Publica%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 14, name: 'Infografía Ruta del Chip (inglés)', link: 'https://mineco.gob.gt/images/ruta_del_chip/ONE%20PAGER%20RUTA%20DEL%20CHIP%20Ingles.pdf' },
-  ],
-  en: [
-    { id: 1, name: 'Ruta del Chip Presentation', link: 'https://mineco.gob.gt/images/ruta_del_chip/0.%20Ruta%20del%20Chip_DESCRIPCION_compressed.pdf' },
-    { id: 2, name: 'Ruta del Chip Infographic', link: 'https://mineco.gob.gt/images/ruta_del_chip/1.%20ONE%20PAGER%20RUTA%20DEL%20CHIP_compressed.pdf' },
-    { id: 3, name: 'Semiconductor value chain', link: 'https://mineco.gob.gt/images/ruta_del_chip/2.%20One%20Pager%20Cadena%20de%20Valor_compressed.pdf' },
-    { id: 4, name: 'Semiconductor design', link: 'https://mineco.gob.gt/images/ruta_del_chip/3.%20One%20Pager%20Diseno%20Semiconductores_compressed.pdf' },
-    { id: 5, name: 'Semiconductor industry', link: 'https://mineco.gob.gt/images/ruta_del_chip/8.%20Industria%20de%20Semiconductores%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 6, name: 'Prototyping value chain', link: 'https://mineco.gob.gt/images/ruta_del_chip/4.%20One%20Pager%20Cadena%20de%20Valor%20Prototipado_compressed.pdf' },
-    { id: 7, name: 'Step Counter', link: 'https://mineco.gob.gt/images/ruta_del_chip/5.%20One%20Pager%20Cuenta%20Pasos%20-%20Ruta%20del%20Chip_compressed.pdf' },
-    { id: 8, name: 'Agroclimatic Sensor', link: 'https://mineco.gob.gt/images/ruta_del_chip/6.%20One%20Pager%20Sensor%20Agroclimatico_compressed.pdf' },
-    { id: 9, name: 'Threat Sensor', link: 'https://mineco.gob.gt/images/ruta_del_chip/7.%20One%20Pager%20Sensor%20de%20amenazas_compressed.pdf' },
-    { id: 10, name: 'Human Talent', link: 'https://mineco.gob.gt/images/ruta_del_chip/10.%20Eje%20Talento%20Humano%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 11, name: 'Business Environment', link: 'https://mineco.gob.gt/images/ruta_del_chip/11.%20Eje%20Entorno%20Empresarial%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 12, name: 'Infrastructure and Facilities', link: 'https://mineco.gob.gt/images/ruta_del_chip/12.%20Eje%20Infraestructura%20y%20Facilidades%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 13, name: 'Public Policy', link: 'https://mineco.gob.gt/images/ruta_del_chip/13.%20Eje%20Politica%20Publica%20-%20Ruta%20del%20Chip%20Gt_compressed.pdf' },
-    { id: 14, name: 'Ruta del Chip Infographic (English)', link: 'https://mineco.gob.gt/images/ruta_del_chip/ONE%20PAGER%20RUTA%20DEL%20CHIP%20Ingles.pdf' },
-  ],
+  es: build(NAMES.es),
+  en: build(NAMES.en),
 };

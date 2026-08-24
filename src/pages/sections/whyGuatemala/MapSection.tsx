@@ -5,7 +5,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { ports } from '@/data/whyGuatemala';
-import mapaEstrategico from '@/assets/images/Mapa_Macro_Estrategico_MINECO.png';
+import InfrastructureMap from './InfrastructureMap';
 
 export default function MapSection() {
   const { t } = useLanguage();
@@ -56,38 +56,33 @@ export default function MapSection() {
             className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
           >
             <div className="bg-support-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                {t('why.map.maritime')}
+              <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
+                {t('why.map.infra.title')}
               </h3>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-                <div className="relative w-full min-h-[300px] lg:min-h-0 rounded-xl overflow-hidden border border-gray-150/50 shadow-sm">
-                  <img
-                    src={mapaEstrategico}
-                    alt={t('why.map.maritimeAlt')}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              <InfrastructureMap />
 
-                <ul className="flex flex-col gap-4 h-full">
-                  {portList.map((port) => (
-                    <li
-                      key={port.name}
-                      className="flex-1 text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm flex flex-col justify-center"
-                    >
-                      <div>
-                        <div className="flex items-center mb-1.5">
-                          <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
-                          <span className="font-semibold text-gray-900">{port.name}</span>
-                        </div>
-                        <p className="text-sm text-gray-600 ml-6 font-medium">
-                          {t('why.map.load')}: <span className="text-emerald-600 font-bold">{port.load}</span>
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <h4 className="text-lg font-bold text-gray-900 mt-1 mb-4 text-center">
+                {t('why.map.maritime')}
+              </h4>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {portList.map((port) => (
+                  <li
+                    key={port.name}
+                    className="text-gray-700 bg-white p-4 rounded-xl border border-gray-150/50 shadow-sm"
+                  >
+                    <div className="flex items-center mb-1.5">
+                      <MapPin className="w-4 h-4 text-emerald-600 mr-2 flex-shrink-0" />
+                      <span className="font-semibold text-gray-900">{port.name}</span>
+                    </div>
+                    <p className="text-sm text-gray-600 ml-6 font-medium">
+                      {t('why.map.load')}:{' '}
+                      <span className="text-emerald-600 font-bold">{port.load}</span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>

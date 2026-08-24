@@ -1,5 +1,4 @@
 export { default as HeroSection } from './HeroSection';
-export { default as PresidentMessageSection } from './PresidentMessageSection';
 export { default as MissionVisionSection } from './MissionVisionSection';
 export { default as ValuesSection } from './ValuesSection';
 export { default as ServicesSection } from './ServicesSection';
