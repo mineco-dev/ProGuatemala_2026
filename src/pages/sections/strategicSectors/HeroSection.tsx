@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import sectoresImg from '@/assets/images/portadas/3. SECTORES.jpg';
-
-const STRATEGY_PDF_URL =
-  'https://mineco.gob.gt/files/proguatemala/es/Atraccion_Inversiones-Espanol.pdf';
+import { onePagers } from '@/data/onePagers';
 
 const scrollToFilters = () => {
   document.getElementById('horizonte-temporal')?.scrollIntoView({
@@ -13,7 +11,7 @@ const scrollToFilters = () => {
 };
 
 export default function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -61,7 +59,7 @@ export default function HeroSection() {
                   {t('sectors.hero.explore')}
                 </button>
                 <a
-                  href={STRATEGY_PDF_URL}
+                  href={onePagers.strategy[language]}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"

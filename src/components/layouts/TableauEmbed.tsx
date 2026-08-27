@@ -1,15 +1,4 @@
-import React, { useEffect, useRef, useId } from 'react';
-
-// Tipado global para evitar errores de TypeScript con window.tableau
-declare global {
-  interface Window {
-    tableau?: {
-      vizManager?: {
-        refresh: () => void;
-      };
-    };
-  }
-}
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export interface TableauEmbedProps {
   /** Identificador de la vista en Tableau, ej: "Tablero_IED_ProGuatemala/Historia1" */
@@ -22,7 +11,7 @@ export interface TableauEmbedProps {
   path?: string;
   /** URL base del servidor de Tableau. Por defecto 'https://public.tableau.com/' */
   hostUrl?: string;
-  /** URL de la imagen estática de previsualización (para fallback y noscript) */
+  /** URL de la imagen estática de previsualización (fallback sin JavaScript) */
   staticImageUrl?: string;
   /** Relación de aspecto (alto = ancho * aspectRatio) en escritorio */
   aspectRatio?: number;
@@ -36,10 +25,38 @@ export interface TableauEmbedProps {
   showToolbar?: boolean;
   /** Clases CSS adicionales para el contenedor exterior */
   className?: string;
-  /** Parámetros adicionales clave-valor (ej: { filter: 'publish=yes' }) */
+  /**
+   * Parámetros extra de la vista, añadidos tal cual a la URL. Sirven para
+   * filtros y parámetros del libro, ej: `{ publish: 'yes' }` -> `&publish=yes`.
+   */
   params?: Record<string, string>;
+  /** Título accesible del iframe. Por defecto, `vizName`. */
+  title?: string;
 }
 
+/** Opciones del visor, las mismas que genera el embed oficial de Tableau Public. */
+const VIEWER_OPTIONS = [
+  [':embed', 'y'],
+  [':showVizHome', 'no'],
+  [':animate_transition', 'yes'],
+  [':display_static_image', 'yes'],
+  [':display_spinner', 'yes'],
+  [':display_overlay', 'yes'],
+  [':display_count', 'yes'],
+  [':origin', 'viz_share_link'],
+] as const;
+
+const MOBILE_BREAKPOINT = 768;
+
+/**
+ * Tablero de Tableau Public embebido por iframe.
+ *
+ * Se usa el embed por URL en vez de `<object class="tableauViz">` + `viz_v1.js`
+ * porque ese script solo procesa los marcadores una vez, al cargarse: en una
+ * SPA como esta, un tablero montado después —o uno al que le cambia la vista
+ * al cambiar de idioma— nunca se volvía a dibujar. Con el iframe basta con que
+ * cambie la URL: React lo remonta (`key={src}`) y Tableau carga el libro nuevo.
+ */
 export const TableauEmbed: React.FC<TableauEmbedProps> = ({
   vizName,
   path,
@@ -52,92 +69,85 @@ export const TableauEmbed: React.FC<TableauEmbedProps> = ({
   showToolbar = true,
   className = '',
   params = {},
+  title,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  // Genera un ID único para evitar colisiones si hay múltiples tableros en la misma página
-  const rawId = useId();
-  const vizId = `viz_${rawId.replace(/:/g, '')}`;
+  const [height, setHeight] = useState(minMobileHeight);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const encodedHostUrl = encodeURIComponent(hostUrl.endsWith('/') ? hostUrl : `${hostUrl}/`);
+  const src = useMemo(() => {
+    const base = hostUrl.endsWith('/') ? hostUrl : `${hostUrl}/`;
+    // `path` ya viene con su prefijo ("shared/XXXX"); `vizName` cuelga de /views/.
+    const view = path ?? `views/${vizName}`;
+
+    const query = [
+      ...VIEWER_OPTIONS.map(([key, value]) => `${key}=${value}`),
+      `:tabs=${showTabs ? 'yes' : 'no'}`,
+      `:toolbar=${showToolbar ? 'yes' : 'no'}`,
+      `:language=${language}`,
+      ...Object.entries(params).map(
+        ([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
+      ),
+    ].join('&');
+
+    return `${base}${view}?${query}`;
+  }, [hostUrl, path, vizName, showTabs, showToolbar, language, params]);
+
+  const measure = useCallback(() => {
+    const width = containerRef.current?.offsetWidth ?? 0;
+    setHeight(width > MOBILE_BREAKPOINT ? Math.round(width * aspectRatio) : minMobileHeight);
+  }, [aspectRatio, minMobileHeight]);
 
   useEffect(() => {
-    const divElement = containerRef.current;
-    if (!divElement) return;
+    measure();
 
-    const vizElement = divElement.getElementsByTagName('object')[0] as HTMLElement | undefined;
-
-    if (vizElement && divElement.offsetWidth) {
-      const width = divElement.offsetWidth;
-      vizElement.style.width = '100%';
-      const calculatedHeight = width > 768 ? width * aspectRatio : minMobileHeight;
-      vizElement.style.height = `${calculatedHeight}px`;
-      vizElement.style.display = 'block';
+    const element = containerRef.current;
+    if (typeof ResizeObserver !== 'undefined' && element) {
+      const observer = new ResizeObserver(measure);
+      observer.observe(element);
+      return () => observer.disconnect();
     }
 
-    // Carga de script de Tableau evitando duplicación
-    const existingScript = document.querySelector('script[src*="viz_v1.js"]');
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [measure]);
 
-    if (!existingScript) {
-      const scriptElement = document.createElement('script');
-      scriptElement.src = `${hostUrl.endsWith('/') ? hostUrl : hostUrl + '/'}javascripts/api/viz_v1.js`;
-      scriptElement.async = true;
-
-      if (vizElement && vizElement.parentNode) {
-        vizElement.parentNode.insertBefore(scriptElement, vizElement);
-      }
-    } else {
-      if (window.tableau?.vizManager) {
-        window.tableau.vizManager.refresh();
-      }
-    }
-  }, [vizName, path, aspectRatio, minMobileHeight, hostUrl]);
+  // Cada cambio de vista remonta el iframe: hay que volver a mostrar el spinner.
+  useEffect(() => {
+    setIsLoading(true);
+  }, [src]);
 
   return (
     <div className={`w-full ${className}`}>
-      <div className="tableau-wrapper p-2 rounded-2xl border bg-light shadow-sm w-full">
-        <div 
-          ref={containerRef}
-          className="tableauPlaceholder w-full" 
-          id={vizId}
-          style={{ position: 'relative', width: '100%' }}
-        >
-          {staticImageUrl && (
-            <noscript>
-              <a href="#!">
-                <img 
-                  alt={vizName} 
-                  src={staticImageUrl} 
-                  style={{ border: 'none' }} 
-                />
-              </a>
-            </noscript>
-          )}
+      <div
+        ref={containerRef}
+        className="tableau-wrapper relative p-2 rounded-2xl border border-gray-200 bg-gray-50 shadow-sm w-full overflow-hidden"
+      >
+        {isLoading && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-50">
+            <div
+              className="w-10 h-10 rounded-full border-4 border-gray-200 border-t-[#2b2463] animate-spin"
+              role="status"
+              aria-label="Cargando tablero"
+            />
+          </div>
+        )}
 
-          <object className="tableauViz" style={{ display: 'none', width: '100%' }}>
-            <param name="host_url" value={encodedHostUrl} />
-            <param name="embed_code_version" value="3" />
-            <param name="site_root" value="" />
-            {path ? (
-              <param name="path" value={path} />
-            ) : (
-              <param name="name" value={vizName} />
-            )}
-            <param name="tabs" value={showTabs ? 'yes' : 'no'} />
-            <param name="toolbar" value={showToolbar ? 'yes' : 'no'} />
-            {staticImageUrl && <param name="static_image" value={staticImageUrl} />}
-            <param name="animate_transition" value="yes" />
-            <param name="display_static_image" value="yes" />
-            <param name="display_spinner" value="yes" />
-            <param name="display_overlay" value="yes" />
-            <param name="display_count" value="yes" />
-            <param name="language" value={language} />
+        <iframe
+          key={src}
+          src={src}
+          title={title ?? vizName}
+          style={{ height: `${height}px` }}
+          className="block w-full max-w-full border-0 rounded-xl bg-white"
+          allowFullScreen
+          onLoad={() => setIsLoading(false)}
+        />
 
-            {/* Renderizado dinámico de parámetros arbitrarios */}
-            {Object.entries(params).map(([key, value]) => (
-              <param key={key} name={key} value={value} />
-            ))}
-          </object>
-        </div>
+        {staticImageUrl && (
+          <noscript>
+            <img src={staticImageUrl} alt={vizName} style={{ border: 'none', width: '100%' }} />
+          </noscript>
+        )}
       </div>
     </div>
   );

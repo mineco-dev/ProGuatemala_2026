@@ -3,9 +3,7 @@ import { motion } from 'framer-motion';
 import { Download, ArrowRight } from 'lucide-react';
 import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const FACT_SHEET_URL =
-  'https://mineco.gob.gt/files/proguatemala/es/TRIFOLIAR%20PROGUATE%202026.pdf';
+import { onePagers } from '@/data/onePagers';
 
 export default function CtaSection() {
   const { t, language } = useLanguage();
@@ -30,7 +28,7 @@ export default function CtaSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href={FACT_SHEET_URL}
+              href={onePagers.welcomePackage[language]}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-white text-[#1464df] hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center shadow-md text-base"

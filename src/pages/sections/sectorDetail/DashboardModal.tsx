@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { TableauEmbed } from '@/components/layouts/TableauEmbed';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { dashboards, tableauLanguage } from '@/data/dashboards';
 
 interface DashboardModalProps {
   isOpen: boolean;
@@ -9,7 +10,7 @@ interface DashboardModalProps {
 
 /**
  * Modal con el tablero de Tableau de sectores estrategicos.
- * La carga del script y el dimensionamiento los resuelve <TableauEmbed>.
+ * El embed y el dimensionamiento los resuelve <TableauEmbed>.
  */
 export default function DashboardModal({ isOpen, onClose }: DashboardModalProps) {
   const { t, language } = useLanguage();
@@ -50,10 +51,10 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
         </div>
         <div className="p-4">
           <TableauEmbed
-            vizName="DashboardSectoresEstrategia/Historia1"
-            staticImageUrl="https://public.tableau.com/static/images/Da/DashboardSectoresEstrategia/Historia1/1.png"
+            vizName={dashboards.strategicSectors[language]}
+            title={t('sectorDetail.dashboardTitle')}
             aspectRatio={0.85}
-            language={language === 'es' ? 'es-ES' : 'en-US'}
+            language={tableauLanguage(language)}
           />
         </div>
       </div>

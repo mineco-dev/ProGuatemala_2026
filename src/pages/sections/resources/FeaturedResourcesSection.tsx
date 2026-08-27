@@ -63,9 +63,11 @@ export default function FeaturedResourcesSection({ resources }: FeaturedResource
                       <span className="bg-gray-100 px-2 py-1 rounded-md font-medium">
                         {resource.type}
                       </span>
-                      <span className="bg-gray-100 px-2 py-1 rounded-md font-medium">
-                        {resource.size}
-                      </span>
+                      {resource.size && (
+                        <span className="bg-gray-100 px-2 py-1 rounded-md font-medium">
+                          {resource.size}
+                        </span>
+                      )}
                       <span className="bg-gray-100 px-2 py-1 rounded-md font-medium">
                         {resource.language}
                       </span>

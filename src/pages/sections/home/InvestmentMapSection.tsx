@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { TableauEmbed } from '@/components/layouts/TableauEmbed';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { dashboards, tableauLanguage } from '@/data/dashboards';
 
 export default function InvestmentMapSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-16 bg-white">
@@ -33,9 +34,10 @@ export default function InvestmentMapSection() {
           <div className="p-4 md:p-6 w-full">
             <div className="bg-gray-100 rounded-xl overflow-hidden min-h-[650px] w-full">
               <TableauEmbed
-                vizName="Tablero_IED_ProGuatemala/Historia1"
-                aspectRatio={0.65}
-                staticImageUrl="https://public.tableau.com/static/images/Ta/Tablero_IED_ProGuatemala/Historia1/1.png"
+                vizName={dashboards.fdi[language]}
+                title={t('home.map.boxTitle')}
+                aspectRatio={0.75}
+                language={tableauLanguage(language)}
               />
             </div>
           </div>

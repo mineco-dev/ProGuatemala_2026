@@ -22,7 +22,10 @@ export interface Advantage {
 export interface Park {
   id: string;
   title: string;
+  /** Resumen corto, el que se lee en la tarjeta de la cuadricula. */
   description: string;
+  /** Texto completo del parque, el que se lee al abrir su galeria. */
+  overview: string;
   highlights: string[];
   images: string[];
 }
@@ -30,15 +33,4 @@ export interface Park {
 export interface Port {
   name: string;
   load: string;
-}
-
-export interface ComparisonRow {
-  indicator: string;
-  gt: string;
-  cr: string;
-  sv: string;
-  hn: string;
-  ni: string;
-  do: string;
-  highlight?: boolean;
 }

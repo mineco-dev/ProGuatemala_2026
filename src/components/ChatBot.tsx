@@ -238,7 +238,7 @@ const ChatBot: React.FC = () => {
                     <button
                       key={index}
                       onClick={() => handleQuickReply(reply)}
-                      className="text-xs bg-blue-50 text-white px-3 py-1 rounded-full hover:bg-blue-100 transition-colors duration-200"
+                      className="text-xs bg-blue-50 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors duration-200"
                     >
                       {reply}
                     </button>

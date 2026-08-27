@@ -6,6 +6,10 @@ interface ResourceFiltersSectionProps {
   categories: ResourceCategoryWithCount[];
   selectedCategory: string;
   onSelectCategory: (categoryId: string) => void;
+  /** Subfiltro de la categoria activa; vacio cuando la categoria no lo ofrece. */
+  subcategories?: ResourceCategoryWithCount[];
+  selectedSubcategory?: string;
+  onSelectSubcategory?: (subcategoryId: string) => void;
   searchTerm: string;
   onSearchChange: (term: string) => void;
 }
@@ -14,6 +18,9 @@ export default function ResourceFiltersSection({
   categories,
   selectedCategory,
   onSelectCategory,
+  subcategories,
+  selectedSubcategory,
+  onSelectSubcategory,
   searchTerm,
   onSearchChange,
 }: ResourceFiltersSectionProps) {
@@ -50,6 +57,31 @@ export default function ResourceFiltersSection({
             ))}
           </div>
         </div>
+
+        {/* Subfiltro: solo aparece cuando la categoria activa lo ofrece, en una
+            fila propia y con pastillas mas discretas para que se lea como una
+            division dentro de la categoria y no como otra categoria mas. */}
+        {subcategories && subcategories.length > 0 && onSelectSubcategory && (
+          <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-200/60 justify-center lg:justify-end">
+            <span className="text-sm font-medium text-gray-500 mr-1">
+              {t('resources.subfilter.label')}
+            </span>
+            {subcategories.map((subcategory) => (
+              <button
+                key={subcategory.id}
+                onClick={() => onSelectSubcategory(subcategory.id)}
+                aria-pressed={selectedSubcategory === subcategory.id}
+                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
+                  selectedSubcategory === subcategory.id
+                    ? 'bg-blue-100 text-blue-800 border-blue-300'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-blue-50'
+                }`}
+              >
+                {subcategory.name} ({subcategory.count})
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

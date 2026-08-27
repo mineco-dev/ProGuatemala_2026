@@ -4,7 +4,7 @@ import { Download, MessageCircle } from 'lucide-react';
 import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { HOME_VIDEO_URL } from '@/data/home';
-import GuiaInversionistaEs from '@/assets/files/16_07_25 ESPAÑOL-TRIFOLIAR-PaginaWeb (1).pdf';
+import { onePagers } from '@/data/onePagers';
 
 export default function HeroSection() {
   const { t, language } = useLanguage();
@@ -27,8 +27,9 @@ export default function HeroSection() {
             <p className="text-xl md:text-2xl mb-8 text-white">{t('home.hero.subtitle')}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={GuiaInversionistaEs}
-                download="Guia del Inversionista.pdf"
+                href={onePagers.welcomePackage[language]}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
                 style={{ background: '#FFFFFF' }}
               >

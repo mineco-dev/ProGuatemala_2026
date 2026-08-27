@@ -1,6 +1,7 @@
 import LoadingState from '@/components/ui/LoadingState';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useResources } from '@/hooks/useResources';
+import { RUTA_CHIP_CATEGORY } from '@/data/resources';
 import {
   DigitalToolsSection,
   FeaturedResourcesSection,
@@ -23,8 +24,11 @@ export default function Resources() {
     filteredResources,
     featuredResources,
     categoriesWithCounts,
+    subcategoriesWithCounts,
     selectedCategory,
     setSelectedCategory,
+    selectedSubcategory,
+    setSelectedSubcategory,
     searchTerm,
     setSearchTerm,
   } = useResources();
@@ -49,6 +53,11 @@ export default function Resources() {
         categories={categoriesWithCounts}
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
+        subcategories={
+          selectedCategory === RUTA_CHIP_CATEGORY ? subcategoriesWithCounts : undefined
+        }
+        selectedSubcategory={selectedSubcategory}
+        onSelectSubcategory={setSelectedSubcategory}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
       />

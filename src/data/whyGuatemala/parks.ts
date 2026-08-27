@@ -84,7 +84,7 @@ const IMAGES: Record<string, string[]> = {
   'zona-libre-quetzal': [quetzal1, quetzal2, quetzal3, quetzal4, quetzal5, quetzal6],
 };
 
-type ParkCopy = Pick<Park, 'id' | 'title' | 'description' | 'highlights'>;
+type ParkCopy = Pick<Park, 'id' | 'title' | 'description' | 'overview' | 'highlights'>;
 
 /**
  * Los nombres de los parques son marcas registradas: se mantienen en espanol y
@@ -96,30 +96,41 @@ const COPY: Localized<ParkCopy[]> = {
       id: 'interoceanica',
       title: 'Interoceánica',
       description: 'Parque industrial con conectividad logística clave entre océanos.',
+      overview:
+        'Interoceánica es el primer y único parque industrial en operación activa del corredor Atlántico de Guatemala. Su ubicación en el centro del país permite la conexión directa entre los dos puertos más importantes: Santo Tomás de Castilla y Puerto Quetzal, consolidándose como un punto logístico clave para el comercio nacional e internacional.',
       highlights: ['Ubicación estratégica', 'Infraestructura moderna', 'Acceso a rutas principales'],
     },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',
       description: 'Centro productivo con acceso a corredores del Pacífico.',
+      overview:
+        'Michatoya Pacífico es el parque industrial más grande y moderno de Centroamérica, con más de 1,600 hectáreas. Su objetivo es impulsar la transformación productiva del país con la integración de áreas industriales, logísticas, comerciales y residenciales. Ofrece más de 3 millones de metros cuadrados bajo el régimen de Zona de Desarrollo Económico Especial Pública (ZDEEP).',
       highlights: ['Cercanía a puertos', 'Servicios integrados', 'Zonas de carga'],
     },
     {
       id: 'puerta-istmo',
       title: 'Puerta del Istmo',
       description: 'Hub empresarial con servicios para manufactura y distribución.',
+      // TODO: pendiente el texto completo que proporcione el parque.
+      overview:
+        'Puerta del Istmo es un hub empresarial con servicios para manufactura y distribución, con conectividad regional, espacios flexibles y seguridad las 24 horas.',
       highlights: ['Conectividad regional', 'Espacios flexibles', 'Seguridad 24/7'],
     },
     {
       id: 'synergy',
       title: 'Synergy Industrial Park',
       description: 'Parque industrial con ecosistema empresarial consolidado.',
+      overview:
+        'Synergy Industrial Park, con el respaldo de Grupo Pantaleon y Spectrum, combina infraestructura de clase mundial, ubicación estratégica y sostenibilidad para desarrollar soluciones industriales que impulsen la competitividad y el crecimiento con certeza en Guatemala.',
       highlights: ['Servicios corporativos', 'Energía confiable', 'Accesos controlados'],
     },
     {
       id: 'zona-libre-quetzal',
       title: 'Zona Libre Quetzal',
       description: 'Zona con incentivos y enfoque en comercio exterior.',
+      overview:
+        'Zona Libre Quetzal (ZLQ) es un parque logístico e industrial ubicado estratégicamente a 4 kilómetros de Puerto Quetzal. Cuenta con una delegación aduanera in situ y brinda beneficios fiscales y extra aduanales altamente competitivos. Representa una oportunidad estratégica para empresas dedicadas a la importación, exportación, transformación y prestación de servicios.',
       highlights: ['Régimen especial', 'Logística integrada', 'Proximidad a puerto'],
     },
   ],
@@ -129,12 +140,16 @@ const COPY: Localized<ParkCopy[]> = {
       title: 'Interoceánica',
       description:
         'Interoceanic industrial park with key logistics connectivity between the two oceans.',
+      overview:
+        'Interoceánica is the first and only industrial park in active operation along Guatemala’s Atlantic corridor. Its location at the center of the country allows a direct connection between the two most important ports, Santo Tomás de Castilla and Puerto Quetzal, establishing it as a key logistics point for domestic and international trade.',
       highlights: ['Strategic location', 'Modern infrastructure', 'Access to main routes'],
     },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',
       description: 'Production hub with access to the Pacific corridors.',
+      overview:
+        'Michatoya Pacífico is the largest and most modern industrial park in Central America, spanning more than 1,600 hectares. Its purpose is to drive the country’s productive transformation by integrating industrial, logistics, commercial and residential areas. It offers more than 3 million square meters under the Public Special Economic Development Zone (ZDEEP) regime.',
       highlights: ['Close to ports', 'Integrated services', 'Loading areas'],
     },
     {
@@ -142,12 +157,17 @@ const COPY: Localized<ParkCopy[]> = {
       title: 'Puerta del Istmo',
       description:
         'Business hub (Gateway to the Isthmus) with services for manufacturing and distribution.',
+      // TODO: pendiente el texto completo que proporcione el parque.
+      overview:
+        'Puerta del Istmo (Gateway to the Isthmus) is a business hub with services for manufacturing and distribution, offering regional connectivity, flexible spaces and 24/7 security.',
       highlights: ['Regional connectivity', 'Flexible spaces', '24/7 security'],
     },
     {
       id: 'synergy',
       title: 'Synergy Industrial Park',
       description: 'Industrial park with a well-established business ecosystem.',
+      overview:
+        'Synergy Industrial Park, backed by Grupo Pantaleon and Spectrum, combines world-class infrastructure, a strategic location and sustainability to develop industrial solutions that drive competitiveness and growth with certainty in Guatemala.',
       highlights: ['Corporate services', 'Reliable energy', 'Controlled access'],
     },
     {
@@ -155,6 +175,8 @@ const COPY: Localized<ParkCopy[]> = {
       title: 'Zona Libre Quetzal',
       description:
         'Free zone (Quetzal Free Zone) with incentives and a focus on foreign trade.',
+      overview:
+        'Zona Libre Quetzal (ZLQ) is a logistics and industrial park strategically located 4 kilometers from Puerto Quetzal. It has an on-site customs office and provides highly competitive tax and non-customs benefits. It represents a strategic opportunity for companies engaged in importing, exporting, processing and providing services.',
       highlights: ['Special regime', 'Integrated logistics', 'Close to the port'],
     },
   ],

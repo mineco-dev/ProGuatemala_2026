@@ -5,10 +5,11 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { ports } from '@/data/whyGuatemala';
+import { dashboards, tableauLanguage } from '@/data/dashboards';
 import InfrastructureMap from './InfrastructureMap';
 
 export default function MapSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const portList = useLocalized(ports);
 
   return (
@@ -37,11 +38,12 @@ export default function MapSection() {
               </div>
               <div className="p-4 sm:p-6 bg-slate-50/50">
                 <TableauEmbed
-                  vizName="EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional"
-                  aspectRatio={0.65}
-                  language="en-US"
-                  staticImageUrl="https://public.tableau.com/static/images/Es/EstadsticasdepartamentosatractivosFinalizado/PolosdeDesarrolloEconmicoPotencialProductivoRegional/1.png"
-                  params={{ filter: 'publish=yes' }}
+                  vizName={dashboards.departmentStats[language]}
+                  title={t('why.map.boxTitle')}
+                  // 1657x878, la proporcion real del tablero publicado.
+                  aspectRatio={0.53}
+                  language={tableauLanguage(language)}
+                  params={{ publish: 'yes' }}
                 />
               </div>
             </div>

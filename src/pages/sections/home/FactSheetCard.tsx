@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import FactSheetEs from '@/assets/files/FACT SHEET EN ESPAÑOL.pdf';
+import { onePagers } from '@/data/onePagers';
 
 export default function FactSheetCard() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <motion.div
@@ -19,8 +19,9 @@ export default function FactSheetCard() {
         <p className="text-gray-600 mb-6">{t('home.factsheet.subtitle')}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href={FactSheetEs}
-            download="FACT SHEET EN ESPAÑOL.pdf"
+            href={onePagers.country[language]}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center border-2 hover:brightness-110"
             style={{ background: '#0f5ce1', borderColor: '#0f5ce1' }}
           >

@@ -1,15 +1,6 @@
 import type { Localized } from '@/i18n';
 import type { ChipDocument } from '@/types/resource';
-
-/**
- * Origen desde el que se sirven los PDF de la Ruta del Chip.
- *
- * Hoy viven en el portal del Ministerio de Economia. Para servirlos desde este
- * mismo sitio basta con dejar `BASE` vacio y copiar los archivos a
- * `public/images/ruta_del_chip/`; las rutas relativas resultantes son las
- * mismas que usa mineco.gob.gt.
- */
-const BASE = 'https://www.mineco.gob.gt';
+import { chipAssetUrl } from './chipAssets';
 
 /** Nombre de archivo de cada documento, en el orden en que se listan. */
 const FILES = [
@@ -71,7 +62,7 @@ const build = (names: string[]): ChipDocument[] =>
   names.map((name, index) => ({
     id: index + 1,
     name,
-    link: `${BASE}/images/ruta_del_chip/${encodeURIComponent(FILES[index])}`,
+    link: chipAssetUrl(FILES[index]),
   }));
 
 /**

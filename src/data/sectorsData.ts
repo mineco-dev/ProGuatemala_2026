@@ -4,8 +4,9 @@ import {
   Heart, Cpu
 } from 'lucide-react';
 
-import type { Localized } from '@/i18n';
+import type { Language, Localized } from '@/i18n';
 import type { Opportunity, Sector } from '@/types/sector';
+import { sectorOnePagers } from '@/data/onePagers';
 
 // Assets de imágenes
 import metalmecanicaImg from '@/assets/images/sectores/METALMECÁNICA.jpeg';
@@ -28,7 +29,8 @@ import vestuarioImg from '@/assets/images/sectores/VESTUARIO Y TEXTILES.jpeg';
 
 /**
  * Datos que no dependen del idioma: icono, imagen, cifras, horizonte temporal,
- * prioridad, PDF y nivel de potencial de cada oportunidad.
+ * prioridad y nivel de potencial de cada oportunidad. El one pager si depende
+ * del idioma, asi que se resuelve al unir (ver `sectorOnePagers`).
  */
 interface SectorFacts {
   id: string;
@@ -41,7 +43,6 @@ interface SectorFacts {
   imports?: string;
   timeframe: Sector['timeframe'];
   priority: number;
-  pdfUrl?: string;
   potentials: Array<Opportunity['potential']>;
 }
 
@@ -56,7 +57,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$3,272.0M',
     timeframe: 'short',
     priority: 1,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/1.-Alimentos-Procesados.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -69,7 +69,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$273.3M',
     timeframe: 'short',
     priority: 2,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/7.-Bebidas-No-Alcoholicas.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -82,7 +81,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$2,110.0M',
     timeframe: 'short',
     priority: 3,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/6.-Vestuarios-y-Textiles.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -95,7 +93,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$747.9M',
     timeframe: 'short',
     priority: 4,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/3.-Quimicos.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Medio'],
   },
   {
@@ -108,7 +105,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$436.1M',
     timeframe: 'short',
     priority: 5,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/2.-Farmaceuticos.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -121,7 +117,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$544.9M',
     timeframe: 'short',
     priority: 6,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/4.-TICs-y-Software.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -134,7 +129,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$869.2M',
     timeframe: 'short',
     priority: 7,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/5.-Servicios-Empresariales-Contact-Centers-y-BPOs.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -157,7 +151,6 @@ const FACTS: SectorFacts[] = [
     growth: '+10.5%',
     timeframe: 'medium',
     priority: 9,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/5.-Servicios-Empresariales-Contact-Centers-y-BPOs.pdf',
     potentials: [],
   },
   {
@@ -170,7 +163,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$60.3M',
     timeframe: 'medium',
     priority: 10,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/9.%20Electrico%20Electronico%20autopartes.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -194,7 +186,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$160.7M',
     timeframe: 'medium',
     priority: 12,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/10.-Metalmecanica.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Medio-Alto'],
   },
   {
@@ -207,7 +198,6 @@ const FACTS: SectorFacts[] = [
     exports: 'US$1,809.8M',
     timeframe: 'medium',
     priority: 13,
-    pdfUrl: 'https://mineco.gob.gt/files/proguatemala/es/sectoriales/8.-Turismo.pdf',
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
   },
   {
@@ -1139,13 +1129,14 @@ const COPY: Localized<SectorCopy[]> = {
 };
 
 /** Une el texto del idioma activo con las cifras compartidas. */
-const merge = (copy: SectorCopy[]): Sector[] =>
+const merge = (copy: SectorCopy[], language: Language): Sector[] =>
   FACTS.map((facts, index) => {
     const text = copy[index];
     const { potentials, ...rest } = facts;
 
     return {
       ...rest,
+      pdfUrl: sectorOnePagers[facts.id]?.[language],
       name: text.name,
       description: text.description,
       highlights: text.highlights,
@@ -1158,6 +1149,6 @@ const merge = (copy: SectorCopy[]): Sector[] =>
   });
 
 export const sectors: Localized<Sector[]> = {
-  es: merge(COPY.es),
-  en: merge(COPY.en),
+  es: merge(COPY.es, 'es'),
+  en: merge(COPY.en, 'en'),
 };
