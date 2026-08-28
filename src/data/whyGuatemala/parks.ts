@@ -10,7 +10,6 @@ import interoceanica6 from '@/assets/images/centros_productivos_empresariales/in
 import interoceanica7 from '@/assets/images/centros_productivos_empresariales/interoceanica/DJI_0949.JPG';
 
 import michatoya1 from '@/assets/images/centros_productivos_empresariales/michatoya/Michatoya Pacífico.jpg';
-import michatoya2 from '@/assets/images/centros_productivos_empresariales/michatoya/BODEGAS ALTA.jpg';
 import michatoya3 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 1.jpg';
 import michatoya4 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 2.jpg';
 import michatoya5 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 3.jpg';
@@ -55,7 +54,6 @@ const IMAGES: Record<string, string[]> = {
   ],
   michatoya: [
     michatoya1,
-    michatoya2,
     michatoya3,
     michatoya4,
     michatoya5,

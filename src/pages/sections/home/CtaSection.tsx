@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -31,22 +30,6 @@ export default function CtaSection() {
               <Mail className="w-5 h-5 mr-2" />
               {t('home.cta.info')}
             </button>
-            <Link
-              to="/contact"
-              className="border text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
-              style={{ borderColor: '#FFDB60', color: '#FFDB60' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#FFDB60';
-                e.currentTarget.style.color = '#021049';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = '#FFDB60';
-              }}
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              {t('home.cta.meeting')}
-            </Link>
           </div>
         </motion.div>
       </div>
