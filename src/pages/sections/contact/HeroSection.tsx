@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CONTACT_MAILTO } from '@/data/contact';
 
 const HERO_BG =
   "bg-[url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920')]";
@@ -42,12 +43,12 @@ export default function HeroSection() {
                 transition={{ delay: 0.9, duration: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <button className="bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200">
+                <a
+                  href={CONTACT_MAILTO}
+                  className="inline-flex items-center justify-center bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
+                >
                   {t('contact.hero.advisor')}
-                </button>
-                <button className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200">
-                  {t('contact.hero.meeting')}
-                </button>
+                </a>
               </motion.div>
             </div>
           </div>

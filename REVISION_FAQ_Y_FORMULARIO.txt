@@ -1,0 +1,149 @@
+====================================================================
+ ProGuatemala — REVISIÓN DE PREGUNTAS FRECUENTES Y FORMULARIO
+ Documento para revisión del equipo
+ Generado: 03/09/2026
+====================================================================
+
+Este documento resume, tal como están HOY en el sitio web, las
+preguntas frecuentes (FAQ) y la estructura del formulario de contacto.
+
+Por favor revisen cada sección y anoten al final los cambios que
+deseen (agregar / quitar / reescribir / reordenar).
+
+
+====================================================================
+ PARTE 1 — PREGUNTAS FRECUENTES (FAQ)
+====================================================================
+
+Actualmente hay 4 preguntas. Aparecen en la página de Contacto.
+
+--------------------------------------------------------------------
+ VERSIÓN EN ESPAÑOL
+--------------------------------------------------------------------
+
+1. ¿Cuánto tiempo toma recibir una respuesta?
+   R: Garantizamos respuesta en 24 horas hábiles. Para consultas
+      urgentes, puedes llamarnos directamente.
+
+2. ¿Los servicios de ProGuatemala tienen costo?
+   R: No, todos nuestros servicios de promoción y facilitación de
+      inversiones son completamente gratuitos.
+
+3. ¿Pueden ayudarme si aún estoy evaluando Guatemala?
+   R: Por supuesto. Proporcionamos información y análisis para
+      ayudarte en tu proceso de evaluación.
+
+4. ¿Atienden en inglés u otros idiomas?
+   R: Sí, nuestro equipo brinda atención en español, inglés y otros
+      idiomas según la necesidad.
+
+--------------------------------------------------------------------
+ VERSIÓN EN INGLÉS
+--------------------------------------------------------------------
+
+1. How long does it take to get a reply?
+   A: We guarantee a response within 24 business hours. For urgent
+      enquiries, you can call us directly.
+
+2. Do ProGuatemala services have a cost?
+   A: No — all of our investment promotion and facilitation services
+      are completely free of charge.
+
+3. Can you help me if I am still evaluating Guatemala?
+   A: Absolutely. We provide information and analysis to support you
+      throughout your evaluation process.
+
+4. Do you provide support in English or other languages?
+   A: Yes, our team provides support in Spanish, English and other
+      languages as needed.
+
+
+====================================================================
+ PARTE 2 — ESTRUCTURA DEL FORMULARIO DE CONTACTO
+====================================================================
+
+Título del formulario:  "Nosotros te contactamos"
+Subtítulo:              "Completa el formulario y uno de nuestros
+                         especialistas se comunicará contigo para
+                         brindarte información personalizada."
+
+Nota que aparece al final del formulario:
+   "* Campos obligatorios. Nosotros te contactamos en 24 horas hábiles."
+
+--------------------------------------------------------------------
+ CAMPOS DEL FORMULARIO (en orden de aparición)
+--------------------------------------------------------------------
+
+  #  CAMPO              TIPO            OBLIGATORIO   TEXTO DE AYUDA (placeholder)
+  -  -----------------  --------------  -----------   ----------------------------
+  1  Nombre completo    Texto           SÍ            "Tu nombre"
+  2  Correo electrónico Email           SÍ            "tu@email.com"
+  3  Teléfono           Teléfono        No            "+502 XXXX-XXXX"
+  4  Empresa            Texto           No            "Nombre de tu empresa"
+  5  Sector de interés  Lista desplegable SÍ          "Selecciona un sector"
+  6  Mensaje            Texto largo     SÍ            "Cuéntanos sobre tu proyecto
+                                                       de inversión, expectativas,
+                                                       timeline, o cualquier
+                                                       pregunta específica que
+                                                       tengas..."
+
+  Botón de envío: "Enviar mensaje"
+
+--------------------------------------------------------------------
+ OPCIONES DEL CAMPO "SECTOR DE INTERÉS" (lista desplegable)
+--------------------------------------------------------------------
+
+  ESPAÑOL                     INGLÉS
+  --------------------------  --------------------------
+  Agroindustria               Agribusiness
+  Manufactura Liviana         Light Manufacturing
+  Servicios Globales          Global Services
+  Energías Renovables         Renewable Energy
+  Turismo Sostenible          Sustainable Tourism
+  Otro                        Other
+
+
+====================================================================
+ PARTE 3 — DATOS DE CONTACTO MOSTRADOS JUNTO AL FORMULARIO
+====================================================================
+
+  Correo electrónico:  proguatemala@mineco.gob.gt
+  Teléfono:            +502 2412-0200 ext 3500
+  Dirección:           8a. Avenida 10-43 Zona 1
+                       Ciudad de Guatemala, Guatemala
+  Horario de atención: Lunes a Viernes: 8:00 - 17:00
+                       Sábado: 8:00 - 12:00
+  LinkedIn:            https://www.linkedin.com/company/proguatemala/
+
+
+====================================================================
+ PARTE 4 — ESPACIO PARA COMENTARIOS DEL EQUIPO
+====================================================================
+
+  ¿Agregar preguntas frecuentes nuevas? ¿Cuáles?
+  ____________________________________________________________
+  ____________________________________________________________
+
+  ¿Cambiar la redacción de alguna respuesta? ¿Cuál y cómo?
+  ____________________________________________________________
+  ____________________________________________________________
+
+  ¿Agregar / quitar campos del formulario? ¿Cuáles?
+  ____________________________________________________________
+  ____________________________________________________________
+
+  ¿Modificar las opciones del "Sector de interés"?
+  ____________________________________________________________
+  ____________________________________________________________
+
+  ¿Actualizar datos de contacto (correo, teléfono, dirección, horario)?
+  ____________________________________________________________
+  ____________________________________________________________
+
+  Otros comentarios:
+  ____________________________________________________________
+  ____________________________________________________________
+
+====================================================================
+ FIN DEL DOCUMENTO
+====================================================================

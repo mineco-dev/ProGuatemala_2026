@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, Linkedin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/i18n';
 import { LINKEDIN_URL, OFFICE_MAP_EMBED_URL } from '@/data/contact';
@@ -52,10 +52,6 @@ export default function OfficeInfoPanel() {
       <div className="bg-white rounded-2xl p-8 shadow-xl">
         <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.actions.title')}</h3>
         <div className="space-y-4">
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
-            <Calendar className="w-5 h-5 mr-3" />
-            {t('contact.actions.meeting')}
-          </button>
           <div className="bg-gray-50 rounded-lg p-4">
             <h4 className="font-semibold text-gray-900 mb-3">{t('contact.actions.social')}</h4>
             <div className="flex space-x-3 justify-center">

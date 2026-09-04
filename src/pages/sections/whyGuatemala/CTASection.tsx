@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowRight } from 'lucide-react';
-import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { onePagers } from '@/data/onePagers';
+import { CONTACT_MAILTO } from '@/data/contact';
 
 export default function CtaSection() {
   const { t, language } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section className="py-20 bg-gradient-to-r from-[#1464df] to-[#058490] text-white">
@@ -37,21 +35,13 @@ export default function CtaSection() {
               {t('why.cta.download')}
             </a>
 
-            <div>
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base"
-              >
-                {t('why.cta.advisor')}
-                <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
-              </button>
-
-              <ContactModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                language={language}
-              />
-            </div>
+            <a
+              href={CONTACT_MAILTO}
+              className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base"
+            >
+              {t('why.cta.advisor')}
+              <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
+            </a>
           </div>
         </motion.div>
       </div>

@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BarChart3, Download, MessageCircle } from 'lucide-react';
-import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CONTACT_MAILTO } from '@/data/contact';
 import type { SectorDetailContent } from '@/types/sectorDetail';
 
 interface HeroSectionProps {
@@ -11,8 +10,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ sector, onShowDashboard }: HeroSectionProps) {
-  const { t, language } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-sector-6 via-sector-1 to-sector-3 text-white">
@@ -38,20 +36,13 @@ export default function HeroSection({ sector, onShowDashboard }: HeroSectionProp
                 <BarChart3 className="w-5 h-5 mr-2" />
                 {t('sectorDetail.dashboard')}
               </button>
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(true)}
+              <a
+                href={CONTACT_MAILTO}
                 className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 {t('sectorDetail.specialist')}
-              </button>
-
-              <ContactModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                language={language}
-              />
+              </a>
             </div>
           </motion.div>
           <motion.div

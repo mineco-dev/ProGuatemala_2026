@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, MessageCircle } from 'lucide-react';
-import { ContactModal } from '@/components/ContactModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { HOME_VIDEO_URL } from '@/data/home';
 import { onePagers } from '@/data/onePagers';
+import { CONTACT_MAILTO } from '@/data/contact';
 
 export default function HeroSection() {
   const { t, language } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section className="relative text-white py-20 lg:py-32" style={{ background: '#0f5ce1' }}>
@@ -37,9 +35,8 @@ export default function HeroSection() {
                 {t('home.hero.download')}
               </a>
 
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(true)}
+              <a
+                href={CONTACT_MAILTO}
                 className="border border-white text-white font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center cursor-pointer"
                 style={{ borderColor: '#FFFFFF', color: '#FFFFFF' }}
                 onMouseEnter={(e) => {
@@ -53,7 +50,7 @@ export default function HeroSection() {
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 {t('home.hero.contact')}
-              </button>
+              </a>
             </div>
           </motion.div>
 
@@ -81,12 +78,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-
-      <ContactModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        language={language}
-      />
     </section>
   );
 }

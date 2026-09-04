@@ -22,6 +22,15 @@ import michatoya11 from '@/assets/images/centros_productivos_empresariales/micha
 import michatoya12 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 10.jpg';
 
 import istmo1 from '@/assets/images/centros_productivos_empresariales/istmo/Puertas del Istmo.png';
+import istmo2 from '@/assets/images/centros_productivos_empresariales/istmo/pdi 1.png';
+import istmo3 from '@/assets/images/centros_productivos_empresariales/istmo/PDI2.png';
+import istmo4 from '@/assets/images/centros_productivos_empresariales/istmo/Ingreso Fulles PDI.jpg';
+import istmo5 from '@/assets/images/centros_productivos_empresariales/istmo/Central de transf. 2.png';
+import istmo6 from '@/assets/images/centros_productivos_empresariales/istmo/TH.png';
+import istmo7 from '@/assets/images/centros_productivos_empresariales/istmo/Picture2.png';
+import istmo8 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2025-07-07-12-48-05.jpg';
+import istmo9 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2025-10-01-09-02-40.jpg';
+import istmo10 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2026-07-23-12-59-17.jpg';
 
 import synergy1 from '@/assets/images/centros_productivos_empresariales/synergy/Synergy Industrial Park.jpg';
 import synergy2 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx.png';
@@ -65,8 +74,18 @@ const IMAGES: Record<string, string[]> = {
     michatoya11,
     michatoya12,
   ],
-  // TODO: solo hay una fotografia disponible de este parque.
-  'puerta-istmo': [istmo1],
+  'puerta-istmo': [
+    istmo1,
+    istmo2,
+    istmo3,
+    istmo4,
+    istmo5,
+    istmo6,
+    istmo7,
+    istmo8,
+    istmo9,
+    istmo10,
+  ],
   synergy: [
     synergy1,
     synergy2,

@@ -22,12 +22,6 @@ export const team: Localized<Person[]> = {
       email: 'ilcheam@mineco.gob.gt',
     },
     {
-      name: 'Daniela Hurtarte',
-      position: 'Asesora de Atracción de Inversión Extranjera',
-      bio: 'Licenciada en Relaciones Internacionales, con Maestría en Comunicación Política y Empresarial, especializada en Comunicación Digital, por la Universidad Camilo José Cela en Madrid. Experiencia profesional en el ámbito de asuntos públicos en Madrid, con un enfoque en investigación política y legislativa española, así como en la atracción de inversión extranjera en Guatemala, particularmente en los sectores de turismo, vestuario y textil.',
-      email: 'dmhurtarter@mineco.gob.gt',
-    },
-    {
       name: 'Priscilla Ayapan',
       position: 'Asesora de Atracción de Inversión Extranjera',
       bio: 'Licenciada en Relaciones Internacionales con especialización en Comercio Exterior y Maestría en Políticas Públicas por la KDI School of Public Policy and Management (Corea del Sur). Cuenta con experiencia en los sectores público y privado en promoción de inversiones, comercio internacional y desarrollo económico. Ha brindado acompañamiento a empresas nacionales e internacionales en procesos de inversión y expansión, así como en la promoción comercial, la coordinación interinstitucional, la organización de eventos y la facilitación de proyectos orientados al fortalecimiento de la competitividad. ',
@@ -88,12 +82,6 @@ export const team: Localized<Person[]> = {
       position: 'Foreign Investment Attraction Advisor',
       bio: 'She holds a Bachelor’s degree in International Relations and an MBA from Universidad Rafael Landívar. She has more than 10 years of experience in trade and investment attraction, working at international promotion agencies in Guatemala for the Government of Mexico, the Government of Guatemala and USAID international cooperation. She has worked closely with government institutions, chambers of commerce and multinational companies.',
       email: 'ilcheam@mineco.gob.gt',
-    },
-    {
-      name: 'Daniela Hurtarte',
-      position: 'Foreign Investment Attraction Advisor',
-      bio: 'She holds a Bachelor’s degree in International Relations and a Master’s degree in Political and Corporate Communication with a specialization in Digital Communication from Universidad Camilo José Cela in Madrid. She has professional experience in public affairs in Madrid, focused on Spanish political and legislative research, as well as in foreign investment attraction in Guatemala, particularly in the tourism, apparel and textile sectors.',
-      email: 'dmhurtarter@mineco.gob.gt',
     },
     {
       name: 'Priscilla Ayapan',

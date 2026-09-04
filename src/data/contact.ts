@@ -113,3 +113,7 @@ export const OFFICE_MAP_EMBED_URL =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.2847!2d-90.5131!3d14.6349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDM4JzA1LjYiTiA5MMKwMzAnNDcuMiJX!5e0!3m2!1sen!2sgt!4v1234567890';
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/company/proguatemala/';
+
+/** Correo oficial de ProGuatemala y su enlace mailto para los botones de contacto. */
+export const CONTACT_EMAIL = 'proguatemala@mineco.gob.gt';
+export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}`;

@@ -33,7 +33,6 @@ export const es = {
   'home.cta.title': '¿Listo para invertir en Guatemala?',
   'home.cta.subtitle': 'Nuestro equipo de expertos está disponible para acompañarte en cada paso de tu proceso de inversión. ¡Comencemos hoy!',
   'home.cta.info': 'Solicitar información',
-  'home.cta.meeting': 'Agendar reunión',
 
   'home.hero.videoCaption': 'Video institucional: Descubre por qué Guatemala es tu mejor destino de inversión',
   'home.advantages.badge': '🇬🇹 Ventajas Competitivas',
@@ -225,7 +224,6 @@ export const es = {
   'services.cta.title': '¿Listo para comenzar?',
   'services.cta.subtitle': 'Nuestro equipo de expertos está disponible para acompañarte desde el primer día. Contacta con nosotros para una consultoría personalizada gratuita.',
   'services.cta.consult': 'Solicitar consultoría',
-  'services.cta.meeting': 'Agendar reunión',
 
   // Legal & Incentives
   'legal.hero.title': 'Marco Legal e',
@@ -251,7 +249,6 @@ export const es = {
   'contact.hero.title': 'Contacto',
   'contact.hero.subtitle': '¿Listo para hacer realidad tu proyecto de inversión en Guatemala? Nuestro equipo está aquí para acompañarte en cada paso',
   'contact.hero.advisor': 'Habla con un asesor',
-  'contact.hero.meeting': 'Agendar reunión',
   'contact.form.title': 'Nosotros te contactamos',
   'contact.form.subtitle': 'Completa el formulario y uno de nuestros especialistas se comunicará contigo para brindarte información personalizada.',
   'contact.form.name': 'Nombre completo *',
@@ -280,7 +277,6 @@ export const es = {
   'contact.location.access': 'Acceso',
   'contact.location.accessDesc': 'Transporte público y privado',
   'contact.actions.title': 'Acciones Rápidas',
-  'contact.actions.meeting': 'Agendar una reunión',
   'contact.actions.social': 'Síguenos en redes sociales',
   'contact.actions.linkedin': 'LinkedIn de ProGuatemala',
   'contact.hours.title': 'Horarios de Atención',

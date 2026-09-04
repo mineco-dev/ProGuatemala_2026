@@ -33,7 +33,6 @@ export const en = {
   'home.cta.title': 'Ready to invest in Guatemala?',
   'home.cta.subtitle': 'Our team of experts is available to accompany you every step of your investment process. Let\'s start today!',
   'home.cta.info': 'Request information',
-  'home.cta.meeting': 'Schedule meeting',
 
   // Home Section
   'home.hero.videoCaption': 'Institutional video: Discover why Guatemala is your best investment destination',
@@ -226,7 +225,6 @@ export const en = {
   'services.cta.title': 'Ready to get started?',
   'services.cta.subtitle': 'Our team of experts is available to support you from day one. Get in touch for a free personalized consultation.',
   'services.cta.consult': 'Request a consultation',
-  'services.cta.meeting': 'Schedule a meeting',
 
   // Legal & Incentives
   'legal.hero.title': 'Legal Framework and',
@@ -252,7 +250,6 @@ export const en = {
   'contact.hero.title': 'Contact',
   'contact.hero.subtitle': 'Ready to make your investment project in Guatemala a reality? Our team is here to support you every step of the way',
   'contact.hero.advisor': 'Talk to an advisor',
-  'contact.hero.meeting': 'Schedule a meeting',
   'contact.form.title': 'We will contact you',
   'contact.form.subtitle': 'Fill in the form and one of our specialists will get in touch to provide personalized information.',
   'contact.form.name': 'Full name *',
@@ -281,7 +278,6 @@ export const en = {
   'contact.location.access': 'Access',
   'contact.location.accessDesc': 'Public and private transport',
   'contact.actions.title': 'Quick Actions',
-  'contact.actions.meeting': 'Schedule a meeting',
   'contact.actions.social': 'Follow us on social media',
   'contact.actions.linkedin': 'ProGuatemala on LinkedIn',
   'contact.hours.title': 'Office Hours',

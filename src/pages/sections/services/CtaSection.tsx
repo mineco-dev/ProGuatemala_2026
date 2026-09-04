@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CONTACT_MAILTO } from '@/data/contact';
 
 export default function CtaSection() {
   const { t } = useLanguage();
@@ -21,14 +22,13 @@ export default function CtaSection() {
             {t('services.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+            <a
+              href={CONTACT_MAILTO}
+              className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+            >
               <Phone className="w-5 h-5 mr-2" />
               {t('services.cta.consult')}
-            </button>
-            <button className="border border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center">
-              {t('services.cta.meeting')}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
