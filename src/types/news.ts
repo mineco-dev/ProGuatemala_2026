@@ -8,6 +8,7 @@ export interface NewsItem {
   category: string;
   read_time: string;
   is_featured: boolean;
+  linkedin_url?: string | null;
 }
 
 export interface Event {

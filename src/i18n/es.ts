@@ -329,6 +329,9 @@ export const es = {
   'resources.newsletter.placeholder': 'Tu correo electrónico',
   'resources.newsletter.submit': 'Suscribirse',
   'resources.newsletter.note': 'Enviamos actualizaciones mensualmente. Puedes cancelar en cualquier momento.',
+  'resources.linkedin.title': 'Síguenos en LinkedIn',
+  'resources.linkedin.subtitle': 'Conoce las últimas novedades de la Agencia Nacional de Atracción de Inversión.',
+  'resources.linkedin.cta': 'Ver publicación en LinkedIn',
 
   // News
   'news.hero.title': 'Noticias y',

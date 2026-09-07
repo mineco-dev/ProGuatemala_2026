@@ -3,9 +3,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useResources } from '@/hooks/useResources';
 import { RUTA_CHIP_CATEGORY } from '@/data/resources';
 import {
-  DigitalToolsSection,
   FeaturedResourcesSection,
   HeroSection,
+  LinkedInSection,
   NewsletterSection,
   ResourceFiltersSection,
   ResourcesGridSection,
@@ -64,7 +64,7 @@ export default function Resources() {
 
       <ResourcesGridSection resources={filteredResources} />
 
-      <DigitalToolsSection />
+      <LinkedInSection />
 
       <NewsletterSection />
     </div>

@@ -330,6 +330,9 @@ export const en = {
   'resources.newsletter.placeholder': 'Your email address',
   'resources.newsletter.submit': 'Subscribe',
   'resources.newsletter.note': 'We send monthly updates. You can unsubscribe at any time.',
+  'resources.linkedin.title': 'Follow Us on LinkedIn',
+  'resources.linkedin.subtitle': 'Discover the latest updates from the National Investment Attraction Agency.',
+  'resources.linkedin.cta': 'View post on LinkedIn',
 
   // News
   'news.hero.title': 'News and',
