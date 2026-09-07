@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proguatemala-web
+  namespace: proguatemala-test
+  labels:
+    app: proguatemala-web
+spec:
+  type: ClusterIP
+  selector:
+    app: proguatemala-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

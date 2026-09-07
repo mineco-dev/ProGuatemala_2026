@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: proguatemala-web
+  namespace: proguatemala-test
+  annotations:
+    # Ajusta según tu controlador de ingress (nginx en este ejemplo).
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    # Reemplaza por el host de tu entorno de pruebas.
+    - host: proguatemala.test.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proguatemala-web
+                port:
+                  number: 80
