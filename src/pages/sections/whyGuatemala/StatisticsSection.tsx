@@ -10,7 +10,7 @@ export default function StatisticsSection() {
   const items = useLocalized(statistics);
 
   return (
-    <section className="section-premium bg-gradient-to-b from-white to-gray-50">
+    <section id="why-estadisticas" className="section-premium bg-gradient-to-b from-white to-gray-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           variant="premium"

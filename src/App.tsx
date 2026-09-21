@@ -14,6 +14,7 @@ const StrategicSectors = lazy(() => import('./pages/StrategicSectors'));
 const SectorDetail = lazy(() => import('./pages/SectorDetail'));
 const LegalIncentives = lazy(() => import('./pages/LegalIncentives'));
 const Resources = lazy(() => import('./pages/Resources'));
+const Press = lazy(() => import('./pages/Press'));
 const News = lazy(() => import('./pages/News'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/strategic-sectors/:sector" element={<SectorDetail />} />
                 <Route path="/legal-incentives" element={<LegalIncentives />} />
                 <Route path="/resources" element={<Resources />} />
+                <Route path="/prensa" element={<Press />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />

@@ -11,6 +11,7 @@ export const en = {
   'nav.sectors': 'Sectors',
   'nav.about': 'About Us',
   'nav.resources': 'Resources',
+  'nav.press': 'Press',
   'nav.contact': 'Contact',
   
   // Home Page
@@ -351,6 +352,13 @@ export const en = {
   'news.newsletter.placeholder': 'Your email address',
   'news.newsletter.submit': 'Subscribe',
   'news.newsletter.note': 'Weekly newsletter. No spam. Unsubscribe anytime.',
+
+  // Press
+  'press.hero.title': 'Press',
+  'press.hero.highlight': 'Room',
+  'press.hero.subtitle': 'Articles and columns from ProGuatemala on investment, strategic sectors and the Ruta del Chip, published on the MINECO portal.',
+  'press.readArticle': 'Read article',
+  'press.viewMore': 'See more on MINECO',
 
   // Strategic sectors
   'sectors.hero.title': 'Strategic',

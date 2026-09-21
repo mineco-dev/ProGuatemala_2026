@@ -65,46 +65,116 @@ export const interestOptions: Localized<string[]> = {
 export const faqs: Localized<FaqItem[]> = {
   es: [
     {
-      question: '¿Cuánto tiempo toma recibir una respuesta?',
+      question: '¿Cuál es el rol y el mandato institucional de ProGuatemala?',
       answer:
-        'Garantizamos respuesta en 24 horas hábiles. Para consultas urgentes, puedes llamarnos directamente.',
+        'ProGuatemala es la Agencia Nacional de Atracción de Inversión de Guatemala, adscrita al Ministerio de Economía. Lidera los esfuerzos del país para atraer, facilitar y retener la inversión extranjera directa (IED), posicionando a Guatemala como un destino atractivo y competitivo para los inversionistas extranjeros.',
     },
     {
-      question: '¿Los servicios de ProGuatemala tienen costo?',
+      question: '¿A quién está dirigido el acompañamiento de ProGuatemala?',
       answer:
-        'No, todos nuestros servicios de promoción y facilitación de inversiones son completamente gratuitos.',
+        'El acompañamiento de ProGuatemala está dirigido a empresas e inversionistas extranjeros interesados en establecer o expandir operaciones en Guatemala.',
     },
     {
-      question: '¿Pueden ayudarme si aún estoy evaluando Guatemala?',
+      question: '¿Los servicios de ProGuatemala son gratuitos y confidenciales?',
       answer:
-        'Por supuesto. Proporcionamos información y análisis para ayudarte en tu proceso de evaluación.',
+        'Sí. Los servicios de ProGuatemala son gratuitos para el inversionista. El acompañamiento se brinda de manera confidencial y personalizada.',
     },
     {
-      question: '¿Atienden en inglés u otros idiomas?',
+      question:
+        '¿Puede ProGuatemala brindarme apoyo mientras aún evalúo a Guatemala como destino de inversión?',
       answer:
-        'Sí, nuestro equipo brinda atención en español, inglés y otros idiomas según la necesidad.',
+        'Sí. ProGuatemala acompaña a las empresas a lo largo de todo el ciclo de inversión, desde la exploración inicial del mercado hasta la expansión y consolidación de sus operaciones.',
+    },
+    {
+      question:
+        '¿Qué tipo de información o análisis proporciona la Unidad de Inteligencia de Inversión?',
+      answer:
+        'La Unidad de Inteligencia de Inversión provee información y análisis especializados para respaldar la toma de decisiones y la planificación estratégica de las empresas. Sus servicios incluyen indicadores macroeconómicos actualizados, perfiles sectoriales, análisis de industrias y atención a solicitudes específicas de información, conforme a los requerimientos particulares de cada proyecto.',
+    },
+    {
+      question:
+        '¿Ofrece ProGuatemala acompañamiento en la selección de ubicación para mi proyecto de inversión?',
+      answer:
+        'Sí. ProGuatemala brinda orientación personalizada durante el proceso de selección de la ubicación, apoyando la identificación del lugar más adecuado según las necesidades operativas y prioridades estratégicas de cada proyecto. Esto incluye la presentación de alternativas como parques industriales, regímenes económicos especiales y terrenos de propiedad privada; información sobre conectividad logística y acceso a puertos y fronteras; así como la coordinación de visitas de campo y agendas especializadas con actores relevantes de distintos sectores.',
+    },
+    {
+      question: '¿Qué apoyo brinda ProGuatemala durante el proceso de establecimiento?',
+      answer:
+        'Durante la fase de implementación, ProGuatemala actúa como facilitador institucional para respaldar el establecimiento de los proyectos de inversión. Esto incluye orientación sobre los permisos, licencias y procedimientos regulatorios aplicables según la naturaleza de cada operación, así como la vinculación con instituciones gubernamentales, proveedores de servicios y otros actores nacionales relevantes.',
+    },
+    {
+      question:
+        '¿El acompañamiento de ProGuatemala concluye una vez establecido mi proyecto de inversión, o continúa posteriormente?',
+      answer:
+        'Continúa. Una vez establecidas las operaciones, ProGuatemala brinda seguimiento continuo mediante servicios especializados de aftercare, que incluyen la atención a necesidades operativas, la facilitación de la comunicación con actores públicos y privados, y la vinculación con socios estratégicos. Este acompañamiento busca contribuir a la retención, expansión y éxito sostenido de la inversión.',
+    },
+    {
+      question:
+        '¿Coordina ProGuatemala con otras instituciones gubernamentales para facilitar mi proyecto de inversión?',
+      answer:
+        'Sí. Una de las acciones estratégicas de ProGuatemala es promover la coordinación interinstitucional para apoyar a los inversionistas y contribuir al fortalecimiento del clima de negocios del país.',
+    },
+    {
+      question:
+        '¿ProGuatemala gestiona o emite permisos y licencias para establecer una inversión?',
+      answer:
+        'No. ProGuatemala no sustituye a las instituciones responsables de emitir permisos, licencias o autorizaciones. Sin embargo, brinda orientación general sobre los procedimientos aplicables y facilita la vinculación con las autoridades competentes para apoyar al inversionista durante el proceso de establecimiento.',
     },
   ],
   en: [
     {
-      question: 'How long does it take to get a reply?',
+      question: "What is ProGuatemala's role and institutional mandate?",
       answer:
-        'We guarantee a response within 24 business hours. For urgent enquiries, you can call us directly.',
+        "ProGuatemala is Guatemala's National Investment Promotion Agency, operating under the Ministry of Economy. It leads the country's efforts to attract, facilitate, and retain foreign direct investment (FDI), positioning Guatemala as an attractive and competitive destination for international investors.",
     },
     {
-      question: 'Do ProGuatemala services have a cost?',
+      question: "Who can benefit from ProGuatemala's support?",
       answer:
-        'No — all of our investment promotion and facilitation services are completely free of charge.',
+        "ProGuatemala's support is available to foreign companies and investors seeking to establish or expand operations in Guatemala.",
     },
     {
-      question: 'Can you help me if I am still evaluating Guatemala?',
+      question: "Are ProGuatemala's services free of charge and confidential?",
       answer:
-        'Absolutely. We provide information and analysis to support you throughout your evaluation process.',
+        "Yes. ProGuatemala's services are free of charge for the investor. Support is provided confidentially and on a personalized basis.",
     },
     {
-      question: 'Do you provide support in English or other languages?',
+      question:
+        'Can ProGuatemala assist me while I am still evaluating Guatemala as an investment destination?',
       answer:
-        'Yes, our team provides support in Spanish, English and other languages as needed.',
+        "Yes. ProGuatemala's mission is to support companies throughout every stage of the investment lifecycle, from initial market exploration to the expansion and consolidation of established operations.",
+    },
+    {
+      question: 'What information or analysis does the Investment Intelligence Unit provide?',
+      answer:
+        'The Investment Intelligence Unit delivers specialized data and analysis to support corporate decision-making and strategic planning. Services include up-to-date macroeconomic indicators, sector profiles, industry analysis, and tailored responses to specific information requests, based on the specific requirements of each project.',
+    },
+    {
+      question: 'Does ProGuatemala provide support with site selection for my investment project?',
+      answer:
+        "Yes. ProGuatemala offers personalized guidance throughout the site-selection process, helping identify the location best suited to each project's operational requirements and strategic priorities. This includes presenting options such as industrial parks, special economic zones and regimes, and privately owned land; providing information on logistics connectivity and access to ports and border crossings; and coordinating site visits and specialized agendas with relevant public- and private-sector stakeholders.",
+    },
+    {
+      question: 'What support does ProGuatemala provide during the establishment process?',
+      answer:
+        'During the implementation phase, ProGuatemala serves as an institutional facilitator to support the establishment of investment projects. This includes guidance on the permits, licenses, and regulatory procedures applicable to each type of operation, as well as facilitating engagement with government institutions, service providers, and other relevant national stakeholders.',
+    },
+    {
+      question:
+        "Does ProGuatemala's support conclude once my investment project is established, or does it continue afterwards?",
+      answer:
+        'It continues. Once operations are established, ProGuatemala provides ongoing support through specialized aftercare services, including addressing operational needs, facilitating communication with public and private sector stakeholders, and connecting investors with strategic partners. This continued engagement is intended to support the long-term retention, expansion, and success of the investment.',
+    },
+    {
+      question:
+        'Does ProGuatemala coordinate with other government institutions to facilitate my investment project?',
+      answer:
+        "Yes. One of ProGuatemala's strategic priorities is to promote interinstitutional coordination to support investors and strengthen the country's business climate.",
+    },
+    {
+      question:
+        'Does ProGuatemala process or issue permits and licenses required to establish an investment?',
+      answer:
+        'No. ProGuatemala does not replace the institutions responsible for issuing permits, licenses, or authorizations. However, it provides general guidance on applicable procedures and facilitates engagement with the relevant authorities to support investors throughout the establishment process.',
     },
   ],
 };

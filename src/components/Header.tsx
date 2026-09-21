@@ -1,23 +1,58 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import { smoothScrollTo } from '../lib/scroll';
+
+interface NavSection {
+  id: string;
+  name: string;
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  sections?: NavSection[];
+}
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { language, setLanguage, t } = useLanguage();
 
-  const navigation = [
+  const navigation: NavItem[] = [
     { name: t('nav.home'), href: '/' },
-    { name: t('nav.why-guatemala'), href: '/why-guatemala' },
+    {
+      name: t('nav.why-guatemala'),
+      href: '/why-guatemala',
+      sections: [
+        { id: 'why-estadisticas', name: t('why.stats.title') },
+        { id: 'advantages-grid', name: t('why.advantages.title') },
+        { id: 'stats-grid', name: t('why.map.title') },
+        { id: 'why-parques', name: t('why.parks.title') },
+        { id: 'why-comparativa', name: t('why.comparison.title') },
+      ],
+    },
     { name: t('nav.sectors'), href: '/strategic-sectors' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.resources'), href: '/resources' },
+    { name: t('nav.press'), href: '/prensa' },
     { name: t('nav.contact'), href: '/contact' },
   ];
+
+  // Va a una seccion de una pagina: si ya estamos en ella hace scroll animado;
+  // si no, navega a la pagina con el ancla y la propia pagina hace el scroll.
+  const goToSection = (href: string, id: string) => {
+    setIsMenuOpen(false);
+    if (location.pathname === href) {
+      smoothScrollTo(id);
+    } else {
+      navigate(`${href}#${id}`);
+    }
+  };
 
   return (
     <>
@@ -72,20 +107,51 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === item.href
-                    ? 'text-gray-900'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-                style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) =>
+              item.sections ? (
+                <div key={item.name} className="relative group">
+                  <Link
+                    to={item.href}
+                    className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                      location.pathname === item.href
+                        ? 'text-gray-900'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                  >
+                    {item.name}
+                    <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                  </Link>
+                  {/* Desplegable (aparece al pasar el cursor) */}
+                  <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                    <div className="bg-white rounded-md shadow-lg border py-2 min-w-[240px]">
+                      {item.sections.map((section) => (
+                        <button
+                          key={section.id}
+                          onClick={() => goToSection(item.href, section.id)}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                        >
+                          {section.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    location.pathname === item.href
+                      ? 'text-gray-900'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                  style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Language Selector & Mobile Menu Button */}
@@ -138,19 +204,33 @@ const Header: React.FC = () => {
           >
             <div className="py-4 space-y-1">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    location.pathname === item.href
-                      ? 'text-gray-900'
-                      : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-                  style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  <Link
+                    to={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${
+                      location.pathname === item.href
+                        ? 'text-gray-900'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                    style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.sections && (
+                    <div className="ml-3 mt-1 mb-2 space-y-1 border-l-2 border-gray-200 pl-3">
+                      {item.sections.map((section) => (
+                        <button
+                          key={section.id}
+                          onClick={() => goToSection(item.href, section.id)}
+                          className="block w-full text-left px-3 py-2 rounded-md text-sm text-gray-600 hover:bg-gray-100"
+                        >
+                          {section.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </motion.div>

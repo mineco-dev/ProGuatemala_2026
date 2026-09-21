@@ -8,7 +8,7 @@ export default function ComparisonSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section id="why-comparativa" className="py-16 bg-gray-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title={t('why.comparison.title')}

@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { CONTACT_MAILTO } from '@/data/contact';
+import { smoothScrollTo } from '@/lib/scroll';
 
 const HERO_BG =
   "bg-[url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920')]";
 
 export default function HeroSection() {
   const { t } = useLanguage();
+
+  const scrollToFaq = () => smoothScrollTo('preguntas-frecuentes');
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -49,6 +52,13 @@ export default function HeroSection() {
                 >
                   {t('contact.hero.advisor')}
                 </a>
+                <button
+                  type="button"
+                  onClick={scrollToFaq}
+                  className="inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
+                >
+                  {t('contact.faq.title')}
+                </button>
               </motion.div>
             </div>
           </div>
