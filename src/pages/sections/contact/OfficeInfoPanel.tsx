@@ -6,7 +6,7 @@ import { LINKEDIN_URL, OFFICE_MAP_EMBED_URL } from '@/data/contact';
 
 const SCHEDULE: Array<{ dayKey: TranslationKey; hoursKey: TranslationKey; closed: boolean }> = [
   { dayKey: 'contact.hours.weekdays', hoursKey: 'contact.hours.weekdaysValue', closed: false },
-  { dayKey: 'contact.hours.saturday', hoursKey: 'contact.hours.saturdayValue', closed: false },
+  { dayKey: 'contact.hours.saturday', hoursKey: 'contact.hours.saturdayValue', closed: true },
   { dayKey: 'contact.hours.sunday', hoursKey: 'contact.hours.sundayValue', closed: true },
 ];
 
@@ -36,16 +36,6 @@ export default function OfficeInfoPanel() {
             referrerPolicy="no-referrer-when-downgrade"
             className="rounded-xl"
           />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div className="text-center text-gray-600">
-            <p className="font-medium text-gray-900">{t('contact.location.zone')}</p>
-            <p className="text-gray-600">{t('contact.location.zoneDesc')}</p>
-          </div>
-          <div>
-            <p className="font-medium text-gray-900">{t('contact.location.access')}</p>
-            <p className="text-gray-600">{t('contact.location.accessDesc')}</p>
-          </div>
         </div>
       </div>
 

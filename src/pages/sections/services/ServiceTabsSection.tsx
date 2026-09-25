@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAdvisorModal } from '@/contexts/AdvisorModalContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { services } from '@/data/services';
 
 export default function ServiceTabsSection() {
   const { t } = useLanguage();
+  const { open: openAdvisorModal } = useAdvisorModal();
   const items = useLocalized(services);
   const [activeTab, setActiveTab] = useState(0);
 
@@ -67,12 +68,13 @@ export default function ServiceTabsSection() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/contact"
+                <button
+                  type="button"
+                  onClick={openAdvisorModal}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-gray-900 text-gray-900 font-semibold hover:bg-gray-900 hover:text-white transition-colors duration-200"
                 >
                   {t('services.contactAdvisor')}
-                </Link>
+                </button>
               </div>
             </div>
 

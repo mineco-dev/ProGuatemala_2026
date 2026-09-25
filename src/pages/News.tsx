@@ -6,7 +6,6 @@ import {
   FeaturedNewsSection,
   HeroSection,
   NewsGridSection,
-  NewsletterSection,
 } from './sections/news';
 
 export default function News() {
@@ -23,7 +22,6 @@ export default function News() {
       <FeaturedNewsSection news={featuredNews} />
       <NewsGridSection items={newsItems} />
       <EventsSection events={events} />
-      <NewsletterSection />
     </div>
   );
 }

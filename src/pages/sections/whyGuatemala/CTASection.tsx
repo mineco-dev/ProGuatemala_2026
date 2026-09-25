@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Download, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAdvisorModal } from '@/contexts/AdvisorModalContext';
 import { onePagers } from '@/data/onePagers';
-import { CONTACT_MAILTO } from '@/data/contact';
 
 export default function CtaSection() {
   const { t, language } = useLanguage();
+  const { open: openAdvisorModal } = useAdvisorModal();
 
   return (
     <section className="py-20 bg-gradient-to-r from-[#1464df] to-[#058490] text-white">
@@ -35,13 +36,14 @@ export default function CtaSection() {
               {t('why.cta.download')}
             </a>
 
-            <a
-              href={CONTACT_MAILTO}
+            <button
+              type="button"
+              onClick={openAdvisorModal}
               className="w-full sm:w-auto border border-white/70 text-white hover:bg-white/10 font-semibold px-8 py-4 rounded-xl transition-all duration-200 flex items-center justify-center text-base"
             >
               {t('why.cta.advisor')}
               <ArrowRight className="w-5 h-5 ml-2.5 stroke-[2]" />
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>

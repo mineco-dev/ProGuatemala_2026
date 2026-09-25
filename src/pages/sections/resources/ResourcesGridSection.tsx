@@ -13,17 +13,23 @@ interface ResourcesGridSectionProps {
 
 /**
  * Alto fijo de cada tarjeta. Es la unica fuente de la altura del panel: si
- * cambia el diseno de la tarjeta, se ajusta aqui y la fila sigue cuadrando.
+ * cambia el diseno de la tarjeta, se ajusta aqui y las filas siguen cuadrando.
  */
 const CARD_HEIGHT_REM = 19.5;
 
+/** Filas visibles y separacion entre ellas (`gap-6` = 1.5rem). */
+const VISIBLE_ROWS = 2;
+const ROW_GAP_REM = 1.5;
+
 /**
- * El catalogo se acota a una fila exacta: asi ocupa poco y queda claro de un
+ * El catalogo se acota a dos filas exactas (6 documentos): asi se ve de un
  * vistazo que es un panel con su propia barra, no el final del listado. El
  * resto se recorre dentro del panel. El tope en `vh` solo entra en pantallas
- * muy bajas, donde ni una fila completa cabe.
+ * muy bajas, donde no caben las dos filas completas.
  */
-const PANEL_MAX_HEIGHT = `min(${CARD_HEIGHT_REM}rem, 85vh)`;
+const PANEL_MAX_HEIGHT = `min(${
+  VISIBLE_ROWS * CARD_HEIGHT_REM + (VISIBLE_ROWS - 1) * ROW_GAP_REM
+}rem, 85vh)`;
 
 export default function ResourcesGridSection({ resources }: ResourcesGridSectionProps) {
   const { t } = useLanguage();

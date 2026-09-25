@@ -2,12 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import resImg from '@/assets/images/portadas/5. CENTRO DE RECURSOS.jpeg';
 
-interface HeroSectionProps {
-  onExplore: () => void;
-  onShowGuides: () => void;
-}
-
-export default function HeroSection({ onExplore, onShowGuides }: HeroSectionProps) {
+export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
@@ -43,25 +38,6 @@ export default function HeroSection({ onExplore, onShowGuides }: HeroSectionProp
               >
                 {t('resources.hero.subtitle')}
               </motion.p>
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
-                <button
-                  onClick={onExplore}
-                  className="bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 shadow-lg"
-                >
-                  {t('resources.hero.explore')}
-                </button>
-                <button
-                  onClick={onShowGuides}
-                  className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200"
-                >
-                  {t('resources.hero.guides')}
-                </button>
-              </motion.div>
             </div>
           </div>
         </motion.div>

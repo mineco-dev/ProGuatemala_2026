@@ -17,8 +17,8 @@ const INFO_COPY: Localized<InfoCopy[]> = {
     },
     {
       title: 'Horario de Atención',
-      content: 'Lunes a Viernes: 8:00 - 17:00',
-      subContent: 'Sábado: 8:00 - 12:00',
+      content: 'Lunes a Viernes: 8:00 - 16:00',
+      subContent: 'Sábado y Domingo: Cerrado',
     },
   ],
   en: [
@@ -31,8 +31,8 @@ const INFO_COPY: Localized<InfoCopy[]> = {
     },
     {
       title: 'Office Hours',
-      content: 'Monday to Friday: 8:00 AM - 5:00 PM',
-      subContent: 'Saturday: 8:00 AM - 12:00 PM',
+      content: 'Monday to Friday: 8:00 AM - 4:00 PM',
+      subContent: 'Saturday & Sunday: Closed',
     },
   ],
 };

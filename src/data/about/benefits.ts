@@ -17,7 +17,7 @@ const COPY: Localized<Array<Pick<Benefit, 'title' | 'description'>>> = {
     },
     {
       title: 'Multilingüe',
-      description: 'Atención en español, inglés y otros idiomas según la necesidad',
+      description: 'Atención en español e inglés según la necesidad',
     },
     {
       title: 'Especializado',
@@ -35,7 +35,7 @@ const COPY: Localized<Array<Pick<Benefit, 'title' | 'description'>>> = {
     },
     {
       title: 'Multilingual',
-      description: 'Support in Spanish, English and other languages as needed',
+      description: 'Support in Spanish and English as needed',
     },
     {
       title: 'Specialized',

@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { AdvisorModalProvider } from './contexts/AdvisorModalContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import GDPRBar from './components/GDPRBar';
@@ -53,34 +54,36 @@ function App() {
 
   return (
     <LanguageProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen bg-white">
-          <Header />
-          <main>
-            <Suspense fallback={<LoadingScreen />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/why-guatemala" element={<WhyGuatemala />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/strategic-sectors" element={<StrategicSectors />} />
-                <Route path="/strategic-sectors/:sector" element={<SectorDetail />} />
-                <Route path="/legal-incentives" element={<LegalIncentives />} />
-                <Route path="/resources" element={<Resources />} />
-                <Route path="/prensa" element={<Press />} />
-                <Route path="/news" element={<News />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
-          <GDPRBar />
-          <ChatBot />
-        </div>
-      </Router>
+      <AdvisorModalProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="min-h-screen bg-white">
+            <Header />
+            <main>
+              <Suspense fallback={<LoadingScreen />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/why-guatemala" element={<WhyGuatemala />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/strategic-sectors" element={<StrategicSectors />} />
+                  <Route path="/strategic-sectors/:sector" element={<SectorDetail />} />
+                  <Route path="/legal-incentives" element={<LegalIncentives />} />
+                  <Route path="/resources" element={<Resources />} />
+                  <Route path="/prensa" element={<Press />} />
+                  <Route path="/news" element={<News />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                </Routes>
+              </Suspense>
+            </main>
+            <Footer />
+            <GDPRBar />
+            <ChatBot />
+          </div>
+        </Router>
+      </AdvisorModalProvider>
     </LanguageProvider>
   );
 }

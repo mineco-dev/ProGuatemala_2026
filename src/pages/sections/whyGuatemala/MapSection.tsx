@@ -21,40 +21,12 @@ export default function MapSection() {
         />
 
         <div className="grid grid-cols-1 gap-8">
-          {/* Tableau Embed */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
-          >
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-              <div className="p-6 sm:p-8 bg-[#0B1B3D] text-white">
-                <h3 className="text-xl sm:text-2xl font-bold">{t('why.map.boxTitle')}</h3>
-                <p className="text-sm sm:text-base text-blue-200 mt-1">
-                  {t('why.map.boxSubtitle')}
-                </p>
-              </div>
-              <div className="p-4 sm:p-6 bg-slate-50/50">
-                <TableauEmbed
-                  vizName={dashboards.departmentStats[language]}
-                  title={t('why.map.boxTitle')}
-                  // 1657x878, la proporcion real del tablero publicado.
-                  aspectRatio={0.53}
-                  language={tableauLanguage(language)}
-                  params={{ publish: 'yes' }}
-                />
-              </div>
-            </div>
-          </motion.div>
-
           {/* Conectividad Marítima */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6 }}
             className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
           >
             <div className="bg-support-50 border border-gray-100 rounded-2xl p-6 shadow-sm">
@@ -85,6 +57,34 @@ export default function MapSection() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </motion.div>
+
+          {/* Tableau Embed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8"
+          >
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="p-6 sm:p-8 bg-[#0B1B3D] text-white">
+                <h3 className="text-xl sm:text-2xl font-bold">{t('why.map.boxTitle')}</h3>
+                <p className="text-sm sm:text-base text-blue-200 mt-1">
+                  {t('why.map.boxSubtitle')}
+                </p>
+              </div>
+              <div className="p-4 sm:p-6 bg-slate-50/50">
+                <TableauEmbed
+                  vizName={dashboards.departmentStats[language]}
+                  title={t('why.map.boxTitle')}
+                  // 1657x878, la proporcion real del tablero publicado.
+                  aspectRatio={0.53}
+                  language={tableauLanguage(language)}
+                  params={{ publish: 'yes' }}
+                />
+              </div>
             </div>
           </motion.div>
         </div>

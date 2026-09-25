@@ -5,17 +5,9 @@ import { RUTA_CHIP_CATEGORY } from '@/data/resources';
 import {
   FeaturedResourcesSection,
   HeroSection,
-  LinkedInSection,
-  NewsletterSection,
   ResourceFiltersSection,
   ResourcesGridSection,
 } from './sections/resources';
-
-const CATALOG_ANCHOR = 'catalogo-recursos';
-
-const scrollToCatalog = () => {
-  document.getElementById(CATALOG_ANCHOR)?.scrollIntoView({ behavior: 'smooth' });
-};
 
 export default function Resources() {
   const { t } = useLanguage();
@@ -39,13 +31,7 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <HeroSection
-        onExplore={scrollToCatalog}
-        onShowGuides={() => {
-          setSelectedCategory('guides');
-          scrollToCatalog();
-        }}
-      />
+      <HeroSection />
 
       <FeaturedResourcesSection resources={featuredResources} />
 
@@ -63,10 +49,6 @@ export default function Resources() {
       />
 
       <ResourcesGridSection resources={filteredResources} />
-
-      <LinkedInSection />
-
-      <NewsletterSection />
     </div>
   );
 }

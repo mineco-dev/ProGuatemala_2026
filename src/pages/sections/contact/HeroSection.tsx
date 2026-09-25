@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { CONTACT_MAILTO } from '@/data/contact';
 import { smoothScrollTo } from '@/lib/scroll';
 
 const HERO_BG =
@@ -9,6 +8,7 @@ const HERO_BG =
 export default function HeroSection() {
   const { t } = useLanguage();
 
+  const scrollToForm = () => smoothScrollTo('formulario-contacto');
   const scrollToFaq = () => smoothScrollTo('preguntas-frecuentes');
 
   return (
@@ -46,12 +46,13 @@ export default function HeroSection() {
                 transition={{ delay: 0.9, duration: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <a
-                  href={CONTACT_MAILTO}
+                <button
+                  type="button"
+                  onClick={scrollToForm}
                   className="inline-flex items-center justify-center bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
                 >
                   {t('contact.hero.advisor')}
-                </a>
+                </button>
                 <button
                   type="button"
                   onClick={scrollToFaq}
