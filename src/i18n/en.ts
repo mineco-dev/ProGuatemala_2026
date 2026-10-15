@@ -20,13 +20,17 @@ export const en = {
   'home.hero.subtitle': 'We accompany you at every stage of your investment with specialized services and the institutional support you need to grow.',
   'home.hero.download': 'Download Investor Guide',
   'home.hero.contact': 'Talk to an advisor',
-  
-  
+  'home.hero.badge': 'The time',
+  'home.hero.line1': 'to invest in',
+  'home.hero.country': 'Guatemala',
+  'home.hero.line2': 'is now',
+
+
   'home.advantages.location.title': 'Strategic Location',
   'home.advantages.location.desc': 'Gateway to Central America and connection between North and South America',
   'home.advantages.talent.title': 'Human Talent',
   'home.advantages.talent.desc': 'Young, trained population with language skills',
-  'home.advantages.incentives.title': 'Tax Incentives',
+  'home.advantages.incentives.title': 'Special Regimes',
   'home.advantages.incentives.desc': 'Free trade zone regime and competitive benefits',
   
   
@@ -58,7 +62,7 @@ export const en = {
   'home.advantages.talent.detail2': 'Specialized technical training',
   'home.advantages.talent.detail3': 'Expanding bilingualism',
   'home.advantages.talent.detail4': 'High adaptability',
-  'home.advantages.energy.title': 'Renewable & Reliable Energy',
+  'home.advantages.energy.title': 'Renewable Energy',
   'home.advantages.energy.desc': 'Diversified energy matrix with high participation of renewable sources.',
   'home.advantages.energy.stat': 'Clean energy',
   'home.advantages.energy.detail1': 'Hydroelectric and solar capacity',
@@ -76,6 +80,8 @@ export const en = {
   'home.hotspots.cleanEnergy': 'Clean energy',
   'home.hotspots.incentives': 'Incentives',
   'home.factsheet.title': 'Want to learn more details?',
+  'home.factsheet.eyebrow': 'Want to know',
+  'home.factsheet.heading': 'more details?',
   'home.factsheet.subtitle': 'Download our complete fact sheet with updated data and detailed analysis',
   'home.factsheet.download': 'Download fact sheet',
   'home.map.title': 'Guatemala: Global Connectivity',

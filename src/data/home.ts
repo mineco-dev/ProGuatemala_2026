@@ -1,10 +1,15 @@
-import { Award, Globe, MapPin, TrendingUp, Users } from 'lucide-react';
 import type { AdvantageHotspot, HomeAdvantage } from '@/types/home';
+import macroIcon from '@/assets/images/home/icons/macro.png';
+import locationIcon from '@/assets/images/home/icons/location.png';
+import talentIcon from '@/assets/images/home/icons/talent.png';
+import energyIcon from '@/assets/images/home/icons/energy.png';
+import regimesIcon from '@/assets/images/home/icons/regimes.png';
 
 export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-macroeconomia-robusta',
-    icon: TrendingUp,
+    iconImg: macroIcon,
+    iconBg: '#F5B82E',
     titleKey: 'home.advantages.macro.title',
     descriptionKey: 'home.advantages.macro.desc',
     detailKeys: [
@@ -13,13 +18,11 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
       'home.advantages.macro.detail3',
       'home.advantages.macro.detail4',
     ],
-    statKey: 'home.advantages.macro.stat',
-    color: 'bg-support-600',
-    bgColor: 'bg-support-50',
   },
   {
     id: 'advantage-ubicacion-estrategica',
-    icon: MapPin,
+    iconImg: locationIcon,
+    iconBg: '#3DBE6B',
     titleKey: 'home.advantages.location.title',
     descriptionKey: 'home.advantages.location.desc',
     detailKeys: [
@@ -28,13 +31,11 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
       'home.advantages.location.detail3',
       'home.advantages.location.detail4',
     ],
-    statKey: 'home.advantages.location.stat',
-    color: 'bg-support-600',
-    bgColor: 'bg-support-50',
   },
   {
     id: 'advantage-talento-joven-y-calificado',
-    icon: Users,
+    iconImg: talentIcon,
+    iconBg: '#2E86DE',
     titleKey: 'home.advantages.talent.title',
     descriptionKey: 'home.advantages.talent.desc',
     detailKeys: [
@@ -43,13 +44,11 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
       'home.advantages.talent.detail3',
       'home.advantages.talent.detail4',
     ],
-    statKey: 'home.advantages.talent.stat',
-    color: 'bg-support-600',
-    bgColor: 'bg-support-50',
   },
   {
     id: 'advantage-energia-renovable-y-confiable',
-    icon: Globe,
+    iconImg: energyIcon,
+    iconBg: '#16B7A7',
     titleKey: 'home.advantages.energy.title',
     descriptionKey: 'home.advantages.energy.desc',
     detailKeys: [
@@ -58,13 +57,11 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
       'home.advantages.energy.detail3',
       'home.advantages.energy.detail4',
     ],
-    statKey: 'home.advantages.energy.stat',
-    color: 'bg-support-600',
-    bgColor: 'bg-support-50',
   },
   {
     id: 'advantage-regimenes-especiales-e-incentivos-fiscales',
-    icon: Award,
+    iconImg: regimesIcon,
+    iconBg: '#9B7EE8',
     titleKey: 'home.advantages.incentives.title',
     descriptionKey: 'home.advantages.incentives.desc',
     detailKeys: [
@@ -73,9 +70,6 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
       'home.advantages.incentives.detail3',
       'home.advantages.incentives.detail4',
     ],
-    statKey: 'home.advantages.incentives.stat',
-    color: 'bg-support-700',
-    bgColor: 'bg-support-50',
   },
 ];
 

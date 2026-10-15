@@ -7,7 +7,10 @@ export default function InvestmentMapSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="py-16 bg-white">
+    <section
+      className="py-20"
+      style={{ background: 'linear-gradient(135deg, #2BAEEA 0%, #67C7E6 100%)' }}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -16,8 +19,10 @@ export default function InvestmentMapSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{t('home.map.title')}</h2>
-          <p className="text-xl text-gray-600">{t('home.map.subtitle')}</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 uppercase tracking-wide drop-shadow-sm">
+            {t('home.map.title')}
+          </h2>
+          <p className="text-lg md:text-xl text-white/90">{t('home.map.subtitle')}</p>
         </motion.div>
 
         <motion.div

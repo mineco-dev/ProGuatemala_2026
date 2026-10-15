@@ -2,13 +2,24 @@ import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { CONTACT_MAILTO } from '@/data/contact';
+import ctaBg from '@/assets/images/home/cta-bg.jpg';
 
 export default function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-16 text-white" style={{ background: '#021049' }}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section
+      className="relative py-20 text-white bg-cover bg-center"
+      style={{ backgroundImage: `url(${ctaBg})`, backgroundColor: '#021049' }}
+    >
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(2,16,73,0.92) 0%, rgba(2,16,73,0.78) 45%, rgba(2,16,73,0.45) 100%)',
+        }}
+      />
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -20,13 +20,17 @@ export const es = {
   'home.hero.subtitle': 'Te acompañamos en cada etapa de tu inversión con servicios especializados y el respaldo institucional que necesitas para crecer.',
   'home.hero.download': 'Descargar Guía del Inversionista',
   'home.hero.contact': 'Habla con un asesor',
-  
-  
+  'home.hero.badge': 'El momento',
+  'home.hero.line1': 'de invertir en',
+  'home.hero.country': 'Guatemala',
+  'home.hero.line2': 'es ahora',
+
+
   'home.advantages.location.title': 'Ubicación Estratégica',
   'home.advantages.location.desc': 'Puerta de entrada a Centroamérica y conexión entre Norte y Sudamérica',
   'home.advantages.talent.title': 'Talento Humano',
   'home.advantages.talent.desc': 'Población joven, capacitada y con dominio de idiomas',
-  'home.advantages.incentives.title': 'Incentivos Fiscales',
+  'home.advantages.incentives.title': 'Regímenes Especiales',
   'home.advantages.incentives.desc': 'Régimen de zonas francas y beneficios competitivos',
   
   
@@ -57,7 +61,7 @@ export const es = {
   'home.advantages.talent.detail2': 'Capacitación técnica especializada',
   'home.advantages.talent.detail3': 'Bilingüismo en expansión',
   'home.advantages.talent.detail4': 'Alta adaptabilidad',
-  'home.advantages.energy.title': 'Energía Renovable y Confiable',
+  'home.advantages.energy.title': 'Energía Renovable',
   'home.advantages.energy.desc': 'Matriz energética diversificada con alta participación de fuentes renovables.',
   'home.advantages.energy.stat': 'Energía limpia',
   'home.advantages.energy.detail1': 'Capacidad hidroeléctrica y solar',
@@ -75,6 +79,8 @@ export const es = {
   'home.hotspots.cleanEnergy': 'Energía limpia',
   'home.hotspots.incentives': 'Incentivos',
   'home.factsheet.title': '¿Quieres conocer más detalles?',
+  'home.factsheet.eyebrow': '¿Quieres conocer',
+  'home.factsheet.heading': 'más detalles?',
   'home.factsheet.subtitle': 'Descarga nuestro fact sheet completo con datos actualizados y análisis detallado',
   'home.factsheet.download': 'Descargar fact sheet',
   'home.map.title': 'Guatemala: Conectividad Global',
