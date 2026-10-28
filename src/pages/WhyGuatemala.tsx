@@ -8,6 +8,7 @@ import {
   HeroSection,
   MapSection,
   ParksSection,
+  SectionNav,
   StatisticsSection,
 } from './sections/whyGuatemala';
 
@@ -25,6 +26,7 @@ export default function WhyGuatemala() {
 
   return (
     <div>
+      <SectionNav />
       <HeroSection />
       <StatisticsSection />
       <AdvantagesSection />

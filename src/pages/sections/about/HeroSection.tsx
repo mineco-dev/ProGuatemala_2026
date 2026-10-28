@@ -3,7 +3,7 @@ import { Compass, ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/i18n';
-import aboutImg from '@/assets/images/portadas/4. ACERCA DE PROGUATEMALA.png';
+import aboutImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/NOSOTROS-01.jpg';
 
 const HIGHLIGHTS: Array<{ icon: LucideIcon; titleKey: TranslationKey; descKey: TranslationKey }> = [
   { icon: Compass, titleKey: 'about.hero.card1.title', descKey: 'about.hero.card1.desc' },
@@ -15,14 +15,11 @@ export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 py-20 lg:py-28">
+    <section className="relative overflow-hidden min-h-[520px] aspect-[8000/3030] flex flex-col justify-center bg-primary-500">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-100"
         style={{ backgroundImage: `url(${aboutImg})` }}
       />
-
-      {/* Tinte azul/teal muy tenue para conservar luminosidad de la foto */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/35 via-blue-800/25 to-teal-800/25 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         <motion.h1
@@ -32,7 +29,7 @@ export default function HeroSection() {
           className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
         >
           {t('about.hero.title')}{' '}
-          <span className="text-[#fcd34d] drop-shadow-md">{t('about.hero.highlight')}</span>
+          <span className="text-[#FCD755] drop-shadow-md">{t('about.hero.highlight')}</span>
         </motion.h1>
 
         <motion.p
@@ -53,13 +50,16 @@ export default function HeroSection() {
           {HIGHLIGHTS.map(({ icon: Icon, titleKey, descKey }) => (
             <div
               key={titleKey}
-              className="p-6 rounded-2xl bg-slate-900/35 backdrop-blur-md border border-white/20 shadow-xl hover:bg-slate-900/50 transition-all duration-300"
+              className="p-6 rounded-2xl bg-white shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-amber-300/20 border border-amber-300/40 flex items-center justify-center mb-4 text-amber-300">
-                <Icon className="w-6 h-6" />
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                style={{ background: '#3DB08B' }}
+              >
+                <Icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">{t(titleKey)}</h3>
-              <p className="text-slate-100 text-sm leading-relaxed">{t(descKey)}</p>
+              <h3 className="text-gray-900 font-bold text-lg mb-2">{t(titleKey)}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t(descKey)}</p>
             </div>
           ))}
         </motion.div>
@@ -70,13 +70,19 @@ export default function HeroSection() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+          <button
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]"
+            style={{ background: '#3DB08B' }}
+          >
             <Users className="w-5 h-5 text-white" />
             <span>{t('about.hero.team')}</span>
           </button>
 
-          <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900/50 hover:bg-slate-900/70 backdrop-blur-md border border-white/30 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-            <Target className="w-5 h-5 text-amber-300" />
+          <button
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:brightness-125 hover:scale-[1.02] active:scale-[0.98]"
+            style={{ background: '#11223B' }}
+          >
+            <Target className="w-5 h-5" style={{ color: '#3DB08B' }} />
             <span>{t('about.hero.mission')}</span>
           </button>
         </motion.div>

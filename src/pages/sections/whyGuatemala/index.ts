@@ -5,3 +5,4 @@ export { default as MapSection } from './MapSection';
 export { default as ParksSection } from './ParksSection';
 export { default as ComparisonSection } from './ComparisionSection';
 export { default as CtaSection } from './CTASection';
+export { default as SectionNav } from './SectionNav';

@@ -1,97 +1,99 @@
 import { motion } from 'framer-motion';
-import { Eye, Target } from 'lucide-react';
+import { Lightbulb, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function MissionVisionSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 bg-slate-50 relative overflow-hidden">
+    <section
+      className="py-20 relative overflow-hidden"
+      style={{
+        backgroundColor: '#11223B',
+        backgroundImage:
+          'repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 14px)',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-14"
         >
-          <span className="text-blue-600 font-semibold tracking-wide uppercase text-sm mb-2 block">
-            {t('about.essence.eyebrow')}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-[0.12em] text-white mb-6">
             {t('about.essence.title')}
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed">
+          <p className="text-lg text-white/85 leading-relaxed">
             {t('about.essence.intro.before')}{' '}
-            <strong className="text-slate-900 font-semibold">ProGuatemala</strong>{' '}
+            <strong className="text-white font-semibold">ProGuatemala</strong>{' '}
             {t('about.essence.intro.after')}
           </p>
         </motion.div>
 
+        {/* Cita destacada */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-blue-900 rounded-2xl p-8 sm:p-10 text-white mb-16 shadow-xl relative overflow-hidden"
+          className="rounded-2xl p-8 sm:p-10 text-white mb-10 shadow-xl text-center"
+          style={{ background: '#3DB08B' }}
         >
-          <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
-            <p className="text-lg sm:text-xl font-medium leading-relaxed text-slate-100 text-center md:text-left">
-              &ldquo;{t('about.commitment')}&rdquo;
-            </p>
-          </div>
+          <p className="text-lg sm:text-xl font-medium italic leading-relaxed">
+            &ldquo;{t('about.commitment')}&rdquo;
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Misión */}
+          {/* Misión — tarjeta verde */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-blue-50/80 rounded-3xl p-8 sm:p-10 border border-blue-100 shadow-sm relative overflow-hidden group transition-all duration-300 hover:shadow-md hover:border-blue-200"
+            className="rounded-3xl p-8 sm:p-10 shadow-lg transition-all duration-300 hover:shadow-2xl"
+            style={{ background: '#3DB08B' }}
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="bg-blue-600 w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md">
-                <Target className="w-7 h-7 text-white" size={28} />
+            <div className="flex items-center gap-4 mb-5">
+              <div
+                className="w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md"
+                style={{ background: '#11223B' }}
+              >
+                <Target className="w-7 h-7 text-white" />
               </div>
-              <div>
-                <span className="text-xs font-bold text-blue-600 tracking-wider uppercase block mb-0.5">
-                  {t('about.mission.eyebrow')}
-                </span>
-                <h3 className="text-2xl font-bold text-slate-900">{t('about.mission.title')}</h3>
-              </div>
+              <h3 className="text-xl font-bold uppercase tracking-wider text-white">
+                {t('about.mission.title')}
+              </h3>
             </div>
-            <p className="text-slate-700 leading-relaxed text-base">{t('about.mission.body')}</p>
+            <p className="text-white/90 leading-relaxed text-sm sm:text-base">
+              {t('about.mission.body')}
+            </p>
           </motion.div>
 
-          {/* Visión - estilos inline para que no los purgue Tailwind */}
+          {/* Visión — tarjeta blanca */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl p-8 sm:p-10 border shadow-sm relative overflow-hidden group transition-all duration-300 hover:shadow-md"
-            style={{ backgroundColor: '#eff9f5', borderColor: '#bbf7d0' }}
+            className="rounded-3xl p-8 sm:p-10 shadow-lg bg-white transition-all duration-300 hover:shadow-2xl"
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-4 mb-5">
               <div
                 className="w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md"
-                style={{ backgroundColor: '#0d785f' }}
+                style={{ background: '#11223B' }}
               >
-                <Eye className="w-7 h-7 !text-white" size={28} style={{ color: '#ffffff' }} />
+                <Lightbulb className="w-7 h-7 text-white" />
               </div>
-              <div>
-                <span
-                  className="text-xs font-bold tracking-wider uppercase block mb-0.5"
-                  style={{ color: '#0d785f' }}
-                >
-                  {t('about.vision.eyebrow')}
-                </span>
-                <h3 className="text-2xl font-bold text-slate-900">{t('about.vision.title')}</h3>
-              </div>
+              <h3 className="text-xl font-bold uppercase tracking-wider" style={{ color: '#11223B' }}>
+                {t('about.vision.title')}
+              </h3>
             </div>
-            <p className="text-slate-700 leading-relaxed text-base">{t('about.vision.body')}</p>
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+              {t('about.vision.body')}
+            </p>
           </motion.div>
         </div>
       </div>

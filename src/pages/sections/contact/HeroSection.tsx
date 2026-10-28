@@ -1,29 +1,24 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { smoothScrollTo } from '@/lib/scroll';
-
-const HERO_BG =
-  "bg-[url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920')]";
+import contactImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/CONTACTO/CONTACTO.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();
 
-  const scrollToForm = () => smoothScrollTo('formulario-contacto');
-  const scrollToFaq = () => smoothScrollTo('preguntas-frecuentes');
-
   return (
-    <section className="relative h-screen overflow-hidden">
-      <div className="relative h-full">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700"
-        >
-          <div className="absolute inset-0 bg-black/30" />
-          <div className={`absolute inset-0 ${HERO_BG} bg-cover bg-center opacity-20`} />
-          <div className="relative h-full flex items-center justify-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+    <section className="relative overflow-hidden min-h-[520px] aspect-[8000/3030] flex flex-col justify-center bg-primary-500 text-white">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${contactImg})` }}
+        />
+      </motion.div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <motion.h1
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -40,30 +35,6 @@ export default function HeroSection() {
               >
                 {t('contact.hero.subtitle')}
               </motion.p>
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
-                <button
-                  type="button"
-                  onClick={scrollToForm}
-                  className="inline-flex items-center justify-center bg-support-500 hover:bg-support-400 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
-                >
-                  {t('contact.hero.advisor')}
-                </button>
-                <button
-                  type="button"
-                  onClick={scrollToFaq}
-                  className="inline-flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200"
-                >
-                  {t('contact.faq.title')}
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

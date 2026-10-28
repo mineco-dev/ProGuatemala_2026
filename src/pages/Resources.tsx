@@ -5,6 +5,7 @@ import { RUTA_CHIP_CATEGORY } from '@/data/resources';
 import {
   FeaturedResourcesSection,
   HeroSection,
+  NewsletterSection,
   ResourceFiltersSection,
   ResourcesGridSection,
 } from './sections/resources';
@@ -49,6 +50,8 @@ export default function Resources() {
       />
 
       <ResourcesGridSection resources={filteredResources} />
+
+      <NewsletterSection />
     </div>
   );
 }

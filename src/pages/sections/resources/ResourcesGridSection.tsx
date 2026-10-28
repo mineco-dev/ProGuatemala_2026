@@ -4,7 +4,7 @@ import { Calendar, Download, Eye, Play } from 'lucide-react';
 import VideoModal from '@/components/ui/VideoModal';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useDocumentOpener } from '@/hooks/useDocumentOpener';
-import { getResourceTypeIcon, resourceIconGradient } from './resourceHelpers';
+import { getResourceTypeIcon } from './resourceHelpers';
 import type { Resource } from '@/types/resource';
 
 interface ResourcesGridSectionProps {
@@ -91,12 +91,13 @@ export default function ResourcesGridSection({ resources }: ResourcesGridSection
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
                       style={{ height: `${CARD_HEIGHT_REM}rem` }}
-                      className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col justify-between overflow-hidden"
+                      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col overflow-hidden"
                     >
-                      <div>
+                      {/* Cabecera: banda navy con icono y titulo en verde crema */}
+                      <div className="bg-gradient-to-br from-[#17304d] to-[#11223B] px-5 pt-5 pb-4">
                         <div className="flex items-start justify-between mb-3">
-                          <div className={`p-2.5 rounded-xl shadow-md ${resourceIconGradient(resource.type)}`}>
-                            <Icon className="w-6 h-6 text-white" />
+                          <div className="p-2.5 rounded-xl shadow-md bg-[#D7E3AA]">
+                            <Icon className="w-6 h-6 text-[#11223B]" />
                           </div>
                           {resource.is_featured && (
                             <span className="bg-support-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
@@ -105,15 +106,18 @@ export default function ResourcesGridSection({ resources }: ResourcesGridSection
                           )}
                         </div>
 
-                        <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 tracking-tight">
+                        <h3 className="text-lg font-bold text-[#D7E3AA] line-clamp-2 tracking-tight">
                           {resource.title}
                         </h3>
+                      </div>
+
+                      {/* Cuerpo blanco: descripcion, metadatos y acciones */}
+                      <div className="flex flex-1 flex-col justify-between px-5 pt-4 pb-5">
                         <p className="text-gray-700 text-sm mb-3 line-clamp-2 leading-relaxed">
                           {resource.description}
                         </p>
-                      </div>
 
-                      <div>
+                        <div>
                         <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
                           <div className="flex items-center space-x-2">
                             <span className="bg-gray-100 px-2 py-1 rounded-md font-medium">
@@ -167,6 +171,7 @@ export default function ResourcesGridSection({ resources }: ResourcesGridSection
                               </>
                             )}
                           </div>
+                        </div>
                         </div>
                       </div>
                     </motion.div>

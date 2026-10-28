@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Mail, User } from 'lucide-react';
-import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { authorities, president } from '@/data/about';
@@ -11,12 +10,28 @@ export default function AuthoritiesSection() {
   const head = useLocalized(president);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title={t('about.authorities.title')}
-          subtitle={t('about.authorities.subtitle')}
-        />
+    <section
+      className="py-20 relative overflow-hidden"
+      style={{
+        backgroundImage:
+          'repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 14px), linear-gradient(135deg, #3DB08B 0%, #2E9070 55%, #257457 100%)',
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-[0.12em] text-white mb-4">
+            {t('about.authorities.title')}
+          </h2>
+          <p className="text-xl leading-relaxed text-white/90">
+            {t('about.authorities.subtitle')}
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           {/* Presidente: misma tarjeta que las demas autoridades, con la version

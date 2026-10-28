@@ -10,13 +10,16 @@ import {
 } from 'lucide-react';
 import type { Localized } from '@/i18n';
 import type { Service } from '@/types/service';
-import promoInvImage from '@/assets/images/promoinv.png';
+import promocionImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/PROMOCION DE INVERSION.jpeg';
+import softlandingImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/SOFTLANDING.jpeg';
+import inteligenciaImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/INTELIGENCIA DE INVERSION.jpeg';
+import aftercareImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/AFTERCARE.jpeg';
 
 const STYLES = [
-  { id: 'promocion', icon: Target, color: 'from-blue-500 to-cyan-600', bgColor: 'from-blue-50 to-cyan-50', image: promoInvImage },
-  { id: 'softlanding', icon: Plane, color: 'from-emerald-500 to-teal-600', bgColor: 'from-emerald-50 to-teal-50' },
-  { id: 'inteligencia', icon: TrendingUp, color: 'from-indigo-500 to-blue-600', bgColor: 'from-indigo-50 to-blue-50' },
-  { id: 'aftercare', icon: HeartHandshake, color: 'from-orange-500 to-amber-600', bgColor: 'from-orange-50 to-amber-50' },
+  { id: 'promocion', icon: Target, color: 'from-blue-500 to-cyan-600', bgColor: 'from-blue-50 to-cyan-50', image: promocionImg },
+  { id: 'softlanding', icon: Plane, color: 'from-emerald-500 to-teal-600', bgColor: 'from-emerald-50 to-teal-50', image: softlandingImg },
+  { id: 'inteligencia', icon: TrendingUp, color: 'from-indigo-500 to-blue-600', bgColor: 'from-indigo-50 to-blue-50', image: inteligenciaImg },
+  { id: 'aftercare', icon: HeartHandshake, color: 'from-orange-500 to-amber-600', bgColor: 'from-orange-50 to-amber-50', image: aftercareImg },
 ] as const;
 
 type ServiceCopy = Pick<Service, 'title' | 'description' | 'features' | 'cta'>;
@@ -24,7 +27,7 @@ type ServiceCopy = Pick<Service, 'title' | 'description' | 'features' | 'cta'>;
 const COPY: Localized<ServiceCopy[]> = {
   es: [
     {
-      title: 'PROMOCIÓN DE INVERSIONES',
+      title: 'Promoción de inversiones',
       description:
         'Se brinda orientación personalizada en cada etapa del proceso de inversión, incluyendo la organización de reuniones con actores clave del sector público y privado para avanzar en los proyectos de inversión. Se brinda apoyo a las empresas extranjeras en el establecimiento de operaciones, acompañamiento en procedimientos regulatorios, legales y administrativos.',
       features: [
@@ -78,7 +81,7 @@ const COPY: Localized<ServiceCopy[]> = {
   ],
   en: [
     {
-      title: 'INVESTMENT PROMOTION',
+      title: 'Investment Promotion',
       description:
         'We provide tailored guidance at every stage of the investment process, including arranging meetings with key public and private sector stakeholders to move investment projects forward. We support foreign companies in setting up operations and guide them through regulatory, legal and administrative procedures.',
       features: [

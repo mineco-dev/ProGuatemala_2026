@@ -26,7 +26,7 @@ export default function AdvantagesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 tracking-tight" style={{ color: '#0f5ce1' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 tracking-tight" style={{ color: '#2BB9DB' }}>
             {t('home.advantages.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -47,7 +47,7 @@ export default function AdvantagesSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="scroll-mt-24 rounded-2xl p-7 border border-dashed border-white/25 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
-                style={{ background: '#021049' }}
+                style={{ background: '#11223B' }}
               >
                 <div
                   className="w-16 h-16 rounded-xl flex items-center justify-center shadow-md mb-6"
@@ -57,7 +57,7 @@ export default function AdvantagesSection() {
                 </div>
 
                 <h3 className="text-sm font-bold uppercase tracking-wider mb-4">
-                  <span style={{ color: '#FFC100' }}>{firstWord}</span>{' '}
+                  <span style={{ color: advantage.iconBg }}>{firstWord}</span>{' '}
                   <span className="text-gray-300">{restWords}</span>
                 </h3>
 
@@ -70,7 +70,7 @@ export default function AdvantagesSection() {
                     <li key={detailKey} className="flex items-start">
                       <span
                         className="w-1.5 h-1.5 rounded-full mr-3 mt-1.5 flex-shrink-0"
-                        style={{ background: '#B7FFFF' }}
+                        style={{ background: '#97DCEE' }}
                       />
                       <span className="text-gray-200 text-sm leading-relaxed">{t(detailKey)}</span>
                     </li>

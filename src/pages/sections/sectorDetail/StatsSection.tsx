@@ -11,7 +11,7 @@ interface StatsSectionProps {
 export default function StatsSection({ stats }: StatsSectionProps) {
   const { t } = useLanguage();
 
-  // sector-3 (#01ECC1) es un menta claro: el icono debe ir oscuro. Los demas
+  // sector-3 (#3DB08B) es un menta claro: el icono debe ir oscuro. Los demas
   // tonos de la paleta son oscuros y admiten el icono en blanco.
   const cards = [
     {

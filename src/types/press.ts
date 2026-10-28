@@ -32,6 +32,10 @@ export interface PressCollection {
   title: Localized<string>;
   /** Descripcion breve de la coleccion, en espanol e ingles. */
   description: Localized<string>;
+  /** Logo de la coleccion (asset importado). Si existe, se muestra en vez del titulo. */
+  logo?: string;
+  /** Imagen de fondo de la coleccion (asset importado). */
+  background?: string;
   /** URL de la pagina indice de la coleccion en el MINECO. */
   sourceUrl: string;
   /** Notas de prensa que integran la coleccion, de la mas reciente a la mas antigua. */

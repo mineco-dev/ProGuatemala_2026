@@ -31,8 +31,8 @@ export default function AdvantagesHotspotMap({ onHotspotClick }: AdvantagesHotsp
               onClick={() => onHotspotClick(hotspot.targetId)}
             >
               <span className="block h-20 w-20 rounded-full bg-transparent md:h-24 md:w-24" />
-              <span className="pointer-events-none absolute left-1/2 top-0 w-max max-w-[220px] -translate-x-1/2 -translate-y-[118%] rounded-2xl border border-blue-100 bg-white/95 px-4 py-3 text-center shadow-[0_18px_45px_rgba(2,16,73,0.18)] backdrop-blur-md opacity-0 transition-all duration-300 group-hover:-translate-y-[128%] group-hover:opacity-100 group-focus-visible:-translate-y-[128%] group-focus-visible:opacity-100">
-                <span className="block text-base font-bold text-[#021049] md:text-lg">{label}</span>
+              <span className="pointer-events-none absolute left-1/2 top-0 w-max max-w-[220px] -translate-x-1/2 -translate-y-[118%] rounded-2xl border border-blue-100 bg-white/95 px-4 py-3 text-center shadow-[0_18px_45px_rgba(17, 34, 59,0.18)] backdrop-blur-md opacity-0 transition-all duration-300 group-hover:-translate-y-[128%] group-hover:opacity-100 group-focus-visible:-translate-y-[128%] group-focus-visible:opacity-100">
+                <span className="block text-base font-bold text-[#11223B] md:text-lg">{label}</span>
               </span>
             </a>
           );

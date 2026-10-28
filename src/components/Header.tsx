@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, ChevronDown, Linkedin } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { smoothScrollTo } from '../lib/scroll';
@@ -56,52 +56,16 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Top Social Menu */}
-      <div className="text-white py-2 hidden md:block" style={{ background: '#021049' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-4">
-              <span className="text-white">{t('footer.follow')}:</span>
-              <div className="flex space-x-3">
-                <a 
-                  href="https://www.linkedin.com/company/proguatemala/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white transition-colors duration-200"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a 
-                href="mailto:proguatemala@mineco.gob.gt" 
-                className="text-white hover:text-white transition-colors duration-200"
-              >
-                proguatemala@mineco.gob.gt
-              </a>
-              <span className="text-blue-200">|</span>
-              <a 
-                href="tel:+50224120200" 
-                className="text-white hover:text-white transition-colors duration-200"
-              >
-                +502 2412-0200 ext 3500
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
+      <header className="shadow-md sticky top-0 z-50 border-t border-white/10" style={{ background: '#11223B' }}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png" 
-              alt="ProGuatemala" 
-              className="h-12 w-auto"
+              src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png"
+              alt="ProGuatemala"
+              className="h-12 w-auto brightness-0 invert"
             />
           </Link>
 
@@ -114,22 +78,22 @@ const Header: React.FC = () => {
                     to={item.href}
                     className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                       location.pathname === item.href
-                        ? 'text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'text-[#11223B]'
+                        : 'text-white/90 hover:bg-white/10'
                     }`}
-                    style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                    style={location.pathname === item.href ? { background: '#2BB9DB' } : {}}
                   >
                     {item.name}
                     <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
                   {/* Desplegable (aparece al pasar el cursor) */}
                   <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
-                    <div className="bg-white rounded-md shadow-lg border py-2 min-w-[240px]">
+                    <div className="rounded-md shadow-lg border border-white/10 py-2 min-w-[240px]" style={{ background: '#0E1D32' }}>
                       {item.sections.map((section) => (
                         <button
                           key={section.id}
                           onClick={() => goToSection(item.href, section.id)}
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                          className="block w-full text-left px-4 py-2 text-sm text-white/90 hover:bg-white/10 transition-colors duration-150"
                         >
                           {section.name}
                         </button>
@@ -143,10 +107,10 @@ const Header: React.FC = () => {
                   to={item.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                     location.pathname === item.href
-                      ? 'text-gray-900'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'text-[#11223B]'
+                      : 'text-white/90 hover:bg-white/10'
                   }`}
-                  style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                  style={location.pathname === item.href ? { background: '#2BB9DB' } : {}}
                 >
                   {item.name}
                 </Link>
@@ -159,25 +123,25 @@ const Header: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                className="flex items-center space-x-1 px-3 py-2 text-sm text-white/90 hover:bg-white/10 rounded-md"
               >
                 <Globe className="w-4 h-4" />
                 <span>{language.toUpperCase()}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
               {isLangOpen && (
-                <div className="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg border">
+                <div className="absolute right-0 mt-2 w-24 rounded-md shadow-lg border border-white/10 overflow-hidden" style={{ background: '#0E1D32' }}>
                   <button
                     onClick={() => {setLanguage('es'); setIsLangOpen(false);}}
-                    className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${language === 'es' ? 'text-gray-900' : ''}`}
-                    style={language === 'es' ? { background: '#FFDB60' } : {}}
+                    className={`block w-full px-4 py-2 text-sm hover:bg-white/10 ${language === 'es' ? 'text-[#11223B]' : 'text-white/90'}`}
+                    style={language === 'es' ? { background: '#2BB9DB' } : {}}
                   >
                     ES
                   </button>
                   <button
                     onClick={() => {setLanguage('en'); setIsLangOpen(false);}}
-                    className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${language === 'en' ? 'text-gray-900' : ''}`}
-                    style={language === 'en' ? { background: '#FFDB60' } : {}}
+                    className={`block w-full px-4 py-2 text-sm hover:bg-white/10 ${language === 'en' ? 'text-[#11223B]' : 'text-white/90'}`}
+                    style={language === 'en' ? { background: '#2BB9DB' } : {}}
                   >
                     EN
                   </button>
@@ -187,7 +151,7 @@ const Header: React.FC = () => {
             
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
+              className="lg:hidden p-2 rounded-md text-white/90 hover:bg-white/10"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -200,7 +164,7 @@ const Header: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-gray-200"
+            className="lg:hidden border-t border-white/10"
           >
             <div className="py-4 space-y-1">
               {navigation.map((item) => (
@@ -210,20 +174,20 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`block px-3 py-2 rounded-md text-base font-medium ${
                       location.pathname === item.href
-                        ? 'text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'text-[#11223B]'
+                        : 'text-white/90 hover:bg-white/10'
                     }`}
-                    style={location.pathname === item.href ? { background: '#FFDB60' } : {}}
+                    style={location.pathname === item.href ? { background: '#2BB9DB' } : {}}
                   >
                     {item.name}
                   </Link>
                   {item.sections && (
-                    <div className="ml-3 mt-1 mb-2 space-y-1 border-l-2 border-gray-200 pl-3">
+                    <div className="ml-3 mt-1 mb-2 space-y-1 border-l-2 border-white/20 pl-3">
                       {item.sections.map((section) => (
                         <button
                           key={section.id}
                           onClick={() => goToSection(item.href, section.id)}
-                          className="block w-full text-left px-3 py-2 rounded-md text-sm text-gray-600 hover:bg-gray-100"
+                          className="block w-full text-left px-3 py-2 rounded-md text-sm text-white/80 hover:bg-white/10"
                         >
                           {section.name}
                         </button>

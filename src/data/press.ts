@@ -1,4 +1,7 @@
 import type { PressCollection } from '@/types/press';
+import brujulaLogo from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA.png';
+import brujulaBg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-01.jpg';
+import equipajeBg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-03.jpg';
 
 /**
  * Notas de prensa que se muestran en la seccion "Prensa".
@@ -32,6 +35,8 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
       es: 'Columna de análisis de ProGuatemala sobre las ventajas competitivas del país, sus sectores estratégicos y las tendencias de la inversión extranjera directa.',
       en: "ProGuatemala's analysis column on the country's competitive advantages, its strategic sectors and foreign direct investment trends.",
     },
+    logo: brujulaLogo,
+    background: brujulaBg,
     sourceUrl: mineco('/brujula-de-inversion'),
     articles: [
       {
@@ -147,6 +152,7 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
       es: 'Bitácora de las misiones internacionales de la Ruta del Chip: aprendizajes de los ecosistemas de semiconductores y tecnología que Guatemala visita para fortalecer su estrategia.',
       en: 'A log of the Ruta del Chip international missions: lessons from the semiconductor and technology ecosystems Guatemala visits to strengthen its strategy.',
     },
+    background: equipajeBg,
     sourceUrl: mineco('/el-equipaje-de-la-ruta-del-chip'),
     articles: [
       {

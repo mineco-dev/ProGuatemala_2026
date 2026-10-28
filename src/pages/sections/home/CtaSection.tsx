@@ -10,15 +10,8 @@ export default function CtaSection() {
   return (
     <section
       className="relative py-20 text-white bg-cover bg-center"
-      style={{ backgroundImage: `url(${ctaBg})`, backgroundColor: '#021049' }}
+      style={{ backgroundImage: `url(${ctaBg})`, backgroundColor: '#11223B' }}
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(2,16,73,0.92) 0%, rgba(2,16,73,0.78) 45%, rgba(2,16,73,0.45) 100%)',
-        }}
-      />
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -32,9 +25,9 @@ export default function CtaSection() {
             <a
               href={CONTACT_MAILTO}
               className="text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center cursor-pointer"
-              style={{ background: '#FFDB60' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#FFE68A')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#FFDB60')}
+              style={{ background: '#FABE0D' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = '#FDE488')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '#FABE0D')}
             >
               <Mail className="w-5 h-5 mr-2" />
               {t('home.cta.info')}

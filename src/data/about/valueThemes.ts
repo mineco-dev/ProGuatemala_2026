@@ -1,37 +1,37 @@
 import type { ValueTheme } from '@/types/about';
 
-/** Paleta de cada tarjeta de valor. Los estilos inline son respaldo ante la purga de Tailwind. */
+/** Paleta oficial por tarjeta de valor. El estilo inline es la fuente de verdad (evita la purga de Tailwind). */
 export const valueThemes: ValueTheme[] = [
-{
-  // 1. EXCELENCIA - NARANJA / ÁMBAR
-  cardBg: 'bg-amber-50/90 border-amber-200/70',
-  iconBg: 'bg-gradient-to-br from-amber-400 to-orange-500',
-  shadowColor: 'hover:shadow-amber-100',
-  styleCard: { backgroundColor: '#fffdf2', borderColor: '#fef3c7' },
-  styleIcon: { background: 'linear-gradient(135deg, #fbbf24, #f97316)' }
-},
-{
-  // 2. TRANSPARENCIA - VERDE PRONUNCIADO
-  cardBg: 'bg-emerald-50/90 border-emerald-200/70',
-  iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-600',
-  shadowColor: 'hover:shadow-emerald-100',
-  styleCard: { backgroundColor: '#f0fdf4', borderColor: '#a7f3d0' },
-  styleIcon: { background: 'linear-gradient(135deg, #10b981, #0d785f)' }
-},
-{
-  // 3. COLABORACIÓN - AZUL
-  cardBg: 'bg-blue-50/90 border-blue-200/70',
-  iconBg: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-  shadowColor: 'hover:shadow-blue-100',
-  styleCard: { backgroundColor: '#eff6ff', borderColor: '#bfdbfe' },
-  styleIcon: { background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }
-},
-{
-  // 4. INNOVACIÓN - MORADO
-  cardBg: 'bg-purple-50/90 border-purple-200/70',
-  iconBg: 'bg-gradient-to-br from-purple-500 to-violet-600',
-  shadowColor: 'hover:shadow-purple-100',
-  styleCard: { backgroundColor: '#faf5ff', borderColor: '#e9d5ff' },
-  styleIcon: { background: 'linear-gradient(135deg, #a855f7, #7c3aed)' }
-}
+  {
+    // 1. EXCELENCIA — dorado
+    cardBg: 'border',
+    iconBg: '',
+    shadowColor: 'hover:shadow-lg',
+    styleCard: { backgroundColor: '#FFF9E6', borderColor: '#FEEFBA' },
+    styleIcon: { background: '#FABE0D' },
+  },
+  {
+    // 2. TRANSPARENCIA — cian
+    cardBg: 'border',
+    iconBg: '',
+    shadowColor: 'hover:shadow-lg',
+    styleCard: { backgroundColor: '#E9F7FB', borderColor: '#97DCEE' },
+    styleIcon: { background: '#2BB9DB' },
+  },
+  {
+    // 3. COLABORACIÓN — verde
+    cardBg: 'border',
+    iconBg: '',
+    shadowColor: 'hover:shadow-lg',
+    styleCard: { backgroundColor: '#ECF8F3', borderColor: '#A4E1CC' },
+    styleIcon: { background: '#3DB08B' },
+  },
+  {
+    // 4. INNOVACIÓN — morado
+    cardBg: 'border',
+    iconBg: '',
+    shadowColor: 'hover:shadow-lg',
+    styleCard: { backgroundColor: '#F6F3F9', borderColor: '#DBCFE6' },
+    styleIcon: { background: '#BBA4CE' },
+  },
 ];

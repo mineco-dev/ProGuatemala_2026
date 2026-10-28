@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Mail, User } from 'lucide-react';
-import SectionHeading from '@/components/ui/SectionHeading';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { team } from '@/data/about';
@@ -12,10 +11,21 @@ export default function TeamSection() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title={t('about.team.title')}
-          subtitle={t('about.team.subtitle')}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 max-w-4xl mx-auto"
+        >
+          <h2
+            className="text-3xl md:text-4xl font-bold uppercase tracking-[0.12em] mb-4"
+            style={{ color: '#3DB08B' }}
+          >
+            {t('about.team.title')}
+          </h2>
+          <p className="text-lg text-gray-600 leading-relaxed">{t('about.team.subtitle')}</p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {members.map((member, index) => (
@@ -25,27 +35,41 @@ export default function TeamSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-1"
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col"
             >
-              <div className="bg-gradient-to-br from-blue-500 to-teal-500 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <User className="w-12 h-12 text-white" />
+              {/* Avatar: foto si existe, de lo contrario circulo solido neutro */}
+              <div className="w-20 h-20 rounded-full overflow-hidden mb-6 shadow-md bg-slate-600 flex items-center justify-center shrink-0">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User className="w-9 h-9 text-white/70" />
+                )}
               </div>
+
               <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-              <p className="text-blue-600 font-medium mb-3">{member.position}</p>
-              <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-              <div className="flex justify-center space-x-3">
-                <div className="bg-blue-100 p-2 rounded-lg">
-                  <Mail className="w-5 h-5 text-blue-600" />
-                </div>
-                {member.email && (
+              <p className="font-semibold mb-4" style={{ color: '#3DB08B' }}>
+                {member.position}
+              </p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6 text-justify">{member.bio}</p>
+
+              {member.email && (
+                <div className="flex items-center gap-2 mt-auto pt-2">
+                  <div className="p-2 rounded-lg shrink-0" style={{ background: '#11223B' }}>
+                    <Mail className="w-4 h-4 text-white" />
+                  </div>
                   <a
                     href={`mailto:${member.email}`}
-                    className="text-blue-600 hover:text-blue-700 text-xs font-medium hover:underline"
+                    className="text-sm font-medium hover:underline break-all"
+                    style={{ color: '#3DB08B' }}
                   >
                     {member.email}
                   </a>
-                )}
-              </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

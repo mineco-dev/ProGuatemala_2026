@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
-import SectionHeading from '@/components/ui/SectionHeading';
+import { Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { pillars, services } from '@/data/about';
@@ -18,7 +17,14 @@ export default function ServicesSection() {
   return (
     <section className="section-premium bg-gradient-to-b from-white to-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading title={t('about.services.title')} />
+        <div className="text-center mb-12">
+          <h2
+            className="text-3xl md:text-4xl font-bold uppercase tracking-[0.12em]"
+            style={{ color: '#3DB08B' }}
+          >
+            {t('about.services.title')}
+          </h2>
+        </div>
 
         {/* Pilares de atencion: contexto previo a las pestanas de servicios. */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
@@ -35,11 +41,17 @@ export default function ServicesSection() {
               >
                 <div>
                   <div
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center mb-6`}
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                    style={{ background: '#3DB08B' }}
                   >
-                    <Icon className={`w-7 h-7 ${pillar.iconColor}`} />
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{pillar.title}</h3>
+                  <h3
+                    className="text-base font-bold uppercase tracking-wider mb-3"
+                    style={{ color: '#11223B' }}
+                  >
+                    {pillar.title}
+                  </h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{pillar.description}</p>
                 </div>
               </motion.div>
@@ -48,32 +60,30 @@ export default function ServicesSection() {
         </div>
 
         {/* Navegacion: scroll horizontal en movil, centrada en escritorio */}
-        <div className="flex items-center pt-4 pb-5 justify-start md:justify-center overflow-x-auto no-scrollbar mb-12 bg-white/80 backdrop-blur-md rounded-2xl p-2 shadow-xl border border-gray-100 gap-1 sm:gap-2">
+        <div
+          className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar mb-10 rounded-2xl p-2.5 shadow-xl gap-1 sm:gap-2"
+          style={{ background: '#11223B' }}
+        >
           {items.map((service, index) => {
-            const Icon = service.icon;
             const isActive = activeTab === index;
 
             return (
               <button
                 key={service.id}
                 onClick={() => setActiveTab(index)}
-                className={`relative flex items-center space-x-2.5 px-5 py-3.5 font-semibold text-sm sm:text-base rounded-xl transition-all duration-200 whitespace-nowrap select-none shrink-0 ${
-                  isActive ? 'text-white' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/70'
+                className={`relative px-5 py-3 font-semibold text-sm sm:text-base rounded-xl transition-colors duration-200 whitespace-nowrap select-none shrink-0 ${
+                  isActive ? 'text-[#11223B]' : 'text-white/80 hover:text-white'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeTabIndicator"
-                    className="absolute inset-0 bg-support-500 rounded-xl shadow-md"
+                    className="absolute inset-0 rounded-xl shadow-md"
+                    style={{ background: '#FABE0D' }}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
 
-                <Icon
-                  className={`w-5 h-5 relative z-10 transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'text-gray-500'
-                  }`}
-                />
                 <span className="relative z-10">{service.title}</span>
               </button>
             );
@@ -88,54 +98,62 @@ export default function ServicesSection() {
             exit={{ opacity: 0, y: -15, scale: 0.99 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-              <div className="card-premium p-8 sm:p-10 bg-white flex flex-col justify-between shadow-lg rounded-2xl border border-gray-100">
-                <div>
-                  <div className="flex items-center space-x-5 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              {/* Panel izquierdo: imagen + detalle del servicio */}
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                {currentService.image && (
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={currentService.image}
+                      alt={currentService.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-8 sm:p-10">
+                  <div className="flex items-center gap-4 mb-5">
                     {CurrentIcon && (
-                      <div className="bg-support-500 p-4 rounded-2xl shadow-lg shrink-0">
-                        <CurrentIcon className="w-10 h-10 text-white" />
+                      <div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-md"
+                        style={{ background: '#FABE0D' }}
+                      >
+                        <CurrentIcon className="w-7 h-7" style={{ color: '#11223B' }} />
                       </div>
                     )}
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
-                        {currentService.title}
-                      </h2>
-                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: '#11223B' }}>
+                      {currentService.title}
+                    </h2>
                   </div>
 
-                  <div className="space-y-6 mb-10">
-                    <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
-                      {currentService.description}
-                    </p>
-                  </div>
+                  <p className="text-gray-600 leading-relaxed text-base">
+                    {currentService.description}
+                  </p>
                 </div>
               </div>
 
-              <div className="card-premium p-8 sm:p-10 !bg-sky-100/70 border border-sky-200/80 shadow-lg rounded-2xl flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                    <div
-                      className={`bg-gradient-to-br ${currentService.color} w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-md shrink-0`}
-                    >
-                      <CheckCircle className="w-6 h-6 text-white" />
-                    </div>
-                    {t('services.includes')}
-                  </h3>
-
-                  <div className="space-y-3.5">
-                    {currentService.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-start space-x-4 p-4 bg-white/90 hover:bg-white rounded-xl hover:shadow-sm hover:translate-x-1.5 transition-all duration-200 border border-sky-200/50"
-                      >
-                        <CheckCircle className="w-5 h-5 text-sky-600 mt-0.5 shrink-0" />
-                        <span className="text-gray-800 font-medium leading-relaxed text-sm sm:text-base">
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
+              {/* Panel derecho: ¿Qué incluye? */}
+              <div className="rounded-2xl p-8 sm:p-10 shadow-lg" style={{ background: '#11223B' }}>
+                <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-md shrink-0"
+                    style={{ background: '#FABE0D' }}
+                  >
+                    <Target className="w-6 h-6" style={{ color: '#11223B' }} />
                   </div>
+                  {t('services.includes')}
+                </h3>
+
+                <div className="space-y-3.5">
+                  {currentService.features.map((feature) => (
+                    <div
+                      key={feature}
+                      className="p-4 bg-white rounded-xl shadow-sm transition-transform duration-200 hover:translate-x-1"
+                    >
+                      <span className="font-medium leading-relaxed text-sm sm:text-base" style={{ color: '#11223B' }}>
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

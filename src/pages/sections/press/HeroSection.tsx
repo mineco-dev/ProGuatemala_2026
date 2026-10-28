@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import prensaImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-01.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700 text-white py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden min-h-[520px] aspect-[8000/3030] flex flex-col justify-center bg-primary-500 text-white">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${prensaImg})` }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

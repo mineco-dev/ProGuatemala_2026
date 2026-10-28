@@ -9,7 +9,7 @@ export default function InvestmentMapSection() {
   return (
     <section
       className="py-20"
-      style={{ background: 'linear-gradient(135deg, #2BAEEA 0%, #67C7E6 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #2BB9DB 0%, #66CCE6 100%)' }}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
@@ -32,7 +32,7 @@ export default function InvestmentMapSection() {
           transition={{ duration: 0.8 }}
           className="bg-white rounded-3xl shadow-2xl overflow-hidden w-full"
         >
-          <div className="p-6 text-white" style={{ background: '#021049' }}>
+          <div className="p-6 text-white" style={{ background: '#11223B' }}>
             <h3 className="text-xl font-semibold">{t('home.map.boxTitle')}</h3>
             <p className="text-blue-100">{t('home.map.boxSubtitle')}</p>
           </div>

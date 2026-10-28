@@ -102,9 +102,14 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                   onClick={() => setSelectedTimeframe(tf.id as never)}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
                     selectedTimeframe === tf.id
-                      ? `${tf.color} text-white shadow-lg`
+                      ? 'text-white shadow-lg'
                       : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                   }`}
+                  style={
+                    selectedTimeframe === tf.id
+                      ? { background: 'linear-gradient(90deg, #2BB9DB 0%, #4FA9E2 100%)' }
+                      : undefined
+                  }
                 >
                   <div className="flex items-center space-x-2">
                     <span>{tf.name}</span>
@@ -124,7 +129,7 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
       )}
 
       {/* Grid / Carrusel de sectores */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {showTitle && (
             <motion.div
@@ -134,10 +139,13 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2
+                className="font-sans text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-[0.12em] mb-4"
+                style={{ color: '#11223B' }}
+              >
                 {t(`carousel.title.${selectedTimeframe}`)}
               </h2>
-              <p className="text-xl text-gray-600 font-normal">
+              <p className="text-lg text-gray-600 font-normal">
                 {filteredSectors.length} {t('carousel.count')}
               </p>
             </motion.div>
@@ -194,44 +202,40 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                   
                   <div className="p-6 flex-grow flex flex-col">
                     <div className="flex items-center space-x-3 mb-4">
-                      <div className="bg-sector-6-soft p-2 rounded-lg flex-shrink-0">
-                        <Icon className="w-6 h-6 text-sector-6" />
+                      <div className="p-2.5 rounded-lg flex-shrink-0" style={{ background: '#11223B' }}>
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                       <h3 className="text-xl font-bold text-gray-900">{sector.name}</h3>
                     </div>
-                    
+
                     <p className="text-gray-600 mb-4 font-normal">{sector.description}</p>
-                    
+
                     <div className="grid grid-cols-3 gap-2 mb-4">
-                      <div className="text-center p-2 bg-gray-50 rounded-lg">
-                        <DollarSign className="w-4 h-4 text-sector-3 mx-auto mb-1" />
-                        <div className="text-sm font-bold text-gray-900">{sector.investment}</div>
-                        <div className="text-xs text-gray-600">Ingreso</div>
-                      </div>
-                      <div className="text-center p-2 bg-gray-50 rounded-lg">
-                        <Users className="w-4 h-4 text-sector-6 mx-auto mb-1" />
-                        <div className="text-sm font-bold text-gray-900">{sector.employment}</div>
-                        <div className="text-xs text-gray-600">Empleos</div>
-                      </div>
-                      <div className="text-center p-2 bg-gray-50 rounded-lg">
-                        <TrendingUp className="w-4 h-4 text-sector-3 mx-auto mb-1" />
-                        <div className="text-sm font-bold text-gray-900">{sector.growth}</div>
-                        <div className="text-xs text-gray-600">Crecimiento</div>
-                      </div>
+                      {[
+                        { Stat: DollarSign, value: sector.investment, label: 'Ingreso', bg: '#2BB9DB', fg: '#ffffff' },
+                        { Stat: Users, value: sector.employment, label: 'Empleos', bg: '#3DB08B', fg: '#ffffff' },
+                        { Stat: TrendingUp, value: sector.growth, label: 'Crecimiento', bg: '#D7E3AA', fg: '#11223B' },
+                      ].map(({ Stat, value, label, bg, fg }) => (
+                        <div key={label} className="text-center p-2 rounded-lg" style={{ background: bg }}>
+                          <Stat className="w-4 h-4 mx-auto mb-1" style={{ color: fg }} />
+                          <div className="text-[11px] font-bold leading-tight" style={{ color: fg }}>{value}</div>
+                          <div className="text-[10px]" style={{ color: fg, opacity: 0.85 }}>{label}</div>
+                        </div>
+                      ))}
                     </div>
-                    
+
                     <div className="mb-6">
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-1.5">
                         {sector.highlights.slice(0, 2).map((highlight, highlightIndex) => (
                           <span
                             key={highlightIndex}
-                            className="bg-sector-1-soft text-sector-2 px-2 py-1 rounded-full text-xs font-medium"
+                            className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium"
                           >
                             {highlight}
                           </span>
                         ))}
                         {sector.highlights.length > 2 && (
-                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                          <span className="bg-gray-100 text-gray-500 px-2 py-1 rounded text-xs font-medium">
                             +{sector.highlights.length - 2} más
                           </span>
                         )}
@@ -241,7 +245,8 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                     <div className="grid grid-cols-2 gap-2 mt-auto pt-2">
                       <button
                         onClick={() => handleOpenModal(sector)}
-                        className="bg-sector-6 hover:brightness-110 text-white font-semibold px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center text-sm text-center"
+                        className="hover:brightness-125 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center text-sm text-center"
+                        style={{ background: '#11223B' }}
                       >
                         Conoce más
                         <ArrowRight className="w-4 h-4 ml-1" />
@@ -252,7 +257,8 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                           href={sector.pdfUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="border border-sector-6 text-sector-6 bg-sector-6-soft hover:brightness-110 font-semibold px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center text-sm text-center"
+                          className="border text-[#11223B] bg-white hover:bg-gray-50 font-semibold px-4 py-2 rounded-lg transition-colors duration-200 flex items-center justify-center text-sm text-center"
+                          style={{ borderColor: '#11223B' }}
                         >
                           <Download className="w-4 h-4 mr-1" />
                           Ficha

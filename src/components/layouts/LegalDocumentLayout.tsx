@@ -26,7 +26,7 @@ export default function LegalDocumentLayout({
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <section className="relative text-white py-20" style={{ background: '#021049' }}>
+      <section className="relative text-white py-20" style={{ background: '#11223B' }}>
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

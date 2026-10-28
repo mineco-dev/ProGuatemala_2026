@@ -3,7 +3,6 @@ import {
   CtaSection,
   DashboardSection,
   HeroSection,
-  OnePagersSection,
 } from './sections/strategicSectors';
 
 export default function StrategicSectors() {
@@ -11,7 +10,6 @@ export default function StrategicSectors() {
     <div>
       <HeroSection />
       <SectorsCarousel />
-      <OnePagersSection />
       <DashboardSection />
       <CtaSection />
     </div>

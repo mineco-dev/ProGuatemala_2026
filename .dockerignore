@@ -10,3 +10,7 @@ Dockerfile
 .dockerignore
 k8s
 tsconfig.app.tsbuildinfo
+
+# Documentos fuente (PDF/DOCX) que NO se importan en la app: se enlazan desde
+# el portal del MINECO por URL, asi que no deben entrar al contexto de build.
+src/assets/files

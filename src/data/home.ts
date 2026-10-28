@@ -9,7 +9,7 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-macroeconomia-robusta',
     iconImg: macroIcon,
-    iconBg: '#F5B82E',
+    iconBg: '#FABE0D',
     titleKey: 'home.advantages.macro.title',
     descriptionKey: 'home.advantages.macro.desc',
     detailKeys: [
@@ -22,7 +22,7 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-ubicacion-estrategica',
     iconImg: locationIcon,
-    iconBg: '#3DBE6B',
+    iconBg: '#D7E3AA',
     titleKey: 'home.advantages.location.title',
     descriptionKey: 'home.advantages.location.desc',
     detailKeys: [
@@ -35,7 +35,7 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-talento-joven-y-calificado',
     iconImg: talentIcon,
-    iconBg: '#2E86DE',
+    iconBg: '#2BB9DB',
     titleKey: 'home.advantages.talent.title',
     descriptionKey: 'home.advantages.talent.desc',
     detailKeys: [
@@ -48,7 +48,7 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-energia-renovable-y-confiable',
     iconImg: energyIcon,
-    iconBg: '#16B7A7',
+    iconBg: '#3DB08B',
     titleKey: 'home.advantages.energy.title',
     descriptionKey: 'home.advantages.energy.desc',
     detailKeys: [
@@ -61,7 +61,7 @@ export const guatemalaAdvantages: HomeAdvantage[] = [
   {
     id: 'advantage-regimenes-especiales-e-incentivos-fiscales',
     iconImg: regimesIcon,
-    iconBg: '#9B7EE8',
+    iconBg: '#BBA4CE',
     titleKey: 'home.advantages.incentives.title',
     descriptionKey: 'home.advantages.incentives.desc',
     detailKeys: [

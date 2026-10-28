@@ -3,10 +3,11 @@ import type { Localized } from '@/i18n';
 import type { Benefit } from '@/types/about';
 
 const STYLES = [
-  { icon: Award, hexColor: '#059669', hexBg: '#ecfdf5', hexBorder: '#a7f3d0' }, // Verde Emerald
-  { icon: Globe, hexColor: '#2563eb', hexBg: '#eff6ff', hexBorder: '#bfdbfe' }, // Azul
-  { icon: Lightbulb, hexColor: '#9333ea', hexBg: '#faf5ff', hexBorder: '#e9d5ff' }, // Morado
-  { icon: Shield, hexColor: '#ea580c', hexBg: '#fff7ed', hexBorder: '#fed7aa' }, // Naranja
+  // Tiles solidos con la paleta oficial; icono en navy de marca para contraste.
+  { icon: Award, hexColor: '#11223B', hexBg: '#FABE0D', hexBorder: '#FABE0D' }, // Dorado de marca
+  { icon: Globe, hexColor: '#11223B', hexBg: '#2BB9DB', hexBorder: '#2BB9DB' }, // Cian de marca
+  { icon: Lightbulb, hexColor: '#11223B', hexBg: '#3DB08B', hexBorder: '#3DB08B' }, // Verde de marca
+  { icon: Shield, hexColor: '#11223B', hexBg: '#BBA4CE', hexBorder: '#BBA4CE' }, // Morado de marca
 ] as const;
 
 const COPY: Localized<Array<Pick<Benefit, 'title' | 'description'>>> = {

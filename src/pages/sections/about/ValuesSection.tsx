@@ -17,7 +17,12 @@ export default function ValuesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">{t('about.values.title')}</h2>
+          <h2
+            className="text-3xl md:text-4xl font-bold uppercase tracking-[0.12em] mb-3"
+            style={{ color: '#3DB08B' }}
+          >
+            {t('about.values.title')}
+          </h2>
           <p className="text-lg text-slate-600">{t('about.values.subtitle')}</p>
         </motion.div>
 
@@ -40,10 +45,13 @@ export default function ValuesSection() {
                   className={`${theme.iconBg} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-md shrink-0 transition-transform duration-300 group-hover:scale-105`}
                   style={theme.styleIcon}
                 >
-                  <Icon className="w-8 h-8 text-white" size={32} />
+                  <Icon className="w-8 h-8" size={32} style={{ color: '#11223B' }} />
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
+                <h3
+                  className="text-lg font-bold uppercase tracking-wider mb-3"
+                  style={{ color: '#11223B' }}
+                >
                   {value.title}
                 </h3>
                 <p className="text-slate-600 leading-relaxed text-sm">{value.description}</p>
