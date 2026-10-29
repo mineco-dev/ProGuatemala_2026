@@ -56,18 +56,6 @@ export default function ParksSection() {
 
               <p className="text-sm text-gray-300 leading-relaxed">{park.description}</p>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {park.highlights.slice(0, 3).map((item) => (
-                  <span
-                    key={item}
-                    className="text-[11px] font-semibold px-2.5 py-1 rounded"
-                    style={{ background: '#FABE0D', color: '#11223B' }}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
               <span className="mt-5 pt-4 border-t border-white/10 flex items-center gap-1.5 text-sm font-medium text-gray-300 transition-colors group-hover:text-white">
                 {t('why.parks.viewGallery')}
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

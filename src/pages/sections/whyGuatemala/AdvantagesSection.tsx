@@ -4,7 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { advantages } from '@/data/whyGuatemala';
-import advantagesBg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PORQUE GUATEMALA/POR QUE GUATEMALA-03.jpg';
+import advantagesBg from '@/assets/images/por-que-guatemala/POR QUE GUATEMALA-03.jpg';
 
 /** Color de marca + icono por tarjeta (orden fijo de los datos). */
 const CARD_STYLES: Array<{ accent: string; icon: LucideIcon }> = [

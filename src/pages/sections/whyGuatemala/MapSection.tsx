@@ -26,40 +26,12 @@ export default function MapSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-8">
-          {/* Tablero Tableau */}
+          {/* Mapa dinámico de infraestructura + conectividad marítima (primero) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-          >
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-black/5">
-              <div className="p-6 sm:p-8 bg-[#11223B] text-white">
-                <h3 className="text-xl sm:text-2xl font-bold">{t('why.map.boxTitle')}</h3>
-                <p className="text-sm sm:text-base text-blue-200 mt-1">
-                  {t('why.map.boxSubtitle')}
-                </p>
-              </div>
-              <div className="p-4 sm:p-6 bg-slate-50/50">
-                <TableauEmbed
-                  vizName={dashboards.departmentStats[language]}
-                  title={t('why.map.boxTitle')}
-                  // 1657x878, la proporcion real del tablero publicado.
-                  aspectRatio={0.53}
-                  language={tableauLanguage(language)}
-                  params={{ publish: 'yes' }}
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Mapa dinámico de infraestructura + conectividad marítima */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
             className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           >
             <div className="bg-white border border-black/5 rounded-2xl p-6 shadow-sm">
@@ -90,6 +62,35 @@ export default function MapSection() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </motion.div>
+
+          {/* Tablero Tableau de datos departamentales (despues del mapa) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          >
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-black/5">
+              <div className="p-6 sm:p-8 bg-[#11223B] text-white">
+                <h3 className="text-xl sm:text-2xl font-bold">{t('why.map.boxTitle')}</h3>
+                <p className="text-sm sm:text-base text-blue-200 mt-1">
+                  {t('why.map.boxSubtitle')}
+                </p>
+              </div>
+              <div className="p-4 sm:p-6 bg-slate-50/50">
+                <TableauEmbed
+                  vizName={dashboards.departmentStats[language]}
+                  title={t('why.map.boxTitle')}
+                  // 1160x787 (desktop) y 727 en movil, segun el embed publicado.
+                  aspectRatio={0.68}
+                  minMobileHeight={727}
+                  language={tableauLanguage(language)}
+                  params={{ publish: 'yes' }}
+                />
+              </div>
             </div>
           </motion.div>
         </div>

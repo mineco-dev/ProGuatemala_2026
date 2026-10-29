@@ -41,7 +41,8 @@ export default function InvestmentMapSection() {
               <TableauEmbed
                 vizName={dashboards.fdi[language]}
                 title={t('home.map.boxTitle')}
-                aspectRatio={0.75}
+                aspectRatio={0.68}
+                minMobileHeight={927}
                 language={tableauLanguage(language)}
               />
             </div>

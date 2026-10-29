@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import BrandLogos from './BrandLogos';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -13,11 +14,7 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="space-y-4 flex flex-col items-center">
             <div className="flex items-center justify-center">
-              <img
-                src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png"
-                alt="ProGuatemala"
-                className="h-10 w-auto brightness-0 invert"
-              />
+              <BrandLogos variant="white" imgClassName="h-14 sm:h-16 w-auto" className="gap-4" />
             </div>
             <p className="text-gray-400 text-sm">
               {t('footer.description')}

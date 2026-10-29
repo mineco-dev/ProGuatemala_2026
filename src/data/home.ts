@@ -1,9 +1,9 @@
 import type { AdvantageHotspot, HomeAdvantage } from '@/types/home';
-import macroIcon from '@/assets/images/home/icons/macro.png';
-import locationIcon from '@/assets/images/home/icons/location.png';
-import talentIcon from '@/assets/images/home/icons/talent.png';
-import energyIcon from '@/assets/images/home/icons/energy.png';
-import regimesIcon from '@/assets/images/home/icons/regimes.png';
+import macroIcon from '@/assets/images/inicio/iconos/macro.png';
+import locationIcon from '@/assets/images/inicio/iconos/location.png';
+import talentIcon from '@/assets/images/inicio/iconos/talent.png';
+import energyIcon from '@/assets/images/inicio/iconos/energy.png';
+import regimesIcon from '@/assets/images/inicio/iconos/regimes.png';
 
 export const guatemalaAdvantages: HomeAdvantage[] = [
   {

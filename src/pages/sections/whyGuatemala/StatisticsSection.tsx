@@ -86,7 +86,7 @@ export default function StatisticsSection() {
                   </div>
                 )}
 
-                {/* Pie con la aclaración */}
+                {/* Pie con la aclaracion */}
                 <div className="px-3 py-2.5 text-center">
                   <span className="text-[10px] font-medium text-gray-400">
                     {stat.subtitle || ' '}

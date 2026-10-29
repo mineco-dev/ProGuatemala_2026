@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import whyGuatemalaImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PORQUE GUATEMALA/POR QUE GUATEMALA-02.jpg';
+import whyGuatemalaImg from '@/assets/images/por-que-guatemala/POR QUE GUATEMALA-02.jpg';
 
 const scrollTo = (id: string): void => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });

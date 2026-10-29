@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { guatemalaAdvantages } from '@/data/home';
-import advantagesBg from '@/assets/images/home/advantages-bg.jpg';
+import advantagesBg from '@/assets/images/inicio/advantages-bg.jpg';
 
 /** Separa el primer termino del titulo para darle el acento dorado del diseno. */
 function splitTitle(title: string): [string, string] {

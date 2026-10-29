@@ -6,7 +6,7 @@ export const statistics: Localized<Statistic[]> = {
   es: [
     {
       label: 'PIB',
-      value: 'US$ 123,310',
+      value: 'US$ 122,036.8',
       suffix: 'millones',
       badge: '+4.3% Crecimiento 2025',
       subtitle: 'PIB Nominal',
@@ -20,21 +20,21 @@ export const statistics: Localized<Statistic[]> = {
     },
     {
       label: 'EXPORTACIÓN DE BIENES',
-      value: 'US$ 15,595',
+      value: 'US$ 15,592.7',
       suffix: 'millones',
       badge: '+7.1% vs año anterior',
       subtitle: '2025',
     },
     {
       label: 'EXPORTACIÓN DE SERVICIOS',
-      value: 'US$ 4,888.3',
+      value: 'US$ 4,888.2',
       suffix: 'millones',
       badge: '+4.8% vs año anterior',
       subtitle: '2025',
     },
     {
       label: 'IED',
-      value: 'US$ 1,881.7',
+      value: 'US$ 1,900.1',
       suffix: 'millones',
       badge: '2025',
       subtitle: 'Inversión Extranjera Directa',
@@ -43,7 +43,7 @@ export const statistics: Localized<Statistic[]> = {
   en: [
     {
       label: 'GDP',
-      value: 'US$ 123,310',
+      value: 'US$ 122,036.8',
       suffix: 'million',
       badge: '+4.3% growth in 2025',
       subtitle: 'Nominal GDP',
@@ -57,21 +57,21 @@ export const statistics: Localized<Statistic[]> = {
     },
     {
       label: 'GOODS EXPORTS',
-      value: 'US$ 15,595',
+      value: 'US$ 15,592.7',
       suffix: 'million',
       badge: '+7.1% year over year',
       subtitle: '2025',
     },
     {
       label: 'SERVICES EXPORTS',
-      value: 'US$ 4,888.3',
+      value: 'US$ 4,888.2',
       suffix: 'million',
       badge: '+4.8% year over year',
       subtitle: '2025',
     },
     {
       label: 'FDI',
-      value: 'US$ 1,881.7',
+      value: 'US$ 1,900.1',
       suffix: 'million',
       badge: '2025',
       subtitle: 'Foreign Direct Investment',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import BrandLogos from './BrandLogos';
 
 const LoadingScreen: React.FC = () => {
   const { t } = useLanguage();
@@ -22,16 +23,14 @@ const LoadingScreen: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <div className="bg-white rounded-2xl p-8 shadow-2xl inline-block">
-            <motion.img
-              src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png"
-              alt="ProGuatemala"
-              className="h-16 w-auto mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            />
-          </div>
+          <motion.div
+            className="bg-white rounded-2xl p-8 shadow-2xl inline-block"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <BrandLogos variant="color" imgClassName="h-16 sm:h-20 w-auto" className="gap-5" />
+          </motion.div>
         </motion.div>
 
         {/* Loading Text */}

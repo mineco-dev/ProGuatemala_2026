@@ -5,27 +5,27 @@ import {
 } from 'lucide-react';
 
 import type { Language, Localized } from '@/i18n';
-import type { Opportunity, Sector } from '@/types/sector';
+import type { Opportunity, Sector, SectorContact } from '@/types/sector';
 import { sectorOnePagers } from '@/data/onePagers';
 
 // Assets de imágenes
-import metalmecanicaImg from '@/assets/images/sectores/METALMECÁNICA.jpeg';
-import alimentosProcesadosImg from '@/assets/images/sectores/ALIMENTOS PROCESADOS.jpeg';
-import bebidasNoAlcoholicas from '@/assets/images/sectores/BEBIDAS NO ALCOHOLICAS.jpeg';
-import biotecnologiaImg from '@/assets/images/sectores/BIOTECNOLOGÍA.jpeg';
-import centroServiciosCompartidosImg from '@/assets/images/sectores/CENTRO DE SERVICIOS COMPARTIDOS.jpeg';
-import componentesElectronicosImg from '@/assets/images/sectores/COMPONENTES Y EQUIPO ELECTRÓNICO.jpeg';
-import dispositivosMedicosImg from '@/assets/images/sectores/DISPOSITIVOS Y EQUIPO MÉDICO.jpeg';
-import electricoElectronico from '@/assets/images/sectores/ELÉCTRICO – ELECTRÓNICO (AUTOPARTES).jpeg';
-import energiaImg from '@/assets/images/sectores/ENERGÍA.jpg';
-import farmaceuticosImg from '@/assets/images/sectores/FARMACEÚTICOS.jpeg';
-import quimicosImg from '@/assets/images/sectores/QUIMICOS.jpeg';
-import serviciosSaludImg from '@/assets/images/sectores/SERVICIOS DE SALUD.jpeg';
-import serviciosEmpresarialesImg from '@/assets/images/sectores/SERVICIOS EMPRESARILES, CONTACT CENTERS Y BPOS.jpeg';
-import tecnologiaInformacion from '@/assets/images/sectores/Tecnologías de la información para manufactura avanzada.jpg';
-import ticsSoftware from '@/assets/images/sectores/TICS Y SOFTWARE.jpeg';
-import turismoImg from '@/assets/images/sectores/TURISMO.JPG';
-import vestuarioImg from '@/assets/images/sectores/VESTUARIO Y TEXTILES.jpeg';
+import metalmecanicaImg from '@/assets/images/sectores/tarjetas/METALMECÁNICA.jpeg';
+import alimentosProcesadosImg from '@/assets/images/sectores/tarjetas/ALIMENTOS PROCESADOS.jpeg';
+import bebidasNoAlcoholicas from '@/assets/images/sectores/tarjetas/BEBIDAS NO ALCOHOLICAS.jpeg';
+import biotecnologiaImg from '@/assets/images/sectores/tarjetas/BIOTECNOLOGÍA.jpeg';
+import centroServiciosCompartidosImg from '@/assets/images/sectores/tarjetas/CENTRO DE SERVICIOS COMPARTIDOS.jpeg';
+import componentesElectronicosImg from '@/assets/images/sectores/tarjetas/COMPONENTES Y EQUIPO ELECTRÓNICO.jpeg';
+import dispositivosMedicosImg from '@/assets/images/sectores/tarjetas/DISPOSITIVOS Y EQUIPO MÉDICO.jpeg';
+import electricoElectronico from '@/assets/images/sectores/tarjetas/ELÉCTRICO – ELECTRÓNICO (AUTOPARTES).jpeg';
+import energiaImg from '@/assets/images/sectores/tarjetas/ENERGÍA.jpg';
+import farmaceuticosImg from '@/assets/images/sectores/tarjetas/FARMACEÚTICOS.jpeg';
+import quimicosImg from '@/assets/images/sectores/tarjetas/QUIMICOS.jpeg';
+import serviciosSaludImg from '@/assets/images/sectores/tarjetas/SERVICIOS DE SALUD.jpeg';
+import serviciosEmpresarialesImg from '@/assets/images/sectores/tarjetas/SERVICIOS EMPRESARILES, CONTACT CENTERS Y BPOS.jpeg';
+import tecnologiaInformacion from '@/assets/images/sectores/tarjetas/Tecnologías de la información para manufactura avanzada.jpg';
+import ticsSoftware from '@/assets/images/sectores/tarjetas/TICS Y SOFTWARE.jpeg';
+import turismoImg from '@/assets/images/sectores/tarjetas/TURISMO.JPG';
+import vestuarioImg from '@/assets/images/sectores/tarjetas/VESTUARIO Y TEXTILES.jpeg';
 
 /**
  * Datos que no dependen del idioma: icono, imagen, cifras, horizonte temporal,
@@ -44,6 +44,8 @@ interface SectorFacts {
   timeframe: Sector['timeframe'];
   priority: number;
   potentials: Array<Opportunity['potential']>;
+  /** RCA por oportunidad (opcional). Si existe, la ficha muestra el RCA. */
+  rcas?: string[];
 }
 
 const FACTS: SectorFacts[] = [
@@ -53,11 +55,12 @@ const FACTS: SectorFacts[] = [
     image: alimentosProcesadosImg,
     investment: 'US$1,721.4M',
     employment: '196.6K',
-    growth: '+2.0%',
+    growth: '5.5%',
     exports: 'US$3,272.0M',
     timeframe: 'short',
     priority: 1,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['166.75', '62.77', '37.81', '31.44'],
   },
   {
     id: 'bebidas-no-alcoholicas',
@@ -65,11 +68,12 @@ const FACTS: SectorFacts[] = [
     image: bebidasNoAlcoholicas,
     investment: 'US$124.4M',
     employment: '7.0K',
-    growth: '+10.1%',
+    growth: '5%',
     exports: 'US$273.3M',
     timeframe: 'short',
     priority: 2,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['31.45', '22.67', '12.38', '8.32'],
   },
   {
     id: 'vestuario-textil',
@@ -77,11 +81,12 @@ const FACTS: SectorFacts[] = [
     image: vestuarioImg,
     investment: 'US$742.3M',
     employment: '125.3K',
-    growth: '+5.5%',
+    growth: '3.15%',
     exports: 'US$2,110.0M',
     timeframe: 'short',
     priority: 3,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['151.84', '105.26', '74.03', '64.79'],
   },
   {
     id: 'quimicos',
@@ -89,23 +94,25 @@ const FACTS: SectorFacts[] = [
     image: quimicosImg,
     investment: 'US$226.3M',
     employment: '18.3K',
-    growth: '+7.6%',
+    growth: '5.4%',
     exports: 'US$747.9M',
     timeframe: 'short',
     priority: 4,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Medio'],
+    rcas: ['62.03', '57.55', '49.8', '33.61'],
   },
   {
     id: 'farmaceuticos',
     icon: Heart,
     image: farmaceuticosImg,
-    investment: 'US$159.0M',
-    employment: '8.0K',
-    growth: '+13.2%',
+    investment: 'US$158.96M',
+    employment: '7.96K',
+    growth: '3.2%',
     exports: 'US$436.1M',
     timeframe: 'short',
     priority: 5,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['8.34', '2.8', '2.71', '2.34'],
   },
   {
     id: 'tics-software',
@@ -113,7 +120,7 @@ const FACTS: SectorFacts[] = [
     image: ticsSoftware,
     investment: 'US$502.4M',
     employment: '29.3K',
-    growth: '+6.8%',
+    growth: '4.3%',
     exports: 'US$544.9M',
     timeframe: 'short',
     priority: 6,
@@ -125,7 +132,7 @@ const FACTS: SectorFacts[] = [
     image: serviciosEmpresarialesImg,
     investment: 'US$777.8M',
     employment: '64.0K',
-    growth: '+1.2%',
+    growth: '16.0%',
     exports: 'US$869.2M',
     timeframe: 'short',
     priority: 7,
@@ -135,9 +142,10 @@ const FACTS: SectorFacts[] = [
     id: 'energia',
     icon: Zap,
     image: energiaImg,
-    investment: 'US$3.2B',
-    employment: '45K',
-    growth: '+12.3%',
+    investment: 'USD$3,100 M',
+    employment: '14K',
+    growth: '+7.3%',
+    exports: '9',
     timeframe: 'short',
     priority: 8,
     potentials: [],
@@ -159,11 +167,12 @@ const FACTS: SectorFacts[] = [
     image: electricoElectronico,
     investment: 'US$178.5M',
     employment: '15.3K',
-    growth: '+8.7%',
+    growth: '1.2%',
     exports: 'US$60.3M',
     timeframe: 'medium',
     priority: 10,
     potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['1.26', '0.3', '0.24', '0.13'],
   },
   {
     id: 'servicios-salud',
@@ -171,7 +180,7 @@ const FACTS: SectorFacts[] = [
     image: serviciosSaludImg,
     investment: 'US$890M',
     employment: '125K',
-    growth: '+11.3%',
+    growth: '1.2%',
     timeframe: 'medium',
     priority: 11,
     potentials: [],
@@ -182,11 +191,12 @@ const FACTS: SectorFacts[] = [
     image: metalmecanicaImg,
     investment: 'US$175.5M',
     employment: '17.8K',
-    growth: '-6.4%',
+    growth: '3.8%',
     exports: 'US$160.7M',
     timeframe: 'medium',
     priority: 12,
-    potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto', 'Potencial Medio-Alto'],
+    potentials: ['Potencial Muy Alto', 'Potencial Alto', 'Potencial Alto'],
+    rcas: ['1.96', '0.81', '0.68'],
   },
   {
     id: 'turismo',
@@ -194,7 +204,7 @@ const FACTS: SectorFacts[] = [
     image: turismoImg,
     investment: 'US$971.9M',
     employment: '162.5K',
-    growth: '+19.5%',
+    growth: '3.8%',
     exports: 'US$1,809.8M',
     timeframe: 'medium',
     priority: 13,
@@ -251,6 +261,14 @@ interface SectorCopy {
   name: string;
   description: string;
   highlights: string[];
+  /** Etiqueta del KPI de crecimiento (localizada). Si falta, usa la global. */
+  growthLabel?: string;
+  /** Etiqueta del KPI de ingresos (localizada). Si falta, usa la global. */
+  revenueLabel?: string;
+  /** Etiqueta del KPI de exportaciones (localizada). Si falta, usa la global. */
+  exportsLabel?: string;
+  /** Fuente del pie de la ficha (localizada). Si falta, usa la global. */
+  sourceLabel?: string;
   opportunities: Array<{ title: string; description: string }>;
   advantages: string[];
 }
@@ -262,26 +280,26 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Procesamiento y transformación de productos alimenticios para mercados locales e internacionales',
       highlights: ['Alimentos procesados', 'Conservación de alimentos', 'Productos alimenticios', 'Molinería'],
+      growthLabel: 'CAGR Exportaciones 2014–2025',
       opportunities: [
         {
-          title: 'Alimentos listos para consumo',
+          title: '200559 · Frijoles preparados o en conserva',
           description:
-            'Producción de comidas preparadas, snacks y productos empacados para supermercados y exportación regional.',
+            'Judías (porotos, alubias, frijoles, fréjoles) «Vigna spp.», «Phaseolus spp.», preparadas o conservadas sin vinagre ni ácido acético, sin congelar (exc. desvainadas).',
         },
         {
-          title: 'Ingredientes y aditivos alimentarios',
+          title: '170199 · Azúcar de caña o remolacha y sacarosa',
           description:
-            'Fabricación de insumos para la industria alimentaria, como mezclas, saborizantes, conservantes y bases procesadas.',
+            'Azúcar de caña o remolacha y sacarosa químicamente pura, sólidos (exc. los con adición de aromatizante o colorante, así como el azúcar en bruto).',
         },
         {
-          title: 'Empaque alimentario especializado',
-          description:
-            'Producción de empaques para conservación, exportación y presentación de alimentos procesados.',
+          title: '210410 · Preparaciones para sopas, potajes o caldos',
+          description: 'Preparaciones para sopas, potajes o caldos.',
         },
         {
-          title: 'Alimentos saludables y funcionales',
+          title: '170114 · Azúcar de caña en estado sólido',
           description:
-            'Desarrollo de productos bajos en azúcar, altos en proteína, fortificados o dirigidos a consumidores saludables.',
+            'Azúcar de caña, en estado sólido (excepto los de la caña de azúcar 1701 13), sin adición de aromatizante ni colorante.',
         },
       ],
       advantages: [
@@ -297,26 +315,27 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Producción de bebidas naturales, jugos y bebidas funcionales',
       highlights: ['Bebidas no alcohólicas', 'Aguas embotelladas', 'Aguas minerales', 'Elaboración de bebidas'],
+      growthLabel: 'CAGR Exportaciones 2014–2025',
       opportunities: [
         {
-          title: 'Bebidas funcionales',
+          title: '200971 · Jugo de manzana',
           description:
-            'Producción de bebidas con vitaminas, electrolitos, colágeno, proteína o ingredientes naturales.',
+            'Jugo de manzana, sin fermentar y sin adición de alcohol, incl. con adición de azúcar u otro edulcorante, de valor Brix <= 20 a 20 °C.',
         },
         {
-          title: 'Agua embotellada y saborizada',
+          title: '200941 · Jugo de piña (ananá)',
           description:
-            'Expansión de líneas de agua purificada, mineral, saborizada o con valor agregado.',
+            'Jugo de piña «ananá», sin fermentar y sin adición de alcohol, incl. con adición de azúcar u otro edulcorante, de valor Brix <= 20 a 20 °C.',
         },
         {
-          title: 'Jugos y néctares naturales',
+          title: '220299 · Bebidas no alcohólicas',
           description:
-            'Procesamiento de frutas locales para bebidas listas para consumo y exportación regional.',
+            'Bebidas no alcohólicas (exc. agua, jugos de frutas o vegetales, leche y cerveza).',
         },
         {
-          title: 'Bebidas bajas en azúcar',
+          title: '200989 · Jugo de frutas o verduras',
           description:
-            'Desarrollo de gaseosas, tés, refrescos y bebidas saludables con menor contenido calórico.',
+            'Jugo de frutas o verduras, no fermentados, con o sin adición de azúcar u otro edulcorante (excepto con adición de alcohol, mezclas, y el jugo de los cítricos, piñas, tomates, uvas —incl. el mosto de uva—, las manzanas y arándanos).',
         },
       ],
       advantages: [
@@ -332,26 +351,27 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Industria textil y de confección con estándares internacionales',
       highlights: ['Hilatura', 'Tejedura', 'Productos textiles', 'Prendas de vestir'],
+      growthLabel: 'CAGR Ingresos 2015–2024',
       opportunities: [
         {
-          title: 'Textiles técnicos',
+          title: '540771 · Tejidos de filamentos sintéticos, crudos o blanqueados',
           description:
-            'Producción de textiles especializados para uso médico, deportivo e industrial.',
+            'Tejidos de hilados con un contenido de filamentos sintéticos >= 85% en peso, incl. los monofilamentos de título >= 67 decitex y cuya mayor dimensión de la sección transversal sea <= 1 mm, crudos o blanqueados (exc. de filamentos o monofilamentos de poliésteres, de nailon o demás poliamidas, así como de filamentos de poliésteres sin texturar mezclados con filamentos de poliésteres texturados).',
         },
         {
-          title: 'Moda sostenible',
+          title: '520411 · Hilo de coser de algodón (>= 85%)',
           description:
-            'Confección de prendas con textiles orgánicos, reciclados y procesos ecológicos.',
+            'Hilo de coser de algodón, con un contenido de algodón >= 85% en peso (exc. acondicionado para la venta al por menor).',
         },
         {
-          title: 'Uniformes corporativos',
+          title: '600622 · Tejidos de punto de algodón, teñidos',
           description:
-            'Manufactura de uniformes especializados para empresas, hospitales, hoteles e industria.',
+            'Tejidos de punto, de anchura > 30 cm, de algodón, teñidos (exc. tejidos de punto por urdimbre; tejidos con un contenido de hilados de elastómeros o hilos de caucho >= 5% en peso; terciopelo, felpa y tejidos con bucles, de punto; etiquetas, escudos y artículos similares; y tejidos de punto impregnados, recubiertos, revestidos o estratificados).',
         },
         {
-          title: 'Confección premium',
+          title: '610520 · Camisas y blusas de punto de fibras sintéticas o artificiales',
           description:
-            'Producción de prendas de alta calidad para marcas internacionales.',
+            'Camisas, blusas y blusas camiseras, de punto, de fibras sintéticas o artificiales, para mujeres o niñas (exc. «T-shirts» y camisetas).',
         },
       ],
       advantages: [
@@ -367,26 +387,23 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Productos químicos industriales y especializados',
       highlights: ['Abonos', 'Plaguicidas', 'Jabones y detergentes', 'Otros químicos'],
+      growthLabel: 'CAGR Exportaciones 2015–2025',
       opportunities: [
         {
-          title: 'Productos de limpieza institucional',
-          description:
-            'Fabricación de detergentes, desinfectantes y químicos para hoteles, hospitales e industria.',
+          title: '282890 · Hipocloritos, cloritos e hipobromitos',
+          description: 'Hipocloritos, cloritos e hipobromitos (exc. hipocloritos de calcio).',
         },
         {
-          title: 'Insumos químicos industriales',
-          description:
-            'Producción de químicos utilizados por manufactura, alimentos, textiles y construcción.',
+          title: '360500 · Fósforos (cerillas)',
+          description: 'Fósforos «cerillas» (exc. artículos de pirotecnia de la partida 3604).',
         },
         {
-          title: 'Agroquímicos y fertilizantes',
-          description:
-            'Formulación y envasado de productos para agricultura, nutrición vegetal y protección de cultivos.',
+          title: '284019 · Tetraborato de disodio (bórax refinado)',
+          description: 'Tetraborato de disodio «bórax refinado» (exc. anhidro).',
         },
         {
-          title: 'Cosméticos y cuidado personal',
-          description:
-            'Fabricación de jabones, cremas, champús, fragancias y productos de higiene personal.',
+          title: '291814 · Ácido cítrico',
+          description: 'Ácido cítrico.',
         },
       ],
       advantages: [
@@ -402,26 +419,28 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Producción farmacéutica y medicamentos genéricos',
       highlights: ['Productos farmacéuticos', 'Sustancias Medicinales', 'Productos botánicos', 'Fabricación farmacéutica'],
+      revenueLabel: 'Ingresos 2025',
+      growthLabel: 'CAGR Exportaciones 2021–2025',
       opportunities: [
         {
-          title: 'Medicamentos genéricos',
+          title: '300450 · Medicamentos con vitaminas o provitaminas',
           description:
-            'Producción de medicamentos de bajo costo para mercado nacional y regional.',
+            'Medicamentos que contengan provitaminas o vitaminas, incl. los concentrados naturales y sus derivados utilizados principalmente como vitaminas, dosificados o en formas o envases para la venta al por menor (exc. los que contengan antibióticos, hormonas, alcaloides o sus derivados). Incluye los de administración transdérmica.',
         },
         {
-          title: 'Medicamentos OTC',
+          title: '300630 · Preparaciones opacificantes y reactivos de diagnóstico',
           description:
-            'Fabricación de productos de venta libre como analgésicos, antigripales y suplementos básicos.',
+            'Preparaciones opacificantes para exámenes radiológicos; reactivos de diagnóstico concebidos para usar en el paciente.',
         },
         {
-          title: 'Empaque farmacéutico',
+          title: '300410 · Medicamentos con penicilinas o estreptomicinas',
           description:
-            'Producción de blísteres, frascos, etiquetas y empaques especializados para medicamentos.',
+            'Medicamentos que contengan penicilinas o derivados con la estructura del ácido penicilánico, o estreptomicinas o sus derivados, dosificados o en formas o envases para la venta al por menor. Incluye los de administración transdérmica.',
         },
         {
-          title: 'Laboratorios de control de calidad',
+          title: '300420 · Medicamentos con antibióticos',
           description:
-            'Servicios de análisis, certificación y pruebas para productos farmacéuticos y cosméticos.',
+            'Medicamentos que contengan antibióticos, dosificados o en formas o envases para la venta al por menor (exc. los que contengan penicilinas o derivados con estructura del ácido penicilánico, o estreptomicinas o sus derivados). Incluye los de administración transdérmica.',
         },
       ],
       advantages: [
@@ -437,6 +456,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Desarrollo de software y servicios de tecnología de la información',
       highlights: ['Programación informática', 'TICs', 'Servicios de información', 'Software'],
+      growthLabel: 'CAGR Ingresos 2014–2025',
       opportunities: [
         {
           title: 'Desarrollo de software empresarial',
@@ -472,6 +492,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Servicios de outsourcing, call centers y procesos de negocio',
       highlights: ['Centros de llamadas', 'Servicios administrativos', 'BPO', 'Contact centers'],
+      growthLabel: 'CAGR Exportaciones 2020–2025',
       opportunities: [
         {
           title: 'Centros de servicios compartidos',
@@ -507,6 +528,8 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Generación y distribución de energía renovable',
       highlights: ['Energía hidroeléctrica', 'Energía solar', 'Energía eólica', 'Biomasa'],
+      exportsLabel: 'Centrales hidroeléctricas estatales',
+      sourceLabel: 'Fuente: Instituto Nacional de Electrificación (INDE)',
       opportunities: [],
       advantages: [],
     },
@@ -523,26 +546,24 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Manufactura de componentes eléctricos y electrónicos para la industria automotriz',
       highlights: ['Equipo industrial', 'Reparación de maquinaria', 'Equipo industrial', 'Eléctrico - electrónico'],
+      growthLabel: 'CAGR Ingresos 2013–2024',
       opportunities: [
         {
-          title: 'Ensamble de componentes eléctricos',
+          title: '854430 · Juegos de cables para medios de transporte',
           description:
-            'Producción y ensamblaje de arneses, conectores, tableros y partes eléctricas.',
+            'Juegos de cables para bujías de encendido y demás juegos de cables de los tipos utilizados en los medios de transporte.',
         },
         {
-          title: 'Autopartes livianas',
-          description:
-            'Fabricación de piezas, accesorios y componentes para vehículos y transporte.',
+          title: '870790 · Carrocerías para vehículos',
+          description: 'Carrocerías para vehículos.',
         },
         {
-          title: 'Reparación de maquinaria industrial',
-          description:
-            'Servicios de instalación, mantenimiento y reparación de equipos eléctricos e industriales.',
+          title: '842123 · Filtros de aceite o combustible para motores',
+          description: 'Filtros de aceite o combustible para motores.',
         },
         {
-          title: 'Equipos para eficiencia energética',
-          description:
-            'Producción o ensamblaje de soluciones para ahorro energético en empresas e industria.',
+          title: '870893 · Embragues y sus partes',
+          description: 'Embragues y sus partes.',
         },
       ],
       advantages: [
@@ -558,6 +579,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Servicios médicos especializados y turismo de salud',
       highlights: ['Turismo médico', 'Telemedicina', 'Clínicas especializadas', 'Atención domiciliaria'],
+      growthLabel: 'CAGR Ingresos 2013–2024',
       opportunities: [],
       advantages: [],
     },
@@ -566,26 +588,21 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Fabricación de productos metálicos y maquinaria',
       highlights: ['Metales comunes', 'Metalmecánica', 'Productos metálicos', 'Fabricación de metal'],
+      growthLabel: 'CAGR Ingresos 2014–2024',
       opportunities: [
         {
-          title: 'Estructuras metálicas',
-          description:
-            'Fabricación de estructuras para construcción, bodegas, naves industriales y proyectos logísticos.',
+          title: '730820 · Torres y castilletes, de hierro o acero',
+          description: 'Torres y castilletes, de fundición, hierro o acero.',
         },
         {
-          title: 'Componentes industriales',
+          title: '730890 · Construcciones y partes de construcciones, de hierro o acero',
           description:
-            'Producción de piezas metálicas para maquinaria, agroindustria, manufactura y mantenimiento.',
+            'Construcciones y partes de construcciones, de fundición, hierro o acero (exc. puentes y partes de puentes; torres y castilletes; puertas, ventanas y sus marcos, contramarcos y umbrales; material de andamiaje, encofrado, apeo o apuntalamiento).',
         },
         {
-          title: 'Mantenimiento y reparación industrial',
+          title: '730840 · Material de andamiaje, encofrado, apeo o apuntalamiento',
           description:
-            'Servicios especializados para plantas manufactureras, equipos, líneas de producción y maquinaria.',
-        },
-        {
-          title: 'Mobiliario metálico especializado',
-          description:
-            'Producción de estanterías, racks, mobiliario industrial y soluciones para almacenamiento.',
+            'Material de andamiaje, encofrado, apeo o apuntalamiento (exc. tablestacas compuestas y paneles de encofrado para hormigón vertido in situ que tengan las características de moldes).',
         },
       ],
       advantages: [
@@ -601,6 +618,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Desarrollo turístico sostenible y turismo cultural',
       highlights: ['Turismo cultural', 'Ecoturismo', 'Operadores turísticos', 'Alojamientos'],
+      growthLabel: 'CAGR Ingresos 2014–2024',
       opportunities: [
         {
           title: 'Hoteles boutique',
@@ -697,26 +715,26 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Processing and transformation of food products for local and international markets',
       highlights: ['Processed foods', 'Food preservation', 'Food products', 'Milling'],
+      growthLabel: 'Exports CAGR 2014–2025',
       opportunities: [
         {
-          title: 'Ready-to-eat foods',
+          title: '200559 · Beans, prepared or preserved',
           description:
-            'Production of prepared meals, snacks and packaged products for supermarkets and regional export.',
+            'Beans (Vigna spp., Phaseolus spp.) prepared or preserved otherwise than by vinegar or acetic acid, not frozen (excl. shelled).',
         },
         {
-          title: 'Food ingredients and additives',
+          title: '170199 · Cane or beet sugar and chemically pure sucrose',
           description:
-            'Manufacturing of inputs for the food industry, such as blends, flavorings, preservatives and processed bases.',
+            'Cane or beet sugar and chemically pure sucrose, in solid form (excl. those containing added flavouring or colouring matter, and raw sugar).',
         },
         {
-          title: 'Specialized food packaging',
-          description:
-            'Production of packaging for the preservation, export and presentation of processed foods.',
+          title: '210410 · Soups, broths and preparations therefor',
+          description: 'Preparations for soups, broths or stocks.',
         },
         {
-          title: 'Healthy and functional foods',
+          title: '170114 · Cane sugar in solid form',
           description:
-            'Development of low-sugar, high-protein or fortified products aimed at health-conscious consumers.',
+            'Cane sugar in solid form (other than cane sugar of 1701 13), not containing added flavouring or colouring matter.',
         },
       ],
       advantages: [
@@ -732,26 +750,27 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Production of natural beverages, juices and functional drinks',
       highlights: ['Non-alcoholic beverages', 'Bottled water', 'Mineral water', 'Beverage production'],
+      growthLabel: 'Exports CAGR 2014–2025',
       opportunities: [
         {
-          title: 'Functional beverages',
+          title: '200971 · Apple juice',
           description:
-            'Production of drinks with vitamins, electrolytes, collagen, protein or natural ingredients.',
+            'Apple juice, unfermented and not containing added spirit, whether or not containing added sugar or other sweetening matter, of a Brix value <= 20 at 20°C.',
         },
         {
-          title: 'Bottled and flavored water',
+          title: '200941 · Pineapple juice',
           description:
-            'Expansion of purified, mineral, flavored or value-added water lines.',
+            'Pineapple juice, unfermented and not containing added spirit, whether or not containing added sugar or other sweetening matter, of a Brix value <= 20 at 20°C.',
         },
         {
-          title: 'Natural juices and nectars',
+          title: '220299 · Non-alcoholic beverages',
           description:
-            'Processing of local fruit into ready-to-drink beverages for regional export.',
+            'Non-alcoholic beverages (excl. water, fruit or vegetable juices, milk and beer).',
         },
         {
-          title: 'Low-sugar beverages',
+          title: '200989 · Fruit or vegetable juice',
           description:
-            'Development of sodas, teas, soft drinks and healthy beverages with lower calorie content.',
+            'Fruit or vegetable juice, unfermented, whether or not containing added sugar or other sweetening matter (excl. containing added spirit, mixtures, and juice of citrus fruit, pineapples, tomatoes, grapes incl. grape must, apples and cranberries).',
         },
       ],
       advantages: [
@@ -767,26 +786,27 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Textile and garment industry meeting international standards',
       highlights: ['Spinning', 'Weaving', 'Textile products', 'Garments'],
+      growthLabel: 'Income CAGR 2015–2024',
       opportunities: [
         {
-          title: 'Technical textiles',
+          title: '540771 · Synthetic filament woven fabrics, unbleached or bleached',
           description:
-            'Production of specialized textiles for medical, sports and industrial use.',
+            'Woven fabrics containing >= 85% by weight of synthetic filaments, incl. monofilaments of >= 67 decitex with a cross-sectional dimension <= 1 mm, unbleached or bleached (excl. of polyester, nylon or other polyamide filaments or monofilaments, and of non-textured polyester filaments mixed with textured polyester filaments).',
         },
         {
-          title: 'Sustainable fashion',
+          title: '520411 · Cotton sewing thread (>= 85%)',
           description:
-            'Garment manufacturing with organic and recycled textiles and eco-friendly processes.',
+            'Cotton sewing thread containing >= 85% by weight of cotton (excl. put up for retail sale).',
         },
         {
-          title: 'Corporate uniforms',
+          title: '600622 · Dyed cotton knitted or crocheted fabrics',
           description:
-            'Manufacturing of specialized uniforms for companies, hospitals, hotels and industry.',
+            'Knitted or crocheted fabrics, of a width > 30 cm, of cotton, dyed (excl. warp knit fabrics; fabrics containing >= 5% by weight of elastomeric yarn or rubber thread; pile fabrics, incl. "long pile", and terry fabrics; labels, badges and similar articles; and knitted or crocheted fabrics, impregnated, coated, covered or laminated).',
         },
         {
-          title: 'Premium garment manufacturing',
+          title: '610520 · Knitted shirts and blouses of man-made fibres',
           description:
-            'Production of high-quality garments for international brands.',
+            "Women's or girls' knitted or crocheted blouses, shirts and shirt-blouses of man-made fibres (excl. T-shirts and vests).",
         },
       ],
       advantages: [
@@ -802,26 +822,23 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Industrial and specialized chemical products',
       highlights: ['Fertilizers', 'Pesticides', 'Soaps and detergents', 'Other chemicals'],
+      growthLabel: 'Exports CAGR 2015–2025',
       opportunities: [
         {
-          title: 'Institutional cleaning products',
-          description:
-            'Manufacturing of detergents, disinfectants and chemicals for hotels, hospitals and industry.',
+          title: '282890 · Hypochlorites, chlorites and hypobromites',
+          description: 'Hypochlorites, chlorites and hypobromites (excl. calcium hypochlorites).',
         },
         {
-          title: 'Industrial chemical inputs',
-          description:
-            'Production of chemicals used by manufacturing, food, textiles and construction.',
+          title: '360500 · Matches',
+          description: 'Matches (excl. pyrotechnic articles of heading 3604).',
         },
         {
-          title: 'Agrochemicals and fertilizers',
-          description:
-            'Formulation and packaging of products for agriculture, plant nutrition and crop protection.',
+          title: '284019 · Disodium tetraborate (refined borax)',
+          description: 'Disodium tetraborate "refined borax" (excl. anhydrous).',
         },
         {
-          title: 'Cosmetics and personal care',
-          description:
-            'Manufacturing of soaps, creams, shampoos, fragrances and personal hygiene products.',
+          title: '291814 · Citric acid',
+          description: 'Citric acid.',
         },
       ],
       advantages: [
@@ -837,26 +854,28 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Pharmaceutical production and generic medicines',
       highlights: ['Pharmaceutical products', 'Medicinal substances', 'Botanical products', 'Pharmaceutical manufacturing'],
+      revenueLabel: '2025 Revenue',
+      growthLabel: 'Exports CAGR 2021–2025',
       opportunities: [
         {
-          title: 'Generic medicines',
+          title: '300450 · Medicaments containing vitamins or provitamins',
           description:
-            'Production of low-cost medicines for the domestic and regional market.',
+            'Medicaments containing provitamins or vitamins, incl. natural concentrates and derivatives used primarily as vitamins, put up in measured doses or in forms or packings for retail sale (excl. containing antibiotics, hormones, alkaloids or their derivatives). Includes those for transdermal administration.',
         },
         {
-          title: 'OTC medicines',
+          title: '300630 · Opacifying preparations and diagnostic reagents',
           description:
-            'Manufacturing of over-the-counter products such as painkillers, cold remedies and basic supplements.',
+            'Opacifying preparations for X-ray examinations; diagnostic reagents designed to be administered to the patient.',
         },
         {
-          title: 'Pharmaceutical packaging',
+          title: '300410 · Medicaments containing penicillins or streptomycins',
           description:
-            'Production of blisters, bottles, labels and specialized packaging for medicines.',
+            'Medicaments containing penicillins or derivatives with a penicillanic acid structure, or streptomycins or their derivatives, put up in measured doses or in forms or packings for retail sale. Includes those for transdermal administration.',
         },
         {
-          title: 'Quality control laboratories',
+          title: '300420 · Medicaments containing antibiotics',
           description:
-            'Analysis, certification and testing services for pharmaceutical and cosmetic products.',
+            'Medicaments containing antibiotics, put up in measured doses or in forms or packings for retail sale (excl. containing penicillins or derivatives with a penicillanic acid structure, or streptomycins or their derivatives). Includes those for transdermal administration.',
         },
       ],
       advantages: [
@@ -872,6 +891,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Software development and information technology services',
       highlights: ['Computer programming', 'ICT', 'Information services', 'Software'],
+      growthLabel: 'Income CAGR 2014–2025',
       opportunities: [
         {
           title: 'Enterprise software development',
@@ -907,6 +927,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Outsourcing, call center and business process services',
       highlights: ['Call centers', 'Administrative services', 'BPO', 'Contact centers'],
+      growthLabel: 'Exports CAGR 2020–2025',
       opportunities: [
         {
           title: 'Shared services centers',
@@ -942,6 +963,8 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Renewable energy generation and distribution',
       highlights: ['Hydropower', 'Solar energy', 'Wind energy', 'Biomass'],
+      exportsLabel: 'State-owned hydroelectric plants',
+      sourceLabel: 'Source: Instituto Nacional de Electrificación (INDE)',
       opportunities: [],
       advantages: [],
     },
@@ -958,26 +981,24 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Manufacturing of electrical and electronic components for the automotive industry',
       highlights: ['Industrial equipment', 'Machinery repair', 'Industrial equipment', 'Electrical - electronic'],
+      growthLabel: 'Income CAGR 2013–2024',
       opportunities: [
         {
-          title: 'Electrical component assembly',
+          title: '854430 · Wiring sets for means of transport',
           description:
-            'Production and assembly of harnesses, connectors, panels and electrical parts.',
+            'Ignition wiring sets and other wiring sets of a kind used in means of transport.',
         },
         {
-          title: 'Light auto parts',
-          description:
-            'Manufacturing of parts, accessories and components for vehicles and transport.',
+          title: '870790 · Vehicle bodies',
+          description: 'Bodies for vehicles.',
         },
         {
-          title: 'Industrial machinery repair',
-          description:
-            'Installation, maintenance and repair services for electrical and industrial equipment.',
+          title: '842123 · Oil or fuel filters for engines',
+          description: 'Oil or fuel filters for internal combustion engines.',
         },
         {
-          title: 'Energy efficiency equipment',
-          description:
-            'Production or assembly of energy-saving solutions for businesses and industry.',
+          title: '870893 · Clutches and parts thereof',
+          description: 'Clutches and parts thereof.',
         },
       ],
       advantages: [
@@ -993,6 +1014,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Specialized medical services and health tourism',
       highlights: ['Medical tourism', 'Telemedicine', 'Specialized clinics', 'Home care'],
+      growthLabel: 'Income CAGR 2013–2024',
       opportunities: [],
       advantages: [],
     },
@@ -1001,26 +1023,21 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Manufacturing of metal products and machinery',
       highlights: ['Base metals', 'Metalworking', 'Metal products', 'Metal fabrication'],
+      growthLabel: 'Income CAGR 2014–2024',
       opportunities: [
         {
-          title: 'Metal structures',
-          description:
-            'Fabrication of structures for construction, warehouses, industrial buildings and logistics projects.',
+          title: '730820 · Towers and lattice masts, of iron or steel',
+          description: 'Towers and lattice masts, of cast iron, iron or steel.',
         },
         {
-          title: 'Industrial components',
+          title: '730890 · Structures and parts of structures, of iron or steel',
           description:
-            'Production of metal parts for machinery, agribusiness, manufacturing and maintenance.',
+            'Structures and parts of structures, of cast iron, iron or steel (excl. bridges and bridge sections; towers and lattice masts; doors, windows and their frames, thresholds; and scaffolding, shuttering, propping or pit-propping equipment).',
         },
         {
-          title: 'Industrial maintenance and repair',
+          title: '730840 · Scaffolding, shuttering, propping or pit-propping equipment',
           description:
-            'Specialized services for manufacturing plants, equipment, production lines and machinery.',
-        },
-        {
-          title: 'Specialized metal furniture',
-          description:
-            'Production of shelving, racks, industrial furniture and storage solutions.',
+            'Scaffolding, shuttering, propping or pit-propping equipment (excl. composite sheet piling and formwork panels for poured-in-place concrete having the characteristics of moulds).',
         },
       ],
       advantages: [
@@ -1036,6 +1053,7 @@ const COPY: Localized<SectorCopy[]> = {
       description:
         'Sustainable tourism development and cultural tourism',
       highlights: ['Cultural tourism', 'Ecotourism', 'Tour operators', 'Accommodation'],
+      growthLabel: 'Income CAGR 2014–2024',
       opportunities: [
         {
           title: 'Boutique hotels',
@@ -1128,23 +1146,54 @@ const COPY: Localized<SectorCopy[]> = {
   ],
 };
 
+/** Personas a cargo de cada sector (mismo dato en ambos idiomas). */
+const BEATRIZ: SectorContact = { name: 'Beatriz Sánchez', email: 'mbsanchezp@mineco.gob.gt' };
+const GABRIELA: SectorContact = { name: 'Gabriela Maldonado', email: 'agmaldonadop@mineco.gob.gt' };
+const INGRID: SectorContact = { name: 'Ingrid Chea', email: 'ilcheam@mineco.gob.gt' };
+const PRISCILLA: SectorContact = { name: 'Priscilla Ayapan', email: 'pdayapan@mineco.gob.gt' };
+
+const SECTOR_CONTACTS: Record<string, SectorContact[]> = {
+  'alimentos-procesados': [BEATRIZ, GABRIELA],
+  'bebidas-no-alcoholicas': [BEATRIZ, GABRIELA],
+  quimicos: [BEATRIZ, GABRIELA],
+  farmaceuticos: [INGRID, PRISCILLA],
+  'vestuario-textil': [INGRID, PRISCILLA],
+  'tics-software': [INGRID, PRISCILLA, GABRIELA],
+  'servicios-empresariales': [INGRID, PRISCILLA],
+  'servicios-compartidos': [INGRID, PRISCILLA],
+  'electrico-electronico': [BEATRIZ, GABRIELA],
+  'servicios-salud': [INGRID, PRISCILLA],
+  metalmecanica: [INGRID, PRISCILLA],
+  turismo: [BEATRIZ, PRISCILLA, GABRIELA],
+  biotecnologia: [INGRID, PRISCILLA],
+  'dispositivos-medicos': [INGRID, PRISCILLA],
+  'componentes-electronicos': [BEATRIZ, GABRIELA],
+  'ti-manufactura-avanzada': [INGRID, PRISCILLA],
+};
+
 /** Une el texto del idioma activo con las cifras compartidas. */
 const merge = (copy: SectorCopy[], language: Language): Sector[] =>
   FACTS.map((facts, index) => {
     const text = copy[index];
-    const { potentials, ...rest } = facts;
+    const { potentials, rcas, ...rest } = facts;
 
     return {
       ...rest,
       pdfUrl: sectorOnePagers[facts.id]?.[language],
       name: text.name,
       description: text.description,
+      growthLabel: text.growthLabel,
+      revenueLabel: text.revenueLabel,
+      exportsLabel: text.exportsLabel,
+      sourceLabel: text.sourceLabel,
       highlights: text.highlights,
       advantages: text.advantages,
       opportunities: text.opportunities.map((opportunity, i) => ({
         ...opportunity,
         potential: potentials[i],
+        rca: rcas?.[i],
       })),
+      contacts: SECTOR_CONTACTS[facts.id],
     };
   });
 

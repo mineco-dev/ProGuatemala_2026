@@ -1,11 +1,11 @@
 import type { Localized } from '@/i18n';
 import type { OpportunityPotential, SectorDetailContent } from '@/types/sectorDetail';
 
-import AgroindustriaImg from '@/assets/images/agroindustria.jpg';
-import ManufacturaImg from '@/assets/images/manufactura.jpg';
-import ServiciosGlobalesImg from '@/assets/images/serviciosglobales.jpg';
-import EnergiasLimpiasImg from '@/assets/images/energiaslimpias.jpg';
-import TurismoSostenibleImg from '@/assets/images/turismo.jpg';
+import AgroindustriaImg from '@/assets/images/sectores/detalle/agroindustria.jpg';
+import ManufacturaImg from '@/assets/images/sectores/detalle/manufactura.jpg';
+import ServiciosGlobalesImg from '@/assets/images/sectores/detalle/serviciosglobales.jpg';
+import EnergiasLimpiasImg from '@/assets/images/sectores/detalle/energiaslimpias.jpg';
+import TurismoSostenibleImg from '@/assets/images/sectores/detalle/turismo.jpg';
 
 /**
  * Datos que NO dependen del idioma: imagen, cifras, nivel de potencial y logos.

@@ -53,7 +53,7 @@ export default function DashboardModal({ isOpen, onClose }: DashboardModalProps)
           <TableauEmbed
             vizName={dashboards.strategicSectors[language]}
             title={t('sectorDetail.dashboardTitle')}
-            aspectRatio={0.85}
+            aspectRatio={0.68}
             language={tableauLanguage(language)}
           />
         </div>

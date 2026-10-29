@@ -1,7 +1,7 @@
 import type { PressCollection } from '@/types/press';
-import brujulaLogo from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA.png';
-import brujulaBg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-01.jpg';
-import equipajeBg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-03.jpg';
+import brujulaLogo from '@/assets/images/prensa/PRENSA.png';
+import brujulaBg from '@/assets/images/prensa/PRENSA-01.jpg';
+import equipajeBg from '@/assets/images/prensa/PRENSA-03.jpg';
 
 /**
  * Notas de prensa que se muestran en la seccion "Prensa".

@@ -4,6 +4,7 @@ import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { smoothScrollTo } from '../lib/scroll';
+import BrandLogos from './BrandLogos';
 
 interface NavSection {
   id: string;
@@ -25,6 +26,8 @@ const Header: React.FC = () => {
 
   const navigation: NavItem[] = [
     { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.services'), href: '/services' },
     {
       name: t('nav.why-guatemala'),
       href: '/why-guatemala',
@@ -36,8 +39,14 @@ const Header: React.FC = () => {
         { id: 'why-comparativa', name: t('why.comparison.title') },
       ],
     },
-    { name: t('nav.sectors'), href: '/strategic-sectors' },
-    { name: t('nav.about'), href: '/about' },
+    {
+      name: t('nav.sectors'),
+      href: '/strategic-sectors',
+      sections: [
+        { id: 'sectores-estrategicos', name: t('nav.sectors.strategic') },
+        { id: 'ruta-del-chip', name: t('nav.sectors.rutaChip') },
+      ],
+    },
     { name: t('nav.resources'), href: '/resources' },
     { name: t('nav.press'), href: '/prensa' },
     { name: t('nav.contact'), href: '/contact' },
@@ -59,14 +68,10 @@ const Header: React.FC = () => {
       {/* Main Header */}
       <header className="shadow-md sticky top-0 z-50 border-t border-white/10" style={{ background: '#11223B' }}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png"
-              alt="ProGuatemala"
-              className="h-12 w-auto brightness-0 invert"
-            />
+          <Link to="/" className="flex items-center">
+            <BrandLogos variant="white" imgClassName="h-12 sm:h-14 w-auto" className="gap-3 sm:gap-4" />
           </Link>
 
           {/* Desktop Navigation */}

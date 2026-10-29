@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import serviciosImg from '@/assets/images/portadas/2. SERVICIOS.jpg';
+import serviciosImg from '@/assets/images/servicios/SERVICIOS.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();

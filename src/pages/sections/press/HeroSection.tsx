@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import prensaImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PRENSA/PRENSA-01.jpg';
+import prensaImg from '@/assets/images/prensa/PRENSA-01.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();

@@ -1,23 +1,23 @@
 import type { MapLayer } from '@/types/infrastructureMap';
 
-import baseMapImage from '@/assets/images/maps/sections/MAPA_MAPA BASE.png';
+import baseMapImage from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_MAPA BASE.png';
 
-import puertosMap from '@/assets/images/maps/sections/MAPA_Puertos.png';
-import aeropuertosMap from '@/assets/images/maps/sections/MAPA_Aeropuertos.png';
-import aerodromosMap from '@/assets/images/maps/sections/MAPA_Aerodomos.png';
-import carreterasMap from '@/assets/images/maps/sections/MAPA_Carreteras.png';
-import carreterasCaMap from '@/assets/images/maps/sections/MAPA_Carreteras CA.png';
-import fronterasMap from '@/assets/images/maps/sections/MAPA_Fronteras.png';
-import zonasFrancasMap from '@/assets/images/maps/sections/MAPA_Zonas Francas.png';
-import zdeepMap from '@/assets/images/maps/sections/MAPA_ZDEEP.png';
+import puertosMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Puertos.png';
+import aeropuertosMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Aeropuertos.png';
+import aerodromosMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Aerodomos.png';
+import carreterasMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Carreteras.png';
+import carreterasCaMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Carreteras CA.png';
+import fronterasMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Fronteras.png';
+import zonasFrancasMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_Zonas Francas.png';
+import zdeepMap from '@/assets/images/por-que-guatemala/mapa/interactivo/sections/MAPA_ZDEEP.png';
 
-import puertosIcon from '@/assets/images/maps/icons/PUERTOS ICONOS.png';
-import aeropuertosIcon from '@/assets/images/maps/icons/AEROPUERTO ICONO.png';
-import aerodromosIcon from '@/assets/images/maps/icons/AERODOMO ICONO.png';
-import carreterasIcon from '@/assets/images/maps/icons/CARRETERAS ICONO.png';
-import fronterasIcon from '@/assets/images/maps/icons/FRONTERAS ICONO.png';
-import zonasFrancasIcon from '@/assets/images/maps/icons/ZONAS FRANCAS ICONO.png';
-import zdeepIcon from '@/assets/images/maps/icons/ZDEEP ICONO.png';
+import puertosIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/PUERTOS ICONOS.png';
+import aeropuertosIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/AEROPUERTO ICONO.png';
+import aerodromosIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/AERODOMO ICONO.png';
+import carreterasIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/CARRETERAS ICONO.png';
+import fronterasIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/FRONTERAS ICONO.png';
+import zonasFrancasIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/ZONAS FRANCAS ICONO.png';
+import zdeepIcon from '@/assets/images/por-que-guatemala/mapa/interactivo/icons/ZDEEP ICONO.png';
 
 /** Mapa estatico de fondo. Siempre visible, con o sin capas activas. */
 export const baseMap = baseMapImage;
@@ -28,7 +28,7 @@ export const baseMap = baseMapImage;
  * carreteras abajo, areas en medio, puntos arriba.
  *
  * Nota: `carreteras` y `carreteras-ca` comparten icono porque en
- * `assets/images/maps/icons` solo hay uno para carreteras.
+ * `assets/images/por-que-guatemala/mapa/interactivo/icons` solo hay uno para carreteras.
  */
 export const mapLayers: MapLayer[] = [
   {

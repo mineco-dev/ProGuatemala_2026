@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { CONTACT_MAILTO } from '@/data/contact';
-import ctaStrip from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/SECTORES/BACKGROUNDS-05.jpg';
+import ctaStrip from '@/assets/images/sectores/BACKGROUNDS-05.jpg';
 
 export default function CtaSection() {
   const { t } = useLanguage();
@@ -27,11 +27,7 @@ export default function CtaSection() {
           <p className="text-xl mb-8 text-white/80">
             {t('sectors.cta.subtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#BBA4CE] text-[#11223B] hover:brightness-110 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center">
-              <Download className="w-5 h-5 mr-2" />
-              {t('sectors.cta.download')}
-            </button>
+          <div className="flex justify-center">
             <a
               href={CONTACT_MAILTO}
               className="border border-white text-white hover:bg-white hover:text-sector-6 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center"

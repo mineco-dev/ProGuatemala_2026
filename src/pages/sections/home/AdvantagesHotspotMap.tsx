@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { competitiveAdvantageHotspots } from '@/data/home';
-import PorqueGTImg from '@/assets/images/porqueGT.png';
+import PorqueGTImg from '@/assets/images/inicio/porqueGT.png';
 
 interface AdvantagesHotspotMapProps {
   onHotspotClick: (targetId: string) => void;

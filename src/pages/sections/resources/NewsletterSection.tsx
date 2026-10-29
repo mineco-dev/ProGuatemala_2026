@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ctaStrip from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/RECURSOS/BACKGROUNDS-03.jpg';
+import ctaStrip from '@/assets/images/recursos/BACKGROUNDS-03.jpg';
 
 /**
  * Banner de suscripcion al boletin, justo antes del footer de Recursos.

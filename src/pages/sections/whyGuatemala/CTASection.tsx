@@ -3,7 +3,7 @@ import { Download, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAdvisorModal } from '@/contexts/AdvisorModalContext';
 import { onePagers } from '@/data/onePagers';
-import ctaStrip from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/PORQUE GUATEMALA/BACKGROUNDS-04.jpg';
+import ctaStrip from '@/assets/images/por-que-guatemala/BACKGROUNDS-04.jpg';
 
 export default function CtaSection() {
   const { t, language } = useLanguage();

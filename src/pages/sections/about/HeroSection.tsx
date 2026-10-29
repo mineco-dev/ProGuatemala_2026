@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { Compass, ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
+import { Compass, ShieldCheck, Sparkles, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/i18n';
-import aboutImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/NOSOTROS-01.jpg';
+import aboutImg from '@/assets/images/nosotros/NOSOTROS-01.jpg';
 
 const HIGHLIGHTS: Array<{ icon: LucideIcon; titleKey: TranslationKey; descKey: TranslationKey }> = [
   { icon: Compass, titleKey: 'about.hero.card1.title', descKey: 'about.hero.card1.desc' },
@@ -35,10 +35,10 @@ export default function HeroSection() {
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-lg sm:text-xl md:text-2xl text-white max-w-3xl mx-auto mb-12 font-normal leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-xl sm:text-2xl font-semibold text-[#FCD755] max-w-3xl mx-auto mb-6 leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
         >
-          {t('about.hero.subtitle')}
+          {t('about.hero.tagline')}
         </motion.p>
 
         <motion.div
@@ -76,14 +76,6 @@ export default function HeroSection() {
           >
             <Users className="w-5 h-5 text-white" />
             <span>{t('about.hero.team')}</span>
-          </button>
-
-          <button
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:brightness-125 hover:scale-[1.02] active:scale-[0.98]"
-            style={{ background: '#11223B' }}
-          >
-            <Target className="w-5 h-5" style={{ color: '#3DB08B' }} />
-            <span>{t('about.hero.mission')}</span>
           </button>
         </motion.div>
       </div>

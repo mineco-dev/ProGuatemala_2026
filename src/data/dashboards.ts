@@ -13,27 +13,26 @@ export type DashboardViz = Localized<string>;
 export const dashboards = {
   /** Inversion Extranjera Directa. Se usa en el inicio. */
   fdi: {
-    es: 'TablerodeInversinExtranjeraDirecta/Historia1',
-    en: 'ForeignDirectInvestmentDashboard_17871606103370/Historia1',
+    es: 'TablerodeInversinExtranjeraDirecta/Dashboard1',
+    en: 'ForeignDirectInvestmentDashboard_17871606103370/Dashboard1',
   },
 
   /** Sectores estrategicos. Se usa en la pagina de sectores y en su modal. */
   strategicSectors: {
-    es: 'TablerodeSectoresEstratgicos/Historia1',
-    en: 'StrategicSectorsDashboard/Historia1',
+    es: 'TablerodeSectoresEstratgicos/Portada',
+    en: 'StrategicSectorsDashboard/Portada',
   },
 
   /**
-   * Estadisticas departamentales (por que Guatemala). El libro se republico:
-   * `proguatemala-landing` ya apunta a "...atractivosFinal/Estadsticas-
-   * Departamentales", que sustituye al anterior "...Finalizado/Polosde-
-   * DesarrolloEconmico...". Todavia no existe una version en ingles publicada,
-   * asi que ambos idiomas apuntan al mismo libro; solo cambia el idioma del
-   * visor.
+   * Estadisticas departamentales (por que Guatemala). Ya hay un libro por
+   * idioma publicado: el espanol se republico como "...atractivosEspaol2026/
+   * EstadsticasDepartamentales" y ahora existe el ingles
+   * "...atractivosIngls/DepartmentalStatistics". Ambos llevan el filtro
+   * `publish=yes` (ver MapSection).
    */
   departmentStats: {
-    es: 'EstadsticasdepartamentosatractivosFinal/EstadsticasDepartamentales',
-    en: 'EstadsticasdepartamentosatractivosFinal/EstadsticasDepartamentales',
+    es: 'EstadsticasdepartamentosatractivosEspaol2026/EstadsticasDepartamentales',
+    en: 'EstadsticasdepartamentosatractivosIngls/DepartmentalStatistics',
   },
 
   /** Comparativo regional (Guatemala vs. Region). Se usa en por que Guatemala. */

@@ -30,8 +30,8 @@ export default function DashboardSection() {
             <TableauEmbed
               vizName={dashboards.strategicSectors[language]}
               title={t('sectors.dashboard.name')}
-              aspectRatio={0.75}
-              minMobileHeight={600}
+              aspectRatio={0.68}
+              minMobileHeight={1127}
               language={tableauLanguage(language)}
             />
           </div>

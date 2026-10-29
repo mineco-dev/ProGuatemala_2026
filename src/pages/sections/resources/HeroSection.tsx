@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { smoothScrollTo } from '@/lib/scroll';
-import resImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/RECURSOS/RECURSOS.jpg';
+import resImg from '@/assets/images/recursos/RECURSOS.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();

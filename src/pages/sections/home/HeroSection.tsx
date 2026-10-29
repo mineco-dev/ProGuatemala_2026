@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAdvisorModal } from '@/contexts/AdvisorModalContext';
 import { onePagers } from '@/data/onePagers';
-import heroBanner from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/INICIO/INICIO-01.jpg';
+import heroBanner from '@/assets/images/inicio/INICIO-01.jpg';
 
 export default function HeroSection() {
   const { language } = useLanguage();

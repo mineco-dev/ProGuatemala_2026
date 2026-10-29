@@ -1,104 +1,44 @@
 import type { Localized } from '@/i18n';
 import type { Park } from '@/types/whyGuatemala';
 
-import interoceanica1 from '@/assets/images/centros_productivos_empresariales/interoceanica/Interoceanica.jpg';
-import interoceanica2 from '@/assets/images/centros_productivos_empresariales/interoceanica/1.jpeg';
-import interoceanica3 from '@/assets/images/centros_productivos_empresariales/interoceanica/2.jpeg';
-import interoceanica4 from '@/assets/images/centros_productivos_empresariales/interoceanica/DJI_0944.JPG';
-import interoceanica5 from '@/assets/images/centros_productivos_empresariales/interoceanica/DJI_0945.JPG';
-import interoceanica6 from '@/assets/images/centros_productivos_empresariales/interoceanica/DJI_0946.JPG';
-import interoceanica7 from '@/assets/images/centros_productivos_empresariales/interoceanica/DJI_0949.JPG';
+// Presentacion unificada: exactamente 5 fotografias por parque.
+import interoceanica1 from '@/assets/images/por-que-guatemala/parques/interoceanica/Interoceanica.jpg';
+import interoceanica2 from '@/assets/images/por-que-guatemala/parques/interoceanica/1.jpeg';
+import interoceanica3 from '@/assets/images/por-que-guatemala/parques/interoceanica/2.jpeg';
+import interoceanica4 from '@/assets/images/por-que-guatemala/parques/interoceanica/DJI_0944.JPG';
+import interoceanica5 from '@/assets/images/por-que-guatemala/parques/interoceanica/DJI_0945.JPG';
 
-import michatoya1 from '@/assets/images/centros_productivos_empresariales/michatoya/Michatoya Pacífico.jpg';
-import michatoya3 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 1.jpg';
-import michatoya4 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 2.jpg';
-import michatoya5 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 3.jpg';
-import michatoya6 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 4.jpg';
-import michatoya7 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 5.jpg';
-import michatoya8 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 6.jpg';
-import michatoya9 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 7.jpg';
-import michatoya10 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 8.jpg';
-import michatoya11 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 9.jpg';
-import michatoya12 from '@/assets/images/centros_productivos_empresariales/michatoya/MICHATOYA PACIFICO 10.jpg';
+import michatoya1 from '@/assets/images/por-que-guatemala/parques/michatoya/Michatoya Pacífico.jpg';
+import michatoya3 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 1.jpg';
+import michatoya4 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 2.jpg';
+import michatoya5 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 3.jpg';
+import michatoya6 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 4.jpg';
 
-import istmo1 from '@/assets/images/centros_productivos_empresariales/istmo/Puertas del Istmo.jpg';
-import istmo2 from '@/assets/images/centros_productivos_empresariales/istmo/pdi 1.png';
-import istmo3 from '@/assets/images/centros_productivos_empresariales/istmo/PDI2.jpg';
-import istmo4 from '@/assets/images/centros_productivos_empresariales/istmo/Ingreso Fulles PDI.jpg';
-import istmo5 from '@/assets/images/centros_productivos_empresariales/istmo/Central de transf. 2.jpg';
-import istmo6 from '@/assets/images/centros_productivos_empresariales/istmo/TH.jpg';
-import istmo7 from '@/assets/images/centros_productivos_empresariales/istmo/Picture2.jpg';
-import istmo8 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2025-07-07-12-48-05.jpg';
-import istmo9 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2025-10-01-09-02-40.jpg';
-import istmo10 from '@/assets/images/centros_productivos_empresariales/istmo/PHOTO-2026-07-23-12-59-17.jpg';
+import istmo1 from '@/assets/images/por-que-guatemala/parques/istmo/Puertas del Istmo.jpg';
+import istmo2 from '@/assets/images/por-que-guatemala/parques/istmo/pdi 1.png';
+import istmo3 from '@/assets/images/por-que-guatemala/parques/istmo/PDI2.jpg';
+import istmo4 from '@/assets/images/por-que-guatemala/parques/istmo/Ingreso Fulles PDI.jpg';
+import istmo5 from '@/assets/images/por-que-guatemala/parques/istmo/Central de transf. 2.jpg';
 
-import synergy1 from '@/assets/images/centros_productivos_empresariales/synergy/Synergy Industrial Park.jpg';
-import synergy2 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx.jpg';
-import synergy3 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx2.jpg';
-import synergy4 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx3.jpg';
-import synergy5 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx4.jpg';
-import synergy6 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx5.jpg';
-import synergy7 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx6.jpg';
-import synergy8 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx7.jpg';
-import synergy9 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx8.jpg';
-import synergy10 from '@/assets/images/centros_productivos_empresariales/synergy/SYNERGY_Industrial Park.pptx9.jpg';
+import synergy1 from '@/assets/images/por-que-guatemala/parques/synergy/Synergy Industrial Park.jpg';
+import synergy2 from '@/assets/images/por-que-guatemala/parques/synergy/SYNERGY_Industrial Park.pptx.jpg';
+import synergy3 from '@/assets/images/por-que-guatemala/parques/synergy/SYNERGY_Industrial Park.pptx2.jpg';
+import synergy4 from '@/assets/images/por-que-guatemala/parques/synergy/SYNERGY_Industrial Park.pptx3.jpg';
+import synergy5 from '@/assets/images/por-que-guatemala/parques/synergy/SYNERGY_Industrial Park.pptx4.jpg';
 
-import quetzal1 from '@/assets/images/centros_productivos_empresariales/quetzal/Zona Libre Quetzal.jpg';
-import quetzal2 from '@/assets/images/centros_productivos_empresariales/quetzal/ZLQ general .jpg';
-import quetzal3 from '@/assets/images/centros_productivos_empresariales/quetzal/Fachasa MT2 .jpg';
-import quetzal4 from '@/assets/images/centros_productivos_empresariales/quetzal/Garita y administracion .jpg';
-import quetzal5 from '@/assets/images/centros_productivos_empresariales/quetzal/logo_zonalibrequetzal-scaled.jpg';
-import quetzal6 from '@/assets/images/centros_productivos_empresariales/quetzal/ZLQ vista áerea.jpg';
+import quetzal1 from '@/assets/images/por-que-guatemala/parques/quetzal/Zona Libre Quetzal.jpg';
+import quetzal2 from '@/assets/images/por-que-guatemala/parques/quetzal/ZLQ general .jpg';
+import quetzal3 from '@/assets/images/por-que-guatemala/parques/quetzal/Fachasa MT2 .jpg';
+import quetzal4 from '@/assets/images/por-que-guatemala/parques/quetzal/Garita y administracion .jpg';
+import quetzal6 from '@/assets/images/por-que-guatemala/parques/quetzal/ZLQ vista áerea.jpg';
 
 /** Las fotografias son las mismas en ambos idiomas; solo cambia el texto. */
 const IMAGES: Record<string, string[]> = {
-  interoceanica: [
-    interoceanica1,
-    interoceanica2,
-    interoceanica3,
-    interoceanica4,
-    interoceanica5,
-    interoceanica6,
-    interoceanica7,
-  ],
-  michatoya: [
-    michatoya1,
-    michatoya3,
-    michatoya4,
-    michatoya5,
-    michatoya6,
-    michatoya7,
-    michatoya8,
-    michatoya9,
-    michatoya10,
-    michatoya11,
-    michatoya12,
-  ],
-  'puerta-istmo': [
-    istmo1,
-    istmo2,
-    istmo3,
-    istmo4,
-    istmo5,
-    istmo6,
-    istmo7,
-    istmo8,
-    istmo9,
-    istmo10,
-  ],
-  synergy: [
-    synergy1,
-    synergy2,
-    synergy3,
-    synergy4,
-    synergy5,
-    synergy6,
-    synergy7,
-    synergy8,
-    synergy9,
-    synergy10,
-  ],
-  'zona-libre-quetzal': [quetzal1, quetzal2, quetzal3, quetzal4, quetzal5, quetzal6],
+  interoceanica: [interoceanica1, interoceanica2, interoceanica3, interoceanica4, interoceanica5],
+  michatoya: [michatoya1, michatoya3, michatoya4, michatoya5, michatoya6],
+  'puerta-istmo': [istmo1, istmo2, istmo3, istmo4, istmo5],
+  synergy: [synergy1, synergy2, synergy3, synergy4, synergy5],
+  'zona-libre-quetzal': [quetzal1, quetzal2, quetzal3, quetzal4, quetzal6],
 };
 
 type ParkCopy = Pick<Park, 'id' | 'title' | 'description' | 'overview' | 'highlights'>;

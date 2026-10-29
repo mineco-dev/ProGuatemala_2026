@@ -3,14 +3,18 @@ import {
   CtaSection,
   DashboardSection,
   HeroSection,
+  RutaDelChipSection,
 } from './sections/strategicSectors';
 
 export default function StrategicSectors() {
   return (
     <div>
       <HeroSection />
-      <SectorsCarousel />
-      <DashboardSection />
+      <div id="sectores-estrategicos" className="scroll-mt-20">
+        <SectorsCarousel />
+        <DashboardSection />
+      </div>
+      <RutaDelChipSection />
       <CtaSection />
     </div>
   );

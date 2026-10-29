@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import sectoresImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/SECTORES/SECTORES-01.jpg';
+import sectoresImg from '@/assets/images/sectores/SECTORES-01.jpg';
 import { onePagers } from '@/data/onePagers';
 
 const scrollToFilters = () => {

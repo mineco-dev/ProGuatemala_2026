@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, User, Bot, Phone, Mail, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import BrandLogos from './BrandLogos';
 import { buildSearchIndex, isConfident, search, type SearchIndex } from '@/lib/chat/search';
 import type { KnowledgeEntry } from '@/lib/chat/types';
 
@@ -296,17 +297,11 @@ const ChatBot: React.FC = () => {
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <img
-                    src="https://www.pronacom.org/wp-content/uploads/2025/01/LOGO_PROGUATEMALA_VA1-e1737253818887-300x120.png"
-                    alt="ProGuatemala"
-                    className="h-6 w-auto"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-semibold">ProGuatemala</h3>
-                  <p className="text-xs text-blue-100">{text.tagline}</p>
+              <div className="flex items-center space-x-3 min-w-0">
+                <BrandLogos variant="white" imgClassName="h-8 w-auto" className="gap-2 shrink-0" />
+                <div className="min-w-0 border-l border-white/30 pl-3">
+                  <h3 className="font-semibold leading-tight truncate">{text.assistant}</h3>
+                  <p className="text-xs text-blue-100 truncate">{text.tagline}</p>
                 </div>
               </div>
               <button

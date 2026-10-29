@@ -25,7 +25,7 @@ export const team: Localized<Person[]> = {
       name: 'Priscilla Ayapan',
       position: 'Asesora de Atracción de Inversión Extranjera',
       bio: 'Licenciada en Relaciones Internacionales con especialización en Comercio Exterior y Maestría en Políticas Públicas por la KDI School of Public Policy and Management (Corea del Sur). Cuenta con experiencia en los sectores público y privado en promoción de inversiones, comercio internacional y desarrollo económico. Ha brindado acompañamiento a empresas nacionales e internacionales en procesos de inversión y expansión, así como en la promoción comercial, la coordinación interinstitucional, la organización de eventos y la facilitación de proyectos orientados al fortalecimiento de la competitividad. ',
-      email: 'nchicasc@mineco.gob.gt',
+      email: 'pdayapan@mineco.gob.gt',
     },
     {
       name: 'Julissa Aquino',
@@ -40,16 +40,22 @@ export const team: Localized<Person[]> = {
       email: 'agmaldonadop@mineco.gob.gt',
     },
     {
+      name: 'Flavia Salvietti Cignetti',
+      position: 'Asesora de Inversión Extranjera Directa',
+      bio: 'Economista egresada del Tecnológico de Monterrey, con maestría en Liderazgo Organizacional y más de 18 años de experiencia como consultora estratégica. Su trayectoria comprende la investigación aplicada, planificación estratégica integral, la elaboración de diagnósticos sectoriales, la evaluación de localizaciones y vocaciones de uso del suelo, el análisis macroeconómico y estudios de prefactibilidad comercial y financiera para empresas. Ha liderado y participado en más de 90 estudios especializados para organizaciones del sector público y privado en Guatemala. Su experiencia abarca sectores estratégicos como construcción y desarrollo inmobiliario, parques industriales y ZDEEP, retail, agroindustria, alimentos y bebidas, manufactura ligera y farmacéutica.',
+      email: 'frsalviettic@mineco.gob.gt',
+    },
+    {
       name: 'Diego Solares',
       position: 'Asesor de Inteligencia de Inversión',
       bio: 'Con pensum cerrado en la Licenciatura en Economía Empresarial por la Universidad Rafael Landívar, se especializa en el análisis macroeconómico, la inteligencia de inversión y la sistematización de datos estratégicos para la toma de decisiones. Cuenta con experiencia en la investigación y perfilamiento de empresas para la atracción de Inversión Extranjera Directa (IED), así como en el diseño de tableros interactivos e indicadores estadísticos en Power BI orientados a destacar factores competitivos en sectores clave como tecnología, servicios empresariales y desarrollo de software.  Asimismo, posee sólida formación y práctica en el análisis cuantitativo de mercados financieros internacionales y la gestión autónoma de portafolios de inversión, evaluando tendencias globales, indicadores socioeconómicos y variables de riesgo. Su perfil se complementa con una alta capacidad analítica, competencia técnica en visualización de datos y dominio del idioma inglés para la interacción con clientes y proyectos globales.',
-      email: 'ajmoscosos@mineco.gob.gt',
+      email: 'dpsolaress@mineco.gob.gt',
     },
     {
-      name: 'Karla Ángel',
+      name: 'Karla Angel',
       position: 'Asesora de Inteligencia de Inversión',
       bio: 'Egresada de la Licenciatura en Economía Empresarial de la Universidad Rafael Landívar. Cuenta con experiencia en investigación económica, análisis de datos y desarrollo de estudios sectoriales, contribuyendo a la elaboración de perfiles empresariales, análisis de industrias e identificación de oportunidades para el desarrollo productivo y la atracción de inversión. Su perfil combina el análisis cuantitativo con el procesamiento y visualización de información mediante herramientas como Python, Power BI, Tableau y Excel, con el propósito de generar información estratégica para la toma de decisiones.',
-      email: 'olgarcias@mineco.gob.gt',
+      email: 'kdangelc@mineco.gob.gt',
     },
     {
       name: 'Rodrigo Matute',
@@ -87,7 +93,7 @@ export const team: Localized<Person[]> = {
       name: 'Priscilla Ayapan',
       position: 'Foreign Investment Attraction Advisor',
       bio: 'She holds a Bachelor’s degree in International Relations with a specialization in Foreign Trade and a Master’s degree in Public Policy from the KDI School of Public Policy and Management (South Korea). She has public and private sector experience in investment promotion, international trade and economic development. She has supported domestic and international companies through investment and expansion processes, as well as trade promotion, inter-institutional coordination, event organization and the facilitation of projects aimed at strengthening competitiveness.',
-      email: 'nchicasc@mineco.gob.gt',
+      email: 'pdayapan@mineco.gob.gt',
     },
     {
       name: 'Julissa Aquino',
@@ -102,16 +108,22 @@ export const team: Localized<Person[]> = {
       email: 'agmaldonadop@mineco.gob.gt',
     },
     {
+      name: 'Flavia Salvietti Cignetti',
+      position: 'Foreign Direct Investment Advisor',
+      bio: 'An economist from Tecnológico de Monterrey, with a Master’s degree in Organizational Leadership and more than 18 years of experience as a strategic consultant. Her career spans applied research, comprehensive strategic planning, the development of sector diagnostics, the assessment of locations and land-use vocations, macroeconomic analysis and commercial and financial prefeasibility studies for companies. She has led and participated in more than 90 specialized studies for public and private sector organizations in Guatemala. Her experience covers strategic sectors such as construction and real estate development, industrial parks and ZDEEPs, retail, agribusiness, food and beverages, and light and pharmaceutical manufacturing.',
+      email: 'frsalviettic@mineco.gob.gt',
+    },
+    {
       name: 'Diego Solares',
       position: 'Investment Intelligence Advisor',
       bio: 'Having completed the coursework for a Bachelor’s degree in Business Economics at Universidad Rafael Landívar, he specializes in macroeconomic analysis, investment intelligence and the systematization of strategic data for decision-making. He has experience researching and profiling companies for Foreign Direct Investment (FDI) attraction, as well as designing interactive dashboards and statistical indicators in Power BI to highlight competitive factors in key sectors such as technology, business services and software development. He also has solid training and hands-on practice in the quantitative analysis of international financial markets and independent investment portfolio management, assessing global trends, socioeconomic indicators and risk variables. His profile is rounded out by strong analytical skills, technical proficiency in data visualization and fluency in English for working with global clients and projects.',
-      email: 'ajmoscosos@mineco.gob.gt',
+      email: 'dpsolaress@mineco.gob.gt',
     },
     {
-      name: 'Karla Ángel',
+      name: 'Karla Angel',
       position: 'Investment Intelligence Advisor',
       bio: 'A graduate in Business Economics from Universidad Rafael Landívar. She has experience in economic research, data analysis and the development of sector studies, contributing to company profiles, industry analysis and the identification of opportunities for productive development and investment attraction. Her profile combines quantitative analysis with data processing and visualization using tools such as Python, Power BI, Tableau and Excel, in order to generate strategic information for decision-making.',
-      email: 'olgarcias@mineco.gob.gt',
+      email: 'kdangelc@mineco.gob.gt',
     },
     {
       name: 'Rodrigo Matute',

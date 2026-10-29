@@ -10,10 +10,10 @@ import {
 } from 'lucide-react';
 import type { Localized } from '@/i18n';
 import type { Service } from '@/types/service';
-import promocionImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/PROMOCION DE INVERSION.jpeg';
-import softlandingImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/SOFTLANDING.jpeg';
-import inteligenciaImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/INTELIGENCIA DE INVERSION.jpeg';
-import aftercareImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/IMAGENES/SECCION NOSTROS/AFTERCARE.jpeg';
+import promocionImg from '@/assets/images/nosotros/servicios/PROMOCION DE INVERSION.jpeg';
+import softlandingImg from '@/assets/images/nosotros/servicios/SOFTLANDING.jpeg';
+import inteligenciaImg from '@/assets/images/nosotros/servicios/INTELIGENCIA DE INVERSION.jpeg';
+import aftercareImg from '@/assets/images/nosotros/servicios/AFTERCARE.jpeg';
 
 const STYLES = [
   { id: 'promocion', icon: Target, color: 'from-blue-500 to-cyan-600', bgColor: 'from-blue-50 to-cyan-50', image: promocionImg },

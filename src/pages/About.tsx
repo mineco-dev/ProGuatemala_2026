@@ -6,7 +6,6 @@ import {
   ServicesSection,
   StrategyDownloadSection,
   TeamSection,
-  ValuesSection,
 } from './sections/about';
 
 export default function About() {
@@ -14,7 +13,6 @@ export default function About() {
     <div>
       <HeroSection />
       <MissionVisionSection />
-      <ValuesSection />
       <ServicesSection />
       <BenefitsSection />
       <AuthoritiesSection />

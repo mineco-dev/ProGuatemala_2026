@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ctaStrip from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/NOSOTROS/BANNER.jpg';
+import ctaStrip from '@/assets/images/nosotros/BANNER.jpg';
 
 export default function StrategyDownloadSection() {
   const { t } = useLanguage();

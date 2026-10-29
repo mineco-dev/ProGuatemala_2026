@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import contactImg from '@/assets/images/IMAGENES PAGINA PROGUATEMALA/CONTACTO/CONTACTO.jpg';
+import contactImg from '@/assets/images/contacto/CONTACTO.jpg';
 
 export default function HeroSection() {
   const { t } = useLanguage();

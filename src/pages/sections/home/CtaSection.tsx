@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { CONTACT_MAILTO } from '@/data/contact';
-import ctaBg from '@/assets/images/home/cta-bg.jpg';
+import ctaBg from '@/assets/images/inicio/cta-bg.jpg';
 
 export default function CtaSection() {
   const { t } = useLanguage();
