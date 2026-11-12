@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { onePagers } from '@/data/onePagers';
 import ctaStrip from '@/assets/images/nosotros/BANNER.jpg';
 
 export default function StrategyDownloadSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="relative overflow-hidden py-16 bg-primary-500 text-white">
@@ -26,10 +27,15 @@ export default function StrategyDownloadSection() {
           <p className="text-xl mb-8 text-white/90">
             {t('about.strategy.subtitle')}
           </p>
-          <button className="bg-sector-3 text-white hover:brightness-110 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center mx-auto">
+          <a
+            href={onePagers.strategy[language]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-sector-3 text-white hover:brightness-110 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center mx-auto w-fit"
+          >
             <Download className="w-5 h-5 mr-2" />
             {t('about.strategy.download')}
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

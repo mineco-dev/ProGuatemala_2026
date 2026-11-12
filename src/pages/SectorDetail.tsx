@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalized } from '@/hooks/useLocalized';
 import { isSectorSlug, sectorDetails } from '@/data/sectorDetails';
+import { sectorOnePagers } from '@/data/onePagers';
 import {
   AdvantagesSection,
   CtaSection,
@@ -30,7 +31,7 @@ function SectorNotFound() {
 }
 
 export default function SectorDetail() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { sector } = useParams();
   const sectors = useLocalized(sectorDetails);
   const [showDashboard, setShowDashboard] = useState(false);
@@ -40,6 +41,9 @@ export default function SectorDetail() {
   }
 
   const currentSector = sectors[sector];
+  // No todos los sectores tienen one-pager publicado; cuando falta, el enlace
+  // de descarga queda oculto en las secciones hijas.
+  const pdfUrl = sectorOnePagers[sector]?.[language];
 
   return (
     <div className="pt-16">
@@ -56,7 +60,11 @@ export default function SectorDetail() {
         </div>
       </div>
 
-      <HeroSection sector={currentSector} onShowDashboard={() => setShowDashboard(true)} />
+      <HeroSection
+        sector={currentSector}
+        pdfUrl={pdfUrl}
+        onShowDashboard={() => setShowDashboard(true)}
+      />
 
       <DashboardModal isOpen={showDashboard} onClose={() => setShowDashboard(false)} />
 
@@ -72,7 +80,7 @@ export default function SectorDetail() {
         caseStudies={currentSector.caseStudies}
       />
 
-      <CtaSection sectorName={currentSector.name} />
+      <CtaSection sectorName={currentSector.name} pdfUrl={pdfUrl} />
     </div>
   );
 }

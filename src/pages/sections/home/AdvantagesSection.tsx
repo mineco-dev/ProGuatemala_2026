@@ -34,7 +34,7 @@ export default function AdvantagesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="flex flex-wrap justify-center gap-7">
           {guatemalaAdvantages.map((advantage, index) => {
             const [firstWord, restWords] = splitTitle(t(advantage.titleKey));
 
@@ -46,7 +46,7 @@ export default function AdvantagesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="scroll-mt-24 rounded-2xl p-7 border border-dashed border-white/25 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+                className="scroll-mt-24 w-full md:w-[calc(50%-0.875rem)] lg:w-[calc(33.333%-1.167rem)] rounded-2xl p-7 border border-dashed border-white/25 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
                 style={{ background: '#11223B' }}
               >
                 <div

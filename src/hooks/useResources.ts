@@ -9,7 +9,9 @@ import {
   chipStudies,
   chipSubcategories,
   chipVideos,
+  generalDocsAsResources,
   resourceCategories,
+  sectorDocsAsResources,
 } from '@/data/resources';
 import type { Language } from '@/i18n';
 import type { Resource, ResourceCategoryWithCount } from '@/types/resource';
@@ -110,6 +112,15 @@ export function useResources() {
     // el catalogo quedaria vacio con un "no se encontraron recursos" enganoso.
     const publishedDate = new Date().toISOString();
     const staticResources = [
+      ...sectorDocsAsResources(language, t('resources.sector.description'), publishedDate),
+      ...generalDocsAsResources(
+        language,
+        {
+          institutional: t('resources.institutional.description'),
+          legal: t('resources.legal.description'),
+        },
+        publishedDate,
+      ),
       ...chipDocumentsAsResources(language, t('resources.chip.description'), publishedDate),
       ...chipStudiesAsResources(language, t('resources.chipStudy.description'), publishedDate),
       ...chipVideosAsResources(language, publishedDate),

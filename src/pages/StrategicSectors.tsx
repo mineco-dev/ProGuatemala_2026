@@ -1,3 +1,4 @@
+import { useHashScroll } from '@/hooks/useHashScroll';
 import SectorsCarousel from '@/components/SectorsCarousel';
 import {
   CtaSection,
@@ -7,6 +8,8 @@ import {
 } from './sections/strategicSectors';
 
 export default function StrategicSectors() {
+  useHashScroll();
+
   return (
     <div>
       <HeroSection />

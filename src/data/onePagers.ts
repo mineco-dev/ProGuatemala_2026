@@ -103,9 +103,9 @@ export const sectorOnePagers: Record<string, LocalizedDocument> = {
   }),
   'vestuario-textil': toUrls({
     es: `${ES}/sectoriales/ONE PAGER TEXTILES PROGUATEMALA 2026.pdf`,
-    // Sin extension: es tal cual lo publica el landing. Ver nota en el README
-    // del cambio; si resulta ser un error, aqui se le anade ".pdf".
-    en: `${EN}/sectoriales/6. Strategic Sector Apparel and Textiles`,
+    // El landing lo publicaba sin extension, pero esa ruta responde 404 en el
+    // portal; con ".pdf" responde 200, asi que aqui se corrige.
+    en: `${EN}/sectoriales/6. Strategic Sector Apparel and Textiles.pdf`,
   }),
   quimicos: toUrls({
     es: `${ES}/sectoriales/ONE PAGER QUIMICOS 2026.pdf`,

@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { onePagers } from '@/data/onePagers';
 
 export default function CtaSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-16 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
@@ -21,10 +22,15 @@ export default function CtaSection() {
             {t('legal.cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+            <a
+              href={onePagers.strategy[language]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+            >
               <Download className="w-5 h-5 mr-2" />
               {t('legal.cta.download')}
-            </button>
+            </a>
             <button className="border border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-4 rounded-lg transition-all duration-200 flex items-center justify-center">
               {t('legal.cta.consult')}
               <ArrowRight className="w-5 h-5 ml-2" />

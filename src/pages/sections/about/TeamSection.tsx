@@ -9,7 +9,7 @@ export default function TeamSection() {
   const members = useLocalized(team);
 
   return (
-    <section className="py-16 bg-white">
+    <section id="equipo" className="py-16 bg-white scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -37,16 +37,18 @@ export default function TeamSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col"
             >
-              {/* Avatar: foto si existe, de lo contrario circulo solido neutro */}
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-6 shadow-md bg-slate-600 flex items-center justify-center shrink-0">
+              {/* Avatar: foto si existe, de lo contrario circulo solido neutro.
+                  Las fotos son de cuerpo entero, por eso se anclan arriba
+                  (object-top) para encuadrar el rostro. */}
+              <div className="w-28 h-28 rounded-full overflow-hidden mb-6 shadow-md bg-slate-600 flex items-center justify-center shrink-0">
                 {member.image ? (
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 ) : (
-                  <User className="w-9 h-9 text-white/70" />
+                  <User className="w-12 h-12 text-white/70" />
                 )}
               </div>
 

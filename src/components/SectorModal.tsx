@@ -127,6 +127,9 @@ export const SectorModal: React.FC<SectorModalProps> = ({ isOpen, onClose, secto
               {/* Oportunidades de Inversión - Tarjetas azul marino */}
               {sector.opportunities && sector.opportunities.length > 0 && (
                 <div>
+                  <h4 className="text-lg font-bold text-primary-500 mb-4">
+                    {t('sectorModal.opportunitiesSubtitle')}
+                  </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {sector.opportunities.map((opp, idx) => (
                       <div key={idx} className="bg-primary-500 p-5 rounded-xl flex flex-col">

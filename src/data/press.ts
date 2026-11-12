@@ -156,12 +156,49 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
     sourceUrl: mineco('/el-equipaje-de-la-ruta-del-chip'),
     articles: [
       {
+        id: 'corea-del-sur',
+        title: 'Corea del Sur',
+        excerpt:
+          'Corea del Sur ha construido una de las industrias de semiconductores más desarrolladas del mundo, con una especialización particularmente importante en chips de memoria. Empresas coreanas como Samsung Electronics y SK hynix lideran el mercado global.',
+        url: mineco('/corea-del-sur'),
+        image: mineco('/images/Sala_de_Prensa/RUTA%20GRANDE.jpeg'),
+        date: '2026-11-05',
+      },
+      {
+        id: 'viaje-7-singapur',
+        title: 'Singapur',
+        excerpt:
+          'Las decisiones regulatorias tomadas en un país pueden modificar las condiciones de producción de una industria distribuida por todo el mundo. La fabricación de semiconductores depende de materiales, tecnologías y procesos repartidos globalmente.',
+        url: mineco('/viaje-7-singapur'),
+        image: mineco('/images/EQUIPAJE%20SINGAPUR%20PEQUE.jpeg'),
+        date: '2026-10-22',
+      },
+      {
+        id: 'phoenix-estados-unidos',
+        title: 'Phoenix, Estados Unidos',
+        excerpt:
+          'La industria de semiconductores se mantiene siempre en movimiento. Mientras Guatemala comenzaba a explorar los espacios en los que podría desarrollar capacidades, nuevas tecnologías, riesgos y formas de producción estaban en marcha.',
+        url: mineco('/phoenix-estados-unidos'),
+        image: mineco('/images/Sala_de_Prensa/equipaje%20ruta%20del%20chip/EQUIPAJE%20EE.UU.jpeg'),
+        date: '2026-10-08',
+      },
+      {
+        id: 'bogota-colombia',
+        title: 'Bogotá, Colombia',
+        excerpt:
+          'Una conversación en Barranquilla abrió el camino hacia el quinto viaje de la Ruta del Chip. Durante aquella visita, en búsqueda de referencias que pudieran aportar a su construcción, la Agencia Nacional de Atracción de Inversión visitó Bogotá.',
+        url: mineco('/bogota-colombia'),
+        image: mineco('/images/Sala_de_Prensa/portada%20brujula.jpeg'),
+        date: '2026-09-24',
+      },
+      {
         id: 'taipei-taiwan',
         title: 'Taipéi, Taiwán',
         excerpt:
           'La Ruta del Chip regresó a Taiwán en septiembre de 2025 para profundizar en las capacidades que Guatemala necesita desarrollar para integrarse a la industria de semiconductores.',
         url: mineco('/taipei-taiwan'),
         image: mineco('/images/WhatsApp%20Image%202026-08-13%20at%2012.53.58%20PM.jpeg'),
+        date: '2026-09-10',
       },
       {
         id: 'barranquilla-colombia',
@@ -170,6 +207,7 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
           'Durante más de 15 años, Barranquilla ha desarrollado un sector de BPO y Contact Centers a partir de la articulación entre inversión, infraestructura de telecomunicaciones, talento y colaboración público-privada.',
         url: mineco('/barranquilla-colombia'),
         image: mineco('/images/WhatsApp%20Image%202026-08-26%20at%209.01.19%20AM.jpeg'),
+        date: '2026-08-27',
       },
       {
         id: 'taiwan',
@@ -177,7 +215,8 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
         excerpt:
           'El primer viaje de la Ruta del Chip llevó a Guatemala a Taiwán y Singapur para estudiar cómo se desarrollaron dos ecosistemas vinculados con industrias de alta tecnología.',
         url: mineco('/taiwan'),
-        image: mineco('/images/COVER%2005.jpg-2.jpeg'),
+        image: mineco('/images/WhatsApp%20Image%202026-08-13%20at%2012.53.58%20PM.jpeg'),
+        date: '2026-08-13',
       },
       {
         id: 'viaje-1-taiwan-y-singapur',
@@ -186,6 +225,7 @@ export const PRESS_COLLECTIONS: PressCollection[] = [
           'La industria electrónica y de semiconductores ocupa un lugar estratégico en la economía mundial por su papel en el desarrollo tecnológico y la generación de empleos de alto valor.',
         url: mineco('/viaje-1-taiwan-y-singapur'),
         image: mineco('/images/COVER%2005.jpg-2.jpeg'),
+        date: '2026-07-30',
       },
     ],
   },

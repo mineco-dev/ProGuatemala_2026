@@ -38,7 +38,7 @@ export default function AdvantagesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {items.map((advantage, index) => {
             const { accent, icon: Icon } = CARD_STYLES[index % CARD_STYLES.length];
 
@@ -49,7 +49,7 @@ export default function AdvantagesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="rounded-2xl border border-dashed p-7 h-full bg-white/[0.02] transition-colors duration-300 hover:bg-white/[0.05]"
+                className="rounded-2xl border border-dashed p-7 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-white/[0.02] transition-colors duration-300 hover:bg-white/[0.05]"
                 style={{ borderColor: accent }}
               >
                 <div className="flex items-start gap-4 mb-5">

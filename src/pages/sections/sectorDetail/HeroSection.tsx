@@ -6,10 +6,11 @@ import type { SectorDetailContent } from '@/types/sectorDetail';
 
 interface HeroSectionProps {
   sector: SectorDetailContent;
+  pdfUrl?: string;
   onShowDashboard: () => void;
 }
 
-export default function HeroSection({ sector, onShowDashboard }: HeroSectionProps) {
+export default function HeroSection({ sector, pdfUrl, onShowDashboard }: HeroSectionProps) {
   const { t } = useLanguage();
 
   return (
@@ -25,10 +26,17 @@ export default function HeroSection({ sector, onShowDashboard }: HeroSectionProp
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{sector.name}</h1>
             <p className="text-xl text-white/80 mb-8">{sector.description}</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-sector-4 hover:brightness-110 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
-                <Download className="w-5 h-5 mr-2" />
-                {t('sectorDetail.downloadSheet')}
-              </button>
+              {pdfUrl && (
+                <a
+                  href={pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-sector-4 hover:brightness-110 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  {t('sectorDetail.downloadSheet')}
+                </a>
+              )}
               <button
                 className="bg-white/90 text-sector-6 hover:bg-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
                 onClick={onShowDashboard}

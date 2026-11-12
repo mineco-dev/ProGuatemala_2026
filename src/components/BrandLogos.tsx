@@ -25,9 +25,17 @@ const BrandLogos: React.FC<BrandLogosProps> = ({
   const pro = variant === 'white' ? proWhite : proColor;
 
   return (
+    // Cada <img> va envuelta en un <span> para que NO sea hijo directo del flex.
+    // Firefox a veces usa el ancho intrinseco real del PNG (miles de px) como
+    // tamano del item flex, inflando el logo y amontonando el resto del appbar.
+    // Con el wrapper, el flex mide el span y la img escala por su altura.
     <div className={`flex items-center ${className}`}>
-      <img src={mineco} alt="Ministerio de Economia de Guatemala" className={imgClassName} />
-      <img src={pro} alt="ProGuatemala" className={imgClassName} />
+      <span className="inline-flex shrink-0">
+        <img src={mineco} alt="Ministerio de Economia de Guatemala" className={`block ${imgClassName}`} />
+      </span>
+      <span className="inline-flex shrink-0">
+        <img src={pro} alt="ProGuatemala" className={`block ${imgClassName}`} />
+      </span>
     </div>
   );
 };

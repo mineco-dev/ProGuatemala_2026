@@ -3,6 +3,7 @@ import { Compass, ShieldCheck, Sparkles, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { TranslationKey } from '@/i18n';
+import { smoothScrollTo } from '@/lib/scroll';
 import aboutImg from '@/assets/images/nosotros/NOSOTROS-01.jpg';
 
 const HIGHLIGHTS: Array<{ icon: LucideIcon; titleKey: TranslationKey; descKey: TranslationKey }> = [
@@ -71,6 +72,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <button
+            onClick={() => smoothScrollTo('equipo')}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98]"
             style={{ background: '#3DB08B' }}
           >

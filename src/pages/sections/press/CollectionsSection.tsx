@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Calendar, ExternalLink, Newspaper } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { PRESS_COLLECTIONS } from '@/data/press';
+import { usePressCollections } from '@/hooks/usePressCollections';
 import type { PressArticle } from '@/types/press';
 
 /** Cantidad de notas visibles por coleccion; el resto se ve con "Ver mas". */
@@ -69,10 +69,11 @@ function PressArticleCard({ article, index }: { article: PressArticle; index: nu
 
 export default function CollectionsSection() {
   const { t, language } = useLanguage();
+  const collections = usePressCollections();
 
   return (
     <>
-      {PRESS_COLLECTIONS.map((collection) => (
+      {collections.map((collection) => (
         <section key={collection.id} className="relative overflow-hidden py-20 text-white">
           {/* Cada coleccion tiene su propio fondo tematico. */}
           <div

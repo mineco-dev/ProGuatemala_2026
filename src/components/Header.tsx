@@ -27,7 +27,6 @@ const Header: React.FC = () => {
   const navigation: NavItem[] = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/about' },
-    { name: t('nav.services'), href: '/services' },
     {
       name: t('nav.why-guatemala'),
       href: '/why-guatemala',
@@ -67,15 +66,17 @@ const Header: React.FC = () => {
     <>
       {/* Main Header */}
       <header className="shadow-md sticky top-0 z-50 border-t border-white/10" style={{ background: '#11223B' }}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <BrandLogos variant="white" imgClassName="h-12 sm:h-14 w-auto" className="gap-3 sm:gap-4" />
-          </Link>
+      <nav className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center h-28 gap-4">
+          {/* Logo (pegado a la izquierda) */}
+          <div className="flex-1 min-w-0 flex justify-start">
+            <Link to="/" className="flex items-center shrink-0">
+              <BrandLogos variant="white" imgClassName="h-20 sm:h-24 w-auto" className="gap-3 sm:gap-4" />
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation (centrado real entre los dos lados de igual ancho) */}
+          <div className="hidden lg:flex shrink-0 items-center space-x-1">
             {navigation.map((item) =>
               item.sections ? (
                 <div key={item.name} className="relative group">
@@ -123,8 +124,8 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          {/* Language Selector & Mobile Menu Button */}
-          <div className="flex items-center space-x-2">
+          {/* Language Selector & Mobile Menu Button (mismo ancho que el logo para centrar el menu) */}
+          <div className="flex-1 min-w-0 flex items-center justify-end space-x-2">
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
