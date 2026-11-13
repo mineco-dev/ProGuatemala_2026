@@ -56,7 +56,6 @@ export default function TeamSection() {
               <p className="font-semibold mb-4" style={{ color: '#3DB08B' }}>
                 {member.position}
               </p>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6 text-justify">{member.bio}</p>
 
               {member.email && (
                 <div className="flex items-center gap-2 mt-auto pt-2">
