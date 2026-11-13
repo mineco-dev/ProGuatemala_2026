@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { baseMap, mapLayers } from '@/data/whyGuatemala/infrastructureMaps';
-import americasMap from '@/assets/images/por-que-guatemala/mapa/america.png';
+import americasMap from '@/assets/images/por-que-guatemala/mapa/MAPA AMÉRICA.png';
 
 /**
  * Mapa de Guatemala con capas superponibles. El mapa base siempre esta
@@ -60,7 +60,7 @@ export default function InfrastructureMap() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.6 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            style={{ transformOrigin: '37% 31%' }}
+            style={{ transformOrigin: '44% 72%' }}
           >
             <p className="text-sm text-gray-600 text-center mb-3">{t('why.map.infra.intro')}</p>
 
@@ -74,15 +74,16 @@ export default function InfrastructureMap() {
               />
 
               {/*
-                Punto interactivo sobre Guatemala. El pin del mapa queda en
-                ~37% horizontal y ~31% vertical del cuadrado (3544x3544).
+                Punto interactivo sobre Guatemala. En el mapa de Norte/
+                Centroamerica Guatemala queda en ~44% horizontal y ~72%
+                vertical del cuadrado (3544x3544).
               */}
               <button
                 type="button"
                 onClick={() => setRevealed(true)}
                 aria-label={t('why.map.infra.hotspot')}
                 className="group absolute -translate-x-1/2 -translate-y-1/2 focus:outline-none"
-                style={{ left: '37%', top: '31%' }}
+                style={{ left: '44%', top: '72%' }}
               >
                 <span className="relative flex items-center justify-center">
                   {/* Anillo pulsante que invita al clic */}

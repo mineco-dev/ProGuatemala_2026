@@ -1,75 +1,78 @@
+import { Factory, Globe, Receipt, Rocket, Scale, Users } from 'lucide-react';
 import type { AdvantageHotspot, HomeAdvantage } from '@/types/home';
-import macroIcon from '@/assets/images/inicio/iconos/macro.png';
-import locationIcon from '@/assets/images/inicio/iconos/location.png';
-import talentIcon from '@/assets/images/inicio/iconos/talent.png';
-import energyIcon from '@/assets/images/inicio/iconos/energy.png';
-import regimesIcon from '@/assets/images/inicio/iconos/regimes.png';
 
 export const guatemalaAdvantages: HomeAdvantage[] = [
   {
-    id: 'advantage-macroeconomia-robusta',
-    iconImg: macroIcon,
+    id: 'guia-iniciar-operaciones',
+    icon: Rocket,
     iconBg: '#FABE0D',
-    titleKey: 'home.advantages.macro.title',
-    descriptionKey: 'home.advantages.macro.desc',
+    titleKey: 'home.advantages.operations.title',
     detailKeys: [
-      'home.advantages.macro.detail1',
-      'home.advantages.macro.detail2',
-      'home.advantages.macro.detail3',
-      'home.advantages.macro.detail4',
+      'home.advantages.operations.detail1',
+      'home.advantages.operations.detail2',
+      'home.advantages.operations.detail3',
     ],
+    docUrl: '#',
   },
   {
-    id: 'advantage-ubicacion-estrategica',
-    iconImg: locationIcon,
+    id: 'guia-marco-legal',
+    icon: Scale,
     iconBg: '#D7E3AA',
-    titleKey: 'home.advantages.location.title',
-    descriptionKey: 'home.advantages.location.desc',
+    titleKey: 'home.advantages.legal.title',
     detailKeys: [
-      'home.advantages.location.detail1',
-      'home.advantages.location.detail2',
-      'home.advantages.location.detail3',
-      'home.advantages.location.detail4',
+      'home.advantages.legal.detail1',
+      'home.advantages.legal.detail2',
+      'home.advantages.legal.detail3',
     ],
+    docUrl: '#',
   },
   {
-    id: 'advantage-talento-joven-y-calificado',
-    iconImg: talentIcon,
+    id: 'guia-regimenes-especiales',
+    icon: Factory,
     iconBg: '#2BB9DB',
-    titleKey: 'home.advantages.talent.title',
-    descriptionKey: 'home.advantages.talent.desc',
+    titleKey: 'home.advantages.regimes.title',
     detailKeys: [
-      'home.advantages.talent.detail1',
-      'home.advantages.talent.detail2',
-      'home.advantages.talent.detail3',
-      'home.advantages.talent.detail4',
+      'home.advantages.regimes.detail1',
+      'home.advantages.regimes.detail2',
+      'home.advantages.regimes.detail3',
     ],
+    docUrl: '#',
   },
   {
-    id: 'advantage-energia-renovable-y-confiable',
-    iconImg: energyIcon,
+    id: 'guia-aspectos-laborales',
+    icon: Users,
     iconBg: '#3DB08B',
-    titleKey: 'home.advantages.energy.title',
-    descriptionKey: 'home.advantages.energy.desc',
+    titleKey: 'home.advantages.labor.title',
     detailKeys: [
-      'home.advantages.energy.detail1',
-      'home.advantages.energy.detail2',
-      'home.advantages.energy.detail3',
-      'home.advantages.energy.detail4',
+      'home.advantages.labor.detail1',
+      'home.advantages.labor.detail2',
+      'home.advantages.labor.detail3',
     ],
+    docUrl: '#',
   },
   {
-    id: 'advantage-regimenes-especiales-e-incentivos-fiscales',
-    iconImg: regimesIcon,
+    id: 'guia-acuerdos-comerciales',
+    icon: Globe,
     iconBg: '#BBA4CE',
-    titleKey: 'home.advantages.incentives.title',
-    descriptionKey: 'home.advantages.incentives.desc',
+    titleKey: 'home.advantages.trade.title',
     detailKeys: [
-      'home.advantages.incentives.detail1',
-      'home.advantages.incentives.detail2',
-      'home.advantages.incentives.detail3',
-      'home.advantages.incentives.detail4',
+      'home.advantages.trade.detail1',
+      'home.advantages.trade.detail2',
+      'home.advantages.trade.detail3',
     ],
+    docUrl: '#',
+  },
+  {
+    id: 'guia-obligaciones-tributarias',
+    icon: Receipt,
+    iconBg: '#97DCEE',
+    titleKey: 'home.advantages.tax.title',
+    detailKeys: [
+      'home.advantages.tax.detail1',
+      'home.advantages.tax.detail2',
+      'home.advantages.tax.detail3',
+    ],
+    docUrl: '#',
   },
 ];
 

@@ -54,7 +54,7 @@ export default function HeroSection() {
                   {t('why.hero.explore')}
                 </button>
                 <button
-                  onClick={() => scrollTo('stats-grid')}
+                  onClick={() => scrollTo('why-estadisticas')}
                   className="border border-white text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 rounded-lg transition-all duration-200"
                 >
                   {t('why.hero.stats')}

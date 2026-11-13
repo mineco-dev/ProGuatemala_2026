@@ -2,12 +2,6 @@ import type { Localized } from '@/i18n';
 import type { Park } from '@/types/whyGuatemala';
 
 // Presentacion unificada: exactamente 5 fotografias por parque.
-import interoceanica1 from '@/assets/images/por-que-guatemala/parques/interoceanica/Interoceanica.jpg';
-import interoceanica2 from '@/assets/images/por-que-guatemala/parques/interoceanica/1.jpeg';
-import interoceanica3 from '@/assets/images/por-que-guatemala/parques/interoceanica/2.jpeg';
-import interoceanica4 from '@/assets/images/por-que-guatemala/parques/interoceanica/DJI_0944.JPG';
-import interoceanica5 from '@/assets/images/por-que-guatemala/parques/interoceanica/DJI_0945.JPG';
-
 import michatoya1 from '@/assets/images/por-que-guatemala/parques/michatoya/Michatoya Pacífico.jpg';
 import michatoya3 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 1.jpg';
 import michatoya4 from '@/assets/images/por-que-guatemala/parques/michatoya/MICHATOYA PACIFICO 2.jpg';
@@ -34,7 +28,6 @@ import quetzal6 from '@/assets/images/por-que-guatemala/parques/quetzal/ZLQ vist
 
 /** Las fotografias son las mismas en ambos idiomas; solo cambia el texto. */
 const IMAGES: Record<string, string[]> = {
-  interoceanica: [interoceanica1, interoceanica2, interoceanica3, interoceanica4, interoceanica5],
   michatoya: [michatoya1, michatoya3, michatoya4, michatoya5, michatoya6],
   'puerta-istmo': [istmo1, istmo2, istmo3, istmo4, istmo5],
   synergy: [synergy1, synergy2, synergy3, synergy4, synergy5],
@@ -49,14 +42,6 @@ type ParkCopy = Pick<Park, 'id' | 'title' | 'description' | 'overview' | 'highli
  */
 const COPY: Localized<ParkCopy[]> = {
   es: [
-    {
-      id: 'interoceanica',
-      title: 'Interoceánica',
-      description: 'Parque industrial con conectividad logística clave entre océanos.',
-      overview:
-        'Interoceánica es el primer y único parque industrial en operación activa del corredor Atlántico de Guatemala. Su ubicación en el centro del país permite la conexión directa entre los dos puertos más importantes: Santo Tomás de Castilla y Puerto Quetzal, consolidándose como un punto logístico clave para el comercio nacional e internacional.',
-      highlights: ['Ubicación estratégica', 'Infraestructura moderna', 'Acceso a rutas principales'],
-    },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',
@@ -92,15 +77,6 @@ const COPY: Localized<ParkCopy[]> = {
     },
   ],
   en: [
-    {
-      id: 'interoceanica',
-      title: 'Interoceánica',
-      description:
-        'Interoceanic industrial park with key logistics connectivity between the two oceans.',
-      overview:
-        'Interoceánica is the first and only industrial park in active operation along Guatemala’s Atlantic corridor. Its location at the center of the country allows a direct connection between the two most important ports, Santo Tomás de Castilla and Puerto Quetzal, establishing it as a key logistics point for domestic and international trade.',
-      highlights: ['Strategic location', 'Modern infrastructure', 'Access to main routes'],
-    },
     {
       id: 'michatoya',
       title: 'Michatoya Pacífico',

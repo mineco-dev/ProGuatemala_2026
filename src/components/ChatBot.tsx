@@ -274,7 +274,7 @@ const ChatBot: React.FC = () => {
       <motion.button
         onClick={() => setIsOpen(true)}
         aria-label={text.assistant}
-        className={`fixed bottom-6 right-6 z-40 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${isOpen ? 'hidden' : 'block'}`}
+        className={`fixed bottom-6 right-6 z-40 bg-primary-500 hover:bg-primary-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${isOpen ? 'hidden' : 'block'}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0 }}
@@ -282,7 +282,7 @@ const ChatBot: React.FC = () => {
         transition={{ delay: 3, duration: 0.5 }}
       >
         <MessageCircle className="w-6 h-6" />
-        <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+        <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full animate-pulse"></div>
       </motion.button>
 
       {/* Chat Window */}
@@ -296,12 +296,12 @@ const ChatBot: React.FC = () => {
             className="fixed bottom-6 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[26rem] lg:w-[32rem] h-[40rem] max-h-[calc(100vh-3rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary-500 to-accent-600 text-white p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3 min-w-0">
                 <BrandLogos variant="white" imgClassName="h-8 w-auto" className="gap-2 shrink-0" />
                 <div className="min-w-0 border-l border-white/30 pl-3">
                   <h3 className="font-semibold leading-tight truncate">{text.assistant}</h3>
-                  <p className="text-xs text-blue-100 truncate">{text.tagline}</p>
+                  <p className="text-xs text-accent-100 truncate">{text.tagline}</p>
                 </div>
               </div>
               <button
@@ -322,7 +322,7 @@ const ChatBot: React.FC = () => {
                 >
                   <div className={`flex items-start space-x-2 ${message.sender === 'user' ? 'max-w-[85%] flex-row-reverse space-x-reverse' : 'max-w-[92%]'}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.sender === 'user' ? 'bg-blue-600' : 'bg-gray-200'
+                      message.sender === 'user' ? 'bg-primary-500' : 'bg-gray-200'
                     }`}>
                       {message.sender === 'user' ? (
                         <User className="w-4 h-4 text-white" />
@@ -332,7 +332,7 @@ const ChatBot: React.FC = () => {
                     </div>
                     <div className={`p-3 rounded-2xl ${
                       message.sender === 'user'
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-primary-500 text-white'
                         : 'bg-gray-100 text-gray-800'
                     }`}>
                       <p className="text-sm whitespace-pre-line">{message.text}</p>
@@ -341,7 +341,7 @@ const ChatBot: React.FC = () => {
                         <Link
                           to={message.link}
                           onClick={() => setIsOpen(false)}
-                          className="mt-2 inline-flex items-center space-x-1 text-xs font-semibold text-blue-700 hover:text-blue-900"
+                          className="mt-2 inline-flex items-center space-x-1 text-xs font-semibold text-accent-700 hover:text-accent-900"
                         >
                           <span>{text.seeMore}</span>
                           <ArrowRight className="w-3 h-3" />
@@ -356,7 +356,7 @@ const ChatBot: React.FC = () => {
                               <button
                                 key={suggestion.id}
                                 onClick={() => handleSuggestion(suggestion)}
-                                className="text-xs bg-blue-50 text-blue-800 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors duration-200 text-left"
+                                className="text-xs bg-accent-50 text-primary-500 px-3 py-1 rounded-full hover:bg-accent-100 transition-colors duration-200 text-left"
                               >
                                 {suggestion.title}
                               </button>
@@ -366,7 +366,7 @@ const ChatBot: React.FC = () => {
                       )}
 
                       <p className={`text-xs mt-1 ${
-                        message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'
+                        message.sender === 'user' ? 'text-accent-100' : 'text-gray-500'
                       }`}>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </p>
@@ -403,13 +403,13 @@ const ChatBot: React.FC = () => {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={handleKeyPress}
                   placeholder={index ? text.placeholder : text.loading}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent text-sm"
                 />
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputText.trim()}
                   aria-label="Enviar"
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors duration-200"
+                  className="bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors duration-200"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -419,14 +419,14 @@ const ChatBot: React.FC = () => {
               <div className="flex justify-center space-x-4 mt-3 pt-3 border-t border-gray-100">
                 <a
                   href="tel:+50224120200"
-                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-accent-500 transition-colors duration-200"
                 >
                   <Phone className="w-3 h-3" />
                   <span>{text.call}</span>
                 </a>
                 <a
                   href="mailto:proguatemala@mineco.gob.gt"
-                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-accent-500 transition-colors duration-200"
                 >
                   <Mail className="w-3 h-3" />
                   <span>{text.email}</span>
@@ -434,7 +434,7 @@ const ChatBot: React.FC = () => {
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                  className="flex items-center space-x-1 text-xs text-gray-600 hover:text-accent-500 transition-colors duration-200"
                 >
                   <MessageCircle className="w-3 h-3" />
                   <span>{text.contact}</span>

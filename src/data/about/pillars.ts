@@ -40,7 +40,7 @@ const COPY: Localized<Array<Pick<Pillar, 'title' | 'description'>>> = {
     {
       title: 'Aftercare',
       description:
-        'Ongoing support to strengthen, consolidate and reinvest in projects already established.',
+        'Ongoing support for the strengthening, consolidation and reinvestment in existing projects.',
     },
   ],
 };

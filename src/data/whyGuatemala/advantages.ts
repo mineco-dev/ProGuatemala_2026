@@ -31,7 +31,7 @@ const COPY: Localized<Array<Pick<Advantage, 'title' | 'description'>>> = {
     {
       title: 'Regímenes Especiales e Incentivos Fiscales',
       description:
-        'Marco tributario competitivo con certeza jurídica: ISR bajo régimen opcional simplificado (5% sobre los primeros US$3,870.97 y 7% sobre el excedente) o 25% sobre utilidades netas, e IVA del 12%. Respaldado por una amplia red de tratados de libre comercio (DR-CAFTA, México, Chile, Colombia, Corea del Sur, entre otros) y acuerdos de protección de la inversión.',
+        'Marco tributario competitivo: ISR bajo el régimen opcional simplificado, con tasas del 5% y 7% según el nivel de ingresos, o del 25% sobre utilidades netas, e IVA del 12%. Complementado por regímenes especiales de fomento a la inversión como las Zonas Francas, las Zonas de Desarrollo Económico Especial Públicas (ZDEEP) y la Ley de Maquila (Decreto 29-89).',
     },
     {
       title: 'Energía renovable y confiable con costos competitivos',
@@ -58,7 +58,7 @@ const COPY: Localized<Array<Pick<Advantage, 'title' | 'description'>>> = {
     {
       title: 'Special Regimes and Tax Incentives',
       description:
-        'A competitive tax framework with legal certainty: income tax under a simplified optional regime (5% on the first US$3,870.97 and 7% on the excess) or 25% on net profits, and a 12% VAT. Backed by a broad network of free trade agreements (DR-CAFTA, Mexico, Chile, Colombia, South Korea, among others) and investment protection agreements.',
+        'Competitive tax framework: income tax under the simplified optional regime, with rates of 5% and 7% depending on income level, or 25% on net profits, and a 12% VAT. Complemented by special investment-promotion regimes such as Free Trade Zones, the Public Special Economic Development Zones (ZDEEP) and the Maquila Law (Decree 29-89).',
     },
     {
       title: 'Reliable renewable energy at competitive costs',

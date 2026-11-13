@@ -31,11 +31,11 @@ const COPY: Localized<ServiceCopy[]> = {
       description:
         'Se brinda orientación personalizada en cada etapa del proceso de inversión, incluyendo la organización de reuniones con actores clave del sector público y privado para avanzar en los proyectos de inversión. Se brinda apoyo a las empresas extranjeras en el establecimiento de operaciones, acompañamiento en procedimientos regulatorios, legales y administrativos.',
       features: [
-        'Asesoría profesional y gratuita.',
-        'Información estratégica para la toma de decisiones según requerimiento del inversionista.',
-        'Elaboración y acompañamiento de agendas de negocios con actores clave del sector público y privado.',
-        'Servicios especializados de softlanding para facilitar procesos legales y administrativos de establecimiento de empresas extranjeras en el país.',
-        'Atención uno a uno, a requerimientos específicos de cada empresa y sector.',
+        'Asesoría profesional y gratuita',
+        'Información estratégica para la toma de decisiones según requerimiento del inversionista',
+        'Elaboración y acompañamiento de agendas de negocios con actores clave del sector público y privado',
+        'Servicios especializados de softlanding para facilitar procesos legales y administrativos de establecimiento de empresas extranjeras en el país',
+        'Atención uno a uno, a requerimientos específicos de cada empresa y sector',
       ],
       cta: 'Explorar oportunidades',
     },
@@ -85,23 +85,23 @@ const COPY: Localized<ServiceCopy[]> = {
       description:
         'We provide tailored guidance at every stage of the investment process, including arranging meetings with key public and private sector stakeholders to move investment projects forward. We support foreign companies in setting up operations and guide them through regulatory, legal and administrative procedures.',
       features: [
-        'Professional advisory services, free of charge.',
-        'Strategic information for decision-making, tailored to what the investor needs.',
-        'Preparation and facilitation of business agendas with key public and private sector stakeholders.',
-        'Specialized softlanding services to ease the legal and administrative steps of establishing foreign companies in the country.',
-        'One-to-one support for the specific needs of each company and sector.',
+        'Professional advisory services, free of charge',
+        'Strategic information for decision-making, tailored to what the investor needs',
+        'Preparation and facilitation of business agendas with key public and private sector stakeholders',
+        'Specialized softlanding services to ease the legal and administrative steps of establishing foreign companies in the country',
+        'One-to-one support for the specific needs of each company and sector',
       ],
       cta: 'Explore opportunities',
     },
     {
       title: 'Softlanding',
       description:
-        'We accompany foreign investors as they establish themselves in Guatemala, making it easier to complete the procedures, permits and licenses their operations require. Our specialized service provides end-to-end support to keep the process fast and transparent.',
+        'We support foreign investors throughout the process of establishing their businesses in Guatemala, making it easier to complete the procedures, permits and licenses their operations require. Our specialised service provides comprehensive support, ensuring a streamlined and transparent process.',
       features: [
-        'Specialized advisory support throughout the setup process in the country',
+        'Specialized advisory services throughout the establishment process in the country',
         'Guidance through legal procedures, permits and licenses',
         'Support for establishing and operating foreign companies',
-        'Introductions to key institutional contacts',
+        'Support in establishing connections with key institutional stakeholders',
       ],
       cta: 'Request support',
     },
@@ -128,7 +128,7 @@ const COPY: Localized<ServiceCopy[]> = {
         'Updates on relevant regulations and standards',
         'Identification and resolution of operational challenges',
         'Support with administrative and expansion processes',
-        'Introductions for reinvestment and growth in Guatemala',
+        'Support in establishing strategic connections for reinvestment and business expansion in Guatemala',
       ],
       cta: 'Request support',
     },
@@ -174,7 +174,7 @@ const BENEFIT_COPY: Localized<Array<Pick<ServiceBenefit, 'title' | 'description'
     { title: 'Free of charge', description: 'All of our services are completely free for investors' },
     { title: 'Multilingual', description: 'Support in Spanish, English and other languages as needed' },
     { title: 'Specialized', description: 'In-depth knowledge of local sectors and regulations' },
-    { title: 'Institutional', description: 'Official backing from the Government of Guatemala at every step' },
+    { title: 'Institutional', description: 'Official support from the Government of Guatemala at every step' },
   ],
 };
 

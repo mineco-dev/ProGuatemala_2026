@@ -26,7 +26,7 @@ export default function ParksSection() {
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">{t('why.parks.subtitle')}</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8 max-w-5xl mx-auto">
           {parkList.map((park, index) => (
             <motion.button
               key={park.id}
@@ -37,7 +37,7 @@ export default function ParksSection() {
               transition={{ duration: 0.5, delay: Math.min(index, 3) * 0.08 }}
               onClick={() => setActivePark(park)}
               aria-label={`${park.title} — ${t('why.parks.viewGallery')}`}
-              className="group text-left w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.334rem)] rounded-2xl border p-4 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#11223B]"
+              className="group text-left w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(50%-1rem)] rounded-2xl border p-4 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#11223B]"
               style={{ borderColor: '#FABE0D', background: 'rgba(255,255,255,0.02)' }}
             >
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-black/20 mb-4">

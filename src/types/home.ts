@@ -1,14 +1,15 @@
+import type { LucideIcon } from 'lucide-react';
 import type { TranslationKey } from '@/i18n';
 
 /**
- * Las ventajas guardan claves de traduccion, no textos: el texto se resuelve
- * en tiempo de render con el idioma activo.
+ * Cada recuadro de "Por que Guatemala" guarda claves de traduccion, no textos:
+ * el texto se resuelve en tiempo de render con el idioma activo.
  */
 export interface HomeAdvantage {
   /** Ancla usada por los hotspots del mapa (`#id`). */
   id: string;
-  /** Icono (PNG) de la ventaja, importado via Vite. */
-  iconImg: string;
+  /** Icono (lucide-react) del recuadro. */
+  icon: LucideIcon;
   /**
    * Color de fondo (hex) del recuadro del icono. Va como estilo inline y no
    * como clase Tailwind: el sistema de marca redibuja todas las utilidades de
@@ -17,8 +18,12 @@ export interface HomeAdvantage {
    */
   iconBg: string;
   titleKey: TranslationKey;
-  descriptionKey: TranslationKey;
   detailKeys: TranslationKey[];
+  /**
+   * Documento descargable al que apunta el boton "Conoce mas". Placeholder
+   * (`#`) hasta que se publiquen los PDF actualizados de cada tema.
+   */
+  docUrl: string;
 }
 
 export interface AdvantageHotspot {

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { guatemalaAdvantages } from '@/data/home';
 import advantagesBg from '@/assets/images/inicio/advantages-bg.jpg';
@@ -37,6 +38,7 @@ export default function AdvantagesSection() {
         <div className="flex flex-wrap justify-center gap-7">
           {guatemalaAdvantages.map((advantage, index) => {
             const [firstWord, restWords] = splitTitle(t(advantage.titleKey));
+            const Icon = advantage.icon;
 
             return (
               <motion.div
@@ -46,26 +48,22 @@ export default function AdvantagesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="scroll-mt-24 w-full md:w-[calc(50%-0.875rem)] lg:w-[calc(33.333%-1.167rem)] rounded-2xl p-7 border border-dashed border-white/25 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+                className="scroll-mt-24 flex flex-col w-full md:w-[calc(50%-0.875rem)] lg:w-[calc(33.333%-1.167rem)] rounded-2xl p-7 border border-dashed border-white/25 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
                 style={{ background: '#11223B' }}
               >
                 <div
                   className="w-16 h-16 rounded-xl flex items-center justify-center shadow-md mb-6"
                   style={{ background: advantage.iconBg }}
                 >
-                  <img src={advantage.iconImg} alt="" className="w-9 h-9" />
+                  <Icon className="w-8 h-8" style={{ color: '#11223B' }} strokeWidth={2} />
                 </div>
 
-                <h3 className="text-sm font-bold uppercase tracking-wider mb-4">
+                <h3 className="text-base font-bold leading-snug mb-4">
                   <span style={{ color: advantage.iconBg }}>{firstWord}</span>{' '}
-                  <span className="text-gray-300">{restWords}</span>
+                  <span className="text-gray-100">{restWords}</span>
                 </h3>
 
-                <p className="text-gray-300 text-sm leading-relaxed mb-5">
-                  {t(advantage.descriptionKey)}
-                </p>
-
-                <ul className="space-y-2.5">
+                <ul className="space-y-2.5 mb-6">
                   {advantage.detailKeys.map((detailKey) => (
                     <li key={detailKey} className="flex items-start">
                       <span
@@ -76,6 +74,18 @@ export default function AdvantagesSection() {
                     </li>
                   ))}
                 </ul>
+
+                <a
+                  href={advantage.docUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t('common.learn-more')}: ${t(advantage.titleKey)}`}
+                  className="mt-auto inline-flex items-center gap-2 self-start rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:gap-3"
+                  style={{ background: advantage.iconBg, color: '#11223B' }}
+                >
+                  {t('common.learn-more')}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </motion.div>
             );
           })}

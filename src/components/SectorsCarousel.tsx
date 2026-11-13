@@ -234,11 +234,6 @@ const SectorsCarousel: React.FC<SectorsCarouselProps> = ({
                             {highlight}
                           </span>
                         ))}
-                        {sector.highlights.length > 2 && (
-                          <span className="bg-gray-100 text-gray-500 px-2 py-1 rounded text-xs font-medium">
-                            +{sector.highlights.length - 2} más
-                          </span>
-                        )}
                       </div>
                     </div>
                     
